@@ -36,6 +36,26 @@ Read that template's `readme.md` before changing build commands.
 
 ## Verification
 
+Run style grammar validation before template-specific rendering checks:
+
+```bash
+node scripts/validate-style-sample.mjs --file=<html-file> --style=<style-id> --template=<template-id>
+```
+
+After editing the shared style catalog, execution grammar, or validator, run:
+
+```bash
+node scripts/test-style-grammar.mjs
+```
+
+This checks style/profile coverage and verifies that a compliant Braun sample
+passes while a known bad Braun sample fails for circular badges, radar/SVG text,
+wrong layout id, unroled dark surfaces, and forbidden title typography.
+
+For Gate 1B samples, validation must pass before asking for approval. For full
+decks, validation should still pass unless a user explicitly approved a grammar
+exception.
+
 Use template-specific verifier when present:
 
 ```bash
@@ -53,6 +73,9 @@ Check:
 - B low-power/static mode
 - no obvious overflow
 - contact sheet
+- `data-style-id`, `data-template-id`, `data-grammar-profile` on the deck root
+- `data-slide-role` and `data-layout-id` on every slide
+- no forbidden component/shape/chart/type violations for the selected style
 
 ## Export
 

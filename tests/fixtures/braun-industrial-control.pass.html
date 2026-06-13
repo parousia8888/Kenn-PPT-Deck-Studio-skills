@@ -1,0 +1,222 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Braun Industrial Control Gate 1B Fixture</title>
+  <style>
+    :root {
+      --paper: #f3efe6;
+      --surface: #e6dfd2;
+      --ink: #25231f;
+      --muted: #6d675d;
+      --orange: #f05a28;
+      --blue: #2f72a8;
+      --line: #b9afa0;
+      --graphite: #24221f;
+      --ok: #6e8f54;
+      --font-sans: "Segoe UI", Aptos, "Microsoft YaHei UI", "Microsoft YaHei", Arial, sans-serif;
+      --font-mono: "Cascadia Mono", Consolas, "Microsoft YaHei UI", monospace;
+    }
+
+    * { box-sizing: border-box; }
+    body { margin: 0; background: var(--paper); color: var(--ink); font-family: var(--font-sans); }
+    .deck-shell { width: 1280px; min-height: 720px; overflow: hidden; }
+    .slide {
+      position: relative;
+      width: 1280px;
+      height: 720px;
+      padding: 56px 72px;
+      background: linear-gradient(90deg, var(--paper), #eee6da);
+      border-bottom: 6px solid var(--orange);
+    }
+    .cc-rail {
+      display: grid;
+      grid-template-columns: 88px 1fr 320px;
+      gap: 32px;
+      align-items: stretch;
+      height: 100%;
+    }
+    .cc-index {
+      border-left: 8px solid var(--orange);
+      padding-left: 18px;
+      font: 640 22px/1 var(--font-mono);
+      letter-spacing: 0;
+      color: var(--muted);
+    }
+    h1, h2 {
+      margin: 0;
+      font-family: var(--font-sans);
+      font-weight: 680;
+      letter-spacing: 0;
+      line-height: 0.96;
+    }
+    h1 { font-size: 72px; max-width: 720px; }
+    h2 { font-size: 48px; max-width: 760px; }
+    p { margin: 18px 0 0; font-size: 24px; line-height: 1.42; color: var(--muted); }
+    .cc-meta {
+      align-self: end;
+      display: grid;
+      gap: 12px;
+      font: 560 16px/1.2 var(--font-mono);
+      color: var(--muted);
+    }
+    .instrument-panel {
+      align-self: end;
+      min-height: 328px;
+      padding: 22px;
+      background: var(--graphite);
+      color: var(--paper);
+      display: grid;
+      gap: 18px;
+    }
+    .panel-label { font: 620 14px/1 var(--font-mono); color: var(--orange); }
+    .meter { display: grid; gap: 8px; }
+    .meter-row { display: flex; justify-content: space-between; font: 540 13px/1 var(--font-mono); color: #d8d1c5; }
+    .meter-track { height: 8px; background: rgba(243, 239, 230, 0.16); }
+    .meter-fill { height: 8px; background: var(--orange); }
+    .dense-grid {
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: 34px;
+      margin-top: 42px;
+    }
+    .cc-module {
+      padding: 22px 0;
+      border-top: 3px solid var(--line);
+      display: grid;
+      grid-template-columns: 76px 1fr;
+      gap: 18px;
+      align-items: start;
+    }
+    .tab {
+      background: var(--orange);
+      color: var(--paper);
+      padding: 9px 12px;
+      font: 700 18px/1 var(--font-mono);
+      text-align: center;
+    }
+    .module-title { font-size: 28px; font-weight: 680; line-height: 1.15; }
+    .module-copy { margin-top: 8px; font-size: 19px; line-height: 1.45; color: var(--muted); }
+    .process {
+      margin-top: 46px;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+      align-items: stretch;
+    }
+    .cc-step {
+      min-height: 260px;
+      padding: 18px;
+      border: 2px solid var(--line);
+      background: rgba(255, 255, 255, 0.24);
+      display: grid;
+      grid-template-rows: auto 1fr auto;
+      gap: 22px;
+    }
+    .step-tab {
+      justify-self: start;
+      padding: 8px 12px;
+      background: var(--blue);
+      color: white;
+      font: 700 18px/1 var(--font-mono);
+    }
+    .step-title { font-size: 24px; font-weight: 680; line-height: 1.16; }
+    .scale {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 4px;
+      align-items: end;
+      height: 54px;
+    }
+    .tick { background: var(--ok); min-height: 12px; }
+    .tick:nth-child(2) { min-height: 20px; }
+    .tick:nth-child(3) { min-height: 28px; }
+    .tick:nth-child(4) { min-height: 36px; }
+    .tick:nth-child(5) { min-height: 44px; }
+    .tick:nth-child(6) { min-height: 54px; background: var(--orange); }
+  </style>
+</head>
+<body>
+  <main
+    class="deck-shell cc-deck"
+    data-style-id="braun-graphite-orange"
+    data-template-id="course-canvas"
+    data-grammar-profile="industrial-control">
+    <section class="slide" data-slide-role="title" data-layout-id="cover-rail">
+      <div class="cc-rail">
+        <div class="cc-index">01<br>GATE</div>
+        <div>
+          <h1>发布会复盘训练样片</h1>
+          <p>用石墨橙工业控制语法测试标题、密度、仪表面板和校准流程。</p>
+        </div>
+        <aside class="instrument-panel" data-component-role="instrument-panel">
+          <div class="panel-label">CONTROL SURFACE</div>
+          <div class="meter">
+            <div class="meter-row"><span>热度转化</span><span>68</span></div>
+            <div class="meter-track"><div class="meter-fill" style="width: 68%"></div></div>
+          </div>
+          <div class="meter">
+            <div class="meter-row"><span>记忆资产</span><span>54</span></div>
+            <div class="meter-track"><div class="meter-fill" style="width: 54%"></div></div>
+          </div>
+          <div class="cc-meta">
+            <span>B MODE READY</span>
+            <span>NO DECORATIVE PANEL</span>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="slide" data-slide-role="dense" data-layout-id="comparison-ledger">
+      <h2>判断一场发布会是否留下资产</h2>
+      <p>密集页使用横向模块、编号矩形标签和细规则线，避免临时卡片堆叠。</p>
+      <div class="dense-grid">
+        <div class="cc-module">
+          <div class="tab">A1</div>
+          <div><div class="module-title">用户是否复述同一个卖点</div><div class="module-copy">话题声量不等于认知建立，复盘要看用户能否用自己的话复述核心差异。</div></div>
+        </div>
+        <div class="cc-module">
+          <div class="tab">A2</div>
+          <div><div class="module-title">媒体是否使用品牌定义</div><div class="module-copy">如果报道只复述配置表，说明叙事没有被市场接管。</div></div>
+        </div>
+        <div class="cc-module">
+          <div class="tab">A3</div>
+          <div><div class="module-title">线索是否进入可解释路径</div><div class="module-copy">关注、预约、到店、试驾之间需要有可校准的阻力点。</div></div>
+        </div>
+        <div class="cc-module">
+          <div class="tab">A4</div>
+          <div><div class="module-title">争议是否被提前吸收</div><div class="module-copy">发布会应当预设质疑，而不是把解释工作留给销售端。</div></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide" data-slide-role="diagram" data-layout-id="calibration-process">
+      <h2>四段校准流程</h2>
+      <p>流程页只用矩形、轨道、刻度和条形尺度，作为工业控制语法的图形证明。</p>
+      <div class="process">
+        <div class="cc-step" data-component-role="course-step">
+          <span class="step-tab">01</span>
+          <div class="step-title">拆目标</div>
+          <div class="scale"><i class="tick"></i><i class="tick"></i><i class="tick"></i><i class="tick"></i><i class="tick"></i><i class="tick"></i></div>
+        </div>
+        <div class="cc-step" data-component-role="course-step">
+          <span class="step-tab">02</span>
+          <div class="step-title">定指标</div>
+          <div class="scale"><i class="tick"></i><i class="tick"></i><i class="tick"></i><i class="tick"></i><i class="tick"></i><i class="tick"></i></div>
+        </div>
+        <div class="cc-step" data-component-role="course-step">
+          <span class="step-tab">03</span>
+          <div class="step-title">看证据</div>
+          <div class="scale"><i class="tick"></i><i class="tick"></i><i class="tick"></i><i class="tick"></i><i class="tick"></i><i class="tick"></i></div>
+        </div>
+        <div class="cc-step" data-component-role="course-step">
+          <span class="step-tab">04</span>
+          <div class="step-title">调叙事</div>
+          <div class="scale"><i class="tick"></i><i class="tick"></i><i class="tick"></i><i class="tick"></i><i class="tick"></i><i class="tick"></i></div>
+        </div>
+      </div>
+    </section>
+  </main>
+</body>
+</html>

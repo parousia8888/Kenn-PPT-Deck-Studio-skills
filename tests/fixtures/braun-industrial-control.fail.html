@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <title>Intentional Braun Failure Fixture</title>
+  <style>
+    :root {
+      --graphite: #050505;
+      --paper: #edeae3;
+    }
+    body { margin: 0; font-family: "Segoe UI", Arial, sans-serif; }
+    .deck-shell { width: 1280px; height: 720px; background: radial-gradient(circle, #333, #111); }
+    .slide { width: 1280px; height: 720px; padding: 64px; background: var(--paper); }
+    h1 { font-family: Georgia, serif; font-weight: 900; }
+    .black-card { background: var(--graphite); color: white; padding: 24px; }
+    .process-num { width: 48px; height: 48px; border-radius: 50%; background: #f05a28; display: grid; place-items: center; }
+  </style>
+</head>
+<body>
+  <main
+    class="deck-shell"
+    data-style-id="braun-graphite-orange"
+    data-template-id="course-canvas"
+    data-grammar-profile="industrial-control">
+    <section class="slide" data-slide-role="title" data-layout-id="custom-layout">
+      <h1>错误样片</h1>
+      <div class="black-card">
+        <span class="process-num">01</span>
+        <div class="radar-card">radar</div>
+        <svg viewBox="0 0 100 40"><text x="4" y="20">SVG text</text></svg>
+      </div>
+    </section>
+  </main>
+</body>
+</html>

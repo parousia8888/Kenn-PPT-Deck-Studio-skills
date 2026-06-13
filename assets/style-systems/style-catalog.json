@@ -1,13 +1,15 @@
 {
   "version": "2026-06-13",
-  "purpose": "Locked high-aesthetic style systems for Kenn PPT Deck Studio. Use during Gate 1 before any deck production.",
+  "purpose": "Locked high-aesthetic style systems for Kenn PPT Deck Studio. Use during Gate 1 before any deck production. Pair every style id with assets/style-systems/execution-grammar.json before producing samples.",
   "tokenRoles": ["bg", "surface", "surface2", "text", "muted", "accent", "accent2", "danger", "grid", "glow"],
   "globalRules": {
     "color": "Choose one style id and map all CSS variables to its tokens. Never invent unrelated colors after the style is accepted.",
     "typography": "Use Windows-safe stacks by default. Embedded or web fonts require user approval.",
     "density": "Match density to deck type and talk rhythm; never let card count or paragraphs override slide readability.",
     "motion": "Every style keeps semantic motion and a B low-power/static mode.",
-    "sample": "Style sample must show title, dense content, and chart/process slides before narrative work."
+    "sample": "Style sample must show title, dense content, and chart/process slides before narrative work.",
+    "executionGrammar": "After selecting a style id, load its execution grammar profile. Samples must obey component grammar, shape grammar, layout whitelist, type lock, chart rules, and validator flags.",
+    "componentLibrary": "Use the chosen template component library before creating custom CSS. New components require data-component-role and must satisfy the selected grammar profile."
   },
   "styles": [
     {

@@ -6,7 +6,7 @@ direction, a custom style, a palette change, or a style sample.
 ## Core Rule
 
 Every deck must choose a **style system** before production. A style system is not
-just a palette. It must lock these five axes:
+just a palette or mood label. It must lock these axes:
 
 1. **Color master:** named palette tokens, usage ratio, contrast target, accent
    discipline, and forbidden color habits.
@@ -18,10 +18,44 @@ just a palette. It must lock these five axes:
    shadows/glow, and data visualization style.
 5. **Motion grammar:** background motion, entrance order, chart animation, hover
    behavior, duration/easing, low-power mode, and forbidden motion.
+6. **Component grammar:** allowed panels, cards, badges, callouts, counters,
+   nav, source notes, icon buttons, and their semantic roles.
+7. **Shape grammar:** permitted primitives, forbidden primitives, radius range,
+   shadow/elevation, circle/pill/rect rules, and chart node geometry.
+8. **Layout whitelist:** named slide families, safe zones, title/content slots,
+   max cards/modules, and required layout ids.
 
 Do not use vague instructions like "tech feel", "premium", "simple", "warm", or
 "high-end black" as a final style. Translate them into one catalog style plus
-explicit modifications on the five axes.
+explicit modifications on all required axes.
+
+## Execution Grammar Lock
+
+After a user selects a style id, read the execution grammar before drawing the
+sample:
+
+```bash
+node scripts/list-style-grammar.mjs --style=<style-id>
+```
+
+The grammar in `assets/style-systems/execution-grammar.json` is the binding rule
+set for:
+
+- component roles: which panels/cards/badges/callouts exist, what they mean, and
+  which ones are forbidden;
+- shape rules: whether circles, pills, rounded cards, black panels, glows, radar
+  charts, SVG text, or shadows are allowed;
+- layout families: which slide structures can be used and which title/content
+  safe zones must be preserved;
+- type locks: title/body/mono role, Windows stack, forbidden font temperament;
+- chart rules: approved chart primitives and explicitly banned chart types;
+- validator flags: what `scripts/validate-style-sample.mjs` must reject.
+
+If the chosen template already has a component library, use it as the first
+source of truth. A derived style may remap tokens or restrict variants, but it
+must not replace the template with anonymous ad hoc CSS. If a new component is
+unavoidable in a sample, it must declare `data-component-role="<role>"` and be
+listed in the grammar role it satisfies.
 
 ## Source-Informed Principles
 
@@ -75,14 +109,22 @@ Reference anchors used to shape these rules:
    - density
    - graphic language
    - motion grammar
+   - component/shape restrictions that matter for this deck
    - what it must avoid
 3. Ask the user to confirm one style or request changes.
 4. If the user asks for a new style, derive it from the closest catalog entry and
-   still define all five axes before making a sample.
+   still define all style axes before making a sample.
 5. After the user chooses a style id, produce only a style sample at this gate:
    2-3 slides max, usually title, information-dense content, and chart/process.
    Do not make the full deck or the full narrative outline until the style sample
    is accepted.
+6. Validate the style sample before asking for approval:
+
+```bash
+node scripts/validate-style-sample.mjs --file=<sample-index.html> --style=<style-id> --template=<template-id>
+```
+
+If it fails, revise the sample. Do not ask the user to approve known violations.
 
 Important distinction:
 
@@ -106,9 +148,34 @@ A valid sample must show:
 - **B mode:** mention or include low-power/static behavior.
 - **Windows font fallback:** use the system-font stack unless the user approved
   embedded fonts.
+- **Execution grammar:** root has `data-style-id`, `data-template-id`,
+  `data-grammar-profile`; each slide has `data-slide-role` and `data-layout-id`.
+- **Component library:** uses the chosen template's registered components/classes
+  or explicitly role-tagged derived components.
+- **Shape proof:** the diagram/process page must demonstrate the style's allowed
+  primitives and avoid its forbidden primitives.
 
 If the user asks for PPTX/PDF, the visual sample may still be HTML first. Export
 comes later after narrative and detailed sections are approved.
+
+## Fail Conditions
+
+Reject a sample before showing it when any of these are true:
+
+- style id is selected but execution grammar was not read;
+- sample uses anonymous cards/panels that are not in the template or grammar;
+- root lacks `data-style-id` / `data-template-id` / `data-grammar-profile`;
+- slides lack `data-layout-id`, so the layout cannot be audited;
+- style says no circular badges but CSS uses `border-radius:50%`, SVG `<circle>`,
+  or circular process numbers;
+- style says no radar/spider chart but the diagram uses radar geometry;
+- dark/black panels appear without a permitted semantic role such as
+  `instrument-panel`, `telemetry-panel`, or `terminal-pane`;
+- title font family contradicts the style temperament, e.g. heavy Songti/serif
+  display in `braun-graphite-orange`;
+- SVG contains visible text in styles that require HTML labels;
+- title or side panel overlaps in a 1280x720 check;
+- B low-power mode is missing.
 
 ## Quality Rubric
 
@@ -121,9 +188,12 @@ Score each sample from 0-3 before showing it:
 | Density | cramped/empty | usable | slide-appropriate | tuned to audience and talk rhythm |
 | Graphics | generic cards | clear but plain | distinctive | recognizable system across diagrams/charts/images |
 | Motion | absent/noisy | decorative | semantic | restrained, layered, B-mode safe |
+| Components | anonymous ad hoc UI | mostly coherent | template-based | role-locked, reusable, validator-checkable |
+| Shapes | mixed primitives | mostly matching | profile compliant | distinctive, style-specific grammar |
+| Layout | improvised pages | usable grid | named layouts | registered family + safe-zone checked |
 
 Do not ask the user to approve a sample with any axis below 2. For Kenn's decks,
-aim for at least 13/15 total.
+aim for at least 21/24 total.
 
 ## Red Flags
 
@@ -138,3 +208,8 @@ aim for at least 13/15 total.
 - Mac-only fonts, web fonts without confirmation, or screenshots that rely on
   unavailable assets.
 - Full deck production before style acceptance.
+- Style samples made from fresh one-off CSS instead of the selected template
+  component system.
+- Circular number badges, pill chips, or radar charts appearing in a style whose
+  grammar forbids them.
+- Black panels used as visual decoration instead of a declared semantic component.

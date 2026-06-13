@@ -37,18 +37,22 @@ Ask:
 
 Then read `references/style-system.md` and select 1-3 candidates from
 `assets/style-systems/style-catalog.json`. Show/reference the contact sheet path
-for the selected template and describe each style candidate by five axes:
+for the selected template and describe each style candidate by the execution axes:
 
 - color master and usage ratio
 - Windows-safe typography temperament
 - layout density and whitespace
 - graphic language for diagrams/charts/images
 - motion grammar and B low-power mode
+- component grammar and forbidden UI components
+- shape grammar and forbidden primitives
+- layout whitelist / safe-zone implications
 
 If the user does not like it, either choose another template/style id or propose
-concrete changes on those five axes. Do not solve style feedback with random
-colors. Do not use "科技感", "高级", "简洁", "温和" as final instructions; lock a
-named style id or a derived style with explicit tokens.
+concrete changes on the full execution axes: color, type, density, graphics,
+motion, components, shapes, and layout whitelist. Do not solve style feedback
+with random colors. Do not use "科技感", "高级", "简洁", "温和" as final
+instructions; lock a named style id or a derived style with explicit tokens.
 
 Do not proceed until both the style id and the visual sample are accepted.
 
@@ -56,6 +60,32 @@ Style gate output should be a proposal or a 2-3 slide visual sample only. The
 sample must cover: title slide, dense content slide, and chart/process slide. Do
 not produce the full narrative outline or production deck until the user accepts
 the style sample.
+
+Before building the visual sample:
+
+1. Run or read:
+
+```bash
+node scripts/list-style-grammar.mjs --style=<style-id>
+```
+
+2. Read the chosen template's `SKILL.md` and manifest listed in
+   `assets/style-systems/execution-grammar.json`.
+3. Choose named layout families from the execution grammar. Every slide must have
+   `data-layout-id`.
+4. Decide component roles before drawing them. Dark surfaces, instrument panels,
+   telemetry panels, source ledgers, and callouts must use `data-component-role`.
+5. Use the template component library first. Do not write an anonymous mini design
+   system for the sample.
+
+Before showing the visual sample:
+
+```bash
+node scripts/validate-style-sample.mjs --file=<sample-index.html> --style=<style-id> --template=<template-id>
+```
+
+If validation fails, revise the sample. Tell the user only after the sample can
+pass the grammar gate or explicitly state which rule still needs design judgment.
 
 After the user chooses one candidate style, the next assistant action must be one
 of:
@@ -72,7 +102,8 @@ Smoke-test example:
 User: "牛津海军蓝羊皮纸，允许联网，需要 PPT"
 
 Correct next response: "已确认风格 id、联网权限和 PPTX 意向。下一步仍然不能进叙事框架；我先做 2-3 页
-oxford-navy-parchment 样片，覆盖封面、信息密集页、判断清单/流程页。样片确认后再做页纲和资料研究。"
+oxford-navy-parchment 样片，覆盖封面、信息密集页、判断清单/流程页。样片会先按 academic-institutional
+语法校验：无随机黑底块、无假学院纹章、布局都有 data-layout-id。样片确认后再做页纲和资料研究。"
 
 Incorrect next response: listing CEFR/ACTFL sources, proposing a 12-page outline,
 or saying production can start.

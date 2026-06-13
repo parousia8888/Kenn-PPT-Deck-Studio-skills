@@ -5,6 +5,7 @@ import { fileURLToPath } from "node:url";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const catalogPath = path.join(root, "assets", "style-systems", "style-catalog.json");
+const grammarPath = path.join(root, "assets", "style-systems", "execution-grammar.json");
 
 const args = new Map();
 for (const arg of process.argv.slice(2)) {
@@ -16,6 +17,7 @@ const useFilter = args.get("use")?.toLowerCase();
 const jsonOnly = args.get("json") === "true";
 
 const catalog = JSON.parse(fs.readFileSync(catalogPath, "utf8"));
+const grammar = JSON.parse(fs.readFileSync(grammarPath, "utf8"));
 let styles = catalog.styles;
 
 if (useFilter) {
@@ -43,6 +45,8 @@ const rows = styles.map((style) => ({
   density: style.density.slideDensity,
   motion: style.motion.background,
   avoid: style.palette.avoid,
+  grammarProfile: grammar.styleProfileMap[style.id],
+  forbiddenShapes: grammar.grammarProfiles[grammar.styleProfileMap[style.id]]?.shapeGrammar?.forbidden?.slice(0, 6) || [],
 }));
 
 if (jsonOnly) {
@@ -57,6 +61,7 @@ if (jsonOnly) {
     console.log(`  type: ${row.typography}`);
     console.log(`  density: ${row.density}`);
     console.log(`  motion: ${row.motion}`);
+    console.log(`  grammar: ${row.grammarProfile}${row.forbiddenShapes.length ? `; forbids ${row.forbiddenShapes.join(", ")}` : ""}`);
     console.log(`  avoid: ${row.avoid.join("; ")}`);
   }
 }

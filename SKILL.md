@@ -15,11 +15,13 @@ Do not start slide production until these gates are confirmed:
 
 1. **Style first, with two approvals.** Identify deck type and recommend 1-3
    candidate styles from the locked style catalog. A style must define color
-   master, typography temperament, layout density, graphic language, and motion
-   grammar. Gate 1 has two separate approvals:
+   master, typography temperament, layout density, graphic language, motion
+   grammar, **component grammar, shape grammar, and layout whitelist**. Gate 1
+   has two separate approvals:
    - **1A Style ID approval:** user chooses a template/style direction.
    - **1B Visual sample approval:** after 1A, produce a mandatory 2-3 slide
-     style sample and ask whether the sample is accepted.
+     style sample, validate it with the selected style execution grammar, and ask
+     whether the sample is accepted.
    Choosing a style id, approving web research, or requesting PPTX/PDF does **not**
    permit Gate 2. Only explicit approval of the visual sample permits narrative
    framework work.
@@ -51,15 +53,21 @@ template.
 ## Style System Lock
 
 Before making any deck or full outline, read `references/style-system.md` and use
-`assets/style-systems/style-catalog.json` to select a style system. Do not invent
-freehand palettes. Do not accept vague labels like "科技感" or "高级简洁" as the
-final style; translate them into a named style id plus concrete choices on:
+`assets/style-systems/style-catalog.json` to select a style system. After a style
+id is chosen, read `assets/style-systems/execution-grammar.json` or run
+`node scripts/list-style-grammar.mjs --style=<style-id>` before making the visual
+sample. Do not invent freehand palettes or ad hoc UI component libraries. Do not
+accept vague labels like "科技感" or "高级简洁" as the final style; translate them
+into a named style id plus concrete choices on:
 
 - color master and usage ratio
 - Windows-safe typography temperament
 - layout density and whitespace
 - graphic language for diagrams/charts/images
 - motion grammar and B low-power mode
+- component grammar: allowed/forbidden panels, cards, badges, callouts, icons
+- shape grammar: radius, shadows, circle/pill/rect rules, chart primitives
+- layout whitelist: named slide families and title/content safe zones
 
 Style gate output may only be:
 
@@ -69,7 +77,15 @@ Style gate output may only be:
 After the user picks a style candidate, the next assistant action must be making
 or showing the visual sample, not giving the narrative framework, source list,
 12-page outline, or production plan. Do not produce the full outline or full deck
-until the user explicitly accepts the visual sample.
+until the user explicitly accepts the visual sample. Before asking for sample
+approval, run:
+
+```bash
+node scripts/validate-style-sample.mjs --file=<sample-index.html> --style=<style-id> --template=<template-id>
+```
+
+If validation fails, revise the sample first. Do not ask the user to approve a
+sample with known grammar violations.
 
 ## Confirmation Gates
 
@@ -93,9 +109,15 @@ Required user confirmations:
 - Preserve the chosen template's design system. Do not reduce a template to a
   minimal implementation.
 - Keep dynamic backgrounds and semantic motion. Keep **B** low-power/static mode.
-- Use the approved style catalog tokens for colors, type, layout, graphics, and
-  motion. If a new style is needed, derive it from the closest catalog style and
-  define all five axes before sampling.
+- Use the approved style catalog tokens and execution grammar for colors, type,
+  layout, graphics, motion, components, and shapes. If a new style is needed,
+  derive it from the closest catalog style and define all axes before sampling.
+- Use the chosen template's registered component classes and layout families
+  before creating new HTML/CSS. New sample-only components must declare
+  `data-component-role` and match the style grammar.
+- Every sample/production deck root should declare `data-style-id`,
+  `data-template-id`, and `data-grammar-profile`; every slide should declare
+  `data-slide-role` and `data-layout-id`.
 - Keep Windows-safe font fallbacks. Prefer the `.system-fonts.single.html` build
   for offline/Windows handoff checks.
 - Use product screenshots, diagrams, generated visuals, or data visualization when
@@ -107,8 +129,12 @@ Required user confirmations:
 
 - `references/workflow.md` — full guided process and confirmation scripts.
 - `references/style-routing.md` — template decision matrix and sample-preview rule.
-- `references/style-system.md` — style gate rules, five-axis lock, and quality rubric.
+- `references/style-system.md` — style gate rules, eight-axis execution lock, and quality rubric.
+- `references/sample-contract.md` — required Gate 1B markup, role tags, layout ids,
+  and examples of grammar-compliant/forbidden sample components.
 - `assets/style-systems/style-catalog.json` — 50+ locked high-aesthetic style systems.
+- `assets/style-systems/execution-grammar.json` — component grammar, shape grammar,
+  layout families, type locks, chart rules, and validation flags for each style.
 - `references/build-and-export.md` — how to copy, package, verify, and optionally export.
 - `references/compliance.md` — provenance and license handling, including guizang MIT attribution.
 
@@ -125,6 +151,7 @@ List style systems, optionally filtered by use:
 ```bash
 node scripts/list-styles.mjs
 node scripts/list-styles.mjs --use=courseware
+node scripts/list-style-grammar.mjs --style=braun-graphite-orange
 ```
 
 Copy a template pack to a working folder:
@@ -135,3 +162,15 @@ node scripts/create-project.mjs --template=launch-theatre --out=/path/to/project
 
 After editing a template's canonical deck, run that template's own pack/verify
 scripts from inside the copied project.
+
+Validate a Gate 1B style sample before showing it:
+
+```bash
+node scripts/validate-style-sample.mjs --file=/path/to/index.html --style=<style-id> --template=<template-id>
+```
+
+Run style grammar regression checks after changing style rules or validators:
+
+```bash
+node scripts/test-style-grammar.mjs
+```

@@ -1,0 +1,943 @@
+{
+  "version": "2026-06-13",
+  "purpose": "Machine-readable execution grammar for Kenn PPT Deck Studio. Use this after a style id is selected and before any visual sample or production deck is shown.",
+  "requiredSampleContract": {
+    "rootAttributes": ["data-style-id", "data-template-id", "data-grammar-profile"],
+    "slideAttributes": ["data-slide-role", "data-layout-id"],
+    "sampleRoles": ["title", "dense", "diagram"],
+    "maxSampleSlides": 3,
+    "minSampleSlides": 2,
+    "hardRule": "Gate 1B samples must be validated against this grammar before asking the user to approve style."
+  },
+  "globalExecutionRules": {
+    "componentSource": "Use the chosen template component library first. New components must be registered in the sample manifest or profile-specific component grammar; do not invent one-off UI blocks.",
+    "layoutSource": "Every slide uses a named layout id from the template, grammar profile, or a documented derived layout. Avoid anonymous flex/card pages.",
+    "colorSource": "Map palette tokens to CSS variables at the root. After root tokens are set, slide CSS should use var(...) tokens rather than hardcoded colors.",
+    "shapeSource": "Shapes are style-specific. Number badges, dots, pills, cards, tabs, panels, gauges, and diagrams must match the profile shape grammar.",
+    "typeSource": "Use the profile title/body/mono roles and Windows-safe fallbacks. Do not switch serif/sans temperament because a title 'looks premium'.",
+    "motionSource": "Motion recipes must describe the slide's semantic reveal. Keep B low-power/static mode.",
+    "failFast": "If the sample violates a forbidden shape, forbidden chart type, font role, or component role, fix it before showing it."
+  },
+  "templateComponentContracts": {
+    "course-canvas": {
+      "requiredDocs": ["assets/templates/course-canvas/SKILL.md", "assets/templates/course-canvas/_ds_manifest.json"],
+      "classPrefixes": ["cc-", "ccc-"],
+      "componentNames": ["Badge", "Button", "Card", "Callout", "KeyTerm", "MarginNote", "NumberTab", "RuleHeading", "StepList"],
+      "rule": "For teaching/courseware, start from Course Canvas slide layouts or .cc/.ccc component classes. Derived styles may remap tokens, but cannot replace the component library with anonymous cards."
+    },
+    "investor-signal": {
+      "requiredDocs": ["assets/templates/investor-signal/SKILL.md", "assets/templates/investor-signal/_ds_manifest.json"],
+      "componentNames": ["Eyebrow", "KpiStat", "Badge", "Button"],
+      "rule": "Use signal/KPI/evidence primitives and keep the investor dark/light rhythm. Avoid classroom cards."
+    },
+    "academy-prospectus": {
+      "requiredDocs": ["assets/templates/academy-prospectus/SKILL.md", "assets/templates/academy-prospectus/_ds_manifest.json"],
+      "rule": "Use prospectus brochure components, outcome stats, institutional surfaces, and restrained education proof motifs."
+    },
+    "proof-atlas": {
+      "requiredDocs": ["assets/templates/proof-atlas/SKILL.md", "assets/templates/proof-atlas/_ds_manifest.json"],
+      "rule": "Use atlas evidence cells, ledgers, coordinates, source notes, risk markers, and dossier grids. Avoid unsupported decorative charts."
+    },
+    "launch-theatre": {
+      "requiredDocs": ["assets/templates/launch-theatre/SKILL.md", "assets/templates/launch-theatre/_ds_manifest.json"],
+      "rule": "Use stage/keynote reveal components and cinematic motion. Avoid dense classroom text blocks."
+    },
+    "guizang-base": {
+      "requiredDocs": ["assets/guizang-base/SKILL.source.md"],
+      "rule": "Use Guizang's registered magazine or Swiss layout language. Do not mix both modes in one deck."
+    }
+  },
+  "grammarProfiles": {
+    "technical-manual": {
+      "nameZh": "技术手册语法",
+      "componentGrammar": {
+        "numbering": "Rectangular module numbers, rail tabs, engineering callout ids. No floating circular badges.",
+        "panels": "White or warm-paper technical blocks with rule headers; dark panels only for terminal/instrument inserts.",
+        "cards": "2-4 annotated blocks, no nested cards, no SaaS card soup.",
+        "badges": "Mono rectangular labels with measurement/ticket feeling.",
+        "callouts": "Leader-line callouts and bracket annotations.",
+        "icons": "Line icons only when they explain function; no emoji or decorative stickers."
+      },
+      "shapeGrammar": {
+        "allowed": ["rect", "rail", "tab", "callout-line", "tick", "arrow", "measurement-box"],
+        "forbidden": ["circleBadge", "floatingPill", "gradientOrb", "glassCard", "randomDarkPanel"],
+        "radius": "0-4px",
+        "shadow": "none or paper-level only"
+      },
+      "typeLock": {
+        "title": "Aptos/Segoe UI/Microsoft YaHei, strong but not theatrical",
+        "body": "Windows-safe humanist sans, projection floor 18px",
+        "mono": "Cascadia Mono or Consolas for labels",
+        "forbidden": ["ornamental serif display", "macOS-only fonts"]
+      },
+      "layoutGrammar": {
+        "allowedFamilies": ["manual-cover", "spec-grid", "annotated-diagram", "mission-timeline", "comparison-table", "step-procedure"],
+        "safeZones": "Keep main title out of right-side technical inserts; reserve 64px min outer margin."
+      },
+      "graphicGrammar": {
+        "chartsAllowed": ["flat-bar", "timeline", "matrix", "annotated-axis", "spec-table"],
+        "chartsForbidden": ["decorative-radar", "3d-chart", "pie-with-many-slices"],
+        "diagram": "Use rulers, arrows, labels, and modules that look useful."
+      },
+      "motionGrammar": "Ruler draw, module lock-in, measurement reveal; no bounce.",
+      "validator": {
+        "forbidCircleBadges": true,
+        "forbidGradientOrbs": true,
+        "forbidSvgText": true,
+        "requireLayoutIds": true
+      }
+    },
+    "cinematic-keynote": {
+      "nameZh": "电影发布会语法",
+      "componentGrammar": {
+        "numbering": "Small mono stage markers or timeline ticks; no numbered classroom circles.",
+        "panels": "0-2 stage surfaces, preferably transparent/dim; panels must not compete with the hero object.",
+        "cards": "Avoid repeated cards. Use product reveal zones, capability strips, or proof ledgers.",
+        "badges": "Tiny uppercase labels, not pills.",
+        "callouts": "Sparse spotlight annotations.",
+        "icons": "Minimal line icons only when they support a feature."
+      },
+      "shapeGrammar": {
+        "allowed": ["stage-rect", "spotlight-mask", "hairline", "product-frame", "soft-glow"],
+        "forbidden": ["cardGridSoup", "randomBlackPanel", "neonHUD", "emoji", "decorativeBlob"],
+        "radius": "8-24px only for stage/product objects",
+        "shadow": "optical glow, not card drop shadows"
+      },
+      "typeLock": {
+        "title": "Segoe UI Variable/Segoe UI, large light-to-semibold sans",
+        "body": "quiet sans, 22px+",
+        "mono": "Cascadia Mono for sparse metadata",
+        "forbidden": ["heavy serif display", "condensed poster type unless style says so"]
+      },
+      "layoutGrammar": {
+        "allowedFamilies": ["stage-cover", "object-reveal", "capability-triptych", "demo-sequence", "availability-close"],
+        "safeZones": "Hero product or claim owns first viewport; secondary panels stay outside title safe area."
+      },
+      "graphicGrammar": {
+        "chartsAllowed": ["single-kpi", "clean-delta", "capability-scale"],
+        "chartsForbidden": ["busy-dashboard", "radar", "dense-table"],
+        "diagram": "Use one visual focus at a time."
+      },
+      "motionGrammar": "Fade, mask, focus pull, slow light sweep; no bounce or UI jiggle.",
+      "validator": {
+        "forbidCardSoup": true,
+        "forbidSvgText": true,
+        "maxCardsPerSlide": 3,
+        "requireLayoutIds": true
+      }
+    },
+    "swiss-grid-signal": {
+      "nameZh": "瑞士网格信号语法",
+      "componentGrammar": {
+        "numbering": "Large grid-aligned mono numbers or rectangular cells. No circular badges.",
+        "panels": "Ink/accent/fill/outline card roles only; never mix fill and outline without role.",
+        "cards": "Use registered Swiss cells, bands, split statements, ledgers, and matrices.",
+        "badges": "Hard rectangular mono labels.",
+        "callouts": "Use hairlines and square signal marks.",
+        "icons": "Lucide line icons or square marks; no hand-drawn icons."
+      },
+      "shapeGrammar": {
+        "allowed": ["rect", "square-dot", "cross", "line", "band", "matrix-cell"],
+        "forbidden": ["circleBadge", "pill", "roundedCard", "gradient", "shadow", "bokeh"],
+        "radius": "0px",
+        "shadow": "none"
+      },
+      "typeLock": {
+        "title": "Arial/Helvetica/Segoe UI/Microsoft YaHei, weight ladder: bigger is lighter",
+        "body": "sans 18px+ for projection",
+        "mono": "Consolas/Cascadia Mono",
+        "forbidden": ["serif headings", "small light text"]
+      },
+      "layoutGrammar": {
+        "allowedFamilies": ["registered-swiss-layout", "split-statement", "six-cells", "kpi-ledger", "horizontal-timeline", "image-hero"],
+        "safeZones": "Top titles left-aligned unless statement layout; every slide needs layout id."
+      },
+      "graphicGrammar": {
+        "chartsAllowed": ["bar", "ledger", "matrix", "timeline", "dot-plot"],
+        "chartsForbidden": ["radar", "pie", "3d", "decorative-svg-text"],
+        "diagram": "SVG geometry only; labels in HTML."
+      },
+      "motionGrammar": "Mask and block wipes aligned to grid; one semantic recipe per slide.",
+      "validator": {
+        "forbidCircleBadges": true,
+        "forbidPills": true,
+        "forbidBoxShadow": true,
+        "forbidBorderRadius": true,
+        "forbidSvgText": true,
+        "requireLayoutIds": true
+      }
+    },
+    "editorial-paper": {
+      "nameZh": "编辑纸面语法",
+      "componentGrammar": {
+        "numbering": "Margin folios, page tabs, serif numerals; no app-style chips.",
+        "panels": "Paper panels, margin notes, quoted passages, image captions.",
+        "cards": "Use as editorial fragments, not dashboard cards.",
+        "badges": "Small imprint labels or chapter markers.",
+        "callouts": "Pull quotes, side notes, source captions.",
+        "icons": "Rare; prefer typographic rules and image crops."
+      },
+      "shapeGrammar": {
+        "allowed": ["paper-rect", "margin-rule", "caption-line", "quote-block", "image-frame"],
+        "forbidden": ["neonHUD", "randomDarkPanel", "floatingPill", "glassCard"],
+        "radius": "0-8px depending on paper system",
+        "shadow": "soft paper layer only"
+      },
+      "typeLock": {
+        "title": "Windows-safe serif or serif-like CJK stack when approved by style",
+        "body": "legible sans/serif pairing, 18px+",
+        "mono": "only for metadata",
+        "forbidden": ["all-caps tech labels as dominant voice"]
+      },
+      "layoutGrammar": {
+        "allowedFamilies": ["magazine-cover", "left-essay-right-figure", "quote-spread", "image-grid", "source-notes", "chapter-opener"],
+        "safeZones": "Avoid title collisions with floated sidebars; image captions stay within grid."
+      },
+      "graphicGrammar": {
+        "chartsAllowed": ["muted-bar", "annotated-line", "small-multiple", "table"],
+        "chartsForbidden": ["HUD-radar", "glossy-gauge"],
+        "diagram": "Editorial annotations, source labels, gentle rules."
+      },
+      "motionGrammar": "Paper drift, image fade, underline draw; no mechanical snap unless profile overrides.",
+      "validator": {
+        "forbidRandomDarkPanel": true,
+        "forbidSvgText": false,
+        "requireLayoutIds": true
+      }
+    },
+    "industrial-control": {
+      "nameZh": "工业控制语法",
+      "componentGrammar": {
+        "numbering": "Rectangular rail tabs, engraved index strips, mono counters. No circular process numbers.",
+        "panels": "Graphite panels are instrument panels only, max one per slide, and must use data-component-role=\"instrument-panel\".",
+        "cards": "Use calibrated modules with top rules, switch rows, ledger rows, or scale cells. No generic rounded cards.",
+        "badges": "Rectangular mono tabs; no pills, no circular badges.",
+        "callouts": "Mechanical labels, tick marks, warning strips, ruler annotations.",
+        "icons": "Industrial line icons, switches, sliders, calibration marks; no playful icons."
+      },
+      "shapeGrammar": {
+        "allowed": ["rect", "rail", "tab", "switch", "slider", "scale", "gauge-strip", "tick", "ledger-row"],
+        "forbidden": ["circleBadge", "radar", "spiderChart", "floatingPill", "gradientOrb", "randomBlackPanel", "heavyDropShadow"],
+        "radius": "0-4px; 6px only for control-like slots",
+        "shadow": "none or very shallow matte shadow"
+      },
+      "typeLock": {
+        "title": "Segoe UI/Aptos/Microsoft YaHei UI sans, medium or semibold, 48-86px",
+        "body": "functional sans 18-28px",
+        "mono": "Cascadia Mono/Consolas for labels",
+        "forbidden": ["heavy serif display", "Songti theatrical title", "font-weight above 760 on h1/h2"]
+      },
+      "layoutGrammar": {
+        "allowedFamilies": ["cover-rail", "instrument-grid", "comparison-ledger", "calibration-process", "control-panel-split", "metric-strip"],
+        "safeZones": "Right-side instrument panels cannot overlap title safe area; cover title max width must account for panel width."
+      },
+      "graphicGrammar": {
+        "chartsAllowed": ["calibrated-bar", "gauge-strip", "ledger-table", "scale-matrix", "before-after-control"],
+        "chartsForbidden": ["radar", "spider", "pie", "blob", "decorative-circle-node"],
+        "diagram": "Use orthogonal modules, tick marks, switches, scales; avoid generic SaaS dashboards."
+      },
+      "motionGrammar": "Mechanical snap/fade, bar calibration, switch lock-in, gauge sweep under 400ms; no bounce.",
+      "validator": {
+        "forbidCircleBadges": true,
+        "forbidRadar": true,
+        "forbidSvgText": true,
+        "forbidSerifDisplay": true,
+        "forbidGradientOrbs": true,
+        "requireDarkSurfaceRole": true,
+        "darkSurfaceRole": "instrument-panel",
+        "maxDarkSurfaceRules": 1,
+        "titleWeightMax": 760,
+        "requireLayoutIds": true
+      }
+    },
+    "data-terminal": {
+      "nameZh": "数据终端语法",
+      "componentGrammar": {
+        "numbering": "Terminal row ids, grid coordinates, ledger counters.",
+        "panels": "Terminal panes with explicit data/source role; no decorative black boxes.",
+        "cards": "Use rows, tables, log panels, ticker strips.",
+        "badges": "Ticker labels and status chips with rectangular geometry.",
+        "callouts": "Source notes and delta markers.",
+        "icons": "Use sparingly; data labels dominate."
+      },
+      "shapeGrammar": {
+        "allowed": ["rect", "row", "table-cell", "ticker", "status-strip", "coordinate"],
+        "forbidden": ["roundedSaaSCard", "gradientOrb", "softPastelBlob", "circleBadge"],
+        "radius": "0-4px",
+        "shadow": "none"
+      },
+      "typeLock": {
+        "title": "Sharp sans or mono-assisted display",
+        "body": "sans/mono mix with strong numeric legibility",
+        "mono": "required for tables and labels",
+        "forbidden": ["decorative serif", "low-contrast tiny text"]
+      },
+      "layoutGrammar": {
+        "allowedFamilies": ["terminal-cover", "ticker-ledger", "kpi-table", "market-map", "source-log", "data-compare"],
+        "safeZones": "Maintain table readability; no more than 7 columns unless split."
+      },
+      "graphicGrammar": {
+        "chartsAllowed": ["ledger", "bar", "sparkline", "heatmap", "ticker-table"],
+        "chartsForbidden": ["decorative-radar", "3d", "pie"],
+        "diagram": "Data-first; every mark should have a value or state."
+      },
+      "motionGrammar": "Scanline, count-up, row reveal; B mode freezes.",
+      "validator": {
+        "forbidCircleBadges": true,
+        "forbidGradientOrbs": true,
+        "requireLayoutIds": true
+      }
+    },
+    "education-institutional": {
+      "nameZh": "教育机构语法",
+      "componentGrammar": {
+        "numbering": "Course path tabs, rectangular step labels, margin lesson ids.",
+        "panels": "Warm institutional cards, proof blocks, outcome stats, teacher notes.",
+        "cards": "Use program cards, evidence cards, curriculum steps; no childish sticker cards.",
+        "badges": "Small course/category labels, not playful pills unless template allows.",
+        "callouts": "Parent-facing trust notes, evidence checklists, outcome captions.",
+        "icons": "Thin educational line icons or none."
+      },
+      "shapeGrammar": {
+        "allowed": ["paper-card", "tab", "path-line", "checklist-row", "outcome-stat", "brochure-frame"],
+        "forbidden": ["kidsSticker", "randomBlackPanel", "neonHUD", "excessiveCircleBadge"],
+        "radius": "2-8px",
+        "shadow": "soft paper shadow only"
+      },
+      "typeLock": {
+        "title": "Stable serif/sans pairing with Windows-safe CJK fallback",
+        "body": "friendly readable sans, 18px+",
+        "mono": "only for small labels or course codes",
+        "forbidden": ["techno font", "overly cute handwriting"]
+      },
+      "layoutGrammar": {
+        "allowedFamilies": ["prospectus-cover", "course-path", "evidence-checklist", "teacher-proof", "outcome-grid", "parent-decision-table"],
+        "safeZones": "Keep text hierarchy calm; avoid overfilling parent-facing slides."
+      },
+      "graphicGrammar": {
+        "chartsAllowed": ["pathway", "matrix", "checklist", "before-after", "outcome-stat"],
+        "chartsForbidden": ["aggressive-HUD", "financial-terminal", "radar-unless-assessment"],
+        "diagram": "Use learning paths, evidence chains, curriculum ladders."
+      },
+      "motionGrammar": "Paper light, checklist reveal, path draw; no flashy launch animation.",
+      "validator": {
+        "forbidRandomDarkPanel": true,
+        "requireLayoutIds": true
+      }
+    },
+    "academic-institutional": {
+      "nameZh": "学院文献语法",
+      "componentGrammar": {
+        "numbering": "Section folios, syllabus ids, margin tabs.",
+        "panels": "Parchment/ivory evidence panels, curriculum ledgers, assessment matrices.",
+        "cards": "Formal cards with strong headings and restrained accents.",
+        "badges": "Rectangular labels; no fake crests.",
+        "callouts": "Citation notes, assessment evidence, can-do statements.",
+        "icons": "Use only if functional; avoid heraldic decoration."
+      },
+      "shapeGrammar": {
+        "allowed": ["folio", "ledger", "rule", "matrix-cell", "paper-panel"],
+        "forbidden": ["fakeHeraldry", "oldParchmentStain", "randomBlackPanel", "neonAccent"],
+        "radius": "0-6px",
+        "shadow": "minimal paper depth"
+      },
+      "typeLock": {
+        "title": "Windows-safe serif/sans academic pairing",
+        "body": "formal readable sans/serif",
+        "mono": "source ids only",
+        "forbidden": ["cartoon education type", "techno display"]
+      },
+      "layoutGrammar": {
+        "allowedFamilies": ["academic-cover", "criteria-matrix", "curriculum-ladder", "evidence-chain", "faculty-proof", "closing-checklist"],
+        "safeZones": "Do not imitate elite-school coat-of-arms layouts."
+      },
+      "graphicGrammar": {
+        "chartsAllowed": ["matrix", "ladder", "rubric", "timeline", "evidence-chain"],
+        "chartsForbidden": ["HUD", "radar-by-default", "3d"],
+        "diagram": "Rubrics and evidence chains over decorative badges."
+      },
+      "motionGrammar": "Subtle paper movement, rule draw, checklist sequence.",
+      "validator": {
+        "forbidRandomDarkPanel": true,
+        "requireLayoutIds": true
+      }
+    },
+    "clean-room-ai": {
+      "nameZh": "洁净室 AI 语法",
+      "componentGrammar": {
+        "numbering": "Rectangular lab ids, protocol steps, not circles.",
+        "panels": "White/blue lab surfaces, model cards, evaluation tables.",
+        "cards": "Use exact module cards with protocol labels; no generic SaaS blue-white soup.",
+        "badges": "Small rectangular protocol tags.",
+        "callouts": "Model assumptions, eval notes, dataset warnings.",
+        "icons": "Thin technical icons, model nodes, arrows."
+      },
+      "shapeGrammar": {
+        "allowed": ["rect", "lab-panel", "protocol-tab", "matrix-cell", "thin-node", "connector"],
+        "forbidden": ["purpleGradient", "floatingPill", "randomDarkPanel", "decorativeOrb"],
+        "radius": "2-8px",
+        "shadow": "none or barely visible"
+      },
+      "typeLock": {
+        "title": "Clean Windows-safe sans, medium weight",
+        "body": "legible sans for teaching",
+        "mono": "protocol labels and code-like notes",
+        "forbidden": ["futuristic illegible type", "heavy serif"]
+      },
+      "layoutGrammar": {
+        "allowedFamilies": ["lab-cover", "model-pipeline", "eval-matrix", "protocol-steps", "case-comparison", "quality-rubric"],
+        "safeZones": "Keep diagrams readable; one pipeline per slide."
+      },
+      "graphicGrammar": {
+        "chartsAllowed": ["matrix", "pipeline", "bar", "quality-rubric", "comparison-table"],
+        "chartsForbidden": ["radar-unless-user-approved", "decorative-HUD"],
+        "diagram": "Model/data/output/eval flow with labeled nodes."
+      },
+      "motionGrammar": "Clean grid drift, node reveal, matrix scan; B freezes.",
+      "validator": {
+        "forbidGradientOrbs": true,
+        "requireLayoutIds": true
+      }
+    },
+    "proof-dossier": {
+      "nameZh": "证据卷宗语法",
+      "componentGrammar": {
+        "numbering": "Coordinates, evidence ids, source rows.",
+        "panels": "Evidence cells, ledgers, source notes, risk markers.",
+        "cards": "Only evidence/report cells with source roles; no marketing cards.",
+        "badges": "Rectangular source tags and confidence labels.",
+        "callouts": "Evidence interpretation separated from raw facts.",
+        "icons": "Risk/source markers only."
+      },
+      "shapeGrammar": {
+        "allowed": ["coordinate", "ledger-row", "evidence-cell", "atlas-grid", "risk-marker", "source-tag"],
+        "forbidden": ["decorativeBlob", "randomDarkPanel", "friendlySaaSCard", "circleBadge"],
+        "radius": "0-3px",
+        "shadow": "none"
+      },
+      "typeLock": {
+        "title": "Manrope/Inter/Segoe UI, light numerals and exact labels",
+        "body": "compact sans 16px+",
+        "mono": "required for coordinates and source ids",
+        "forbidden": ["ornamental serif", "playful education type"]
+      },
+      "layoutGrammar": {
+        "allowedFamilies": ["report-cover", "executive-finding", "kpi-ledger", "timeline", "before-after", "evidence-grid", "methodology", "risk-limitation"],
+        "safeZones": "Every claim needs a visual/source role; do not hide caveats."
+      },
+      "graphicGrammar": {
+        "chartsAllowed": ["ledger", "bar", "timeline", "evidence-grid", "risk-table", "map"],
+        "chartsForbidden": ["unsourced-radar", "glossy-gauge", "3d"],
+        "diagram": "Separate evidence, interpretation, and recommendation."
+      },
+      "motionGrammar": "Coordinate scan, row reveal, source lock-in.",
+      "validator": {
+        "forbidCircleBadges": true,
+        "forbidSvgText": true,
+        "requireLayoutIds": true
+      }
+    },
+    "hardware-blueprint": {
+      "nameZh": "硬件蓝图语法",
+      "componentGrammar": {
+        "numbering": "PCB coordinates, part ids, engineering tabs.",
+        "panels": "Blueprint traces, module panels, spec tables.",
+        "cards": "Hardware modules, not app cards.",
+        "badges": "Rectangular labels near traces.",
+        "callouts": "Leader lines to components.",
+        "icons": "Schematic icons and trace marks."
+      },
+      "shapeGrammar": {
+        "allowed": ["trace", "rect", "pin", "connector", "module-box", "spec-table"],
+        "forbidden": ["fakeCircuitWallpaper", "gamingRGB", "circleBadge", "softBlob"],
+        "radius": "0-4px",
+        "shadow": "none or glow tied to signal"
+      },
+      "typeLock": {
+        "title": "engineered sans, not game UI",
+        "body": "technical readable sans",
+        "mono": "part ids and specs",
+        "forbidden": ["racing/game font"]
+      },
+      "layoutGrammar": {
+        "allowedFamilies": ["blueprint-cover", "spec-sheet", "trace-flow", "module-grid", "benchmark-table"],
+        "safeZones": "Signal traces cannot obscure text."
+      },
+      "graphicGrammar": {
+        "chartsAllowed": ["spec-table", "flow-trace", "bar", "matrix"],
+        "chartsForbidden": ["radar", "speedometer-cliche"],
+        "diagram": "Traces must map real logical flow."
+      },
+      "motionGrammar": "Signal pulse along selected traces; low frequency.",
+      "validator": {
+        "forbidCircleBadges": true,
+        "requireLayoutIds": true
+      }
+    },
+    "automotive-telemetry": {
+      "nameZh": "汽车遥测语法",
+      "componentGrammar": {
+        "numbering": "Telemetry channel ids, rectangular lap/phase labels.",
+        "panels": "Metric dashboards only when they have real evaluation roles.",
+        "cards": "Use telemetry strips, scenario comparisons, launch effect ledgers.",
+        "badges": "Rectangular signal labels; no racing stickers.",
+        "callouts": "Performance/market signal annotations.",
+        "icons": "Vehicle/system line icons only if needed."
+      },
+      "shapeGrammar": {
+        "allowed": ["telemetry-line", "rect-panel", "metric-strip", "signal-path", "comparison-rail"],
+        "forbidden": ["racingGameHUD", "carbonFiberCliche", "speedometerEverywhere", "circleBadge"],
+        "radius": "0-6px",
+        "shadow": "none; glow only for signal path"
+      },
+      "typeLock": {
+        "title": "Fast precise sans, medium weight",
+        "body": "technical sans, 18px+",
+        "mono": "channels and metric labels",
+        "forbidden": ["luxury serif unless style specifically changed"]
+      },
+      "layoutGrammar": {
+        "allowedFamilies": ["telemetry-cover", "launch-funnel", "five-signal-ledger", "media-narrative-map", "memory-point-grid", "next-action-table"],
+        "safeZones": "Do not let dashboard panels cover the main claim."
+      },
+      "graphicGrammar": {
+        "chartsAllowed": ["telemetry-line", "bar", "funnel", "ledger", "signal-matrix"],
+        "chartsForbidden": ["decorative-radar", "speedometer-cliche", "pie"],
+        "diagram": "Signals should map to cognition, memory, leads, narrative, and brand asset."
+      },
+      "motionGrammar": "Telemetry sweep, line draw, metric lock-in; no game-like animation.",
+      "validator": {
+        "forbidCircleBadges": true,
+        "forbidRadar": true,
+        "requireDarkSurfaceRole": true,
+        "darkSurfaceRole": "telemetry-panel",
+        "requireLayoutIds": true
+      }
+    },
+    "gallery-print": {
+      "nameZh": "美术馆印刷语法",
+      "componentGrammar": {
+        "numbering": "Small gallery labels and wall-text ids.",
+        "panels": "Mostly unframed whitespace; cards only as catalog entries.",
+        "cards": "Sparse, not dashboard-like.",
+        "badges": "Museum labels; never buttons.",
+        "callouts": "Caption and provenance notes.",
+        "icons": "Usually none."
+      },
+      "shapeGrammar": {
+        "allowed": ["white-space", "hairline", "catalog-card", "caption-rule"],
+        "forbidden": ["cardGridSoup", "randomDarkPanel", "gradientOrb", "glowHUD"],
+        "radius": "0-4px",
+        "shadow": "none"
+      },
+      "typeLock": {
+        "title": "curated serif or severe sans, restrained weight",
+        "body": "quiet gallery sans",
+        "mono": "small accession labels only",
+        "forbidden": ["techno labels", "button-heavy UI"]
+      },
+      "layoutGrammar": {
+        "allowedFamilies": ["gallery-cover", "single-object", "catalog-grid", "curator-note", "before-after-wall"],
+        "safeZones": "Whitespace is structural; do not fill every area."
+      },
+      "graphicGrammar": {
+        "chartsAllowed": ["simple-comparison", "captioned-grid"],
+        "chartsForbidden": ["HUD", "radar", "dense-dashboard"],
+        "diagram": "Use negative space and captions."
+      },
+      "motionGrammar": "Static or slow gallery fade.",
+      "validator": {
+        "forbidRandomDarkPanel": true,
+        "maxCardsPerSlide": 4,
+        "requireLayoutIds": true
+      }
+    },
+    "brutalist-poster": {
+      "nameZh": "粗野海报语法",
+      "componentGrammar": {
+        "numbering": "Huge block numbers, rectangular stickers, overprint ids.",
+        "panels": "Chunky blocks with high contrast; no polished SaaS cards.",
+        "cards": "Poster blocks, zine strips, workshop prompts.",
+        "badges": "Rectangular loud labels; circles only if part of Memphis profile.",
+        "callouts": "Bold arrows and labels.",
+        "icons": "Simple heavy icons or type-only."
+      },
+      "shapeGrammar": {
+        "allowed": ["block", "hard-rect", "sticker-rect", "halftone", "offset-layer"],
+        "forbidden": ["luxuryGlass", "subtleCorporateCard", "randomOrb"],
+        "radius": "0-6px",
+        "shadow": "hard offset only if profile demands"
+      },
+      "typeLock": {
+        "title": "bold grotesk, high hierarchy",
+        "body": "simple sans, readable",
+        "mono": "optional",
+        "forbidden": ["thin elegant serif as primary"]
+      },
+      "layoutGrammar": {
+        "allowedFamilies": ["poster-cover", "workshop-grid", "big-claim", "cutout-steps", "contrast-table"],
+        "safeZones": "Loud does not mean illegible; keep one dominant axis."
+      },
+      "graphicGrammar": {
+        "chartsAllowed": ["block-bar", "comparison", "poster-matrix"],
+        "chartsForbidden": ["glossy-3d"],
+        "diagram": "Use bold shape hierarchy."
+      },
+      "motionGrammar": "Quick block reveal or registration drift; low amplitude.",
+      "validator": {
+        "requireLayoutIds": true
+      }
+    },
+    "minimal-research": {
+      "nameZh": "极简研究语法",
+      "componentGrammar": {
+        "numbering": "Tiny section ids, margin tabs, table row numbers.",
+        "panels": "Plain research cards, notes, tables.",
+        "cards": "Few, quiet, content-first.",
+        "badges": "Small labels, no decorative chips.",
+        "callouts": "Margin notes and observation boxes.",
+        "icons": "Rare and functional."
+      },
+      "shapeGrammar": {
+        "allowed": ["plain-rect", "line", "margin-note", "table", "simple-path"],
+        "forbidden": ["gradientOrb", "glow", "randomDarkPanel", "excessiveDecoration"],
+        "radius": "0-8px depending on template",
+        "shadow": "none or paper-soft"
+      },
+      "typeLock": {
+        "title": "plain Windows-safe sans/serif based on selected style",
+        "body": "readable, moderate line length",
+        "mono": "labels only",
+        "forbidden": ["showy keynote type"]
+      },
+      "layoutGrammar": {
+        "allowedFamilies": ["research-cover", "note-grid", "method-steps", "case-breakdown", "recap-handout", "simple-table"],
+        "safeZones": "Use whitespace; do not create empty bland SaaS pages."
+      },
+      "graphicGrammar": {
+        "chartsAllowed": ["table", "path", "matrix", "simple-bar"],
+        "chartsForbidden": ["HUD", "glossy-gauge"],
+        "diagram": "Simple, useful, quiet."
+      },
+      "motionGrammar": "Static or subtle paper/path reveal.",
+      "validator": {
+        "forbidGradientOrbs": true,
+        "forbidRandomDarkPanel": true,
+        "requireLayoutIds": true
+      }
+    },
+    "colorfield-architectural": {
+      "nameZh": "建筑色域语法",
+      "componentGrammar": {
+        "numbering": "Architectural plan labels and block ids.",
+        "panels": "Large color planes with sparse text; cards are secondary.",
+        "cards": "Use as plan fragments, not dashboards.",
+        "badges": "Small plan labels.",
+        "callouts": "Plan annotations.",
+        "icons": "None or line plan symbols."
+      },
+      "shapeGrammar": {
+        "allowed": ["color-plane", "architectural-rect", "plan-line", "axis-label"],
+        "forbidden": ["roundedSaaSCard", "randomGradient", "darkHUD", "tinyPills"],
+        "radius": "0-2px",
+        "shadow": "none"
+      },
+      "typeLock": {
+        "title": "architectural sans/serif restrained",
+        "body": "minimal sans",
+        "mono": "plan ids",
+        "forbidden": ["overdecorated type"]
+      },
+      "layoutGrammar": {
+        "allowedFamilies": ["colorfield-cover", "plan-grid", "case-blocks", "spatial-comparison"],
+        "safeZones": "Text must sit on quiet color planes with strong contrast."
+      },
+      "graphicGrammar": {
+        "chartsAllowed": ["block-map", "comparison-grid", "plan-diagram"],
+        "chartsForbidden": ["radar", "HUD"],
+        "diagram": "Planes and axes, not decorative blobs."
+      },
+      "motionGrammar": "Block slide/wipe, slow and architectural.",
+      "validator": {
+        "forbidGradientOrbs": true,
+        "requireLayoutIds": true
+      }
+    },
+    "riso-poster": {
+      "nameZh": "Riso 海报语法",
+      "componentGrammar": {
+        "numbering": "Overprint numbers, zine labels, rectangular tags.",
+        "panels": "Ink blocks and paper areas; avoid polished cards.",
+        "cards": "Poster fragments, research notes, workshop tiles.",
+        "badges": "Flat ink labels.",
+        "callouts": "Registration-shift labels.",
+        "icons": "Simple ink symbols only."
+      },
+      "shapeGrammar": {
+        "allowed": ["ink-block", "offset-layer", "halftone", "paper-rect", "rough-rule"],
+        "forbidden": ["glassCard", "gradientOrb", "neonHUD", "corporateCard"],
+        "radius": "0-6px",
+        "shadow": "none; use overprint offsets"
+      },
+      "typeLock": {
+        "title": "poster sans/serif with print confidence",
+        "body": "simple readable sans",
+        "mono": "optional labels",
+        "forbidden": ["slick SaaS type hierarchy"]
+      },
+      "layoutGrammar": {
+        "allowedFamilies": ["riso-cover", "poster-grid", "workshop-prompt", "research-cards", "recap-poster"],
+        "safeZones": "Texture stays under text; no body text on saturated ink."
+      },
+      "graphicGrammar": {
+        "chartsAllowed": ["poster-bar", "matrix", "simple-map"],
+        "chartsForbidden": ["glossy-gauge", "radar"],
+        "diagram": "Print marks and overprint logic."
+      },
+      "motionGrammar": "Slight registration drift, then static.",
+      "validator": {
+        "requireLayoutIds": true
+      }
+    },
+    "tactile-studio": {
+      "nameZh": "触感工作室语法",
+      "componentGrammar": {
+        "numbering": "Studio labels, material tabs, quiet rectangular markers.",
+        "panels": "Tactile surfaces, clay/paper panels, studio-light image slots.",
+        "cards": "Material cards with real content, not Pinterest mood boards.",
+        "badges": "Small material labels.",
+        "callouts": "Gentle annotations and process notes.",
+        "icons": "Organic but simple line icons."
+      },
+      "shapeGrammar": {
+        "allowed": ["soft-rect", "material-panel", "photo-frame", "process-tab"],
+        "forbidden": ["brownMonotone", "randomDarkPanel", "neonTech", "excessiveRoundedCard"],
+        "radius": "4-10px",
+        "shadow": "soft studio-light only"
+      },
+      "typeLock": {
+        "title": "human serif/sans, warm but not cute",
+        "body": "readable sans",
+        "mono": "minimal labels",
+        "forbidden": ["tech terminal as primary voice"]
+      },
+      "layoutGrammar": {
+        "allowedFamilies": ["studio-cover", "material-grid", "process-path", "case-photo", "outcome-cards"],
+        "safeZones": "Avoid muddy low contrast."
+      },
+      "graphicGrammar": {
+        "chartsAllowed": ["process", "matrix", "before-after"],
+        "chartsForbidden": ["HUD", "terminal-table"],
+        "diagram": "Material/process metaphors."
+      },
+      "motionGrammar": "Slow studio light, gentle reveal.",
+      "validator": {
+        "forbidRandomDarkPanel": true,
+        "requireLayoutIds": true
+      }
+    },
+    "security-grid": {
+      "nameZh": "安全网格语法",
+      "componentGrammar": {
+        "numbering": "Incident ids, grid coordinates, rectangular status labels.",
+        "panels": "Security panels with alert/evidence roles.",
+        "cards": "Threat/evidence rows, not sci-fi props.",
+        "badges": "Status strips with clear severity.",
+        "callouts": "Risk markers and mitigation notes.",
+        "icons": "Functional security icons only."
+      },
+      "shapeGrammar": {
+        "allowed": ["grid", "scanline", "alert-strip", "coordinate", "evidence-row"],
+        "forbidden": ["cyberpunkClutter", "randomSkullIcon", "circleBadge", "purpleGradient"],
+        "radius": "0-4px",
+        "shadow": "none or alert glow only"
+      },
+      "typeLock": {
+        "title": "sharp technical sans",
+        "body": "clear sans/mono mix",
+        "mono": "incident labels and coordinates",
+        "forbidden": ["horror/gaming type"]
+      },
+      "layoutGrammar": {
+        "allowedFamilies": ["security-cover", "risk-grid", "incident-timeline", "mitigation-table", "signal-map"],
+        "safeZones": "Alert color is sparse and semantic."
+      },
+      "graphicGrammar": {
+        "chartsAllowed": ["risk-matrix", "timeline", "ledger", "network-map"],
+        "chartsForbidden": ["decorative-radar-without-data", "3d"],
+        "diagram": "Risk and mitigation must be separate."
+      },
+      "motionGrammar": "Scan and lock; no cyberpunk flashing.",
+      "validator": {
+        "forbidCircleBadges": true,
+        "requireLayoutIds": true
+      }
+    },
+    "legal-brief": {
+      "nameZh": "法律简报语法",
+      "componentGrammar": {
+        "numbering": "Clause ids, exhibit labels, section numbers.",
+        "panels": "Brief pages, precedent boxes, risk tables.",
+        "cards": "Argument/evidence blocks only.",
+        "badges": "Exhibit/source labels.",
+        "callouts": "Risk, limitation, and citation notes.",
+        "icons": "Avoid icons unless functional."
+      },
+      "shapeGrammar": {
+        "allowed": ["brief-panel", "clause-row", "exhibit-box", "rule", "table"],
+        "forbidden": ["playfulCard", "randomDarkPanel", "neon", "gradient"],
+        "radius": "0-4px",
+        "shadow": "none"
+      },
+      "typeLock": {
+        "title": "formal serif/sans with Windows fallback",
+        "body": "high-legibility legal text",
+        "mono": "source ids only",
+        "forbidden": ["casual rounded UI type"]
+      },
+      "layoutGrammar": {
+        "allowedFamilies": ["brief-cover", "argument-map", "risk-table", "timeline", "exhibit-grid"],
+        "safeZones": "Do not hide caveats or sources."
+      },
+      "graphicGrammar": {
+        "chartsAllowed": ["table", "timeline", "risk-matrix", "argument-tree"],
+        "chartsForbidden": ["marketing-radar", "glossy-chart"],
+        "diagram": "Argument structure over decoration."
+      },
+      "motionGrammar": "Static or rule draw.",
+      "validator": {
+        "forbidRandomDarkPanel": true,
+        "requireLayoutIds": true
+      }
+    },
+    "developer-docs": {
+      "nameZh": "开发者文档语法",
+      "componentGrammar": {
+        "numbering": "API step ids, code line refs, rectangular doc tabs.",
+        "panels": "Code blocks, docs panels, API cards.",
+        "cards": "Docs sections, no marketing cards.",
+        "badges": "Method/status/version tags.",
+        "callouts": "Warnings, notes, and examples.",
+        "icons": "Small docs/tool icons only."
+      },
+      "shapeGrammar": {
+        "allowed": ["code-block", "docs-panel", "tab", "method-tag", "table-row"],
+        "forbidden": ["greenTerminalCliche", "matrixRain", "circleBadge", "decorativeOrb"],
+        "radius": "2-8px",
+        "shadow": "none or very subtle"
+      },
+      "typeLock": {
+        "title": "docs sans, direct",
+        "body": "readable docs sans",
+        "mono": "code and labels",
+        "forbidden": ["illegible futuristic type"]
+      },
+      "layoutGrammar": {
+        "allowedFamilies": ["docs-cover", "api-flow", "code-example", "comparison-table", "troubleshooting"],
+        "safeZones": "Code blocks must remain readable."
+      },
+      "graphicGrammar": {
+        "chartsAllowed": ["flow", "table", "bar", "state-machine"],
+        "chartsForbidden": ["radar", "pie"],
+        "diagram": "APIs, states, and examples."
+      },
+      "motionGrammar": "Docs grid reveal, code highlight, no typing gimmick unless short.",
+      "validator": {
+        "forbidCircleBadges": true,
+        "requireLayoutIds": true
+      }
+    },
+    "founder-memo": {
+      "nameZh": "创始人备忘录语法",
+      "componentGrammar": {
+        "numbering": "Memo sections and margin ids.",
+        "panels": "Plain memo surfaces, strategic notes, decision tables.",
+        "cards": "Few memo blocks; no decorative cards.",
+        "badges": "Small status labels.",
+        "callouts": "Decision, risk, and action notes.",
+        "icons": "Usually none."
+      },
+      "shapeGrammar": {
+        "allowed": ["memo-block", "rule", "decision-row", "margin-note"],
+        "forbidden": ["gradientOrb", "randomDarkPanel", "busyDashboard", "playfulBadge"],
+        "radius": "0-6px",
+        "shadow": "none"
+      },
+      "typeLock": {
+        "title": "plain executive sans/serif, not theatrical",
+        "body": "clear memo text",
+        "mono": "minimal labels",
+        "forbidden": ["decorative keynote type"]
+      },
+      "layoutGrammar": {
+        "allowedFamilies": ["memo-cover", "decision-table", "strategy-map", "risk-action", "one-page-brief"],
+        "safeZones": "Keep one decision per slide."
+      },
+      "graphicGrammar": {
+        "chartsAllowed": ["decision-table", "2x2", "bar", "roadmap"],
+        "chartsForbidden": ["decorative-radar", "3d"],
+        "diagram": "Decision logic and tradeoffs."
+      },
+      "motionGrammar": "Static or short reveal.",
+      "validator": {
+        "forbidRandomDarkPanel": true,
+        "requireLayoutIds": true
+      }
+    }
+  },
+  "styleProfileMap": {
+    "nasa-technical-manual": "technical-manual",
+    "apple-graphite-keynote": "cinematic-keynote",
+    "swiss-signal-cobalt": "swiss-grid-signal",
+    "kyoto-ink-paper": "editorial-paper",
+    "braun-graphite-orange": "industrial-control",
+    "bloomberg-terminal-refined": "data-terminal",
+    "financial-times-data": "data-terminal",
+    "darkroom-cyan-amber": "clean-room-ai",
+    "museum-white-red": "gallery-print",
+    "neo-brutalist-cream-lime": "brutalist-poster",
+    "soft-institutional-sage": "education-institutional",
+    "oxford-navy-parchment": "academic-institutional",
+    "tokyo-neon-minimal": "cinematic-keynote",
+    "seoul-glass-pastel": "cinematic-keynote",
+    "shenzhen-hardware-blueprint": "hardware-blueprint",
+    "copenhagen-civic-clean": "minimal-research",
+    "paris-editorial-serif": "editorial-paper",
+    "milan-industrial-fashion": "industrial-control",
+    "basel-pharma-precision": "proof-dossier",
+    "tokyo-muji-research": "minimal-research",
+    "berlin-data-brutal": "brutalist-poster",
+    "oslo-arctic-blue": "minimal-research",
+    "mexico-barragan-colorfield": "colorfield-architectural",
+    "memphis-muted-education": "brutalist-poster",
+    "japanese-city-pop-data": "brutalist-poster",
+    "cybernetic-bookish-serif": "editorial-paper",
+    "monochrome-luxury-print": "gallery-print",
+    "liquid-metal-slate": "cinematic-keynote",
+    "infrared-security-grid": "security-grid",
+    "greenhouse-systems": "education-institutional",
+    "royal-blue-acid-yellow": "swiss-grid-signal",
+    "oxblood-cloud": "founder-memo",
+    "pixel-archive-modern": "developer-docs",
+    "tactile-clay-studio": "tactile-studio",
+    "riso-research-poster": "riso-poster",
+    "vapor-minimal-pearl": "gallery-print",
+    "atlas-cartographic-proof": "proof-dossier",
+    "cinema-noir-title": "cinematic-keynote",
+    "clean-room-ai-white": "clean-room-ai",
+    "deep-sea-biotech": "proof-dossier",
+    "legal-brief-modern": "legal-brief",
+    "speculative-ai-surreal": "cinematic-keynote",
+    "stuttgart-automotive-system": "automotive-telemetry",
+    "newspaper-investigation": "editorial-paper",
+    "contemporary-black-coral": "gallery-print",
+    "editorial-ink-cobalt": "editorial-paper",
+    "humanist-ai-ivory-teal": "education-institutional",
+    "quantum-violet-black": "cinematic-keynote",
+    "library-maroon-index": "academic-institutional",
+    "developer-docs-electric": "developer-docs",
+    "founder-memo-minimal": "founder-memo",
+    "ai-lab-whiteboard-dark": "clean-room-ai",
+    "future-school-pop": "education-institutional"
+  }
+}
