@@ -27,12 +27,27 @@ Ask:
 2. 你想要哪种观感：稳重、锋利、舞台感、温和教育感、证据感、杂志感，还是给我参考？
 3. 是否允许我先基于模板给你看一个样本方向？
 
-Then show/reference the contact sheet path for the selected template. If the user
-does not like it, either choose another template or propose concrete changes:
-accent color, typography weight, density, motion intensity, image treatment,
-page rhythm.
+Then read `references/style-system.md` and select 1-3 candidates from
+`assets/style-systems/style-catalog.json`. Show/reference the contact sheet path
+for the selected template and describe each style candidate by five axes:
+
+- color master and usage ratio
+- Windows-safe typography temperament
+- layout density and whitespace
+- graphic language for diagrams/charts/images
+- motion grammar and B low-power mode
+
+If the user does not like it, either choose another template/style id or propose
+concrete changes on those five axes. Do not solve style feedback with random
+colors. Do not use "科技感", "高级", "简洁", "温和" as final instructions; lock a
+named style id or a derived style with explicit tokens.
 
 Do not proceed until style direction is accepted.
+
+Style gate output should be a proposal or a 2-3 slide visual sample only. The
+sample must cover: title slide, dense content slide, and chart/process slide. Do
+not produce the full narrative outline or production deck until the user accepts
+the style sample.
 
 ## Gate 2: Narrative Framework
 

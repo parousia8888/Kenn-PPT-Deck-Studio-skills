@@ -13,9 +13,12 @@ before generating images, browsing, producing PPTX/PDF, or changing style.
 
 Do not start slide production until these gates are confirmed:
 
-1. **Style first.** Identify deck type and recommend 1-3 candidate styles. Show or
-   reference a sample/contact sheet before production. If the user says the sample
-   is not right, switch template or modify a style direction first.
+1. **Style first.** Identify deck type and recommend 1-3 candidate styles from
+   the locked style catalog. A style must define color master, typography
+   temperament, layout density, graphic language, and motion grammar. Show or
+   reference a contact sheet or 2-3 slide style sample before production. If the
+   user says the sample is not right, switch template/style or modify the five
+   style axes first.
 2. **Narrative framework second.** Confirm the story arc, page count, audience,
    use case, and expected outcome.
 3. **Detailed sections third.** Confirm slide-by-slide sections, paragraph/detail
@@ -41,6 +44,23 @@ For visual specifics, read `references/style-routing.md` and the chosen template
 own `SKILL.md` or `readme.md`. Load only the chosen template docs, not every
 template.
 
+## Style System Lock
+
+Before making any deck or full outline, read `references/style-system.md` and use
+`assets/style-systems/style-catalog.json` to select a style system. Do not invent
+freehand palettes. Do not accept vague labels like "科技感" or "高级简洁" as the
+final style; translate them into a named style id plus concrete choices on:
+
+- color master and usage ratio
+- Windows-safe typography temperament
+- layout density and whitespace
+- graphic language for diagrams/charts/images
+- motion grammar and B low-power mode
+
+Style gate output may only be a style proposal or a 2-3 slide style sample. Do
+not produce the full outline or full deck until the user explicitly accepts the
+style sample.
+
 ## Confirmation Gates
 
 Required user confirmations:
@@ -61,6 +81,9 @@ Required user confirmations:
 - Preserve the chosen template's design system. Do not reduce a template to a
   minimal implementation.
 - Keep dynamic backgrounds and semantic motion. Keep **B** low-power/static mode.
+- Use the approved style catalog tokens for colors, type, layout, graphics, and
+  motion. If a new style is needed, derive it from the closest catalog style and
+  define all five axes before sampling.
 - Keep Windows-safe font fallbacks. Prefer the `.system-fonts.single.html` build
   for offline/Windows handoff checks.
 - Use product screenshots, diagrams, generated visuals, or data visualization when
@@ -72,6 +95,8 @@ Required user confirmations:
 
 - `references/workflow.md` — full guided process and confirmation scripts.
 - `references/style-routing.md` — template decision matrix and sample-preview rule.
+- `references/style-system.md` — style gate rules, five-axis lock, and quality rubric.
+- `assets/style-systems/style-catalog.json` — 50+ locked high-aesthetic style systems.
 - `references/build-and-export.md` — how to copy, package, verify, and optionally export.
 - `references/compliance.md` — provenance and license handling, including guizang MIT attribution.
 
@@ -81,6 +106,13 @@ List templates:
 
 ```bash
 node scripts/list-templates.mjs
+```
+
+List style systems, optionally filtered by use:
+
+```bash
+node scripts/list-styles.mjs
+node scripts/list-styles.mjs --use=courseware
 ```
 
 Copy a template pack to a working folder:

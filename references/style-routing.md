@@ -30,7 +30,7 @@ change style before narrative detailing.
 
 Allowed after confirmation:
 
-- accent color within the template's token system
+- accent color within the approved style catalog token system
 - density and page count
 - motion intensity, while keeping semantic motion and B low-power mode
 - image treatment
@@ -40,6 +40,9 @@ Allowed after confirmation:
 Not allowed by default:
 
 - mixing two templates in one deck without explicit approval
+- freehand/random palettes outside `assets/style-systems/style-catalog.json`
+- vague final art direction such as "more tech", "高级简洁", or "有艺术感" without
+  a locked style id and five-axis specification
 - removing the template motion system
 - using macOS-only fonts
 - flattening the design into plain cards or text-only slides
@@ -49,11 +52,27 @@ Not allowed by default:
 Supported. Treat it as a new style derivation:
 
 1. Pick the closest base template.
-2. Confirm artistic anchors in concrete terms: stage, typography, color, image
-   treatment, motion grammar, density, and forbidden motifs.
-3. Create a 2-3 slide style sample first.
-4. Ask for approval.
-5. Only then expand into the full deck template.
+2. Pick the closest style id from `assets/style-systems/style-catalog.json`.
+3. Confirm artistic anchors in concrete terms: color master, typography
+   temperament, layout density, graphic language, motion grammar, and forbidden
+   motifs.
+4. Create a 2-3 slide style sample first.
+5. Ask for approval.
+6. Only then expand into the full deck template.
 
 Keep the new template in a project folder first. Add it back into `assets/templates`
 only after it is verified.
+
+## Style Catalog Usage
+
+Use `references/style-system.md` for the gate rules and
+`assets/style-systems/style-catalog.json` for locked style systems. The catalog
+contains 50+ options spanning technical manuals, premium keynote, Swiss poster,
+editorial print, education prospectus, investor memo, data terminal, AI lab,
+archive, research, and cultural/art styles.
+
+Useful command:
+
+```bash
+node scripts/list-styles.mjs --use=courseware
+```

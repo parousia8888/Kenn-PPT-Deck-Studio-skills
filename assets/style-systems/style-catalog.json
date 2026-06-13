@@ -1,0 +1,2823 @@
+{
+  "version": "2026-06-13",
+  "purpose": "Locked high-aesthetic style systems for Kenn PPT Deck Studio. Use during Gate 1 before any deck production.",
+  "tokenRoles": ["bg", "surface", "surface2", "text", "muted", "accent", "accent2", "danger", "grid", "glow"],
+  "globalRules": {
+    "color": "Choose one style id and map all CSS variables to its tokens. Never invent unrelated colors after the style is accepted.",
+    "typography": "Use Windows-safe stacks by default. Embedded or web fonts require user approval.",
+    "density": "Match density to deck type and talk rhythm; never let card count or paragraphs override slide readability.",
+    "motion": "Every style keeps semantic motion and a B low-power/static mode.",
+    "sample": "Style sample must show title, dense content, and chart/process slides before narrative work."
+  },
+  "styles": [
+    {
+      "id": "nasa-technical-manual",
+      "nameZh": "NASA 技术手册",
+      "fitUse": ["courseware", "technical training", "AI/product methodology", "proof deck"],
+      "anchors": ["space program manuals", "engineering annotation", "mission-control restraint"],
+      "palette": {
+        "ratio": "76/16/6/2",
+        "tokens": {
+          "bg": "#F4F1E8",
+          "surface": "#FFFFFF",
+          "surface2": "#E6E2D8",
+          "text": "#111820",
+          "muted": "#5C6670",
+          "accent": "#0057B8",
+          "accent2": "#C8102E",
+          "danger": "#D1493F",
+          "grid": "rgba(17,24,32,0.12)",
+          "glow": "rgba(0,87,184,0.18)"
+        },
+        "avoid": ["cream overload", "comic rocket motifs", "blue gradients"]
+      },
+      "typography": {
+        "windowsStack": "Aptos, Segoe UI, Microsoft YaHei, Arial, sans-serif",
+        "title": "condensed sans or strong grotesk feeling; 48-86px; 0 letter spacing",
+        "body": "humanist sans; 20-30px; line-height 1.35-1.55",
+        "mono": "Cascadia Mono, Consolas, monospace",
+        "temperament": "precise, official, instructive"
+      },
+      "density": {
+        "grid": "12-column manual grid with measurement ticks",
+        "margins": "64-88px desktop; large safe zones",
+        "slideDensity": "medium-high",
+        "cards": "2-4 technical blocks, no nested cards",
+        "textLimits": "headline 1-2 lines; body 36-80 Chinese chars per block",
+        "whitespace": "35-45%"
+      },
+      "graphics": {
+        "diagram": "callouts, arrows, numbered modules, section rulers",
+        "chart": "flat bars, mission timelines, annotated matrices",
+        "imagery": "technical stills, equipment crops, simple generated schematics",
+        "texture": "subtle paper grain under 5%",
+        "linework": "1px rules, tick marks, blueprint labels",
+        "radiusShadow": "0-4px radius; almost no shadow"
+      },
+      "motion": {
+        "background": "slow blueprint drift or static paper grain",
+        "entrance": "section ruler draws first, then title, then modules",
+        "chart": "left-to-right measurement reveal",
+        "duration": "120-420ms",
+        "easing": "cubic-bezier(.2,0,0,1)",
+        "lowPower": "freeze drift; keep ruler state visible"
+      }
+    },
+    {
+      "id": "apple-graphite-keynote",
+      "nameZh": "Apple 石墨发布会",
+      "fitUse": ["launch", "pitch", "product keynote", "executive summary"],
+      "anchors": ["minimal keynote staging", "graphite glass", "product-first spotlight"],
+      "palette": {
+        "ratio": "82/12/4/2",
+        "tokens": {
+          "bg": "#0B0D10",
+          "surface": "#15191F",
+          "surface2": "#222832",
+          "text": "#F5F7FA",
+          "muted": "#98A1AD",
+          "accent": "#7DB7FF",
+          "accent2": "#C9D2E3",
+          "danger": "#FF6259",
+          "grid": "rgba(255,255,255,0.08)",
+          "glow": "rgba(125,183,255,0.28)"
+        },
+        "avoid": ["black-gold luxury", "busy HUD grids", "heavy bevels"]
+      },
+      "typography": {
+        "windowsStack": "Segoe UI Variable, Segoe UI, Microsoft YaHei UI, Arial, sans-serif",
+        "title": "large clean sans; 56-104px; light-to-semibold weights",
+        "body": "quiet sans; 22-32px; line-height 1.35",
+        "mono": "Cascadia Mono, Consolas, monospace",
+        "temperament": "silent, confident, cinematic"
+      },
+      "density": {
+        "grid": "asymmetric 8/4 stage grid",
+        "margins": "80-120px; huge focus space",
+        "slideDensity": "low-medium",
+        "cards": "0-2 translucent surfaces",
+        "textLimits": "one idea, one strong phrase, 3 bullets max",
+        "whitespace": "55-75%"
+      },
+      "graphics": {
+        "diagram": "thin luminous arcs, product halos, reveal masks",
+        "chart": "single KPI moments, clean axis-free deltas",
+        "imagery": "product screenshot or rendered object must dominate",
+        "texture": "very subtle glass noise",
+        "linework": "hairline light, optical gradients only",
+        "radiusShadow": "12-24px radius for stage objects; soft glow"
+      },
+      "motion": {
+        "background": "slow radial light sweep",
+        "entrance": "fade-rise with depth and scale under 1.03",
+        "chart": "number count and highlight sweep",
+        "duration": "240-700ms",
+        "easing": "cubic-bezier(.16,1,.3,1)",
+        "lowPower": "static spotlight, no sweep"
+      }
+    },
+    {
+      "id": "swiss-signal-cobalt",
+      "nameZh": "瑞士钴蓝信号",
+      "fitUse": ["pitch", "data deck", "courseware", "strategy"],
+      "anchors": ["International Typographic Style", "signal posters", "strict grid"],
+      "palette": {
+        "ratio": "70/20/8/2",
+        "tokens": {
+          "bg": "#F7F7F2",
+          "surface": "#FFFFFF",
+          "surface2": "#E9ECEF",
+          "text": "#111111",
+          "muted": "#676D73",
+          "accent": "#0047FF",
+          "accent2": "#F5D300",
+          "danger": "#FF4B2B",
+          "grid": "rgba(0,0,0,0.13)",
+          "glow": "rgba(0,71,255,0.16)"
+        },
+        "avoid": ["centered poster laziness", "too many accent rectangles", "rounded SaaS cards"]
+      },
+      "typography": {
+        "windowsStack": "Arial, Helvetica, Segoe UI, Microsoft YaHei, sans-serif",
+        "title": "bold grotesk; 52-98px; tight but non-negative spacing",
+        "body": "regular grotesk; 20-28px",
+        "mono": "Consolas, Cascadia Mono, monospace",
+        "temperament": "graphic, exact, poster-like"
+      },
+      "density": {
+        "grid": "strict 12-column baseline grid",
+        "margins": "56-88px",
+        "slideDensity": "medium",
+        "cards": "use bands and columns instead of cards",
+        "textLimits": "short fragments, strong hierarchy",
+        "whitespace": "40-58%"
+      },
+      "graphics": {
+        "diagram": "orthogonal arrows, numbered blocks, strong scale contrast",
+        "chart": "flat bars, dot plots, quadrant maps",
+        "imagery": "duotone crops or no imagery",
+        "texture": "none",
+        "linework": "black rules and blue/yellow signal marks",
+        "radiusShadow": "0px; no shadows"
+      },
+      "motion": {
+        "background": "subtle grid parallax only",
+        "entrance": "hard masked slide-in aligned to grid",
+        "chart": "block wipe",
+        "duration": "110-360ms",
+        "easing": "cubic-bezier(.2,0,0,1)",
+        "lowPower": "static grid"
+      }
+    },
+    {
+      "id": "kyoto-ink-paper",
+      "nameZh": "京都墨纸",
+      "fitUse": ["courseware", "education prospectus", "culture", "reflective keynote"],
+      "anchors": ["washi paper", "ink editorial", "quiet academic craft"],
+      "palette": {
+        "ratio": "78/14/6/2",
+        "tokens": {
+          "bg": "#F6F0E5",
+          "surface": "#FFFDF7",
+          "surface2": "#E9DDC9",
+          "text": "#171717",
+          "muted": "#756C61",
+          "accent": "#1C4E80",
+          "accent2": "#A33A2A",
+          "danger": "#B23B2E",
+          "grid": "rgba(23,23,23,0.10)",
+          "glow": "rgba(163,58,42,0.12)"
+        },
+        "avoid": ["tan monotone", "fake brush clichés", "low-contrast brown text"]
+      },
+      "typography": {
+        "windowsStack": "Microsoft YaHei, DengXian, SimSun, Georgia, serif",
+        "title": "elegant serif/songer feeling; 48-88px",
+        "body": "readable CJK sans or Song-style serif; 21-30px",
+        "mono": "Cascadia Mono, Consolas, monospace",
+        "temperament": "calm, literate, slow-breathing"
+      },
+      "density": {
+        "grid": "editorial 6-column with vertical rhythm",
+        "margins": "72-104px",
+        "slideDensity": "medium",
+        "cards": "paper panels and margin notes",
+        "textLimits": "2-4 short teaching blocks",
+        "whitespace": "45-62%"
+      },
+      "graphics": {
+        "diagram": "ink-line concept maps, margin callouts",
+        "chart": "muted line charts and hand-annotated bars",
+        "imagery": "warm document crops, classroom textures, subtle generated scenes",
+        "texture": "fine paper fiber 4-8%",
+        "linework": "soft ink lines, asymmetry",
+        "radiusShadow": "2-8px; paper-layer shadow"
+      },
+      "motion": {
+        "background": "slow paper grain, ink wash drift",
+        "entrance": "gentle fade and vertical settle",
+        "chart": "ink line draw",
+        "duration": "300-650ms",
+        "easing": "cubic-bezier(.33,1,.68,1)",
+        "lowPower": "static grain"
+      }
+    },
+    {
+      "id": "braun-graphite-orange",
+      "nameZh": "Braun 石墨橙",
+      "fitUse": ["product training", "courseware", "SaaS pitch", "operations"],
+      "anchors": ["Dieter Rams appliances", "industrial control panels", "functional restraint"],
+      "palette": {
+        "ratio": "74/18/6/2",
+        "tokens": {
+          "bg": "#EDEAE3",
+          "surface": "#F8F7F2",
+          "surface2": "#D8D5CC",
+          "text": "#1C1B18",
+          "muted": "#66645F",
+          "accent": "#F05A28",
+          "accent2": "#2C73D2",
+          "danger": "#B00020",
+          "grid": "rgba(28,27,24,0.12)",
+          "glow": "rgba(240,90,40,0.13)"
+        },
+        "avoid": ["retro cosplay", "rounded app-store cards", "orange overload"]
+      },
+      "typography": {
+        "windowsStack": "Segoe UI, Arial, Microsoft YaHei UI, sans-serif",
+        "title": "utilitarian sans; 48-86px; medium-bold",
+        "body": "clear sans; 20-28px",
+        "mono": "Cascadia Mono, Consolas, monospace",
+        "temperament": "industrial, useful, exact"
+      },
+      "density": {
+        "grid": "modular product-control grid",
+        "margins": "60-84px",
+        "slideDensity": "medium-high",
+        "cards": "instrument panels, 2-5 modules",
+        "textLimits": "labels short; body functional",
+        "whitespace": "32-46%"
+      },
+      "graphics": {
+        "diagram": "switches, scales, knobs as abstract UI metaphors",
+        "chart": "calibrated bars, gauges, compact tables",
+        "imagery": "product-detail crops or schematic renderings",
+        "texture": "matte plastic grain under 4%",
+        "linework": "strong dividers, rounded only where control-like",
+        "radiusShadow": "4-8px; minimal shadow"
+      },
+      "motion": {
+        "background": "barely moving calibration grid",
+        "entrance": "mechanical snap/fade, no bounce",
+        "chart": "gauge sweep, bar calibration",
+        "duration": "150-400ms",
+        "easing": "cubic-bezier(.3,0,.2,1)",
+        "lowPower": "freeze gauges"
+      }
+    },
+    {
+      "id": "bloomberg-terminal-refined",
+      "nameZh": "精修 Bloomberg 终端",
+      "fitUse": ["data deck", "market analysis", "investor", "proof"],
+      "anchors": ["financial terminal", "market tapes", "dense but premium dashboards"],
+      "palette": {
+        "ratio": "72/18/8/2",
+        "tokens": {
+          "bg": "#080A0C",
+          "surface": "#11161A",
+          "surface2": "#1A2228",
+          "text": "#F2F0E8",
+          "muted": "#8D948C",
+          "accent": "#00AEEF",
+          "accent2": "#FFB000",
+          "danger": "#FF4D4D",
+          "grid": "rgba(242,240,232,0.09)",
+          "glow": "rgba(0,174,239,0.18)"
+        },
+        "avoid": ["green terminal stereotype", "all-caps everywhere", "ticker clutter on every slide"]
+      },
+      "typography": {
+        "windowsStack": "Aptos, Segoe UI, Microsoft YaHei, Arial, sans-serif",
+        "title": "sharp sans; 44-80px",
+        "body": "dense readable sans; 18-26px",
+        "mono": "Cascadia Mono, Consolas, monospace",
+        "temperament": "alert, analytical, high-signal"
+      },
+      "density": {
+        "grid": "dashboard grid with strong rows",
+        "margins": "44-72px",
+        "slideDensity": "high",
+        "cards": "3-6 panels max, each with clear rank",
+        "textLimits": "dense labels allowed; no paragraphs over 70 chars",
+        "whitespace": "24-36%"
+      },
+      "graphics": {
+        "diagram": "market maps, terminal rows, heat strips",
+        "chart": "small multiples, sparklines, heatmaps, KPI deltas",
+        "imagery": "rare; only evidence screenshots",
+        "texture": "none or scanline under 3%",
+        "linework": "thin grid, compact labels",
+        "radiusShadow": "0-4px; no glow except active data"
+      },
+      "motion": {
+        "background": "slow ticker or scanline, very subtle",
+        "entrance": "data rows resolve sequentially",
+        "chart": "sparklines draw, heat cells fade",
+        "duration": "80-280ms",
+        "easing": "linear for ticker, cubic-bezier(.2,0,0,1) for UI",
+        "lowPower": "ticker off"
+      }
+    },
+    {
+      "id": "financial-times-data",
+      "nameZh": "Financial Times 数据纸",
+      "fitUse": ["investor", "market", "strategy", "research"],
+      "anchors": ["financial journalism", "salmon paper", "sober data graphics"],
+      "palette": {
+        "ratio": "80/12/6/2",
+        "tokens": {
+          "bg": "#FFF1E5",
+          "surface": "#FFF8F1",
+          "surface2": "#E9D8CA",
+          "text": "#26221E",
+          "muted": "#6E625A",
+          "accent": "#0F6B78",
+          "accent2": "#990F3D",
+          "danger": "#C23B22",
+          "grid": "rgba(38,34,30,0.14)",
+          "glow": "rgba(15,107,120,0.11)"
+        },
+        "avoid": ["cute pink", "beige-on-beige weak contrast", "magazine clutter"]
+      },
+      "typography": {
+        "windowsStack": "Georgia, Cambria, Microsoft YaHei, SimSun, serif",
+        "title": "editorial serif; 46-84px",
+        "body": "serif body or clean sans labels; 20-29px",
+        "mono": "Consolas, Cascadia Mono, monospace",
+        "temperament": "journalistic, credible, analytical"
+      },
+      "density": {
+        "grid": "newspaper columns with chart wells",
+        "margins": "64-96px",
+        "slideDensity": "medium-high",
+        "cards": "few; use sections and rules",
+        "textLimits": "short paragraphs acceptable, 2 max per slide",
+        "whitespace": "32-48%"
+      },
+      "graphics": {
+        "diagram": "editorial annotations, source notes, callout boxes",
+        "chart": "FT-style line/bar charts, clear baselines, source captions",
+        "imagery": "documentary crops or none",
+        "texture": "paper warmth under 4%",
+        "linework": "rules, serif captions, source labels",
+        "radiusShadow": "0-4px, no drop shadow"
+      },
+      "motion": {
+        "background": "static or very slow paper grain",
+        "entrance": "headline then chart trace then annotation",
+        "chart": "line draw and callout fade",
+        "duration": "200-520ms",
+        "easing": "cubic-bezier(.33,1,.68,1)",
+        "lowPower": "static chart"
+      }
+    },
+    {
+      "id": "darkroom-cyan-amber",
+      "nameZh": "暗房青琥珀",
+      "fitUse": ["AI Lab", "courseware", "technical workshop", "product demo"],
+      "anchors": ["darkroom instruments", "lab notebook", "cybernetics without neon excess"],
+      "palette": {
+        "ratio": "78/14/6/2",
+        "tokens": {
+          "bg": "#0E1114",
+          "surface": "#151A1F",
+          "surface2": "#20272E",
+          "text": "#F2EFE7",
+          "muted": "#A4A098",
+          "accent": "#66D9EF",
+          "accent2": "#FFB86B",
+          "danger": "#FF6B5F",
+          "grid": "rgba(242,239,231,0.08)",
+          "glow": "rgba(102,217,239,0.16)"
+        },
+        "avoid": ["dark green cast", "cyan-only tech", "full-screen HUD clutter"]
+      },
+      "typography": {
+        "windowsStack": "Segoe UI, Aptos, Microsoft YaHei UI, Arial, sans-serif",
+        "title": "hybrid serif/sans allowed; 50-90px; restrained",
+        "body": "clear teaching sans; 20-30px",
+        "mono": "Cascadia Mono, Consolas, monospace",
+        "temperament": "scientific, immersive, not game-like"
+      },
+      "density": {
+        "grid": "lab grid, low opacity, broken into zones",
+        "margins": "56-88px",
+        "slideDensity": "medium-high",
+        "cards": "2-4 instrument panels",
+        "textLimits": "labels compact; teaching copy with strong hierarchy",
+        "whitespace": "30-45%"
+      },
+      "graphics": {
+        "diagram": "pipelines, evaluation matrices, sensor-like charts",
+        "chart": "radar only when meaningful; bars and matrices preferred",
+        "imagery": "generated lab schematics, UI mock panels",
+        "texture": "fine noise and light bloom under 8%",
+        "linework": "thin cyan lines with amber warning points",
+        "radiusShadow": "4-8px; mild inner glow"
+      },
+      "motion": {
+        "background": "slow photon sweep and sparse grid shimmer",
+        "entrance": "modules initialize in reading order",
+        "chart": "measurement fill, point pulse once",
+        "duration": "120-480ms",
+        "easing": "cubic-bezier(.16,1,.3,1)",
+        "lowPower": "freeze photon sweep; no pulse"
+      }
+    },
+    {
+      "id": "museum-white-red",
+      "nameZh": "美术馆白红",
+      "fitUse": ["education prospectus", "courseware", "brand story", "portfolio"],
+      "anchors": ["museum catalog", "white wall", "curatorial label"],
+      "palette": {
+        "ratio": "84/10/4/2",
+        "tokens": {
+          "bg": "#FAFAF7",
+          "surface": "#FFFFFF",
+          "surface2": "#ECEBE6",
+          "text": "#101010",
+          "muted": "#6B6B64",
+          "accent": "#D71920",
+          "accent2": "#1A1A1A",
+          "danger": "#B00020",
+          "grid": "rgba(16,16,16,0.10)",
+          "glow": "rgba(215,25,32,0.10)"
+        },
+        "avoid": ["sterile SaaS", "red buttons everywhere", "over-rounded gallery cards"]
+      },
+      "typography": {
+        "windowsStack": "Aptos, Segoe UI, Microsoft YaHei, Arial, sans-serif",
+        "title": "quiet large sans or serif; 48-92px",
+        "body": "catalog label style; 19-27px",
+        "mono": "Consolas, Cascadia Mono, monospace",
+        "temperament": "curated, sparse, authoritative"
+      },
+      "density": {
+        "grid": "gallery wall grid with wide margins",
+        "margins": "88-128px",
+        "slideDensity": "low-medium",
+        "cards": "avoid cards; use object-label layouts",
+        "textLimits": "caption blocks only; 3 max",
+        "whitespace": "60-78%"
+      },
+      "graphics": {
+        "diagram": "catalog labels, image index, exhibit numbers",
+        "chart": "single refined chart, small labels",
+        "imagery": "large high-quality image or object crop",
+        "texture": "none",
+        "linework": "thin black/red rules",
+        "radiusShadow": "0px; no shadow"
+      },
+      "motion": {
+        "background": "static",
+        "entrance": "museum-label fade, image mask reveal",
+        "chart": "quiet draw, no flourish",
+        "duration": "240-600ms",
+        "easing": "cubic-bezier(.33,1,.68,1)",
+        "lowPower": "same as normal minus mask movement"
+      }
+    },
+    {
+      "id": "neo-brutalist-cream-lime",
+      "nameZh": "新粗野奶油青柠",
+      "fitUse": ["youth education", "creative courseware", "workshop", "campaign"],
+      "anchors": ["neo-brutalist posters", "startup zines", "playful grid"],
+      "palette": {
+        "ratio": "68/20/10/2",
+        "tokens": {
+          "bg": "#F3EBDD",
+          "surface": "#FFF8EA",
+          "surface2": "#D9D1C1",
+          "text": "#111111",
+          "muted": "#5F5C55",
+          "accent": "#B6FF00",
+          "accent2": "#0047FF",
+          "danger": "#FF3B30",
+          "grid": "rgba(17,17,17,0.18)",
+          "glow": "rgba(182,255,0,0.16)"
+        },
+        "avoid": ["childish stickers", "too many thick outlines", "low information hierarchy"]
+      },
+      "typography": {
+        "windowsStack": "Arial Black, Arial, Microsoft YaHei UI, sans-serif",
+        "title": "heavy sans; 46-90px",
+        "body": "plain sans; 20-28px",
+        "mono": "Consolas, Cascadia Mono, monospace",
+        "temperament": "bold, workshop-like, slightly rebellious"
+      },
+      "density": {
+        "grid": "chunky modular grid",
+        "margins": "48-72px",
+        "slideDensity": "medium",
+        "cards": "2-5 blocks with thick strokes",
+        "textLimits": "short, punchy, no long paragraphs",
+        "whitespace": "35-50%"
+      },
+      "graphics": {
+        "diagram": "arrows, stamps, counters, block labels",
+        "chart": "fat bars, binary comparisons, sticker labels",
+        "imagery": "high-contrast cutouts",
+        "texture": "risograph noise optional",
+        "linework": "2-3px black strokes",
+        "radiusShadow": "0-6px; hard offset shadow"
+      },
+      "motion": {
+        "background": "minor jitter or halftone drift",
+        "entrance": "block slam with no bounce beyond 1.01 scale",
+        "chart": "chunk fill",
+        "duration": "90-300ms",
+        "easing": "steps(2,end) or cubic-bezier(.2,0,0,1)",
+        "lowPower": "remove jitter"
+      }
+    },
+    {
+      "id": "soft-institutional-sage",
+      "nameZh": "温和机构鼠尾草",
+      "fitUse": ["education prospectus", "school brochure", "parent-facing deck"],
+      "anchors": ["premium school prospectus", "natural light", "institutional calm"],
+      "palette": {
+        "ratio": "80/12/6/2",
+        "tokens": {
+          "bg": "#F7F3EA",
+          "surface": "#FFFFFF",
+          "surface2": "#E4E8DC",
+          "text": "#22251F",
+          "muted": "#6B7067",
+          "accent": "#6F8B6B",
+          "accent2": "#A56A43",
+          "danger": "#B94A48",
+          "grid": "rgba(34,37,31,0.10)",
+          "glow": "rgba(111,139,107,0.12)"
+        },
+        "avoid": ["spa brochure beige", "generic leaf icons", "low-contrast sage text"]
+      },
+      "typography": {
+        "windowsStack": "Georgia, Cambria, Microsoft YaHei, SimSun, serif",
+        "title": "warm serif; 44-82px",
+        "body": "humanist sans or serif; 20-30px",
+        "mono": "Consolas, Cascadia Mono, monospace",
+        "temperament": "trusted, gentle, not childish"
+      },
+      "density": {
+        "grid": "brochure grid with image/text balance",
+        "margins": "70-104px",
+        "slideDensity": "medium",
+        "cards": "1-3 story panels",
+        "textLimits": "parent-readable; 2 paragraphs max",
+        "whitespace": "42-60%"
+      },
+      "graphics": {
+        "diagram": "curriculum pathway, outcome ladders, testimonial pulls",
+        "chart": "soft bars and milestone timelines",
+        "imagery": "warm classroom/photo-real generated scenes if approved",
+        "texture": "subtle paper and natural grain",
+        "linework": "soft rules, small seals",
+        "radiusShadow": "6-10px; quiet paper shadow"
+      },
+      "motion": {
+        "background": "slow light wash",
+        "entrance": "soft fade, image crop reveal",
+        "chart": "timeline grows gently",
+        "duration": "300-700ms",
+        "easing": "cubic-bezier(.33,1,.68,1)",
+        "lowPower": "static light"
+      }
+    },
+    {
+      "id": "oxford-navy-parchment",
+      "nameZh": "牛津海军蓝羊皮纸",
+      "fitUse": ["education prospectus", "academic courseware", "institution introduction"],
+      "anchors": ["university crest without literal crest", "academic prospectus", "formal serif"],
+      "palette": {
+        "ratio": "78/14/6/2",
+        "tokens": {
+          "bg": "#F2E7D2",
+          "surface": "#FFF9EC",
+          "surface2": "#D9C7A4",
+          "text": "#152238",
+          "muted": "#625B4D",
+          "accent": "#0B2A4A",
+          "accent2": "#8A1538",
+          "danger": "#A83232",
+          "grid": "rgba(21,34,56,0.13)",
+          "glow": "rgba(11,42,74,0.13)"
+        },
+        "avoid": ["fake heraldry", "old parchment stains", "college cliché ornaments"]
+      },
+      "typography": {
+        "windowsStack": "Georgia, Cambria, Microsoft YaHei, SimSun, serif",
+        "title": "formal serif; 46-84px",
+        "body": "serif body with sans labels; 20-29px",
+        "mono": "Consolas, Cascadia Mono, monospace",
+        "temperament": "institutional, literate, stable"
+      },
+      "density": {
+        "grid": "prospectus columns and chapter dividers",
+        "margins": "72-112px",
+        "slideDensity": "medium",
+        "cards": "formal panels, 1-3",
+        "textLimits": "short explanatory paragraphs",
+        "whitespace": "40-58%"
+      },
+      "graphics": {
+        "diagram": "curriculum maps, faculty cards, admissions steps",
+        "chart": "subtle navy/red data marks",
+        "imagery": "campus/classroom editorial crops",
+        "texture": "clean paper, not antique",
+        "linework": "double rules, section numerals",
+        "radiusShadow": "0-6px; print-like"
+      },
+      "motion": {
+        "background": "barely visible paper movement",
+        "entrance": "page turn/mask reveal, restrained",
+        "chart": "rule draw then values",
+        "duration": "260-620ms",
+        "easing": "cubic-bezier(.33,1,.68,1)",
+        "lowPower": "static"
+      }
+    },
+    {
+      "id": "tokyo-neon-minimal",
+      "nameZh": "东京霓虹极简",
+      "fitUse": ["tech launch", "AI product", "youth brand", "demo"],
+      "anchors": ["Tokyo night signage", "minimal grids", "disciplined neon"],
+      "palette": {
+        "ratio": "74/16/8/2",
+        "tokens": {
+          "bg": "#07070A",
+          "surface": "#121219",
+          "surface2": "#1C1C26",
+          "text": "#F8F7F2",
+          "muted": "#9BA0AE",
+          "accent": "#FF2E88",
+          "accent2": "#00E5FF",
+          "danger": "#FF4D4D",
+          "grid": "rgba(248,247,242,0.08)",
+          "glow": "rgba(255,46,136,0.22)"
+        },
+        "avoid": ["rainy cyberpunk cliché", "neon everywhere", "unreadable magenta text"]
+      },
+      "typography": {
+        "windowsStack": "Yu Gothic UI, Microsoft YaHei UI, Segoe UI, Arial, sans-serif",
+        "title": "clean geometric sans; 50-92px",
+        "body": "compact sans; 20-28px",
+        "mono": "Cascadia Mono, Consolas, monospace",
+        "temperament": "sharp, urban, controlled"
+      },
+      "density": {
+        "grid": "vertical signage grid plus content zones",
+        "margins": "56-88px",
+        "slideDensity": "medium",
+        "cards": "1-3 luminous panels",
+        "textLimits": "short phrase-driven copy",
+        "whitespace": "44-60%"
+      },
+      "graphics": {
+        "diagram": "neon line paths, station-map flows",
+        "chart": "thin cyan/magenta tracks",
+        "imagery": "night product composites or abstract light",
+        "texture": "subtle bloom/noise",
+        "linework": "luminous strokes with hard dark voids",
+        "radiusShadow": "4-12px; glow controlled"
+      },
+      "motion": {
+        "background": "slow sign flicker under 5%",
+        "entrance": "light turns on by zones",
+        "chart": "line trace with terminal point",
+        "duration": "120-500ms",
+        "easing": "cubic-bezier(.16,1,.3,1)",
+        "lowPower": "no flicker"
+      }
+    },
+    {
+      "id": "seoul-glass-pastel",
+      "nameZh": "首尔玻璃粉彩",
+      "fitUse": ["education prospectus", "consumer product", "creative workshop"],
+      "anchors": ["soft Korean editorial UI", "glass pastel", "clean lifestyle tech"],
+      "palette": {
+        "ratio": "78/14/6/2",
+        "tokens": {
+          "bg": "#F8F7FB",
+          "surface": "rgba(255,255,255,0.78)",
+          "surface2": "#EAE7F5",
+          "text": "#1E2330",
+          "muted": "#73798A",
+          "accent": "#8A7CFF",
+          "accent2": "#7DD3C7",
+          "danger": "#FF6B7A",
+          "grid": "rgba(30,35,48,0.08)",
+          "glow": "rgba(138,124,255,0.18)"
+        },
+        "avoid": ["baby colors", "blurred unreadable glass", "too many gradients"]
+      },
+      "typography": {
+        "windowsStack": "Segoe UI, Microsoft YaHei UI, Arial, sans-serif",
+        "title": "rounded but mature sans; 46-84px",
+        "body": "soft sans; 20-29px",
+        "mono": "Cascadia Mono, Consolas, monospace",
+        "temperament": "fresh, approachable, polished"
+      },
+      "density": {
+        "grid": "airy app/editorial grid",
+        "margins": "64-96px",
+        "slideDensity": "medium",
+        "cards": "2-4 translucent panels max",
+        "textLimits": "short blocks, parent/student friendly",
+        "whitespace": "45-62%"
+      },
+      "graphics": {
+        "diagram": "soft flows, pill labels, progress ribbons",
+        "chart": "rounded bars, gentle area charts",
+        "imagery": "bright classroom/product crops",
+        "texture": "soft blur plus very light grain",
+        "linework": "low-contrast thin rules",
+        "radiusShadow": "12-20px; blurred but readable"
+      },
+      "motion": {
+        "background": "slow glass sheen",
+        "entrance": "soft float up",
+        "chart": "rounded fill",
+        "duration": "240-620ms",
+        "easing": "cubic-bezier(.16,1,.3,1)",
+        "lowPower": "static sheen"
+      }
+    },
+    {
+      "id": "shenzhen-hardware-blueprint",
+      "nameZh": "深圳硬件蓝图",
+      "fitUse": ["product launch", "hardware pitch", "technical courseware"],
+      "anchors": ["PCB diagrams", "factory precision", "blueprint overlays"],
+      "palette": {
+        "ratio": "76/16/6/2",
+        "tokens": {
+          "bg": "#07131F",
+          "surface": "#0D1D2B",
+          "surface2": "#142A3D",
+          "text": "#EEF7FF",
+          "muted": "#9AB0C3",
+          "accent": "#2DD4BF",
+          "accent2": "#60A5FA",
+          "danger": "#FB7185",
+          "grid": "rgba(238,247,255,0.08)",
+          "glow": "rgba(45,212,191,0.18)"
+        },
+        "avoid": ["gaming RGB", "fake circuit wallpaper", "all cyan"]
+      },
+      "typography": {
+        "windowsStack": "Segoe UI, Aptos, Microsoft YaHei UI, Arial, sans-serif",
+        "title": "technical sans; 48-88px",
+        "body": "clear compact sans; 19-28px",
+        "mono": "Cascadia Mono, Consolas, monospace",
+        "temperament": "engineered, modern, energetic"
+      },
+      "density": {
+        "grid": "PCB trace grid and component zones",
+        "margins": "52-80px",
+        "slideDensity": "medium-high",
+        "cards": "3-5 component panels",
+        "textLimits": "component labels short; explanations concise",
+        "whitespace": "30-44%"
+      },
+      "graphics": {
+        "diagram": "circuit traces, exploded product modules, pin labels",
+        "chart": "throughput curves, comparison modules",
+        "imagery": "product teardown, device silhouette",
+        "texture": "subtle solder mask noise",
+        "linework": "trace-like orthogonal lines",
+        "radiusShadow": "4px; glow only on active path"
+      },
+      "motion": {
+        "background": "signal pulse along selected traces",
+        "entrance": "component assembly sequence",
+        "chart": "trace pulse then numeric lock",
+        "duration": "120-460ms",
+        "easing": "cubic-bezier(.2,0,0,1)",
+        "lowPower": "no trace pulse"
+      }
+    },
+    {
+      "id": "copenhagen-civic-clean",
+      "nameZh": "哥本哈根公共设计",
+      "fitUse": ["education", "public service", "institution", "strategy"],
+      "anchors": ["Scandinavian civic signage", "clean accessibility", "public trust"],
+      "palette": {
+        "ratio": "82/10/6/2",
+        "tokens": {
+          "bg": "#F7F6F2",
+          "surface": "#FFFFFF",
+          "surface2": "#E2E5E1",
+          "text": "#18201C",
+          "muted": "#5F6963",
+          "accent": "#006C67",
+          "accent2": "#D94F30",
+          "danger": "#C83E35",
+          "grid": "rgba(24,32,28,0.10)",
+          "glow": "rgba(0,108,103,0.10)"
+        },
+        "avoid": ["IKEA showroom feel", "overly cute icons", "low contrast pale green"]
+      },
+      "typography": {
+        "windowsStack": "Segoe UI, Aptos, Microsoft YaHei UI, Arial, sans-serif",
+        "title": "plain civic sans; 46-84px",
+        "body": "accessible sans; 21-30px",
+        "mono": "Cascadia Mono, Consolas, monospace",
+        "temperament": "clear, public, trustworthy"
+      },
+      "density": {
+        "grid": "signage grid with generous spacing",
+        "margins": "72-104px",
+        "slideDensity": "medium",
+        "cards": "1-3 plain information blocks",
+        "textLimits": "accessible short paragraphs",
+        "whitespace": "48-64%"
+      },
+      "graphics": {
+        "diagram": "wayfinding arrows, service maps, step systems",
+        "chart": "plain bars and timelines",
+        "imagery": "natural-light institutional photos",
+        "texture": "none or matte paper",
+        "linework": "clear black/green rules",
+        "radiusShadow": "4-8px; no decorative shadow"
+      },
+      "motion": {
+        "background": "static",
+        "entrance": "wayfinding marks appear first",
+        "chart": "simple wipe",
+        "duration": "180-420ms",
+        "easing": "cubic-bezier(.2,0,0,1)",
+        "lowPower": "same"
+      }
+    },
+    {
+      "id": "paris-editorial-serif",
+      "nameZh": "巴黎编辑衬线",
+      "fitUse": ["prospectus", "brand story", "magazine deck", "education"],
+      "anchors": ["fashion editorial", "art-book typography", "strict elegance"],
+      "palette": {
+        "ratio": "84/10/4/2",
+        "tokens": {
+          "bg": "#F9F6EF",
+          "surface": "#FFFFFF",
+          "surface2": "#E8E2D6",
+          "text": "#11100E",
+          "muted": "#716A61",
+          "accent": "#8C1D18",
+          "accent2": "#11100E",
+          "danger": "#B2332A",
+          "grid": "rgba(17,16,14,0.10)",
+          "glow": "rgba(140,29,24,0.10)"
+        },
+        "avoid": ["fashion cliché", "thin unreadable serif", "beige monotone"]
+      },
+      "typography": {
+        "windowsStack": "Georgia, Cambria, Microsoft YaHei, SimSun, serif",
+        "title": "high-contrast editorial serif; 50-96px",
+        "body": "serif paragraphs with sans captions; 20-29px",
+        "mono": "Consolas, Cascadia Mono, monospace",
+        "temperament": "cultured, measured, luxurious without gold"
+      },
+      "density": {
+        "grid": "magazine columns, asymmetrical image wells",
+        "margins": "80-120px",
+        "slideDensity": "low-medium",
+        "cards": "avoid cards; use editorial spreads",
+        "textLimits": "1 short paragraph or 3 captions",
+        "whitespace": "55-72%"
+      },
+      "graphics": {
+        "diagram": "caption systems, pull quotes, numbered spreads",
+        "chart": "rare, editorial and thin",
+        "imagery": "large art-directed photo/collage",
+        "texture": "fine print grain",
+        "linework": "thin rules, elegant numerals",
+        "radiusShadow": "0px; print layout"
+      },
+      "motion": {
+        "background": "static paper",
+        "entrance": "magazine mask reveal",
+        "chart": "fade and annotation",
+        "duration": "280-620ms",
+        "easing": "cubic-bezier(.33,1,.68,1)",
+        "lowPower": "static"
+      }
+    },
+    {
+      "id": "milan-industrial-fashion",
+      "nameZh": "米兰工业时装",
+      "fitUse": ["premium launch", "brand pitch", "education prospectus"],
+      "anchors": ["industrial luxury", "concrete showrooms", "fashion-system grids"],
+      "palette": {
+        "ratio": "80/12/6/2",
+        "tokens": {
+          "bg": "#D8D4CC",
+          "surface": "#F2F0EA",
+          "surface2": "#B9B4AA",
+          "text": "#161616",
+          "muted": "#66615B",
+          "accent": "#2B2B2B",
+          "accent2": "#B23A2E",
+          "danger": "#C7362E",
+          "grid": "rgba(22,22,22,0.12)",
+          "glow": "rgba(178,58,46,0.12)"
+        },
+        "avoid": ["brown luxury", "gold trim", "overly dark concrete"]
+      },
+      "typography": {
+        "windowsStack": "Aptos, Segoe UI, Microsoft YaHei, Arial, sans-serif",
+        "title": "wide modern sans; 48-92px",
+        "body": "minimal sans; 20-28px",
+        "mono": "Cascadia Mono, Consolas, monospace",
+        "temperament": "controlled, material, premium"
+      },
+      "density": {
+        "grid": "runway/editorial modular grid",
+        "margins": "72-112px",
+        "slideDensity": "low-medium",
+        "cards": "large panels, not small cards",
+        "textLimits": "terse labels, decisive statements",
+        "whitespace": "52-70%"
+      },
+      "graphics": {
+        "diagram": "material swatches, product silhouettes, line indexes",
+        "chart": "minimal with strong scale",
+        "imagery": "close material/product crops",
+        "texture": "concrete/fabric grain 4-8%",
+        "linework": "thin black rules and red markers",
+        "radiusShadow": "0-4px; no soft SaaS shadow"
+      },
+      "motion": {
+        "background": "slow fabric/concrete light movement",
+        "entrance": "runway side reveal",
+        "chart": "mask reveal",
+        "duration": "260-620ms",
+        "easing": "cubic-bezier(.16,1,.3,1)",
+        "lowPower": "static texture"
+      }
+    },
+    {
+      "id": "basel-pharma-precision",
+      "nameZh": "巴塞尔医药精密",
+      "fitUse": ["research", "proof", "health/education", "scientific pitch"],
+      "anchors": ["Swiss pharma reports", "clinical clarity", "sterile precision"],
+      "palette": {
+        "ratio": "82/10/6/2",
+        "tokens": {
+          "bg": "#F8FAFB",
+          "surface": "#FFFFFF",
+          "surface2": "#E6EDF2",
+          "text": "#102027",
+          "muted": "#60727C",
+          "accent": "#007C89",
+          "accent2": "#7A4CC2",
+          "danger": "#D64545",
+          "grid": "rgba(16,32,39,0.10)",
+          "glow": "rgba(0,124,137,0.10)"
+        },
+        "avoid": ["hospital cliché icons", "cold empty slides", "cyan monotone"]
+      },
+      "typography": {
+        "windowsStack": "Segoe UI, Aptos, Microsoft YaHei UI, Arial, sans-serif",
+        "title": "clinical sans; 44-82px",
+        "body": "high-legibility sans; 19-28px",
+        "mono": "Cascadia Mono, Consolas, monospace",
+        "temperament": "scientific, careful, evidence-led"
+      },
+      "density": {
+        "grid": "clinical report grid",
+        "margins": "60-88px",
+        "slideDensity": "medium-high",
+        "cards": "tables and evidence panels",
+        "textLimits": "claim + evidence + caveat",
+        "whitespace": "34-50%"
+      },
+      "graphics": {
+        "diagram": "protocol flows, study arms, evidence hierarchy",
+        "chart": "confidence intervals, line charts, comparison tables",
+        "imagery": "lab/clinical photos only if tasteful",
+        "texture": "none",
+        "linework": "thin clinical rules",
+        "radiusShadow": "2-6px; minimal"
+      },
+      "motion": {
+        "background": "static or slight pulse",
+        "entrance": "evidence rows reveal after claim",
+        "chart": "axis then series then confidence band",
+        "duration": "180-520ms",
+        "easing": "cubic-bezier(.2,0,0,1)",
+        "lowPower": "static"
+      }
+    },
+    {
+      "id": "tokyo-muji-research",
+      "nameZh": "东京 MUJI 研究笔记",
+      "fitUse": ["courseware", "research workshop", "training", "education"],
+      "anchors": ["minimal stationery", "research notes", "plain material honesty"],
+      "palette": {
+        "ratio": "84/10/4/2",
+        "tokens": {
+          "bg": "#F4F0E8",
+          "surface": "#FBFAF5",
+          "surface2": "#E1DCD2",
+          "text": "#24221F",
+          "muted": "#6F6A62",
+          "accent": "#8B5E3C",
+          "accent2": "#3C6E71",
+          "danger": "#B24C3A",
+          "grid": "rgba(36,34,31,0.10)",
+          "glow": "rgba(60,110,113,0.10)"
+        },
+        "avoid": ["sleepy beige", "craft cliché", "too little hierarchy"]
+      },
+      "typography": {
+        "windowsStack": "Yu Gothic UI, Microsoft YaHei, Segoe UI, Arial, sans-serif",
+        "title": "plain humanist sans; 44-78px",
+        "body": "notebook sans; 20-30px",
+        "mono": "Cascadia Mono, Consolas, monospace",
+        "temperament": "plain, thoughtful, practical"
+      },
+      "density": {
+        "grid": "notebook grid, margin notes",
+        "margins": "72-104px",
+        "slideDensity": "medium",
+        "cards": "paper slips, checklists, 2-4",
+        "textLimits": "teaching-friendly; no more than 5 bullets",
+        "whitespace": "42-58%"
+      },
+      "graphics": {
+        "diagram": "checklists, concept maps, sticky-note but refined",
+        "chart": "simple bars and step diagrams",
+        "imagery": "desk/classroom material crops",
+        "texture": "paper fiber 3-6%",
+        "linework": "pencil-like but clean",
+        "radiusShadow": "2-6px; paper stack"
+      },
+      "motion": {
+        "background": "static paper",
+        "entrance": "notes place one by one",
+        "chart": "pencil line draw",
+        "duration": "250-580ms",
+        "easing": "cubic-bezier(.33,1,.68,1)",
+        "lowPower": "static"
+      }
+    },
+    {
+      "id": "berlin-data-brutal",
+      "nameZh": "柏林数据粗野",
+      "fitUse": ["data proof", "provocative keynote", "strategy"],
+      "anchors": ["German poster brutalism", "data protest graphics", "hard contrast"],
+      "palette": {
+        "ratio": "68/22/8/2",
+        "tokens": {
+          "bg": "#F2F2EE",
+          "surface": "#FFFFFF",
+          "surface2": "#D9D9D2",
+          "text": "#050505",
+          "muted": "#5B5B55",
+          "accent": "#FF3300",
+          "accent2": "#111111",
+          "danger": "#D00000",
+          "grid": "rgba(5,5,5,0.18)",
+          "glow": "rgba(255,51,0,0.12)"
+        },
+        "avoid": ["messy punk", "illegible rotated type", "decorative chaos"]
+      },
+      "typography": {
+        "windowsStack": "Arial Black, Arial, Microsoft YaHei UI, sans-serif",
+        "title": "heavy grotesk; 50-100px",
+        "body": "plain sans; 20-29px",
+        "mono": "Consolas, Cascadia Mono, monospace",
+        "temperament": "urgent, critical, high-contrast"
+      },
+      "density": {
+        "grid": "poster grid with deliberate tension",
+        "margins": "40-72px",
+        "slideDensity": "medium-high",
+        "cards": "hard blocks and data strips",
+        "textLimits": "short claims, evidence captions",
+        "whitespace": "28-45%"
+      },
+      "graphics": {
+        "diagram": "bold arrows, stamps, data blocks",
+        "chart": "black/red bars, stark comparisons",
+        "imagery": "duotone documentary crops",
+        "texture": "print noise optional",
+        "linework": "2px black rules",
+        "radiusShadow": "0px; hard layout"
+      },
+      "motion": {
+        "background": "static or print offset jitter under 2px",
+        "entrance": "hard cuts and masks",
+        "chart": "snap reveal",
+        "duration": "80-240ms",
+        "easing": "steps(1,end) or cubic-bezier(.2,0,0,1)",
+        "lowPower": "no jitter"
+      }
+    },
+    {
+      "id": "oslo-arctic-blue",
+      "nameZh": "奥斯陆极地蓝",
+      "fitUse": ["launch", "research", "education", "clean tech"],
+      "anchors": ["arctic light", "climate data", "glacial restraint"],
+      "palette": {
+        "ratio": "82/10/6/2",
+        "tokens": {
+          "bg": "#EEF6F8",
+          "surface": "#FFFFFF",
+          "surface2": "#D8E8ED",
+          "text": "#10242C",
+          "muted": "#647980",
+          "accent": "#0077B6",
+          "accent2": "#4ECDC4",
+          "danger": "#E85D75",
+          "grid": "rgba(16,36,44,0.10)",
+          "glow": "rgba(0,119,182,0.12)"
+        },
+        "avoid": ["frozen corporate cliché", "pale low contrast", "overuse of cyan"]
+      },
+      "typography": {
+        "windowsStack": "Aptos, Segoe UI, Microsoft YaHei UI, Arial, sans-serif",
+        "title": "clean sans; 46-86px",
+        "body": "open sans-like; 20-30px",
+        "mono": "Cascadia Mono, Consolas, monospace",
+        "temperament": "clear, airy, precise"
+      },
+      "density": {
+        "grid": "wide landscape grid",
+        "margins": "76-112px",
+        "slideDensity": "low-medium",
+        "cards": "1-3 pale panels",
+        "textLimits": "short, spacious",
+        "whitespace": "55-72%"
+      },
+      "graphics": {
+        "diagram": "contour lines, flow maps, environmental gradients",
+        "chart": "clean lines, area fills, map-like data",
+        "imagery": "ice/light/water abstract only if relevant",
+        "texture": "cold grain under 4%",
+        "linework": "thin blue-gray rules",
+        "radiusShadow": "6-12px; very soft"
+      },
+      "motion": {
+        "background": "slow aurora/ice light",
+        "entrance": "fade and horizontal drift",
+        "chart": "flow reveal",
+        "duration": "300-700ms",
+        "easing": "cubic-bezier(.33,1,.68,1)",
+        "lowPower": "static aurora"
+      }
+    },
+    {
+      "id": "mexico-barragan-colorfield",
+      "nameZh": "巴拉甘色域",
+      "fitUse": ["brand keynote", "education campaign", "creative pitch"],
+      "anchors": ["Luis Barragan color fields", "architectural planes", "sunlit color"],
+      "palette": {
+        "ratio": "62/24/12/2",
+        "tokens": {
+          "bg": "#F4E4C1",
+          "surface": "#FFF2D5",
+          "surface2": "#E7C77F",
+          "text": "#22140F",
+          "muted": "#6C5647",
+          "accent": "#D1006F",
+          "accent2": "#F2A900",
+          "danger": "#E03C31",
+          "grid": "rgba(34,20,15,0.10)",
+          "glow": "rgba(209,0,111,0.14)"
+        },
+        "avoid": ["festival cliché", "random rainbow", "poor text contrast on color blocks"]
+      },
+      "typography": {
+        "windowsStack": "Aptos, Segoe UI, Microsoft YaHei UI, Arial, sans-serif",
+        "title": "architectural sans; 48-92px",
+        "body": "warm sans; 20-29px",
+        "mono": "Consolas, Cascadia Mono, monospace",
+        "temperament": "bold, warm, architectural"
+      },
+      "density": {
+        "grid": "large color planes with inset content",
+        "margins": "64-96px",
+        "slideDensity": "medium",
+        "cards": "use color fields, not cards",
+        "textLimits": "short statements and captions",
+        "whitespace": "42-60%"
+      },
+      "graphics": {
+        "diagram": "block planes, shadows, spatial steps",
+        "chart": "color-block comparisons",
+        "imagery": "sunlit architecture/education scenes",
+        "texture": "plaster grain 4-8%",
+        "linework": "minimal dark rules",
+        "radiusShadow": "0px; plane shadows"
+      },
+      "motion": {
+        "background": "slow light across planes",
+        "entrance": "planes slide as stage flats",
+        "chart": "block expansion",
+        "duration": "220-620ms",
+        "easing": "cubic-bezier(.16,1,.3,1)",
+        "lowPower": "static planes"
+      }
+    },
+    {
+      "id": "memphis-muted-education",
+      "nameZh": "低饱和孟菲斯教育",
+      "fitUse": ["courseware", "workshop", "youth education"],
+      "anchors": ["Memphis geometry toned down", "learning blocks", "friendly rigor"],
+      "palette": {
+        "ratio": "72/16/10/2",
+        "tokens": {
+          "bg": "#FAF4E8",
+          "surface": "#FFFFFF",
+          "surface2": "#E9DFC9",
+          "text": "#181818",
+          "muted": "#6C665C",
+          "accent": "#2F80ED",
+          "accent2": "#F2994A",
+          "danger": "#EB5757",
+          "grid": "rgba(24,24,24,0.10)",
+          "glow": "rgba(47,128,237,0.12)"
+        },
+        "avoid": ["kindergarten look", "pattern overload", "too many shapes per slide"]
+      },
+      "typography": {
+        "windowsStack": "Segoe UI, Microsoft YaHei UI, Arial, sans-serif",
+        "title": "friendly bold sans; 46-84px",
+        "body": "clear sans; 21-30px",
+        "mono": "Cascadia Mono, Consolas, monospace",
+        "temperament": "approachable, active, classroom-ready"
+      },
+      "density": {
+        "grid": "modular classroom grid",
+        "margins": "56-84px",
+        "slideDensity": "medium",
+        "cards": "3-5 learning blocks",
+        "textLimits": "activities and steps, 5 bullets max",
+        "whitespace": "38-52%"
+      },
+      "graphics": {
+        "diagram": "simple shapes, labels, step chips",
+        "chart": "chunky bars and learning paths",
+        "imagery": "optional simple illustrations",
+        "texture": "none or paper speckle",
+        "linework": "1.5px friendly lines",
+        "radiusShadow": "6-10px; hard-light shadow"
+      },
+      "motion": {
+        "background": "small shapes drift slowly",
+        "entrance": "blocks pop without bounce",
+        "chart": "chunk fill",
+        "duration": "160-380ms",
+        "easing": "cubic-bezier(.2,0,0,1)",
+        "lowPower": "no shape drift"
+      }
+    },
+    {
+      "id": "japanese-city-pop-data",
+      "nameZh": "日式 City Pop 数据",
+      "fitUse": ["creative courseware", "consumer pitch", "youth education"],
+      "anchors": ["80s Japanese editorial", "sunset gradients", "data nostalgia"],
+      "palette": {
+        "ratio": "68/20/10/2",
+        "tokens": {
+          "bg": "#101827",
+          "surface": "#1B263B",
+          "surface2": "#263850",
+          "text": "#FFF6E6",
+          "muted": "#B8B5AA",
+          "accent": "#FF7A59",
+          "accent2": "#2EC4B6",
+          "danger": "#E84855",
+          "grid": "rgba(255,246,230,0.08)",
+          "glow": "rgba(255,122,89,0.18)"
+        },
+        "avoid": ["retro poster cosplay", "sunset gradient overload", "low legibility"]
+      },
+      "typography": {
+        "windowsStack": "Yu Gothic UI, Microsoft YaHei UI, Segoe UI, Arial, sans-serif",
+        "title": "retro-modern sans; 48-88px",
+        "body": "clean sans; 20-28px",
+        "mono": "Cascadia Mono, Consolas, monospace",
+        "temperament": "nostalgic but professional"
+      },
+      "density": {
+        "grid": "poster grid with horizon bands",
+        "margins": "56-88px",
+        "slideDensity": "medium",
+        "cards": "2-4 color panels",
+        "textLimits": "short and rhythmic",
+        "whitespace": "38-54%"
+      },
+      "graphics": {
+        "diagram": "horizon lines, route maps, cassette-like labels",
+        "chart": "neon line charts and color blocks",
+        "imagery": "retro city/product abstraction",
+        "texture": "grain 4-7%",
+        "linework": "thin warm rules",
+        "radiusShadow": "4-8px; glow sparingly"
+      },
+      "motion": {
+        "background": "slow horizon parallax",
+        "entrance": "bands reveal upward",
+        "chart": "line draw with glow point",
+        "duration": "220-560ms",
+        "easing": "cubic-bezier(.16,1,.3,1)",
+        "lowPower": "static horizon"
+      }
+    },
+    {
+      "id": "cybernetic-bookish-serif",
+      "nameZh": "控制论书卷衬线",
+      "fitUse": ["AI courseware", "research keynote", "theory deck"],
+      "anchors": ["Norbert Wiener-era diagrams", "academic books", "computational marginalia"],
+      "palette": {
+        "ratio": "78/14/6/2",
+        "tokens": {
+          "bg": "#F0E9DC",
+          "surface": "#FFF9EE",
+          "surface2": "#DDD3C1",
+          "text": "#15120E",
+          "muted": "#70675C",
+          "accent": "#0B7285",
+          "accent2": "#9D2B22",
+          "danger": "#B33A2E",
+          "grid": "rgba(21,18,14,0.12)",
+          "glow": "rgba(11,114,133,0.11)"
+        },
+        "avoid": ["old book dust", "illegible academic walls", "random equations"]
+      },
+      "typography": {
+        "windowsStack": "Georgia, Cambria, Microsoft YaHei, SimSun, serif",
+        "title": "scholarly serif; 46-86px",
+        "body": "bookish serif with sans labels; 20-30px",
+        "mono": "Cascadia Mono, Consolas, monospace",
+        "temperament": "intellectual, structured, exploratory"
+      },
+      "density": {
+        "grid": "book spread with margin computation notes",
+        "margins": "72-112px",
+        "slideDensity": "medium-high",
+        "cards": "proof boxes and marginalia",
+        "textLimits": "argument blocks, not bullet soup",
+        "whitespace": "34-50%"
+      },
+      "graphics": {
+        "diagram": "feedback loops, state machines, annotated systems",
+        "chart": "conceptual maps, matrices, flow diagrams",
+        "imagery": "rare; generated diagrams preferred",
+        "texture": "paper grain 4-6%",
+        "linework": "ink-like system lines",
+        "radiusShadow": "0-4px; print"
+      },
+      "motion": {
+        "background": "slow marginal grid drift",
+        "entrance": "argument then diagram path",
+        "chart": "feedback loop trace",
+        "duration": "240-600ms",
+        "easing": "cubic-bezier(.33,1,.68,1)",
+        "lowPower": "static"
+      }
+    },
+    {
+      "id": "monochrome-luxury-print",
+      "nameZh": "黑白高级印刷",
+      "fitUse": ["executive", "prospectus", "brand", "high-end courseware"],
+      "anchors": ["luxury print without gold", "black-white contrast", "premium restraint"],
+      "palette": {
+        "ratio": "86/8/4/2",
+        "tokens": {
+          "bg": "#F7F7F4",
+          "surface": "#FFFFFF",
+          "surface2": "#E6E6E1",
+          "text": "#050505",
+          "muted": "#666660",
+          "accent": "#050505",
+          "accent2": "#B3B3AA",
+          "danger": "#B00020",
+          "grid": "rgba(5,5,5,0.10)",
+          "glow": "rgba(5,5,5,0.08)"
+        },
+        "avoid": ["boring corporate grayscale", "thin low-contrast labels", "gold accents"]
+      },
+      "typography": {
+        "windowsStack": "Georgia, Cambria, Aptos, Microsoft YaHei, serif",
+        "title": "large serif or stark sans; 54-104px",
+        "body": "precise print body; 20-30px",
+        "mono": "Consolas, Cascadia Mono, monospace",
+        "temperament": "severe, premium, editorial"
+      },
+      "density": {
+        "grid": "print spread with extreme scale contrast",
+        "margins": "88-132px",
+        "slideDensity": "low-medium",
+        "cards": "avoid; use rules and captions",
+        "textLimits": "strong headline, small captions",
+        "whitespace": "60-80%"
+      },
+      "graphics": {
+        "diagram": "black rules, typographic labels, object index",
+        "chart": "monochrome charts with one texture or weight contrast",
+        "imagery": "black-white photography or product crop",
+        "texture": "print grain",
+        "linework": "precise black rules",
+        "radiusShadow": "0px"
+      },
+      "motion": {
+        "background": "static",
+        "entrance": "print mask reveal",
+        "chart": "ink reveal",
+        "duration": "240-560ms",
+        "easing": "cubic-bezier(.33,1,.68,1)",
+        "lowPower": "static"
+      }
+    },
+    {
+      "id": "liquid-metal-slate",
+      "nameZh": "液态金属板岩",
+      "fitUse": ["launch", "AI product", "premium pitch"],
+      "anchors": ["liquid metal", "dark slate", "controlled spectral highlights"],
+      "palette": {
+        "ratio": "80/12/6/2",
+        "tokens": {
+          "bg": "#0C1016",
+          "surface": "#171D26",
+          "surface2": "#252D38",
+          "text": "#F2F5F8",
+          "muted": "#A2AAB6",
+          "accent": "#B8C7D9",
+          "accent2": "#7AE7C7",
+          "danger": "#FF6577",
+          "grid": "rgba(242,245,248,0.07)",
+          "glow": "rgba(122,231,199,0.16)"
+        },
+        "avoid": ["chrome overkill", "rainbow gradients", "unreadable reflective text"]
+      },
+      "typography": {
+        "windowsStack": "Segoe UI Variable, Segoe UI, Microsoft YaHei UI, Arial, sans-serif",
+        "title": "wide sleek sans; 52-100px",
+        "body": "quiet sans; 20-29px",
+        "mono": "Cascadia Mono, Consolas, monospace",
+        "temperament": "futuristic, expensive, minimal"
+      },
+      "density": {
+        "grid": "stage grid with product/object center",
+        "margins": "80-120px",
+        "slideDensity": "low-medium",
+        "cards": "1-2 glass/metal surfaces",
+        "textLimits": "short keynote copy",
+        "whitespace": "55-75%"
+      },
+      "graphics": {
+        "diagram": "thin luminous contours, material reflections",
+        "chart": "single hero metrics, soft metallic markers",
+        "imagery": "product renders or generated abstract metal only if aligned",
+        "texture": "liquid sheen under control",
+        "linework": "soft metallic lines",
+        "radiusShadow": "12-24px; spectral glow sparingly"
+      },
+      "motion": {
+        "background": "slow metal light caustic",
+        "entrance": "object emerges from shadow",
+        "chart": "light sweep over metric",
+        "duration": "320-800ms",
+        "easing": "cubic-bezier(.16,1,.3,1)",
+        "lowPower": "static highlight"
+      }
+    },
+    {
+      "id": "infrared-security-grid",
+      "nameZh": "红外安全网格",
+      "fitUse": ["security pitch", "risk proof", "AI safety", "technical deck"],
+      "anchors": ["infrared imaging", "security operations", "risk grid"],
+      "palette": {
+        "ratio": "74/16/8/2",
+        "tokens": {
+          "bg": "#090B0E",
+          "surface": "#15181D",
+          "surface2": "#23272E",
+          "text": "#F6F1EA",
+          "muted": "#A49D95",
+          "accent": "#FF4D2E",
+          "accent2": "#FFC857",
+          "danger": "#FF2B2B",
+          "grid": "rgba(246,241,234,0.08)",
+          "glow": "rgba(255,77,46,0.18)"
+        },
+        "avoid": ["hacker green", "alarm-red everywhere", "fear-mongering visuals"]
+      },
+      "typography": {
+        "windowsStack": "Segoe UI, Aptos, Microsoft YaHei UI, Arial, sans-serif",
+        "title": "sharp operational sans; 48-88px",
+        "body": "compact operational sans; 19-28px",
+        "mono": "Cascadia Mono, Consolas, monospace",
+        "temperament": "alert, controlled, serious"
+      },
+      "density": {
+        "grid": "operations dashboard grid",
+        "margins": "52-80px",
+        "slideDensity": "medium-high",
+        "cards": "risk panels, 3-5 max",
+        "textLimits": "claim, risk, mitigation per slide",
+        "whitespace": "30-44%"
+      },
+      "graphics": {
+        "diagram": "threat paths, risk matrices, detection zones",
+        "chart": "severity heatbars, timelines, matrices",
+        "imagery": "infrared abstractions or security UI",
+        "texture": "thermal noise under 5%",
+        "linework": "red/orange target lines",
+        "radiusShadow": "4px; glow only for risk hot spots"
+      },
+      "motion": {
+        "background": "slow scan sweep",
+        "entrance": "scan reveals modules",
+        "chart": "risk cells heat up sequentially",
+        "duration": "100-420ms",
+        "easing": "cubic-bezier(.2,0,0,1)",
+        "lowPower": "scan off"
+      }
+    },
+    {
+      "id": "greenhouse-systems",
+      "nameZh": "温室系统学",
+      "fitUse": ["education", "sustainability", "institution", "courseware"],
+      "anchors": ["botanical diagrams", "systems education", "fresh but rigorous"],
+      "palette": {
+        "ratio": "78/14/6/2",
+        "tokens": {
+          "bg": "#F4F7EF",
+          "surface": "#FFFFFF",
+          "surface2": "#DDEBD4",
+          "text": "#172016",
+          "muted": "#647060",
+          "accent": "#2E7D32",
+          "accent2": "#D98E04",
+          "danger": "#C94C4C",
+          "grid": "rgba(23,32,22,0.10)",
+          "glow": "rgba(46,125,50,0.10)"
+        },
+        "avoid": ["eco cliché leaves", "all-green monotone", "wellness branding"]
+      },
+      "typography": {
+        "windowsStack": "Segoe UI, Aptos, Microsoft YaHei UI, Arial, sans-serif",
+        "title": "clear educational sans; 46-84px",
+        "body": "readable sans; 21-30px",
+        "mono": "Cascadia Mono, Consolas, monospace",
+        "temperament": "fresh, systematic, grounded"
+      },
+      "density": {
+        "grid": "botanical plate and systems map",
+        "margins": "68-100px",
+        "slideDensity": "medium",
+        "cards": "systems panels, 2-4",
+        "textLimits": "teaching blocks and process steps",
+        "whitespace": "42-58%"
+      },
+      "graphics": {
+        "diagram": "root/branch systems, lifecycle loops",
+        "chart": "growth curves, pathway diagrams",
+        "imagery": "botanical/system illustrations if relevant",
+        "texture": "soft paper/greenhouse light",
+        "linework": "organic but precise lines",
+        "radiusShadow": "6-10px; soft"
+      },
+      "motion": {
+        "background": "slow light through glass",
+        "entrance": "system branches grow",
+        "chart": "growth line draw",
+        "duration": "280-680ms",
+        "easing": "cubic-bezier(.33,1,.68,1)",
+        "lowPower": "static light"
+      }
+    },
+    {
+      "id": "royal-blue-acid-yellow",
+      "nameZh": "皇室蓝酸黄",
+      "fitUse": ["pitch", "launch", "strategy", "youth brand"],
+      "anchors": ["high-contrast contemporary branding", "electric editorial", "sharp color blocking"],
+      "palette": {
+        "ratio": "70/18/10/2",
+        "tokens": {
+          "bg": "#07133F",
+          "surface": "#111E54",
+          "surface2": "#22306A",
+          "text": "#F8F8F0",
+          "muted": "#B7BED6",
+          "accent": "#E6FF00",
+          "accent2": "#FF5C39",
+          "danger": "#FF3355",
+          "grid": "rgba(248,248,240,0.08)",
+          "glow": "rgba(230,255,0,0.18)"
+        },
+        "avoid": ["sports branding", "acid yellow body text", "too much orange"]
+      },
+      "typography": {
+        "windowsStack": "Arial, Segoe UI, Microsoft YaHei UI, sans-serif",
+        "title": "bold contemporary sans; 50-96px",
+        "body": "clean sans; 20-28px",
+        "mono": "Cascadia Mono, Consolas, monospace",
+        "temperament": "electric, decisive, modern"
+      },
+      "density": {
+        "grid": "bold editorial blocks",
+        "margins": "52-84px",
+        "slideDensity": "medium",
+        "cards": "2-4 strong blocks",
+        "textLimits": "short and high-impact",
+        "whitespace": "38-56%"
+      },
+      "graphics": {
+        "diagram": "hard arrows, oversized numbers, signal tags",
+        "chart": "bright highlight over navy data",
+        "imagery": "duotone product/user crops",
+        "texture": "none or subtle digital grain",
+        "linework": "acid yellow keylines sparingly",
+        "radiusShadow": "0-6px; no soft SaaS"
+      },
+      "motion": {
+        "background": "static navy with occasional signal sweep",
+        "entrance": "blocks wipe in fast",
+        "chart": "highlight bar flashes once",
+        "duration": "100-360ms",
+        "easing": "cubic-bezier(.2,0,0,1)",
+        "lowPower": "no flash"
+      }
+    },
+    {
+      "id": "oxblood-cloud",
+      "nameZh": "氧化酒红云白",
+      "fitUse": ["executive", "education prospectus", "premium report"],
+      "anchors": ["deep oxblood accents", "cloud white interiors", "quiet luxury"],
+      "palette": {
+        "ratio": "84/10/4/2",
+        "tokens": {
+          "bg": "#F8F7F3",
+          "surface": "#FFFFFF",
+          "surface2": "#E9E5DD",
+          "text": "#161412",
+          "muted": "#6C6760",
+          "accent": "#5A0F1B",
+          "accent2": "#A47D3C",
+          "danger": "#B52D2D",
+          "grid": "rgba(22,20,18,0.10)",
+          "glow": "rgba(90,15,27,0.10)"
+        },
+        "avoid": ["wine bar aesthetic", "gold luxury", "heavy burgundy backgrounds"]
+      },
+      "typography": {
+        "windowsStack": "Georgia, Cambria, Microsoft YaHei, SimSun, serif",
+        "title": "premium editorial serif; 48-90px",
+        "body": "serif/sans mix; 20-29px",
+        "mono": "Consolas, Cascadia Mono, monospace",
+        "temperament": "discreet, executive, mature"
+      },
+      "density": {
+        "grid": "executive report grid",
+        "margins": "76-116px",
+        "slideDensity": "low-medium",
+        "cards": "1-3 refined panels",
+        "textLimits": "few claims with proof",
+        "whitespace": "52-70%"
+      },
+      "graphics": {
+        "diagram": "subtle seals, provenance labels, index marks",
+        "chart": "oxblood highlight with neutral axes",
+        "imagery": "premium editorial photography",
+        "texture": "cloud paper grain",
+        "linework": "thin oxblood rules",
+        "radiusShadow": "2-8px; barely visible"
+      },
+      "motion": {
+        "background": "static or slow paper light",
+        "entrance": "calm fade",
+        "chart": "highlight appears after neutral baseline",
+        "duration": "260-620ms",
+        "easing": "cubic-bezier(.33,1,.68,1)",
+        "lowPower": "static"
+      }
+    },
+    {
+      "id": "pixel-archive-modern",
+      "nameZh": "现代像素档案",
+      "fitUse": ["AI/tooling courseware", "tech pitch", "developer education"],
+      "anchors": ["pixel grids", "archive UI", "retro-computing refined"],
+      "palette": {
+        "ratio": "74/16/8/2",
+        "tokens": {
+          "bg": "#101010",
+          "surface": "#1B1B1B",
+          "surface2": "#2A2A2A",
+          "text": "#F3F0E8",
+          "muted": "#9C9A92",
+          "accent": "#7CFF6B",
+          "accent2": "#58A6FF",
+          "danger": "#FF5D5D",
+          "grid": "rgba(243,240,232,0.08)",
+          "glow": "rgba(124,255,107,0.15)"
+        },
+        "avoid": ["Matrix cliché", "green body text", "8-bit childish icons"]
+      },
+      "typography": {
+        "windowsStack": "Cascadia Mono, Consolas, Segoe UI, Microsoft YaHei UI, monospace",
+        "title": "pixel/mono-inspired but readable; 42-82px",
+        "body": "sans or mono mix; 18-27px",
+        "mono": "Cascadia Mono, Consolas, monospace",
+        "temperament": "technical, archival, crisp"
+      },
+      "density": {
+        "grid": "pixel grid and archive index",
+        "margins": "48-76px",
+        "slideDensity": "medium-high",
+        "cards": "file panels and code blocks",
+        "textLimits": "developer-friendly but not code dump",
+        "whitespace": "30-46%"
+      },
+      "graphics": {
+        "diagram": "pixel nodes, file trees, command flows",
+        "chart": "step charts and compact matrices",
+        "imagery": "screenshots and code/UI crops",
+        "texture": "pixel noise under 4%",
+        "linework": "1px square lines",
+        "radiusShadow": "0px; square"
+      },
+      "motion": {
+        "background": "subtle pixel scan",
+        "entrance": "type/reveal in chunks",
+        "chart": "cell reveal",
+        "duration": "70-300ms",
+        "easing": "steps(4,end)",
+        "lowPower": "no scan; reduce type animation"
+      }
+    },
+    {
+      "id": "tactile-clay-studio",
+      "nameZh": "触感陶土工作室",
+      "fitUse": ["education prospectus", "creative courseware", "wellbeing education"],
+      "anchors": ["tactile design", "clay surfaces", "warm studio light"],
+      "palette": {
+        "ratio": "78/14/6/2",
+        "tokens": {
+          "bg": "#F3E6D8",
+          "surface": "#FFF7EE",
+          "surface2": "#D9B99F",
+          "text": "#241915",
+          "muted": "#735E54",
+          "accent": "#C8643B",
+          "accent2": "#4B7F72",
+          "danger": "#B4473A",
+          "grid": "rgba(36,25,21,0.10)",
+          "glow": "rgba(200,100,59,0.11)"
+        },
+        "avoid": ["brown/orange dominance", "Pinterest beige", "muddy low contrast"]
+      },
+      "typography": {
+        "windowsStack": "Segoe UI, Aptos, Microsoft YaHei UI, Georgia, serif",
+        "title": "soft editorial sans/serif; 46-84px",
+        "body": "warm readable sans; 20-30px",
+        "mono": "Consolas, Cascadia Mono, monospace",
+        "temperament": "tactile, human, refined"
+      },
+      "density": {
+        "grid": "studio table layout",
+        "margins": "68-100px",
+        "slideDensity": "medium",
+        "cards": "material tiles, 2-4",
+        "textLimits": "warm explanatory blocks",
+        "whitespace": "44-60%"
+      },
+      "graphics": {
+        "diagram": "material swatches, process steps, soft labels",
+        "chart": "rounded tactile bars",
+        "imagery": "hands/materials/classroom scenes",
+        "texture": "clay/grain 6-10%",
+        "linework": "soft dark rules",
+        "radiusShadow": "10-18px; tactile soft shadow"
+      },
+      "motion": {
+        "background": "slow studio light",
+        "entrance": "tiles settle softly",
+        "chart": "soft fill",
+        "duration": "300-720ms",
+        "easing": "cubic-bezier(.33,1,.68,1)",
+        "lowPower": "static light"
+      }
+    },
+    {
+      "id": "riso-research-poster",
+      "nameZh": "Riso 研究海报",
+      "fitUse": ["courseware", "research", "workshop", "creative education"],
+      "anchors": ["risograph posters", "research zines", "layered print"],
+      "palette": {
+        "ratio": "70/18/10/2",
+        "tokens": {
+          "bg": "#F7EFD8",
+          "surface": "#FFF8E7",
+          "surface2": "#E7D5AE",
+          "text": "#1C1A17",
+          "muted": "#655F55",
+          "accent": "#FF4F6D",
+          "accent2": "#006BA6",
+          "danger": "#C92C43",
+          "grid": "rgba(28,26,23,0.12)",
+          "glow": "rgba(255,79,109,0.10)"
+        },
+        "avoid": ["random zine mess", "too much texture", "body text on saturated ink"]
+      },
+      "typography": {
+        "windowsStack": "Arial, Segoe UI, Microsoft YaHei UI, Georgia, serif",
+        "title": "poster sans/serif mix; 48-90px",
+        "body": "plain readable sans; 20-29px",
+        "mono": "Consolas, Cascadia Mono, monospace",
+        "temperament": "handmade, smart, energetic"
+      },
+      "density": {
+        "grid": "poster modules with print layers",
+        "margins": "52-84px",
+        "slideDensity": "medium",
+        "cards": "overlapping print blocks, 2-4",
+        "textLimits": "workshop fragments and annotations",
+        "whitespace": "36-52%"
+      },
+      "graphics": {
+        "diagram": "layered blocks, stamps, arrows, print dots",
+        "chart": "two-color bars and dot matrices",
+        "imagery": "duotone generated/real crops",
+        "texture": "riso grain 8-12%",
+        "linework": "slight registration offset",
+        "radiusShadow": "0px; ink layers"
+      },
+      "motion": {
+        "background": "slight registration drift",
+        "entrance": "ink layers print one by one",
+        "chart": "dot matrix fills",
+        "duration": "160-460ms",
+        "easing": "steps(3,end)",
+        "lowPower": "no drift"
+      }
+    },
+    {
+      "id": "vapor-minimal-pearl",
+      "nameZh": "珍珠蒸汽极简",
+      "fitUse": ["consumer pitch", "education prospectus", "soft tech"],
+      "anchors": ["pearlescent surfaces", "soft vapor", "minimal luxury"],
+      "palette": {
+        "ratio": "84/10/4/2",
+        "tokens": {
+          "bg": "#F8F8FA",
+          "surface": "#FFFFFF",
+          "surface2": "#ECECF3",
+          "text": "#1C1F2A",
+          "muted": "#777D8B",
+          "accent": "#7B61FF",
+          "accent2": "#63D2C6",
+          "danger": "#EF5B6C",
+          "grid": "rgba(28,31,42,0.08)",
+          "glow": "rgba(123,97,255,0.14)"
+        },
+        "avoid": ["purple-blue gradient dominance", "washed-out contrast", "too much glass blur"]
+      },
+      "typography": {
+        "windowsStack": "Segoe UI Variable, Segoe UI, Microsoft YaHei UI, Arial, sans-serif",
+        "title": "thin-to-semibold modern sans; 48-90px",
+        "body": "calm sans; 20-29px",
+        "mono": "Cascadia Mono, Consolas, monospace",
+        "temperament": "polished, soft, futuristic"
+      },
+      "density": {
+        "grid": "floating editorial grid",
+        "margins": "76-112px",
+        "slideDensity": "low-medium",
+        "cards": "1-3 pearl surfaces",
+        "textLimits": "short copy and elegant captions",
+        "whitespace": "58-76%"
+      },
+      "graphics": {
+        "diagram": "soft nodes, product halos, gentle flow lines",
+        "chart": "delicate bars and soft area charts",
+        "imagery": "clean product/education imagery",
+        "texture": "pearl noise under 5%",
+        "linework": "pale but contrast-checked",
+        "radiusShadow": "16-28px; soft"
+      },
+      "motion": {
+        "background": "slow pearlescent light",
+        "entrance": "soft reveal with micro parallax",
+        "chart": "gentle fill",
+        "duration": "300-760ms",
+        "easing": "cubic-bezier(.16,1,.3,1)",
+        "lowPower": "static pearl"
+      }
+    },
+    {
+      "id": "atlas-cartographic-proof",
+      "nameZh": "地图集证据证明",
+      "fitUse": ["proof", "research", "strategy", "market expansion"],
+      "anchors": ["cartographic atlas", "intelligence maps", "evidence routes"],
+      "palette": {
+        "ratio": "78/14/6/2",
+        "tokens": {
+          "bg": "#EDE7DA",
+          "surface": "#FBF7EE",
+          "surface2": "#D8CBB7",
+          "text": "#1C211C",
+          "muted": "#67685F",
+          "accent": "#1F6F8B",
+          "accent2": "#C45A2A",
+          "danger": "#B23A35",
+          "grid": "rgba(28,33,28,0.13)",
+          "glow": "rgba(31,111,139,0.11)"
+        },
+        "avoid": ["treasure map cliché", "fake stains", "too many routes"]
+      },
+      "typography": {
+        "windowsStack": "Georgia, Cambria, Microsoft YaHei, SimSun, serif",
+        "title": "atlas serif; 46-86px",
+        "body": "serif body with mono labels; 19-28px",
+        "mono": "Cascadia Mono, Consolas, monospace",
+        "temperament": "evidence-led, geographic, investigative"
+      },
+      "density": {
+        "grid": "map grid and evidence ledger",
+        "margins": "60-92px",
+        "slideDensity": "medium-high",
+        "cards": "map area + ledger strips",
+        "textLimits": "evidence notes, sources, concise claims",
+        "whitespace": "30-46%"
+      },
+      "graphics": {
+        "diagram": "routes, coordinates, layers, evidence pins",
+        "chart": "map-linked tables, timeline routes",
+        "imagery": "maps, documents, source screenshots",
+        "texture": "paper map grain 4-7%",
+        "linework": "contours and coordinate marks",
+        "radiusShadow": "0-4px; print"
+      },
+      "motion": {
+        "background": "slow map layer parallax",
+        "entrance": "map first, evidence pins second",
+        "chart": "route draw and ledger reveal",
+        "duration": "200-620ms",
+        "easing": "cubic-bezier(.33,1,.68,1)",
+        "lowPower": "static map"
+      }
+    },
+    {
+      "id": "cinema-noir-title",
+      "nameZh": "黑色电影标题",
+      "fitUse": ["launch", "story keynote", "high-drama pitch"],
+      "anchors": ["cinema noir titles", "spotlight shadows", "monochrome drama"],
+      "palette": {
+        "ratio": "82/10/6/2",
+        "tokens": {
+          "bg": "#050506",
+          "surface": "#111113",
+          "surface2": "#202024",
+          "text": "#F4F0E8",
+          "muted": "#9D978D",
+          "accent": "#EDE6D6",
+          "accent2": "#9F1D20",
+          "danger": "#D63638",
+          "grid": "rgba(244,240,232,0.07)",
+          "glow": "rgba(237,230,214,0.14)"
+        },
+        "avoid": ["old Hollywood cliché", "low-contrast smoky text", "too much red"]
+      },
+      "typography": {
+        "windowsStack": "Georgia, Cambria, Microsoft YaHei, SimSun, serif",
+        "title": "dramatic serif; 54-110px",
+        "body": "clean supporting sans/serif; 20-29px",
+        "mono": "Consolas, Cascadia Mono, monospace",
+        "temperament": "dramatic, focused, stage-like"
+      },
+      "density": {
+        "grid": "cinematic frame with big negative space",
+        "margins": "84-128px",
+        "slideDensity": "low",
+        "cards": "avoid cards; use spotlit panels",
+        "textLimits": "few phrases, strong narration",
+        "whitespace": "65-82%"
+      },
+      "graphics": {
+        "diagram": "spotlight reveals, title cards, silhouette lines",
+        "chart": "rare, one metric per frame",
+        "imagery": "moody product/stage imagery",
+        "texture": "film grain 4-8%",
+        "linework": "shadow and light beams",
+        "radiusShadow": "stage shadows"
+      },
+      "motion": {
+        "background": "slow spotlight sweep",
+        "entrance": "title emerges through shadow",
+        "chart": "light hits metric",
+        "duration": "350-900ms",
+        "easing": "cubic-bezier(.16,1,.3,1)",
+        "lowPower": "static spotlight"
+      }
+    },
+    {
+      "id": "clean-room-ai-white",
+      "nameZh": "AI 洁净室白",
+      "fitUse": ["AI courseware", "SaaS pitch", "product education", "docs deck"],
+      "anchors": ["clean room", "machine learning diagrams", "clinical SaaS"],
+      "palette": {
+        "ratio": "86/8/4/2",
+        "tokens": {
+          "bg": "#FBFCFD",
+          "surface": "#FFFFFF",
+          "surface2": "#EEF3F6",
+          "text": "#101820",
+          "muted": "#64717D",
+          "accent": "#006DFF",
+          "accent2": "#00A88F",
+          "danger": "#E34850",
+          "grid": "rgba(16,24,32,0.08)",
+          "glow": "rgba(0,109,255,0.12)"
+        },
+        "avoid": ["generic SaaS blue", "empty white slides", "rounded card soup"]
+      },
+      "typography": {
+        "windowsStack": "Aptos, Segoe UI, Microsoft YaHei UI, Arial, sans-serif",
+        "title": "modern product sans; 46-86px",
+        "body": "clear docs-friendly sans; 20-30px",
+        "mono": "Cascadia Mono, Consolas, monospace",
+        "temperament": "clean, exact, teachable"
+      },
+      "density": {
+        "grid": "docs/product grid",
+        "margins": "64-96px",
+        "slideDensity": "medium-high",
+        "cards": "2-4 panels, strict spacing",
+        "textLimits": "explainers and diagrams, no dense paragraphs",
+        "whitespace": "40-56%"
+      },
+      "graphics": {
+        "diagram": "model pipelines, labeled inputs/outputs, eval loops",
+        "chart": "clean bars, matrices, decision trees",
+        "imagery": "UI screenshots and generated schematic images",
+        "texture": "none",
+        "linework": "thin blue-gray lines",
+        "radiusShadow": "8px; very light shadow"
+      },
+      "motion": {
+        "background": "subtle clean-room grid drift",
+        "entrance": "pipeline steps in order",
+        "chart": "matrix cells fade by group",
+        "duration": "160-500ms",
+        "easing": "cubic-bezier(.2,0,0,1)",
+        "lowPower": "static grid"
+      }
+    },
+    {
+      "id": "deep-sea-biotech",
+      "nameZh": "深海生物科技",
+      "fitUse": ["science", "research", "health tech", "AI research"],
+      "anchors": ["deep ocean research", "bioluminescence", "scientific mystery"],
+      "palette": {
+        "ratio": "78/14/6/2",
+        "tokens": {
+          "bg": "#031923",
+          "surface": "#082A35",
+          "surface2": "#103E4A",
+          "text": "#ECFBF8",
+          "muted": "#9FC4C2",
+          "accent": "#2FF3E0",
+          "accent2": "#B4F15A",
+          "danger": "#FF6B6B",
+          "grid": "rgba(236,251,248,0.07)",
+          "glow": "rgba(47,243,224,0.18)"
+        },
+        "avoid": ["aquarium cliché", "green-blue mud", "overglowing text"]
+      },
+      "typography": {
+        "windowsStack": "Segoe UI, Aptos, Microsoft YaHei UI, Arial, sans-serif",
+        "title": "scientific sans; 48-90px",
+        "body": "clear sans; 20-29px",
+        "mono": "Cascadia Mono, Consolas, monospace",
+        "temperament": "scientific, deep, luminous"
+      },
+      "density": {
+        "grid": "research vessel/data grid",
+        "margins": "64-96px",
+        "slideDensity": "medium",
+        "cards": "2-4 dark panels",
+        "textLimits": "scientific labels and concise claims",
+        "whitespace": "42-58%"
+      },
+      "graphics": {
+        "diagram": "organism-like networks, depth layers, sample flows",
+        "chart": "depth charts, luminous scatter, flow paths",
+        "imagery": "macro/science visuals if relevant",
+        "texture": "marine noise and particles under 6%",
+        "linework": "luminous thin lines",
+        "radiusShadow": "6-12px; biological glow"
+      },
+      "motion": {
+        "background": "slow particulate drift",
+        "entrance": "depth layers reveal upward",
+        "chart": "bioluminescent point reveal",
+        "duration": "260-700ms",
+        "easing": "cubic-bezier(.16,1,.3,1)",
+        "lowPower": "particles off"
+      }
+    },
+    {
+      "id": "legal-brief-modern",
+      "nameZh": "现代法律简报",
+      "fitUse": ["evidence", "due diligence", "investor risk", "policy training"],
+      "anchors": ["legal brief", "case files", "modern blackletter avoided"],
+      "palette": {
+        "ratio": "82/10/6/2",
+        "tokens": {
+          "bg": "#F5F2EA",
+          "surface": "#FFFFFF",
+          "surface2": "#E0DAD0",
+          "text": "#171717",
+          "muted": "#67625B",
+          "accent": "#23395B",
+          "accent2": "#8B1E3F",
+          "danger": "#B00020",
+          "grid": "rgba(23,23,23,0.12)",
+          "glow": "rgba(35,57,91,0.10)"
+        },
+        "avoid": ["courtroom cliché", "fake seals", "dense unreadable legal text"]
+      },
+      "typography": {
+        "windowsStack": "Georgia, Cambria, Microsoft YaHei, SimSun, serif",
+        "title": "brief serif; 44-82px",
+        "body": "serif body with strong sans headings; 19-28px",
+        "mono": "Consolas, Cascadia Mono, monospace",
+        "temperament": "formal, precise, cautious"
+      },
+      "density": {
+        "grid": "brief columns and evidence exhibits",
+        "margins": "64-96px",
+        "slideDensity": "medium-high",
+        "cards": "exhibit panels and claim/evidence tables",
+        "textLimits": "claim + citation + implication",
+        "whitespace": "32-48%"
+      },
+      "graphics": {
+        "diagram": "case trees, obligation maps, evidence exhibits",
+        "chart": "risk tables, timelines, decision matrices",
+        "imagery": "document screenshots if allowed",
+        "texture": "paper grain 3-5%",
+        "linework": "document rules and exhibit tabs",
+        "radiusShadow": "0-4px; document stack"
+      },
+      "motion": {
+        "background": "static paper",
+        "entrance": "exhibit tabs reveal",
+        "chart": "rows highlight by argument",
+        "duration": "180-500ms",
+        "easing": "cubic-bezier(.2,0,0,1)",
+        "lowPower": "static"
+      }
+    },
+    {
+      "id": "speculative-ai-surreal",
+      "nameZh": "思辨 AI 超现实",
+      "fitUse": ["future keynote", "AI vision", "creative research", "launch"],
+      "anchors": ["surreal generative imagery", "liminal spaces", "controlled speculative design"],
+      "palette": {
+        "ratio": "72/16/10/2",
+        "tokens": {
+          "bg": "#121018",
+          "surface": "#1D1926",
+          "surface2": "#2B2636",
+          "text": "#F6F0FF",
+          "muted": "#B5AFC2",
+          "accent": "#C084FC",
+          "accent2": "#7DD3FC",
+          "danger": "#FB7185",
+          "grid": "rgba(246,240,255,0.07)",
+          "glow": "rgba(192,132,252,0.18)"
+        },
+        "avoid": ["purple-blue gradient wallpaper", "dreamy stock nonsense", "unclear claims"]
+      },
+      "typography": {
+        "windowsStack": "Segoe UI, Aptos, Microsoft YaHei UI, Arial, sans-serif",
+        "title": "large modern sans/serif mix; 52-96px",
+        "body": "clear sans; 20-29px",
+        "mono": "Cascadia Mono, Consolas, monospace",
+        "temperament": "visionary, uncanny, still legible"
+      },
+      "density": {
+        "grid": "cinematic editorial grid",
+        "margins": "76-116px",
+        "slideDensity": "low-medium",
+        "cards": "few translucent proof surfaces",
+        "textLimits": "vision statement plus concrete evidence",
+        "whitespace": "55-72%"
+      },
+      "graphics": {
+        "diagram": "portal/threshold metaphors, system maps",
+        "chart": "minimal; proof slides should switch to clearer style if needed",
+        "imagery": "generated surreal visuals only after approval",
+        "texture": "mist/grain under control",
+        "linework": "thin luminous geometry",
+        "radiusShadow": "12-24px; soft glow"
+      },
+      "motion": {
+        "background": "slow liminal parallax",
+        "entrance": "depth reveal and masked text",
+        "chart": "minimal reveal",
+        "duration": "340-880ms",
+        "easing": "cubic-bezier(.16,1,.3,1)",
+        "lowPower": "static background"
+      }
+    },
+    {
+      "id": "stuttgart-automotive-system",
+      "nameZh": "斯图加特汽车系统",
+      "fitUse": ["product pitch", "technical launch", "operations courseware"],
+      "anchors": ["German automotive HMI", "speedometer precision", "system diagrams"],
+      "palette": {
+        "ratio": "78/14/6/2",
+        "tokens": {
+          "bg": "#0A0D10",
+          "surface": "#151A1F",
+          "surface2": "#252B31",
+          "text": "#F2F3F0",
+          "muted": "#A4AAA8",
+          "accent": "#00A3FF",
+          "accent2": "#FF3D2E",
+          "danger": "#FF3D2E",
+          "grid": "rgba(242,243,240,0.08)",
+          "glow": "rgba(0,163,255,0.16)"
+        },
+        "avoid": ["racing game UI", "carbon fiber cliché", "speedometer on every slide"]
+      },
+      "typography": {
+        "windowsStack": "Segoe UI, Aptos, Microsoft YaHei UI, Arial, sans-serif",
+        "title": "engineering sans; 48-88px",
+        "body": "compact sans; 19-28px",
+        "mono": "Cascadia Mono, Consolas, monospace",
+        "temperament": "fast, precise, engineered"
+      },
+      "density": {
+        "grid": "HMI zones and instrument layout",
+        "margins": "56-88px",
+        "slideDensity": "medium-high",
+        "cards": "2-4 system panels",
+        "textLimits": "performance claims and process notes",
+        "whitespace": "34-50%"
+      },
+      "graphics": {
+        "diagram": "system modules, routes, telemetry arcs",
+        "chart": "performance curves, speed arcs, comparison bars",
+        "imagery": "product detail or interface mockups",
+        "texture": "matte black/noise under 4%",
+        "linework": "precise blue/red instrument lines",
+        "radiusShadow": "4-8px; minimal glow"
+      },
+      "motion": {
+        "background": "slow telemetry sweep",
+        "entrance": "instrument boot sequence",
+        "chart": "arc sweep and value lock",
+        "duration": "120-460ms",
+        "easing": "cubic-bezier(.2,0,0,1)",
+        "lowPower": "no sweep"
+      }
+    },
+    {
+      "id": "newspaper-investigation",
+      "nameZh": "新闻调查档案",
+      "fitUse": ["proof deck", "research", "case study", "strategy postmortem"],
+      "anchors": ["investigative journalism", "clippings", "source ledgers"],
+      "palette": {
+        "ratio": "78/14/6/2",
+        "tokens": {
+          "bg": "#F2EEE4",
+          "surface": "#FFFCF3",
+          "surface2": "#DCD3C2",
+          "text": "#191714",
+          "muted": "#6C665C",
+          "accent": "#1B4D89",
+          "accent2": "#B12A1C",
+          "danger": "#C5281C",
+          "grid": "rgba(25,23,20,0.14)",
+          "glow": "rgba(27,77,137,0.10)"
+        },
+        "avoid": ["conspiracy wall aesthetic", "fake newspaper mastheads", "too many pins/strings"]
+      },
+      "typography": {
+        "windowsStack": "Georgia, Cambria, Microsoft YaHei, SimSun, serif",
+        "title": "newspaper serif; 46-88px",
+        "body": "serif paragraphs and sans labels; 19-28px",
+        "mono": "Consolas, Cascadia Mono, monospace",
+        "temperament": "investigative, sourced, serious"
+      },
+      "density": {
+        "grid": "evidence board with strict hierarchy",
+        "margins": "56-88px",
+        "slideDensity": "high",
+        "cards": "clipping panels and source ledger",
+        "textLimits": "claim/evidence/source per block",
+        "whitespace": "26-42%"
+      },
+      "graphics": {
+        "diagram": "timeline clippings, evidence IDs, source tags",
+        "chart": "chronology, comparison, causal map",
+        "imagery": "document/screenshot crops",
+        "texture": "newsprint grain 4-7%",
+        "linework": "rules, underlines, source stamps",
+        "radiusShadow": "0-4px; clipped paper"
+      },
+      "motion": {
+        "background": "static print grain",
+        "entrance": "evidence appears in argument order",
+        "chart": "timeline line draw",
+        "duration": "180-520ms",
+        "easing": "cubic-bezier(.2,0,0,1)",
+        "lowPower": "static"
+      }
+    },
+    {
+      "id": "contemporary-black-coral",
+      "nameZh": "当代黑珊瑚",
+      "fitUse": ["pitch", "launch", "brand keynote", "creative product"],
+      "anchors": ["contemporary gallery black", "coral signal", "minimal stage"],
+      "palette": {
+        "ratio": "80/12/6/2",
+        "tokens": {
+          "bg": "#080808",
+          "surface": "#151515",
+          "surface2": "#242424",
+          "text": "#F7F4ED",
+          "muted": "#A49E94",
+          "accent": "#FF6F61",
+          "accent2": "#E8D7B9",
+          "danger": "#FF3B30",
+          "grid": "rgba(247,244,237,0.07)",
+          "glow": "rgba(255,111,97,0.15)"
+        },
+        "avoid": ["Valentine red", "generic dark cards", "heavy glow"]
+      },
+      "typography": {
+        "windowsStack": "Aptos, Segoe UI, Microsoft YaHei UI, Arial, sans-serif",
+        "title": "large contemporary sans; 52-98px",
+        "body": "clean sans; 20-29px",
+        "mono": "Cascadia Mono, Consolas, monospace",
+        "temperament": "direct, modern, artful"
+      },
+      "density": {
+        "grid": "gallery-stage grid",
+        "margins": "76-116px",
+        "slideDensity": "low-medium",
+        "cards": "1-2 large dark surfaces",
+        "textLimits": "hero statements and few proof points",
+        "whitespace": "56-74%"
+      },
+      "graphics": {
+        "diagram": "coral signal marks, large numbers, object silhouettes",
+        "chart": "single chart with coral highlight",
+        "imagery": "art-directed product/people imagery",
+        "texture": "matte grain 3-5%",
+        "linework": "thin cream/coral rules",
+        "radiusShadow": "8-16px; soft dark"
+      },
+      "motion": {
+        "background": "slow matte light drift",
+        "entrance": "mask and fade",
+        "chart": "coral highlight sweep",
+        "duration": "240-640ms",
+        "easing": "cubic-bezier(.16,1,.3,1)",
+        "lowPower": "static"
+      }
+    },
+    {
+      "id": "editorial-ink-cobalt",
+      "nameZh": "编辑墨黑钴蓝",
+      "fitUse": ["courseware", "pitch", "magazine deck", "strategy"],
+      "anchors": ["high-end magazine", "ink typography", "cobalt signal"],
+      "palette": {
+        "ratio": "82/10/6/2",
+        "tokens": {
+          "bg": "#F7F5EF",
+          "surface": "#FFFFFF",
+          "surface2": "#E8E4D8",
+          "text": "#101010",
+          "muted": "#6B675F",
+          "accent": "#003DFF",
+          "accent2": "#111111",
+          "danger": "#D6453D",
+          "grid": "rgba(16,16,16,0.10)",
+          "glow": "rgba(0,61,255,0.10)"
+        },
+        "avoid": ["plain newspaper", "blue overuse", "thin serif at small sizes"]
+      },
+      "typography": {
+        "windowsStack": "Georgia, Cambria, Aptos, Microsoft YaHei, serif",
+        "title": "serif headline with sans labels; 50-96px",
+        "body": "readable sans/serif mix; 20-30px",
+        "mono": "Consolas, Cascadia Mono, monospace",
+        "temperament": "editorial, intelligent, high-contrast"
+      },
+      "density": {
+        "grid": "magazine feature grid",
+        "margins": "72-112px",
+        "slideDensity": "medium",
+        "cards": "editorial modules, not dashboard cards",
+        "textLimits": "one main headline, 2-3 explanation blocks",
+        "whitespace": "44-62%"
+      },
+      "graphics": {
+        "diagram": "large numerals, pull quotes, cobalt rules",
+        "chart": "editorial charts with cobalt highlight",
+        "imagery": "duotone or full-bleed editorial crops",
+        "texture": "print grain 3-5%",
+        "linework": "black and cobalt rules",
+        "radiusShadow": "0-4px"
+      },
+      "motion": {
+        "background": "static print",
+        "entrance": "editorial mask reveal",
+        "chart": "rule draw and cobalt mark",
+        "duration": "220-560ms",
+        "easing": "cubic-bezier(.33,1,.68,1)",
+        "lowPower": "static"
+      }
+    },
+    {
+      "id": "humanist-ai-ivory-teal",
+      "nameZh": "人文 AI 象牙青",
+      "fitUse": ["AI courseware", "education prospectus", "responsible AI", "training"],
+      "anchors": ["human-centered AI", "warm ivory", "ethical technology"],
+      "palette": {
+        "ratio": "80/12/6/2",
+        "tokens": {
+          "bg": "#FAF4E8",
+          "surface": "#FFFFFF",
+          "surface2": "#E7DFCF",
+          "text": "#1E1D19",
+          "muted": "#6D665B",
+          "accent": "#087E8B",
+          "accent2": "#D95D39",
+          "danger": "#C3423F",
+          "grid": "rgba(30,29,25,0.10)",
+          "glow": "rgba(8,126,139,0.10)"
+        },
+        "avoid": ["NGO cliché", "warm beige dominance", "softness that weakens rigor"]
+      },
+      "typography": {
+        "windowsStack": "Segoe UI, Aptos, Microsoft YaHei, Georgia, serif",
+        "title": "humanist sans or soft serif; 46-86px",
+        "body": "teaching-friendly sans; 21-30px",
+        "mono": "Cascadia Mono, Consolas, monospace",
+        "temperament": "humane, rigorous, clear"
+      },
+      "density": {
+        "grid": "teaching grid with reflection callouts",
+        "margins": "68-100px",
+        "slideDensity": "medium",
+        "cards": "2-4 learning panels",
+        "textLimits": "concept + example + exercise",
+        "whitespace": "42-58%"
+      },
+      "graphics": {
+        "diagram": "decision loops, stakeholder maps, evaluation rubrics",
+        "chart": "matrices, quality/risk tradeoffs",
+        "imagery": "human/product context images after approval",
+        "texture": "warm paper grain 3-5%",
+        "linework": "teal rules, orange emphasis",
+        "radiusShadow": "6-10px; gentle"
+      },
+      "motion": {
+        "background": "slow warm light",
+        "entrance": "concept-map build",
+        "chart": "rubric rows reveal",
+        "duration": "240-620ms",
+        "easing": "cubic-bezier(.33,1,.68,1)",
+        "lowPower": "static"
+      }
+    },
+    {
+      "id": "quantum-violet-black",
+      "nameZh": "量子紫黑",
+      "fitUse": ["advanced tech keynote", "AI research", "deep tech pitch"],
+      "anchors": ["quantum visualization", "deep black lab", "violet precision"],
+      "palette": {
+        "ratio": "78/14/6/2",
+        "tokens": {
+          "bg": "#08060D",
+          "surface": "#14101D",
+          "surface2": "#211A30",
+          "text": "#F5F1FF",
+          "muted": "#AFA7BF",
+          "accent": "#9D7CFF",
+          "accent2": "#00D1FF",
+          "danger": "#FF5D73",
+          "grid": "rgba(245,241,255,0.07)",
+          "glow": "rgba(157,124,255,0.18)"
+        },
+        "avoid": ["generic purple-blue gradient", "space wallpaper", "too many particles"]
+      },
+      "typography": {
+        "windowsStack": "Segoe UI, Aptos, Microsoft YaHei UI, Arial, sans-serif",
+        "title": "sleek technical sans; 50-92px",
+        "body": "precise sans; 20-28px",
+        "mono": "Cascadia Mono, Consolas, monospace",
+        "temperament": "deep, technical, luminous"
+      },
+      "density": {
+        "grid": "lab grid with node field",
+        "margins": "64-96px",
+        "slideDensity": "medium",
+        "cards": "2-4 proof/control panels",
+        "textLimits": "technical explanation kept short",
+        "whitespace": "42-58%"
+      },
+      "graphics": {
+        "diagram": "nodes, probability fields, model spaces",
+        "chart": "network charts, matrices, spectral curves",
+        "imagery": "abstract quantum/AI generated visuals with approval",
+        "texture": "particle noise under 5%",
+        "linework": "violet/cyan fine lines",
+        "radiusShadow": "8-16px; controlled glow"
+      },
+      "motion": {
+        "background": "slow particle field, sparse",
+        "entrance": "nodes resolve then text",
+        "chart": "network links draw",
+        "duration": "220-680ms",
+        "easing": "cubic-bezier(.16,1,.3,1)",
+        "lowPower": "particles off"
+      }
+    },
+    {
+      "id": "library-maroon-index",
+      "nameZh": "图书馆栗红索引",
+      "fitUse": ["courseware", "academic prospectus", "policy training"],
+      "anchors": ["library index cards", "academic catalogs", "quiet maroon"],
+      "palette": {
+        "ratio": "80/12/6/2",
+        "tokens": {
+          "bg": "#F2E9DA",
+          "surface": "#FFF8EC",
+          "surface2": "#DDCBB1",
+          "text": "#201A16",
+          "muted": "#6A5F55",
+          "accent": "#7B1E2B",
+          "accent2": "#2C5F5D",
+          "danger": "#A83232",
+          "grid": "rgba(32,26,22,0.12)",
+          "glow": "rgba(123,30,43,0.10)"
+        },
+        "avoid": ["dusty old book", "brown monotone", "academic wall of text"]
+      },
+      "typography": {
+        "windowsStack": "Georgia, Cambria, Microsoft YaHei, SimSun, serif",
+        "title": "academic serif; 46-84px",
+        "body": "serif/sans index mix; 20-29px",
+        "mono": "Consolas, Cascadia Mono, monospace",
+        "temperament": "scholarly, warm, organized"
+      },
+      "density": {
+        "grid": "index-card grid and chapter tabs",
+        "margins": "68-100px",
+        "slideDensity": "medium-high",
+        "cards": "index cards, 3-5 max",
+        "textLimits": "definitions, examples, references",
+        "whitespace": "34-50%"
+      },
+      "graphics": {
+        "diagram": "catalog tabs, concept indexes, reading paths",
+        "chart": "simple tables and evidence indexes",
+        "imagery": "documents, shelves, archive crops",
+        "texture": "paper/index card grain",
+        "linework": "maroon rules and tab labels",
+        "radiusShadow": "2-6px; card stack"
+      },
+      "motion": {
+        "background": "static paper",
+        "entrance": "index cards sort into place",
+        "chart": "tabs reveal",
+        "duration": "220-560ms",
+        "easing": "cubic-bezier(.33,1,.68,1)",
+        "lowPower": "static"
+      }
+    },
+    {
+      "id": "developer-docs-electric",
+      "nameZh": "开发者文档电光",
+      "fitUse": ["developer education", "AI tooling courseware", "technical pitch"],
+      "anchors": ["modern docs sites", "terminal snippets", "electric callouts"],
+      "palette": {
+        "ratio": "80/12/6/2",
+        "tokens": {
+          "bg": "#0F1117",
+          "surface": "#171A22",
+          "surface2": "#232838",
+          "text": "#F4F7FB",
+          "muted": "#A6ADBB",
+          "accent": "#38BDF8",
+          "accent2": "#A3E635",
+          "danger": "#FB7185",
+          "grid": "rgba(244,247,251,0.07)",
+          "glow": "rgba(56,189,248,0.16)"
+        },
+        "avoid": ["too much code", "green terminal body text", "generic Tailwind demo"]
+      },
+      "typography": {
+        "windowsStack": "Segoe UI, Aptos, Microsoft YaHei UI, Arial, sans-serif",
+        "title": "docs/product sans; 46-86px",
+        "body": "docs sans; 19-28px",
+        "mono": "Cascadia Mono, Consolas, monospace",
+        "temperament": "technical, fast, usable"
+      },
+      "density": {
+        "grid": "docs layout with code rail",
+        "margins": "52-84px",
+        "slideDensity": "medium-high",
+        "cards": "code blocks and explainer panels",
+        "textLimits": "code 12 lines max; explanation short",
+        "whitespace": "30-48%"
+      },
+      "graphics": {
+        "diagram": "API flows, CLI steps, eval pipelines",
+        "chart": "matrices and flow charts",
+        "imagery": "screenshots, code, generated diagrams",
+        "texture": "none or faint grid",
+        "linework": "electric callout lines",
+        "radiusShadow": "6-10px; dark panel shadow"
+      },
+      "motion": {
+        "background": "subtle docs grid",
+        "entrance": "code and diagram reveal by step",
+        "chart": "pipeline activates",
+        "duration": "120-440ms",
+        "easing": "cubic-bezier(.2,0,0,1)",
+        "lowPower": "no active glow"
+      }
+    },
+    {
+      "id": "founder-memo-minimal",
+      "nameZh": "创始人备忘录极简",
+      "fitUse": ["investor memo", "pitch", "executive update", "strategy"],
+      "anchors": ["founder memo", "Linear/Stripe-style restraint", "board update"],
+      "palette": {
+        "ratio": "86/8/4/2",
+        "tokens": {
+          "bg": "#FBFAF7",
+          "surface": "#FFFFFF",
+          "surface2": "#EEECE6",
+          "text": "#111111",
+          "muted": "#6D6A64",
+          "accent": "#2563EB",
+          "accent2": "#111111",
+          "danger": "#DC2626",
+          "grid": "rgba(17,17,17,0.08)",
+          "glow": "rgba(37,99,235,0.10)"
+        },
+        "avoid": ["startup template blandness", "emoji/illustration filler", "empty minimalism"]
+      },
+      "typography": {
+        "windowsStack": "Aptos, Segoe UI, Microsoft YaHei UI, Arial, sans-serif",
+        "title": "confident sans; 44-82px",
+        "body": "board-readable sans; 20-29px",
+        "mono": "Cascadia Mono, Consolas, monospace",
+        "temperament": "plainspoken, credible, efficient"
+      },
+      "density": {
+        "grid": "memo grid, one evidence rail",
+        "margins": "68-100px",
+        "slideDensity": "medium",
+        "cards": "1-3 evidence blocks",
+        "textLimits": "claim, evidence, implication",
+        "whitespace": "46-62%"
+      },
+      "graphics": {
+        "diagram": "few diagrams, strong tables, KPI callouts",
+        "chart": "clean investor KPIs, waterfall, funnel",
+        "imagery": "screenshots only when needed",
+        "texture": "none",
+        "linework": "thin neutral rules and blue proof marks",
+        "radiusShadow": "4-8px; minimal"
+      },
+      "motion": {
+        "background": "static",
+        "entrance": "claim first, evidence second",
+        "chart": "numbers count once, no flourish",
+        "duration": "140-420ms",
+        "easing": "cubic-bezier(.2,0,0,1)",
+        "lowPower": "same"
+      }
+    },
+    {
+      "id": "ai-lab-whiteboard-dark",
+      "nameZh": "AI 实验黑板",
+      "fitUse": ["AI courseware", "technical workshop", "model evaluation lesson"],
+      "anchors": ["blackboard lecture", "lab diagrams", "chalk plus system UI"],
+      "palette": {
+        "ratio": "76/16/6/2",
+        "tokens": {
+          "bg": "#111813",
+          "surface": "#18221B",
+          "surface2": "#243128",
+          "text": "#F1EFE5",
+          "muted": "#B1AA9E",
+          "accent": "#7AD7C4",
+          "accent2": "#E8D06A",
+          "danger": "#F06A5F",
+          "grid": "rgba(241,239,229,0.07)",
+          "glow": "rgba(122,215,196,0.12)"
+        },
+        "avoid": ["dirty green terminal", "chalkboard childishness", "cyan-only tech"]
+      },
+      "typography": {
+        "windowsStack": "Segoe UI, Aptos, Microsoft YaHei UI, Georgia, serif",
+        "title": "serif/sans lecture hybrid; 48-88px",
+        "body": "teaching sans; 21-30px",
+        "mono": "Cascadia Mono, Consolas, monospace",
+        "temperament": "teaching-first, technical, tactile"
+      },
+      "density": {
+        "grid": "lecture board split into problem/worked example",
+        "margins": "56-88px",
+        "slideDensity": "medium-high",
+        "cards": "board regions, not default cards",
+        "textLimits": "worked examples with clear hierarchy",
+        "whitespace": "32-48%"
+      },
+      "graphics": {
+        "diagram": "chalk-line pipelines, rubrics, eval tables",
+        "chart": "simple axes, hand-annotated matrices",
+        "imagery": "schematic, not photos",
+        "texture": "chalk grain 4-7%",
+        "linework": "chalk-like but precise",
+        "radiusShadow": "2-6px; low"
+      },
+      "motion": {
+        "background": "subtle chalk dust drift",
+        "entrance": "diagram writes in parts",
+        "chart": "line draw, row highlight",
+        "duration": "260-620ms",
+        "easing": "cubic-bezier(.33,1,.68,1)",
+        "lowPower": "dust off"
+      }
+    },
+    {
+      "id": "future-school-pop",
+      "nameZh": "未来学校 Pop",
+      "fitUse": ["education prospectus", "student-facing courseware", "open day"],
+      "anchors": ["future school branding", "structured play", "clean optimism"],
+      "palette": {
+        "ratio": "72/18/8/2",
+        "tokens": {
+          "bg": "#F8FBFF",
+          "surface": "#FFFFFF",
+          "surface2": "#E6F0FF",
+          "text": "#172033",
+          "muted": "#68738A",
+          "accent": "#2F6BFF",
+          "accent2": "#FFB703",
+          "danger": "#EF476F",
+          "grid": "rgba(23,32,51,0.08)",
+          "glow": "rgba(47,107,255,0.12)"
+        },
+        "avoid": ["childish primary colors", "too many emojis", "flat SaaS blandness"]
+      },
+      "typography": {
+        "windowsStack": "Segoe UI, Aptos, Microsoft YaHei UI, Arial, sans-serif",
+        "title": "optimistic bold sans; 46-86px",
+        "body": "friendly clear sans; 21-30px",
+        "mono": "Cascadia Mono, Consolas, monospace",
+        "temperament": "bright, structured, not幼稚"
+      },
+      "density": {
+        "grid": "learning-path grid",
+        "margins": "60-92px",
+        "slideDensity": "medium",
+        "cards": "3-5 learning modules",
+        "textLimits": "parent/student readable",
+        "whitespace": "42-58%"
+      },
+      "graphics": {
+        "diagram": "journey maps, badges, progress steps",
+        "chart": "friendly progress bars and outcome ladders",
+        "imagery": "bright classroom/product visuals",
+        "texture": "none or micro dots",
+        "linework": "blue/yellow learning paths",
+        "radiusShadow": "8-14px; clean"
+      },
+      "motion": {
+        "background": "tiny dots or path drift",
+        "entrance": "path builds step by step",
+        "chart": "progress fill",
+        "duration": "180-520ms",
+        "easing": "cubic-bezier(.2,0,0,1)",
+        "lowPower": "no drift"
+      }
+    }
+  ]
+}
