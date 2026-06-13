@@ -79,9 +79,20 @@ Reference anchors used to shape these rules:
 3. Ask the user to confirm one style or request changes.
 4. If the user asks for a new style, derive it from the closest catalog entry and
    still define all five axes before making a sample.
-5. Produce only a style sample at this gate: 2-3 slides max, usually title,
-   information-dense content, and chart/process. Do not make the full deck or the
-   full narrative outline until the style sample is accepted.
+5. After the user chooses a style id, produce only a style sample at this gate:
+   2-3 slides max, usually title, information-dense content, and chart/process.
+   Do not make the full deck or the full narrative outline until the style sample
+   is accepted.
+
+Important distinction:
+
+- "I choose this style" = permission to make the sample.
+- "Allow web research" = permission to browse when needed, not permission to skip
+  the sample.
+- "Need PPTX/PDF" = export intent, not permission to skip the sample.
+- "OK, generic version" = content scope, not permission to skip the sample.
+- Only "this sample is approved / use this sample / 这个样片确认" unlocks
+  narrative framework work.
 
 ## Style Sample Requirements
 
@@ -95,6 +106,9 @@ A valid sample must show:
 - **B mode:** mention or include low-power/static behavior.
 - **Windows font fallback:** use the system-font stack unless the user approved
   embedded fonts.
+
+If the user asks for PPTX/PDF, the visual sample may still be HTML first. Export
+comes later after narrative and detailed sections are approved.
 
 ## Quality Rubric
 

@@ -13,12 +13,16 @@ before generating images, browsing, producing PPTX/PDF, or changing style.
 
 Do not start slide production until these gates are confirmed:
 
-1. **Style first.** Identify deck type and recommend 1-3 candidate styles from
-   the locked style catalog. A style must define color master, typography
-   temperament, layout density, graphic language, and motion grammar. Show or
-   reference a contact sheet or 2-3 slide style sample before production. If the
-   user says the sample is not right, switch template/style or modify the five
-   style axes first.
+1. **Style first, with two approvals.** Identify deck type and recommend 1-3
+   candidate styles from the locked style catalog. A style must define color
+   master, typography temperament, layout density, graphic language, and motion
+   grammar. Gate 1 has two separate approvals:
+   - **1A Style ID approval:** user chooses a template/style direction.
+   - **1B Visual sample approval:** after 1A, produce a mandatory 2-3 slide
+     style sample and ask whether the sample is accepted.
+   Choosing a style id, approving web research, or requesting PPTX/PDF does **not**
+   permit Gate 2. Only explicit approval of the visual sample permits narrative
+   framework work.
 2. **Narrative framework second.** Confirm the story arc, page count, audience,
    use case, and expected outcome.
 3. **Detailed sections third.** Confirm slide-by-slide sections, paragraph/detail
@@ -57,9 +61,15 @@ final style; translate them into a named style id plus concrete choices on:
 - graphic language for diagrams/charts/images
 - motion grammar and B low-power mode
 
-Style gate output may only be a style proposal or a 2-3 slide style sample. Do
-not produce the full outline or full deck until the user explicitly accepts the
-style sample.
+Style gate output may only be:
+
+1. a style candidate proposal, or
+2. a 2-3 slide visual sample for the selected style.
+
+After the user picks a style candidate, the next assistant action must be making
+or showing the visual sample, not giving the narrative framework, source list,
+12-page outline, or production plan. Do not produce the full outline or full deck
+until the user explicitly accepts the visual sample.
 
 ## Confirmation Gates
 
@@ -68,8 +78,10 @@ Required user confirmations:
 - **Research/materials:** confirm whether to browse web, use provided files, or use
   only user-supplied notes. Use web browsing when facts may be current or the user
   asks to search.
-- **Style:** confirm template and style sample. Contact sheets live in
-  `assets/contact-sheets/<template>/contact-sheet.png`.
+- **Style:** confirm both selected style id and produced visual sample. Contact
+  sheets live in `assets/contact-sheets/<template>/contact-sheet.png`, but a
+  contact sheet is only a template reference; it does not replace the mandatory
+  deck-specific 2-3 slide sample.
 - **Generated visuals:** ask before generating images. Default recommendation is
   to generate visuals when they materially improve clarity or stage impact.
 - **Export:** ask before producing PPTX/PDF. Default is single-file HTML.

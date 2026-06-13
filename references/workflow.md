@@ -19,7 +19,15 @@ variables and ask for a decision.
 
 ## Gate 1: Style
 
-Confirm deck type and style before narrative.
+Confirm deck type and style before narrative. Gate 1 has two sub-gates:
+
+- **Gate 1A: style id approval.** The user chooses a template/style direction.
+- **Gate 1B: visual sample approval.** After 1A, produce a mandatory deck-specific
+  2-3 slide sample and ask whether it matches the desired style.
+
+Do not enter Gate 2 after only Gate 1A. User phrases such as "牛津海军蓝羊皮纸",
+"允许联网", "需要 PPT", "ok 通用的", or "可以导出 PDF/PPTX" do not mean the
+visual sample is approved. Only explicit approval of the sample unlocks Gate 2.
 
 Ask:
 
@@ -42,12 +50,32 @@ concrete changes on those five axes. Do not solve style feedback with random
 colors. Do not use "科技感", "高级", "简洁", "温和" as final instructions; lock a
 named style id or a derived style with explicit tokens.
 
-Do not proceed until style direction is accepted.
+Do not proceed until both the style id and the visual sample are accepted.
 
 Style gate output should be a proposal or a 2-3 slide visual sample only. The
 sample must cover: title slide, dense content slide, and chart/process slide. Do
 not produce the full narrative outline or production deck until the user accepts
 the style sample.
+
+After the user chooses one candidate style, the next assistant action must be one
+of:
+
+- create/show the 2-3 slide visual sample;
+- if the environment cannot create the sample yet, say so and ask whether to make
+  the sample now.
+
+Do not browse sources, draft the 12-page framework, or list references before the
+sample is accepted unless the user explicitly asks for research before sampling.
+
+Smoke-test example:
+
+User: "牛津海军蓝羊皮纸，允许联网，需要 PPT"
+
+Correct next response: "已确认风格 id、联网权限和 PPTX 意向。下一步仍然不能进叙事框架；我先做 2-3 页
+oxford-navy-parchment 样片，覆盖封面、信息密集页、判断清单/流程页。样片确认后再做页纲和资料研究。"
+
+Incorrect next response: listing CEFR/ACTFL sources, proposing a 12-page outline,
+or saying production can start.
 
 ## Gate 2: Narrative Framework
 
