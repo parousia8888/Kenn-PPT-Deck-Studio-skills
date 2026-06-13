@@ -1,0 +1,54 @@
+/* Proof Atlas — Color System
+   Off-white paper, ink black text, ONE technical accent (International Blue).
+   Secondary palette is strictly grayscale. No gradients, no glossy fills.
+   A single restrained oxide-red is reserved for risk/limitation semantics only. */
+
+:root {
+  /* ---- Paper (base surfaces) ---- */
+  --paper-0:  #F4F2EC;   /* page base — warm off-white */
+  --paper-1:  #EFEDE5;   /* recessed panel / table zebra */
+  --paper-2:  #E7E4DA;   /* hairline fill / muted cell */
+  --paper-pure: #FBFAF6; /* lifted cell / evidence slot */
+
+  /* ---- Ink (text + rules), neutral grayscale ramp ---- */
+  --ink:      #17150F;   /* primary text, near-black warm */
+  --ink-2:    #3A372F;   /* strong secondary text */
+  --gray-1:   #5C584D;   /* secondary text */
+  --gray-2:   #847F71;   /* tertiary / captions */
+  --gray-3:   #A8A294;   /* disabled, faint labels */
+  --gray-4:   #C9C3B5;   /* hairline rule on paper */
+  --gray-5:   #DAD5C8;   /* light divider */
+
+  /* ---- Accent: International Blue (the one technical color) ---- */
+  --blue:      #1A36C4;  /* primary accent */
+  --blue-deep: #11268C;  /* pressed / dense */
+  --blue-tint: #DFE2F4;  /* faint fill behind accent marks */
+
+  /* ---- Restrained semantics (used sparingly, never decoratively) ---- */
+  --oxide:      #9C3A2B; /* risk / limitation marker — red oxide */
+  --oxide-tint: #ECDBD5;
+  --green:      #2E6B4F; /* positive delta only */
+
+  /* ---- Semantic aliases ---- */
+  --bg-page:        var(--paper-0);
+  --bg-panel:       var(--paper-1);
+  --bg-cell:        var(--paper-pure);
+  --bg-cell-muted:  var(--paper-2);
+
+  --text-primary:   var(--ink);
+  --text-secondary: var(--gray-1);
+  --text-tertiary:  var(--gray-2);
+  --text-faint:     var(--gray-3);
+  --text-on-accent: var(--paper-pure);
+
+  --accent:         var(--blue);
+  --accent-deep:    var(--blue-deep);
+
+  --rule:           var(--gray-4);   /* standard hairline */
+  --rule-strong:    var(--ink);      /* structural rule */
+  --rule-faint:     var(--gray-5);
+
+  --marker-risk:    var(--oxide);
+  --marker-up:      var(--green);
+  --marker-down:    var(--oxide);
+}

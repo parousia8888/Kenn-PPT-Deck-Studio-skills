@@ -1,0 +1,40 @@
+/* Proof Atlas — Spacing, Grid & Structure
+   The atlas grid is the spine of the system: an 8px base unit, a coordinate
+   gutter, hairline rules, and near-zero corner radii. No shadows anywhere. */
+
+:root {
+  /* ---- Base spacing (8px unit) ---- */
+  --s-1:  4px;
+  --s-2:  8px;
+  --s-3:  12px;
+  --s-4:  16px;
+  --s-5:  24px;
+  --s-6:  32px;
+  --s-7:  48px;
+  --s-8:  64px;
+  --s-9:  96px;
+  --s-10: 128px;
+
+  /* ---- Slide frame (1280x720 reference; scales to 1920) ---- */
+  --frame-margin:  56px;   /* outer page margin */
+  --frame-gutter:  24px;   /* inter-module gutter */
+  --coord-gutter:  40px;   /* width reserved for coordinate labels */
+
+  /* ---- Corner radii (kept minimal — institutional, not glossy) ---- */
+  --r-0: 0px;     /* default — square evidence cells */
+  --r-1: 2px;     /* chips, small controls */
+  --r-2: 3px;
+
+  /* ---- Hairline rules ---- */
+  --rule-w:        1px; /* @kind spacing */
+  --rule-w-strong: 2px; /* @kind spacing */
+  --tick:          6px; /* @kind spacing */     /* coordinate tick length */
+
+  /* ---- Border helpers ---- */
+  --border-hair:   1px solid var(--rule);
+  --border-faint:  1px solid var(--rule-faint);
+  --border-strong: 2px solid var(--rule-strong);
+
+  /* Explicitly no shadows. Depth comes from rules and paper tone only. */
+  --shadow-none: none;
+}

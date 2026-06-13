@@ -1,0 +1,16 @@
+/* ============================================================
+   Course Canvas — Webfonts
+   Loaded from Google Fonts CDN so they render on Windows.
+   Explicit fallback stacks live in typography.css.
+   - Newsreader     : editorial display serif (chapter titles)
+   - Inter          : highly legible teaching sans (body)
+   - JetBrains Mono : quiet mono layer (numbers, time, formulas)
+   - Noto Serif SC  : Chinese serif / editorial pages
+   - Noto Sans SC   : Chinese sans / teaching content
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;0,6..72,700;1,6..72,400;1,6..72,500;1,6..72,600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&display=swap');

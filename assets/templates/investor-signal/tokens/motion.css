@@ -1,0 +1,23 @@
+/* Investor Signal — Motion
+   Stage pacing: thesis first, evidence follows. No playful animation.
+   Easing is decisive and architectural — long settle, no bounce.
+*/
+:root {
+  /* ---- Durations ---- */
+  --dur-instant: 120ms;  /* @kind other */
+  --dur-fast:    240ms;  /* @kind other */
+  --dur-base:    420ms;  /* @kind other */
+  --dur-slow:    720ms;  /* @kind other */
+  --dur-reveal:  1100ms; /* @kind other */
+  --dur-count:   1400ms; /* @kind other */
+
+  /* ---- Easing ---- */
+  --ease-stage:  cubic-bezier(0.16, 1, 0.3, 1);    /* @kind other */
+  --ease-out:    cubic-bezier(0.22, 1, 0.36, 1);   /* @kind other */
+  --ease-inout:  cubic-bezier(0.65, 0, 0.35, 1);   /* @kind other */
+  --ease-mask:   cubic-bezier(0.77, 0, 0.175, 1);  /* @kind other */
+  --ease-draw:   cubic-bezier(0.4, 0, 0.1, 1);     /* @kind other */
+
+  /* ---- Stagger step for sequenced cells ---- */
+  --stagger: 90ms; /* @kind other */
+}

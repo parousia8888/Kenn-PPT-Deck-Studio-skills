@@ -1,0 +1,161 @@
+/* ============================================================
+ * Launch Theatre — Motion recipes
+ * Semantic slide-enter animations. Each block declares its recipe via
+ *   data-anim="<recipe>"  (and optional --i for sequence index).
+ *
+ * TRIGGER: a recipe plays when an ancestor carries [data-deck-active]
+ * (set by deck-stage) OR the controller adds .lt-on to the slide root.
+ * Both paths are CSS-only end-states, so content is correct even with no JS.
+ *
+ * FALLBACK: prefers-reduced-motion and body.low-power force every element to
+ * its final visible state with no transition — content is never hidden.
+ * ============================================================ */
+
+/* ---------- base hidden state + reveal switch ---------- */
+[data-anim] {
+  --i: 0;
+  transition-property: opacity, transform, clip-path, letter-spacing, filter;
+  transition-duration: var(--dur-med);
+  transition-timing-function: var(--ease-stage);
+  transition-delay: calc(var(--i) * var(--stagger));
+  will-change: opacity, transform;
+}
+
+/* default recipe: soft rise */
+[data-anim=""], [data-anim="rise"] { opacity: 0; transform: translateY(var(--rise)); }
+
+/* launch-cover: title rises through a cinematic mask */
+[data-anim="cover-title"] {
+  opacity: 0;
+  clip-path: inset(115% 0% 0% 0%);
+  transform: translateY(8px);
+  transition-duration: var(--dur-cine);
+  transition-timing-function: var(--ease-mask);
+}
+[data-anim="meta"] {
+  opacity: 0;
+  transform: translateY(10px);
+  transition-delay: calc(900ms + var(--i) * var(--stagger));
+}
+
+/* tension: a single sentence resolves out of wide tracking + haze */
+[data-anim="tension"] {
+  opacity: 0;
+  letter-spacing: 0.34em;
+  filter: blur(5px);
+  transition-duration: var(--dur-cine);
+}
+
+/* product-reveal: emerges from darkness with a subtle slow push */
+[data-anim="product"] {
+  opacity: 0;
+  transform: scale(var(--push));
+  transition-duration: var(--dur-slow);
+}
+
+/* feature-trio: each feature rises; its hairline draws under it */
+[data-anim="feature"] { opacity: 0; transform: translateY(var(--rise)); transition-duration: var(--dur-slow); }
+.lt-feature__line { transform: scaleX(0); transform-origin: left center;
+  transition: transform var(--dur-slow) var(--ease-stage);
+  transition-delay: calc(260ms + var(--i) * var(--stagger-lg)); }
+
+/* demo-flow: steps advance like stage cues */
+[data-anim="step"] { opacity: 0; transform: translateX(-18px); }
+
+/* before / after: before lands, divider draws, after follows */
+[data-anim="before"]  { opacity: 0; transform: translateX(-22px); transition-duration: var(--dur-slow); }
+[data-anim="divider"] { transform: scaleY(0); transform-origin: top center;
+  transition: transform var(--dur-slow) var(--ease-mask); transition-delay: 520ms; }
+[data-anim="after"]   { opacity: 0; transform: translateX(22px); transition-duration: var(--dur-slow);
+  transition-delay: 900ms; }
+
+/* architecture: layers rise from the floor, then connectors draw */
+[data-anim="layer"] { opacity: 0; transform: translateY(var(--rise-lg)); transition-duration: var(--dur-slow); }
+[data-anim="connector"] { transform: scaleX(0); transform-origin: left center;
+  transition: transform var(--dur-med) var(--ease-stage);
+  transition-delay: calc(700ms + var(--i) * var(--stagger)); }
+
+/* benchmark: bars grow, numbers reveal — precise, never bouncy */
+[data-anim="bar"] { transform: scaleX(0); transform-origin: left center;
+  transition: transform var(--dur-slow) var(--ease-stage);
+  transition-delay: calc(var(--i) * var(--stagger-lg)); }
+[data-anim="num"] { opacity: 0; transform: translateY(0.45em); clip-path: inset(0 0 0 0);
+  transition-duration: var(--dur-slow); transition-delay: calc(var(--i) * var(--stagger-lg)); }
+
+/* closing: final phrase fades in slowly and holds */
+[data-anim="closing"] { opacity: 0; transition-duration: var(--dur-cine); }
+
+/* ---------- REVEALED end-states ---------- */
+[data-deck-active] [data-anim],
+.lt-on [data-anim],
+[data-anim].lt-on {
+  opacity: 1;
+  transform: none;
+  clip-path: inset(0 0 0 0);
+  letter-spacing: var(--track-tight);
+  filter: none;
+}
+[data-deck-active] .lt-feature__line, .lt-on .lt-feature__line,
+[data-deck-active] [data-anim="divider"], .lt-on [data-anim="divider"],
+[data-deck-active] [data-anim="connector"], .lt-on [data-anim="connector"],
+[data-deck-active] [data-anim="bar"], .lt-on [data-anim="bar"] {
+  transform: none;
+}
+
+/* light sweep that crosses a product object on reveal */
+.lt-sweep { position: absolute; inset: 0; overflow: hidden; pointer-events: none; border-radius: inherit; }
+.lt-sweep::after {
+  content: ""; position: absolute; top: -20%; bottom: -20%; left: -60%; width: 40%;
+  background: linear-gradient(100deg, transparent, rgba(var(--accent-rgb), 0.16) 45%, rgba(255,255,255,0.22) 50%, rgba(var(--accent-rgb), 0.16) 55%, transparent);
+  transform: translateX(0); opacity: 0;
+}
+[data-deck-active] .lt-sweep::after, .lt-on .lt-sweep::after {
+  animation: lt-sweep-cross var(--dur-cine) var(--ease-light) 320ms 1;
+}
+@keyframes lt-sweep-cross {
+  0% { transform: translateX(0); opacity: 0; }
+  20% { opacity: 1; }
+  100% { transform: translateX(420%); opacity: 0; }
+}
+
+/* a slow scan line for technical / architecture acts */
+.lt-scan { position: absolute; left: 0; right: 0; height: 1px; background: var(--accent);
+  box-shadow: var(--glow-soft); opacity: 0.5; pointer-events: none; }
+[data-deck-active] .lt-scan, .lt-on .lt-scan { animation: lt-scan-run 5.5s var(--ease-linear) infinite; }
+@keyframes lt-scan-run { 0% { top: 0; opacity: 0; } 8% { opacity: 0.5; } 92% { opacity: 0.5; } 100% { top: 100%; opacity: 0; } }
+
+/* closing breathe — the accent line keeps a slow pulse */
+.lt-breathe { animation: lt-breathe 4.6s ease-in-out infinite; }
+@keyframes lt-breathe { 0%,100% { opacity: 0.55; } 50% { opacity: 1; } }
+
+/* ============================================================
+ * FALLBACKS — everything visible, no motion
+ * ============================================================ */
+@media (prefers-reduced-motion: reduce) {
+  [data-anim], .lt-feature__line { transition: none !important; }
+  [data-anim] { opacity: 1 !important; transform: none !important; clip-path: none !important;
+    filter: none !important; letter-spacing: var(--track-tight); }
+  [data-anim="tension"] { letter-spacing: var(--track-tight) !important; }
+  .lt-feature__line, [data-anim="divider"], [data-anim="connector"], [data-anim="bar"] { transform: none !important; }
+  .lt-sweep::after, .lt-scan, .lt-breathe { animation: none !important; }
+  .lt-scan { opacity: 0.5; }
+}
+body.low-power [data-anim], body.low-power .lt-feature__line { transition: none !important; }
+body.low-power [data-anim] { opacity: 1 !important; transform: none !important; clip-path: none !important;
+  filter: none !important; letter-spacing: var(--track-tight); }
+body.low-power [data-anim="tension"] { letter-spacing: var(--track-tight) !important; }
+body.low-power .lt-feature__line, body.low-power [data-anim="divider"],
+body.low-power [data-anim="connector"], body.low-power [data-anim="bar"] { transform: none !important; }
+body.low-power .lt-sweep::after, body.low-power .lt-scan, body.low-power .lt-breathe { animation: none !important; }
+
+/* low-power hint chip */
+.lt-lowpower-hint {
+  position: fixed; bottom: 18px; left: 50%; transform: translateX(-50%);
+  font-family: var(--font-mono); font-size: 11px; letter-spacing: var(--track-mono);
+  text-transform: uppercase; color: var(--text-muted);
+  background: rgba(0,0,0,0.6); border: 1px solid var(--hairline-strong);
+  padding: 7px 14px; border-radius: var(--radius-pill); z-index: 9999;
+  display: none; pointer-events: none; backdrop-filter: blur(6px);
+}
+body.low-power .lt-lowpower-hint { display: block; }
+.lt-lowpower-hint b { color: var(--accent); font-weight: var(--w-medium); }

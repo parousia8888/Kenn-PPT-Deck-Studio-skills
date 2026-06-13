@@ -1,0 +1,35 @@
+<!-- @dsCard group="Colors" viewport="700x140" name="Semantic Markers" subtitle="Restrained oxide-red & research-green — risk and delta only" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../styles.css">
+<style>
+  html,body{margin:0;background:var(--paper-0);font-family:var(--font-mono);}
+  .wrap{padding:18px 20px;display:flex;gap:16px;}
+  .card{flex:1;border:1px solid var(--rule);background:var(--paper-pure);padding:12px 14px;}
+  .top{display:flex;align-items:center;gap:8px;margin-bottom:10px;}
+  .dot{width:10px;height:10px;border-radius:50%;}
+  .ttl{font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:var(--ink);}
+  .desc{font-family:var(--font-body);font-size:12px;color:var(--gray-1);line-height:1.45;}
+  .hx{font-size:9.5px;color:var(--gray-2);margin-top:8px;}
+  .bar{height:4px;margin-top:8px;}
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="card">
+      <div class="top"><span class="dot" style="background:var(--oxide)"></span><span class="ttl">Risk · Oxide</span></div>
+      <div class="desc">Warning markers, limitations, and negative deltas. Used sparingly — never as decoration.</div>
+      <div class="bar" style="background:var(--oxide)"></div>
+      <div class="hx">#9C3A2B · tint #ECDBD5</div>
+    </div>
+    <div class="card">
+      <div class="top"><span class="dot" style="background:var(--green)"></span><span class="ttl">Positive · Green</span></div>
+      <div class="desc">Confirmed positive change only. Reserved for verified upward deltas in evidence.</div>
+      <div class="bar" style="background:var(--green)"></div>
+      <div class="hx">#2E6B4F</div>
+    </div>
+  </div>
+</body>
+</html>

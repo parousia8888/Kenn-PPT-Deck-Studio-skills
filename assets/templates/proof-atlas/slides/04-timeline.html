@@ -1,0 +1,62 @@
+<!-- @dsCard group="Slides" viewport="1280x720" name="04 · Timeline" subtitle="Axis draws first, nodes appear chronologically, source last" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Proof Atlas — Timeline</title>
+<link rel="stylesheet" href="../styles.css">
+<link rel="stylesheet" href="../assets/atlas-anim.css">
+<link rel="stylesheet" href="slide-base.css">
+<script src="../assets/atlas-motion.js"></script>
+</head>
+<body>
+<div class="slide atlas-stage" data-stage data-autoplay data-atlas-bg="cover">
+  <div class="slide-inner">
+    <div class="slide-head">
+      <div class="brand"><span class="xh"><i></i></span><span class="nm">Proof Atlas</span></div>
+      <div class="head-meta">
+        <span class="tag accent">Chronology</span>
+        <span class="coord">2025-09 → 2026-06</span>
+      </div>
+    </div>
+
+    <div class="slide-body">
+      <h1 data-anim="mask" data-seq="0" class="title" style="font-size:36px;margin-bottom:8px;">Program rollout, by quarter</h1>
+      <p data-anim="mask" data-seq="1" class="lead" style="font-size:16px;">Five verified milestones from pilot authorization to the 2026 review.</p>
+
+      <div class="timeline">
+        <div data-anim="draw-x" class="axis"></div>
+        <div class="nodes">
+          <div class="node"><span class="ndate" data-anim="node" data-seq="2">2025-09</span><span class="ndot" data-anim="node" data-seq="2"></span><div class="ninfo" data-anim="node" data-seq="2"><div class="nt">Pilot authorized</div><div class="ns">3 regions authorized</div></div></div>
+          <div class="node"><span class="ndate" data-anim="node" data-seq="3">2025-11</span><span class="ndot" data-anim="node" data-seq="3"></span><div class="ninfo" data-anim="node" data-seq="3"><div class="nt">Baseline measured</div><div class="ns">n=1,180 cases</div></div></div>
+          <div class="node"><span class="ndate" data-anim="node" data-seq="4">2026-01</span><span class="ndot accent" data-anim="node" data-seq="4"></span><div class="ninfo" data-anim="node" data-seq="4"><div class="nt">Full deployment</div><div class="ns">12 regions live</div></div></div>
+          <div class="node"><span class="ndate" data-anim="node" data-seq="5">2026-04</span><span class="ndot" data-anim="node" data-seq="5"></span><div class="ninfo" data-anim="node" data-seq="5"><div class="nt">Target exceeded</div><div class="ns">+38% · n=3,402</div></div></div>
+          <div class="node"><span class="ndate" data-anim="node" data-seq="6">2026-06</span><span class="ndot" data-anim="node" data-seq="6"></span><div class="ninfo" data-anim="node" data-seq="6"><div class="nt">Review issued</div><div class="ns">PA-REV-2026-04</div></div></div>
+        </div>
+      </div>
+
+      <div data-anim="source" style="margin-top:auto;">
+        <span class="source">Source · program event log, audited · entries SRC-1004 → PA-REV-2026-04</span>
+      </div>
+    </div>
+
+    <div class="slide-foot">
+      <span>Field Program Review · 2026</span>
+      <span class="seq">Timeline · 04 / 10</span>
+    </div>
+  </div>
+</div>
+<style>
+  .timeline { position: relative; margin: 64px 0 40px; }
+  .timeline .axis { position: absolute; left: 0; right: 0; top: 50%; height: 1.5px; background: var(--ink); transform-origin: left center; }
+  .nodes { position: relative; display: flex; justify-content: space-between; }
+  .node { display: flex; flex-direction: column; align-items: center; flex: 1; position: relative; }
+  .node .ndate { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.08em; color: var(--blue); margin-bottom: 14px; }
+  .node .ndot { width: 11px; height: 11px; border-radius: 50%; background: var(--paper-0); border: 1.5px solid var(--ink); margin-bottom: 14px; }
+  .node .ndot.accent { background: var(--blue); border-color: var(--blue); width: 14px; height: 14px; }
+  .node .ninfo { text-align: center; }
+  .node .ninfo .nt { font-family: var(--font-body); font-size: 14px; font-weight: 500; color: var(--ink); }
+  .node .ninfo .ns { font-family: var(--font-mono); font-size: 9.5px; letter-spacing: 0.06em; color: var(--gray-2); margin-top: 4px; }
+</style>
+</body>
+</html>

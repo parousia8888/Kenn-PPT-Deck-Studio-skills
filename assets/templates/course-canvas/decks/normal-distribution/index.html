@@ -1,0 +1,160 @@
+<!-- @dsCard group="Slides" viewport="1280x720" name="◆ Live Deck — Motion" subtitle="Navigable lesson showing the reveal grammar: underline draws, connector draws, step highlight, answer reveal" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Course Canvas — The Normal Distribution</title>
+<link rel="stylesheet" href="../../styles.css">
+<link rel="stylesheet" href="../../slides/deck.css">
+<style>
+  html,body{margin:0;background:#211D18;}
+  deck-stage:not(:defined){visibility:hidden;}
+  /* in the deck, the inner .cc-slide fills the section deck-stage sizes */
+  deck-stage section{background:#211D18;}
+  .cc-slide{box-shadow:none;}
+  .ans-row{display:flex;align-items:center;gap:18px;margin-top:18px;}
+</style>
+</head>
+<body>
+<deck-stage width="1280" height="720">
+
+  <!-- 1 · COVER -->
+  <section data-recipe="lesson-cover">
+    <div class="cc-slide" data-bg="cover">
+      <div class="cc-grid">
+        <div class="cc-margin" style="display:flex;flex-direction:column;height:100%;">
+          <span class="cc-tab cc-tab--ox">LESSON&nbsp;04</span>
+          <div class="cc-numtab" style="margin-top:14px;">04<small>of 12 · Unit II</small></div>
+          <span class="cc-clock cc-push">90 MIN · LECTURE</span>
+        </div>
+        <div class="cc-main" style="display:flex;flex-direction:column;height:100%;">
+          <span class="cc-eyebrow" data-reveal="1">STAT&nbsp;1 — STATISTICAL THINKING</span>
+          <hr class="cc-mark" style="margin-top:20px;" data-reveal="1">
+          <h1 class="cc-title cc-title--display" data-reveal="2">The Normal<br>Distribution</h1>
+          <p class="cc-subtitle" data-reveal="3" style="max-width:20ch;">Why so many things in nature gather around a middle — and how to read the curve.</p>
+          <div class="cc-row cc-between cc-push" style="align-items:flex-end;" data-reveal="4">
+            <div class="cc-stack cc-stack-2"><span class="cc-meta">INSTRUCTOR</span><span style="font-family:var(--font-display);font-size:var(--fs-h3);white-space:nowrap;">Dr. Mara Ellison</span></div>
+            <span class="cc-meta">SPRING TERM · WEEK 5</span>
+          </div>
+        </div>
+      </div>
+      <div class="cc-footer"><span class="cc-footer__brand"><span class="cc-footer__dot"></span>COURSE CANVAS</span><span>STAT 1 · LESSON 04 · COVER</span></div>
+    </div>
+  </section>
+
+  <!-- 2 · OBJECTIVES (underline draw) -->
+  <section data-recipe="objective-list">
+    <div class="cc-slide" data-bg="concept">
+      <div class="cc-grid">
+        <div class="cc-margin" style="display:flex;flex-direction:column;height:100%;">
+          <span class="cc-eyebrow">§ 04.1</span>
+          <div class="cc-numtab" style="margin-top:14px;font-size:96px;">04</div>
+          <span class="cc-clock cc-push">FIRST 8 MIN</span>
+        </div>
+        <div class="cc-main" style="display:flex;flex-direction:column;height:100%;">
+          <span class="cc-eyebrow">LEARNING OBJECTIVES</span>
+          <h1 class="cc-title" style="margin-top:14px;">By the end, you'll be able to&hellip;</h1>
+          <hr class="cc-rule cc-rule--ink" style="max-width:520px;">
+          <ol class="cc-check" style="margin-top:6px;max-width:700px;">
+            <li data-reveal="1"><span class="cc-check__num">01</span><div><span data-underline data-underline-delay="0"><b>Describe</b></span> the shape of a normal distribution.</div></li>
+            <li data-reveal="2"><span class="cc-check__num">02</span><div><span data-underline data-underline-delay="0"><b>Apply</b></span> the 68–95–99.7 rule.</div></li>
+            <li data-reveal="3"><span class="cc-check__num">03</span><div><span data-underline data-underline-delay="0"><b>Convert</b></span> a value into a z-score.</div></li>
+            <li data-reveal="4"><span class="cc-check__num">04</span><div><span data-underline data-underline-delay="0"><b>Decide</b></span> when data is &ldquo;normal enough&rdquo;.</div></li>
+          </ol>
+          <div class="cc-cue cc-push" style="max-width:680px;"><span class="cc-cue__label">Teaching cue</span><span>Read each aloud; ask which feels hardest, return to it at recap.</span></div>
+        </div>
+      </div>
+      <div class="cc-footer"><span class="cc-footer__brand"><span class="cc-footer__dot"></span>COURSE CANVAS</span><span>STAT 1 · LESSON 04 · OBJECTIVES</span></div>
+    </div>
+  </section>
+
+  <!-- 3 · KNOWLEDGE MAP (connector draw) -->
+  <section data-recipe="knowledge-map">
+    <div class="cc-slide" data-bg="teaching">
+      <div class="cc-row cc-between" style="align-items:flex-end;">
+        <div><span class="cc-eyebrow">KNOWLEDGE MAP</span><h1 class="cc-title" style="margin-top:10px;">How today fits together</h1></div>
+        <span class="cc-tab cc-tab--ghost">3 BRANCHES</span>
+      </div>
+      <hr class="cc-rule cc-rule--ink" style="margin:18px 0 4px;">
+      <div style="position:relative;width:780px;height:430px;margin-top:8px;">
+        <svg viewBox="0 0 780 430" fill="none" style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;">
+          <path data-draw="1" d="M210 215 H300" stroke="#C4B8A0" stroke-width="2"/>
+          <path data-draw="2" d="M300 70 V360" stroke="#C4B8A0" stroke-width="2"/>
+          <path data-draw="3" d="M300 70 H360 M300 215 H360 M300 360 H360" stroke="#C4B8A0" stroke-width="2"/>
+          <circle cx="300" cy="70" r="4" fill="#8A2D22"/><circle cx="300" cy="215" r="4" fill="#8A2D22"/><circle cx="300" cy="360" r="4" fill="#8A2D22"/>
+        </svg>
+        <div style="position:absolute;left:0;top:178px;width:210px;"><div class="cc-node cc-node--root" style="padding:18px 16px;font-size:var(--fs-body);">The Normal<br>Distribution</div></div>
+        <div style="position:absolute;left:360px;top:18px;width:380px;" data-reveal="1"><div class="cc-card cc-card--top" style="padding:14px 18px;"><div class="cc-card__kicker">A — SHAPE</div><div class="cc-h3" style="font-size:var(--fs-lead);margin-top:4px;">What the curve looks like</div></div></div>
+        <div style="position:absolute;left:360px;top:160px;width:380px;" data-reveal="2"><div class="cc-card cc-card--top-sage" style="padding:14px 18px;"><div class="cc-card__kicker">B — PARAMETERS</div><div class="cc-h3" style="font-size:var(--fs-lead);margin-top:4px;">The two numbers μ &amp; σ</div></div></div>
+        <div style="position:absolute;left:360px;top:302px;width:380px;" data-reveal="3"><div class="cc-card cc-card--top" style="padding:14px 18px;"><div class="cc-card__kicker">C — TOOLS</div><div class="cc-h3" style="font-size:var(--fs-lead);margin-top:4px;">z-scores &amp; the 68–95–99.7 rule</div></div></div>
+      </div>
+      <div class="cc-footer"><span class="cc-footer__brand"><span class="cc-footer__dot"></span>COURSE CANVAS</span><span>STAT 1 · LESSON 04 · MAP</span></div>
+    </div>
+  </section>
+
+  <!-- 4 · STEP EXPLANATION (sequential highlight) -->
+  <section data-recipe="step-explanation">
+    <div class="cc-slide" data-bg="teaching">
+      <div class="cc-grid cc-grid--wide">
+        <div class="cc-margin" style="display:flex;flex-direction:column;height:100%;"><span class="cc-tab cc-tab--ox">METHOD</span><div class="cc-numtab" style="margin-top:14px;font-size:84px;">M2</div><span class="cc-clock cc-push">WORK ALONG</span></div>
+        <div class="cc-main" style="display:flex;flex-direction:column;height:100%;">
+          <span class="cc-eyebrow">STEP-BY-STEP</span>
+          <h1 class="cc-title" style="margin-top:10px;">Turning a value into a z-score</h1>
+          <hr class="cc-rule cc-rule--ink">
+          <ol class="cc-steps" style="max-width:680px;">
+            <li data-step data-reveal="1"><div><span class="cc-steps__title">Find the center</span><span class="cc-steps__body">Write down the mean μ.</span></div></li>
+            <li data-step data-reveal="2"><div><span class="cc-steps__title">Measure the gap</span><span class="cc-steps__body">Subtract the mean: x − μ.</span></div></li>
+            <li data-step data-reveal="3"><div><span class="cc-steps__title">Scale by spread</span><span class="cc-steps__body">Divide by the standard deviation σ.</span></div></li>
+            <li data-step data-reveal="4"><div><span class="cc-steps__title">Read the result</span><span class="cc-steps__body">z = how many σ from the mean.</span></div></li>
+          </ol>
+        </div>
+      </div>
+      <div class="cc-footer"><span class="cc-footer__brand"><span class="cc-footer__dot"></span>COURSE CANVAS</span><span>STAT 1 · LESSON 04 · METHOD</span></div>
+    </div>
+  </section>
+
+  <!-- 5 · EXERCISE (answer reveal) -->
+  <section data-recipe="exercise">
+    <div class="cc-slide cc-slide--exercise" data-bg="teaching" data-state="prompt">
+      <div class="cc-row cc-between" style="align-items:flex-start;">
+        <div><span class="cc-eyebrow cc-eyebrow--sage">IN-CLASS EXERCISE · 03</span><h1 class="cc-title" style="margin-top:10px;">Try it on your own</h1></div>
+        <span class="cc-tab cc-tab--sage">4 MIN</span>
+      </div>
+      <div class="cc-exercise-frame" style="margin-top:22px;">
+        <div class="cc-prompt">A filling machine has μ = 1000 g and σ = 12 g. A bag weighing 976 g is
+        <b data-answer class="cc-ox">2</b> standard deviations below the mean.</div>
+        <div class="ans-row">
+          <button class="cc-answer-btn" data-reveal-answer aria-pressed="false"><span data-label>Reveal answer</span></button>
+          <span class="cc-small cc-dim" data-answer>z = (976 − 1000) / 12 = −2</span>
+        </div>
+      </div>
+      <div class="cc-cue" style="margin-top:18px;border-top-color:var(--sage);"><span class="cc-cue__label">Teacher</span><span>Let them attempt before pressing reveal. Watch for students who forget to divide by σ.</span></div>
+      <div class="cc-footer"><span class="cc-footer__brand"><span class="cc-footer__dot"></span>COURSE CANVAS</span><span>STAT 1 · LESSON 04 · EXERCISE</span></div>
+    </div>
+  </section>
+
+  <!-- 6 · RECAP (sequential underline) -->
+  <section data-recipe="recap">
+    <div class="cc-slide" data-bg="recap">
+      <div class="cc-row cc-between" style="align-items:flex-end;">
+        <div><span class="cc-eyebrow cc-eyebrow--sage">RECAP — TODAY IN ONE PAGE</span><h1 class="cc-title" style="margin-top:10px;">What to take away</h1></div>
+        <span class="cc-tab cc-tab--ghost">HANDOUT</span>
+      </div>
+      <hr class="cc-rule cc-rule--ink" style="margin:16px 0 26px;">
+      <div class="cc-stack cc-stack-8" style="max-width:900px;">
+        <div style="font-size:var(--fs-h3);line-height:1.4;" data-reveal="1">The normal curve is <span data-underline data-underline-delay="0"><b>symmetric</b></span>, set by the mean <b>μ</b> and spread <b>σ</b>.</div>
+        <div style="font-size:var(--fs-h3);line-height:1.4;" data-reveal="2">The <span data-underline data-underline-delay="0"><b>68–95–99.7 rule</b></span> tells you how much data sits within 1, 2, 3 σ.</div>
+        <div style="font-size:var(--fs-h3);line-height:1.4;" data-reveal="3">A <span data-underline data-underline-delay="0"><b>z-score</b></span> rewrites a value as &ldquo;how many σ from the mean&rdquo;.</div>
+      </div>
+      <div class="cc-footer"><span class="cc-footer__brand"><span class="cc-footer__dot"></span>COURSE CANVAS</span><span>STAT 1 · LESSON 04 · RECAP</span></div>
+    </div>
+  </section>
+
+</deck-stage>
+
+<script src="../deck-stage.js"></script>
+<script src="../../slides/cc-bg.js"></script>
+<script src="../../slides/cc-motion.js"></script>
+</body>
+</html>

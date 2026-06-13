@@ -1,0 +1,147 @@
+/* ============================================================
+ * Launch Theatre — slide layouts
+ * Ten reusable cinematic layouts. Each slide is a <section> holding a
+ * .frame (fills the slide, dark, wide safe margins). One idea per slide;
+ * negative space does the framing. Reveal recipes come from
+ * motion/launch-theatre.css via data-anim.
+ * ============================================================ */
+
+.frame {
+  position: absolute;
+  inset: 0;
+  background: var(--bg-stage);
+  color: var(--text-primary);
+  padding: 96px 128px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+.frame > * { position: relative; z-index: 1; }
+
+/* contained optical field sits behind content */
+.field { position: absolute; inset: 0; z-index: 0; }
+
+/* shared chrome */
+.slide-foot {
+  position: absolute;
+  left: 128px; right: 128px; bottom: 56px;
+  display: flex; align-items: center; justify-content: space-between;
+  z-index: 2;
+}
+.foot-mark { font-family: var(--font-mono); font-size: 16px; letter-spacing: 0.3em; text-transform: uppercase; color: var(--text-faint); }
+.foot-mark b { color: var(--text-secondary); font-weight: 500; }
+.foot-rail { width: 320px; }
+
+.k { /* kicker */
+  display: inline-flex; align-items: center; gap: 18px;
+  font-family: var(--font-mono); font-size: 18px; font-weight: 500;
+  letter-spacing: 0.28em; text-transform: uppercase; color: var(--text-secondary);
+}
+.k::before { content: ""; width: 40px; height: 2px; background: var(--accent); box-shadow: var(--glow-soft); }
+.k .idx { color: var(--text-faint); }
+
+.d { font-family: var(--font-display); color: var(--text-primary); line-height: 0.96; letter-spacing: -0.03em; text-wrap: balance; }
+.lead { font-family: var(--font-body); font-weight: 300; color: var(--text-secondary); line-height: 1.32; text-wrap: pretty; }
+.mono { font-family: var(--font-mono); letter-spacing: 0.04em; color: var(--text-muted); }
+
+/* ---------- 1 · Launch cover ---------- */
+.cover { justify-content: center; }
+.cover .k { margin-bottom: 44px; }
+.cover .title { font-weight: 200; font-size: 168px; letter-spacing: -0.05em; line-height: 0.9; }
+.cover .title b { font-weight: 500; }
+.cover .meta { display: flex; gap: 80px; margin-top: 56px; }
+.cover .meta dt { font-family: var(--font-mono); font-size: 16px; letter-spacing: 0.24em; text-transform: uppercase; color: var(--text-faint); }
+.cover .meta dd { margin: 10px 0 0; font-family: var(--font-mono); font-size: 22px; letter-spacing: 0.04em; color: var(--text-primary); }
+.cover .meta dd.on { color: var(--accent); }
+
+/* ---------- 2 · Problem statement ---------- */
+.problem { justify-content: center; }
+.problem .title { font-weight: 200; font-size: 88px; max-width: 20ch; margin-top: 36px; }
+.problem .title em { font-style: normal; color: var(--text-faint); }
+.problem .lead { font-size: 28px; max-width: 46ch; margin-top: 44px; }
+
+/* ---------- 3 · Tension / shift ---------- */
+.tension { align-items: center; justify-content: center; text-align: center; }
+.tension .sentence { font-weight: 200; font-size: 104px; max-width: 14ch; line-height: 1.02; }
+.tension .sentence b { font-weight: 400; color: var(--accent); }
+.tension .sub { margin-top: 56px; font-family: var(--font-mono); font-size: 18px; letter-spacing: 0.26em; text-transform: uppercase; color: var(--text-faint); }
+
+/* ---------- 4 · Product reveal ---------- */
+.reveal { display: grid; grid-template-columns: 0.9fr 1.4fr; gap: 96px; align-items: center; }
+.reveal .copy { display: flex; flex-direction: column; }
+.reveal .name { font-weight: 200; font-size: 108px; letter-spacing: -0.04em; line-height: 0.92; margin-top: 32px; }
+.reveal .name b { font-weight: 500; }
+.reveal .lead { font-size: 24px; max-width: 32ch; margin-top: 36px; }
+.product-object {
+  position: relative; border-radius: var(--radius-lg);
+  border: 1px solid var(--hairline-strong); background: var(--graphite-1);
+  box-shadow: var(--lift-product); overflow: hidden; aspect-ratio: 16 / 11;
+}
+.product-object .bar { display: flex; align-items: center; gap: 12px; padding: 20px 26px; border-bottom: 1px solid var(--hairline); background: var(--graphite-2); font-family: var(--font-mono); font-size: 16px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--text-muted); }
+.product-object .bar .dot { width: 9px; height: 9px; border-radius: 50%; background: var(--accent); box-shadow: var(--glow-spark); }
+.product-object .screen { position: absolute; inset: 64px 0 0; display: flex; flex-direction: column; justify-content: flex-end; padding: 48px; }
+.product-object .screen .big { font-family: var(--font-display); font-weight: 200; font-size: 76px; letter-spacing: -0.03em; }
+.product-object .screen .stat { font-family: var(--font-mono); font-size: 18px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); margin-top: 14px; }
+
+/* ---------- 5 · Feature trio ---------- */
+.trio-head { margin-bottom: auto; }
+.trio-head .title { font-weight: 200; font-size: 64px; max-width: 17ch; margin-top: 32px; }
+.trio { display: grid; grid-template-columns: repeat(3, 1fr); gap: 64px; margin-top: 56px; }
+.cell { display: flex; flex-direction: column; gap: 22px; }
+.cell .line { height: 2px; width: 100%; background: var(--accent); box-shadow: var(--glow-soft); display: block; }
+.cell .ci { font-family: var(--font-mono); font-size: 16px; letter-spacing: 0.24em; color: var(--text-faint); }
+.cell h3 { margin: 0; font-family: var(--font-display); font-weight: 300; font-size: 44px; letter-spacing: -0.02em; line-height: 1.04; color: var(--text-primary); }
+.cell p { margin: 0; font-size: 21px; line-height: 1.5; color: var(--text-secondary); max-width: 22ch; }
+
+/* ---------- 6 · Demo flow ---------- */
+.flow-head .title { font-weight: 200; font-size: 64px; max-width: 17ch; margin-top: 32px; }
+.flow { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; margin-top: auto; }
+.step { padding: 40px 40px 40px 0; border-top: 2px solid var(--hairline); position: relative; }
+.step::before { content: ""; position: absolute; top: -2px; left: 0; width: 56px; height: 2px; background: var(--accent); box-shadow: var(--glow-soft); }
+.step .sn { font-family: var(--font-mono); font-size: 16px; letter-spacing: 0.22em; color: var(--accent); }
+.step h4 { margin: 22px 0 14px; font-family: var(--font-display); font-weight: 300; font-size: 38px; letter-spacing: -0.02em; color: var(--text-primary); }
+.step p { margin: 0; font-size: 19px; line-height: 1.5; color: var(--text-muted); max-width: 24ch; }
+
+/* ---------- 7 · Before / after ---------- */
+.ba-head .title { font-weight: 200; font-size: 64px; max-width: 17ch; margin-top: 32px; }
+.ba { display: grid; grid-template-columns: 1fr 2px 1fr; gap: 72px; margin-top: 64px; flex: 1; }
+.ba .col { display: flex; flex-direction: column; justify-content: center; }
+.ba .tag { font-family: var(--font-mono); font-size: 16px; letter-spacing: 0.24em; text-transform: uppercase; margin-bottom: 28px; }
+.ba .before .tag { color: var(--text-faint); }
+.ba .after .tag { color: var(--accent); }
+.ba .big { font-family: var(--font-display); font-weight: 200; font-size: 88px; letter-spacing: -0.03em; line-height: 0.96; }
+.ba .before .big { color: var(--text-muted); }
+.ba .after .big { color: var(--text-primary); }
+.ba .note { margin-top: 24px; font-size: 20px; color: var(--text-secondary); max-width: 26ch; }
+.ba .divider { width: 2px; background: var(--hairline-strong); }
+
+/* ---------- 8 · Architecture / system ---------- */
+.arch-head .title { font-weight: 200; font-size: 64px; max-width: 17ch; margin-top: 32px; }
+.layers { display: flex; flex-direction: column; gap: 20px; margin-top: 56px; flex: 1; justify-content: center; }
+.layer {
+  display: flex; align-items: center; gap: 32px;
+  padding: 34px 44px; border: 1px solid var(--hairline-strong);
+  border-radius: var(--radius-sm); background: var(--graphite-1);
+}
+.layer.accent { border-color: var(--hairline-accent); box-shadow: var(--glow-soft); }
+.layer .ln { font-family: var(--font-mono); font-size: 16px; letter-spacing: 0.22em; color: var(--text-faint); width: 64px; flex: 0 0 auto; }
+.layer .lt { font-family: var(--font-display); font-weight: 300; font-size: 40px; letter-spacing: -0.02em; color: var(--text-primary); }
+.layer.accent .lt { color: var(--accent); }
+.layer .ld { margin-left: auto; font-family: var(--font-mono); font-size: 17px; letter-spacing: 0.04em; color: var(--text-muted); }
+
+/* ---------- 9 · Proof / benchmark ---------- */
+.bench-head .title { font-weight: 200; font-size: 64px; max-width: 17ch; margin-top: 32px; }
+.bench { display: grid; grid-template-columns: repeat(3, 1fr); gap: 80px; margin-top: auto; align-items: end; }
+.metric { display: flex; flex-direction: column; gap: 18px; }
+.metric .v { font-family: var(--font-display); font-weight: 200; font-size: 124px; letter-spacing: -0.04em; line-height: 0.86; color: var(--accent); }
+.metric .v .u { font-family: var(--font-mono); font-size: 36px; color: var(--text-muted); margin-left: 8px; letter-spacing: 0; }
+.metric .l { font-family: var(--font-mono); font-size: 17px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--text-muted); }
+.metric .track { height: 3px; background: var(--accent-track); position: relative; overflow: hidden; }
+.metric .track i { position: absolute; inset: 0; background: var(--accent); box-shadow: var(--glow-soft); transform-origin: left center; }
+
+/* ---------- 10 · Closing ---------- */
+.closing { align-items: center; justify-content: center; text-align: center; }
+.closing .phrase { font-weight: 200; font-size: 124px; letter-spacing: -0.04em; line-height: 0.96; }
+.closing .phrase b { font-weight: 500; }
+.closing .sub { margin-top: 48px; font-family: var(--font-mono); font-size: 20px; letter-spacing: 0.26em; text-transform: uppercase; color: var(--text-muted); }
+.closing .breathe-rule { width: 120px; height: 2px; background: var(--accent); box-shadow: var(--glow-soft); margin: 64px auto 0; }

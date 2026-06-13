@@ -1,0 +1,49 @@
+/* Investor Signal — Typography
+   Display: architectural grotesk, ultra-large for claims.
+   Body:    neutral, compact, investor-readable.
+   Mono:    metrics, market size, dates, source labels, annotations.
+   Every stack carries explicit Windows + macOS + Chinese fallbacks.
+*/
+:root {
+  /* ---- Families ---- */
+  --font-display: "Manrope", "Segoe UI", "Microsoft YaHei UI", "Noto Sans SC", Arial, sans-serif;
+  --font-condensed: "Archivo", "Manrope", "Segoe UI", "Microsoft YaHei UI", Arial, sans-serif;
+  --font-body: "Inter", "Segoe UI", "Microsoft YaHei UI", "Microsoft YaHei", "Noto Sans SC", Arial, sans-serif;
+  --font-mono: "JetBrains Mono", "Cascadia Code", "Consolas", "Courier New", monospace;
+  --font-serif: "Noto Serif SC", "Source Han Serif SC", "SimSun", Georgia, serif;
+
+  /* ---- Display scale (slide claims) ---- */
+  --fs-mega:   168px;  /* single dominant metric */
+  --fs-d1:     112px;  /* one-line thesis */
+  --fs-d2:     84px;
+  --fs-d3:     60px;   /* slide title */
+  --fs-d4:     44px;
+
+  /* ---- Text scale ---- */
+  --fs-lead:   28px;   /* deck lead paragraph */
+  --fs-body:   20px;
+  --fs-small:  16px;
+  --fs-mono:   14px;   /* source labels, annotations */
+  --fs-micro:  12px;   /* footnotes, page index */
+
+  /* ---- Weights ---- */
+  --fw-regular: 400; /* @kind font */
+  --fw-medium:  500; /* @kind font */
+  --fw-semibold: 600; /* @kind font */
+  --fw-bold:    700; /* @kind font */
+  --fw-black:   800; /* @kind font */
+
+  /* ---- Line heights ---- */
+  --lh-tight:   0.96; /* @kind font */
+  --lh-display: 1.02; /* @kind font */
+  --lh-snug:    1.18; /* @kind font */
+  --lh-body:    1.5; /* @kind font */
+
+  /* ---- Tracking ---- */
+  --tracking-mega:   -0.04em;  /* @kind font */
+  --tracking-display:-0.025em; /* @kind font */
+  --tracking-tight:  -0.01em;  /* @kind font */
+  --tracking-normal: 0;        /* @kind font */
+  --tracking-label:  0.14em;   /* @kind font */
+  --tracking-wide:   0.22em;   /* @kind font */
+}

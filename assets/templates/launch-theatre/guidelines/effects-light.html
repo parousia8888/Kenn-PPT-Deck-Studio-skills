@@ -1,0 +1,25 @@
+<!-- @dsCard group="Spacing" viewport="700x180" name="Optical light & hairlines" subtitle="Glows, not drop-shadow cards. Hairlines structure the stage." -->
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8" /><link rel="stylesheet" href="../styles.css" />
+<style>
+  body { margin: 0; background: var(--bg-stage); padding: 34px; display: flex; gap: 40px; align-items: center; }
+  .col { display: flex; flex-direction: column; gap: 18px; }
+  .lab { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--text-faint); }
+  .chip { width: 120px; height: 56px; background: var(--graphite-2); border: 1px solid var(--hairline-strong); border-radius: var(--radius-sm); }
+  .rule { width: 200px; }
+</style></head><body>
+<div class="col">
+  <span class="lab">glow-signal</span>
+  <div class="chip" style="box-shadow:var(--glow-signal)"></div>
+</div>
+<div class="col">
+  <span class="lab">glow-soft</span>
+  <div class="chip" style="box-shadow:var(--glow-soft)"></div>
+</div>
+<div class="col">
+  <span class="lab">hairline</span>
+  <hr class="rule lt-rule" style="margin:0" />
+  <span class="lab" style="margin-top:8px">hairline-accent</span>
+  <hr class="rule lt-rule lt-rule--accent" style="margin:0" />
+</div>
+</body></html>

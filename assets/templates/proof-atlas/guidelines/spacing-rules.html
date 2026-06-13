@@ -1,0 +1,47 @@
+<!-- @dsCard group="Spacing" viewport="700x170" name="Rules, Ticks & Radii" subtitle="Hairline rules, coordinate ticks, near-zero corners — no shadows" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../styles.css">
+<style>
+  html,body{margin:0;background:var(--paper-0);font-family:var(--font-mono);}
+  .wrap{padding:20px 24px;display:flex;gap:28px;align-items:flex-start;}
+  .col{flex:1;}
+  .cap{font-size:9.5px;letter-spacing:0.12em;text-transform:uppercase;color:var(--gray-2);margin-bottom:12px;}
+  .r{height:0;margin-bottom:6px;}
+  .label{font-size:9px;color:var(--gray-2);margin-bottom:14px;}
+  .ticks{position:relative;height:22px;border-bottom:1px solid var(--ink);margin-bottom:6px;}
+  .ticks span{position:absolute;bottom:0;width:1px;height:6px;background:var(--ink);}
+  .boxes{display:flex;gap:10px;align-items:flex-end;}
+  .box{width:42px;height:42px;background:var(--paper-pure);border:1px solid var(--ink);display:flex;align-items:flex-end;justify-content:center;padding-bottom:3px;font-size:8.5px;color:var(--gray-2);}
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="col">
+      <div class="cap">Hairline rules</div>
+      <div class="r" style="border-bottom:1px solid var(--rule-faint)"></div><div class="label">faint · gray-5</div>
+      <div class="r" style="border-bottom:1px solid var(--rule)"></div><div class="label">hair · gray-4 (default)</div>
+      <div class="r" style="border-bottom:2px solid var(--ink)"></div><div class="label">strong · ink 2px</div>
+    </div>
+    <div class="col">
+      <div class="cap">Coordinate ticks</div>
+      <div class="ticks" id="t"></div>
+      <div class="label">major node every 4 units</div>
+    </div>
+    <div class="col">
+      <div class="cap">Corner radii</div>
+      <div class="boxes">
+        <div class="box" style="border-radius:0">0</div>
+        <div class="box" style="border-radius:2px">2</div>
+        <div class="box" style="border-radius:3px">3</div>
+      </div>
+    </div>
+  </div>
+  <script>
+    var h='';for(var i=0;i<=10;i++){h+='<span style="left:'+(i*10)+'%;height:'+(i%4===0?12:6)+'px"></span>';}
+    document.getElementById('t').innerHTML=h;
+  </script>
+</body>
+</html>

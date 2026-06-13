@@ -1,0 +1,11 @@
+/* Investor Signal — Webfonts
+   All families are CDN-loadable Google Fonts with explicit Windows/macOS
+   fallbacks declared in typography.css. If the CDN fails, the stacks below
+   degrade to Segoe UI / Arial / Consolas / Georgia and the deck stays readable.
+
+   - Manrope  : display + UI sans (architectural grotesk)
+   - Archivo  : condensed display option for ultra-large claims
+   - Inter    : body / investor-readable text
+   - JetBrains Mono : metrics, dates, source labels, financial annotations
+*/
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Archivo:wght@600;700;800;900&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&family=Noto+Serif+SC:wght@400;600&display=swap');

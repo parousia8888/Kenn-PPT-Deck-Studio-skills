@@ -1,0 +1,185 @@
+<!-- @dsCard group="Slides" viewport="1280x720" name="Launch Theatre — 10 slide types" subtitle="Cover, problem, tension, reveal, trio, demo, before/after, architecture, benchmark, closing" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Launch Theatre — Full Launch Deck</title>
+<link rel="stylesheet" href="../../styles.css" />
+<link rel="stylesheet" href="../../motion/launch-theatre.css" />
+<link rel="stylesheet" href="../../slides/slides.css" />
+<style>
+  html, body { background: #000; }
+</style>
+<style>
+  deck-stage:not(:defined) { visibility: hidden; }
+  deck-stage > section { background: var(--bg-stage); }
+</style>
+</head>
+<body>
+<deck-stage width="1920" height="1080" no-rail>
+
+  <!-- 1 · LAUNCH COVER -->
+  <section data-screen-label="01" data-bg="strong">
+    <div class="frame cover">
+      <div class="field" data-lt-field></div>
+      <span class="k" data-anim="meta" style="--i:0">Launch <span class="idx">01 / 10</span></span>
+      <h1 class="d title" data-anim="cover-title">Aurora<b>.</b></h1>
+      <dl class="meta">
+        <div data-anim="meta" style="--i:1"><dt>Model</dt><dd>LT-9 Aurora</dd></div>
+        <div data-anim="meta" style="--i:2"><dt>Version</dt><dd class="on">v2.0</dd></div>
+        <div data-anim="meta" style="--i:3"><dt>Keynote</dt><dd>06 / 13 / 2026</dd></div>
+      </dl>
+    </div>
+  </section>
+
+  <!-- 2 · PROBLEM STATEMENT -->
+  <section data-screen-label="02" data-bg="dim">
+    <div class="frame problem">
+      <span class="k" data-anim="meta">Problem <span class="idx">02 / 10</span></span>
+      <h2 class="d title" data-anim="rise" style="--i:1">Every launch <em>says too much,</em> and the product disappears.</h2>
+      <p class="lead" data-anim="rise" style="--i:2">Decks pile feature on feature until the moment that matters is buried in the noise.</p>
+    </div>
+  </section>
+
+  <!-- 3 · TENSION / SHIFT -->
+  <section data-screen-label="03" data-bg="base">
+    <div class="frame tension">
+      <div class="field" data-lt-field></div>
+      <p class="d sentence" data-anim="tension">So we removed <b>everything</b> else.</p>
+      <span class="sub" data-anim="meta" style="--i:2">— The shift</span>
+    </div>
+  </section>
+
+  <!-- 4 · PRODUCT REVEAL -->
+  <section data-screen-label="04" data-bg="strong">
+    <div class="frame reveal">
+      <div class="field" data-lt-field></div>
+      <div class="copy">
+        <span class="k" data-anim="meta">Reveal <span class="idx">04 / 10</span></span>
+        <h2 class="d name" data-anim="rise" style="--i:1">LT-9<br/><b>Aurora</b></h2>
+        <p class="lead" data-anim="rise" style="--i:2">One model. On the device. Faster than the room can blink.</p>
+      </div>
+      <div class="product-object" data-anim="product">
+        <div class="bar"><span class="dot"></span>LT-9 Console · Ready</div>
+        <div class="screen">
+          <div class="big">40<span style="font-size:36px;color:var(--text-muted)">ms</span></div>
+          <div class="stat">First token · on-device</div>
+        </div>
+        <span class="lt-sweep"></span>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5 · FEATURE TRIO -->
+  <section data-screen-label="05" data-bg="base">
+    <div class="frame">
+      <div class="trio-head">
+        <span class="k" data-anim="meta">Capabilities <span class="idx">05 / 10</span></span>
+        <h2 class="d title" data-anim="rise" style="--i:1">Three things, done completely.</h2>
+      </div>
+      <div class="trio">
+        <div class="cell" data-anim="feature" style="--i:0"><span class="line lt-feature__line" style="--i:0"></span><span class="ci">01</span><h3>On-device</h3><p>Runs fully local. No round-trip, no server, no wait.</p></div>
+        <div class="cell" data-anim="feature" style="--i:1"><span class="line lt-feature__line" style="--i:1"></span><span class="ci">02</span><h3>Instant</h3><p>First token in under forty milliseconds, every time.</p></div>
+        <div class="cell" data-anim="feature" style="--i:2"><span class="line lt-feature__line" style="--i:2"></span><span class="ci">03</span><h3>Private</h3><p>Nothing you say ever leaves the device you hold.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6 · DEMO FLOW -->
+  <section data-screen-label="06" data-bg="dim">
+    <div class="frame">
+      <div class="flow-head">
+        <span class="k" data-anim="meta">Live Demo <span class="idx">06 / 10</span></span>
+        <h2 class="d title" data-anim="rise" style="--i:1">Watch it think.</h2>
+      </div>
+      <div class="flow">
+        <div class="step" data-anim="step" style="--i:0"><span class="sn">CUE 01</span><h4>Prompt</h4><p>You ask, in plain language.</p></div>
+        <div class="step" data-anim="step" style="--i:1"><span class="sn">CUE 02</span><h4>Plan</h4><p>Aurora drafts an approach on-device.</p></div>
+        <div class="step" data-anim="step" style="--i:2"><span class="sn">CUE 03</span><h4>Act</h4><p>It executes, streaming as it goes.</p></div>
+        <div class="step" data-anim="step" style="--i:3"><span class="sn">CUE 04</span><h4>Done</h4><p>Result in hand. Nothing left the device.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7 · BEFORE / AFTER -->
+  <section data-screen-label="07" data-bg="base">
+    <div class="frame">
+      <div class="ba-head">
+        <span class="k" data-anim="meta">The Difference <span class="idx">07 / 10</span></span>
+        <h2 class="d title" data-anim="rise" style="--i:1">Before, and after.</h2>
+      </div>
+      <div class="ba">
+        <div class="col before" data-anim="before">
+          <span class="tag">Before · cloud</span>
+          <div class="big">1,200<span style="font-size:36px;color:var(--text-faint)">ms</span></div>
+          <p class="note">A request, a network, a queue, a wait.</p>
+        </div>
+        <div class="divider" data-anim="divider"></div>
+        <div class="col after" data-anim="after">
+          <span class="tag">After · Aurora</span>
+          <div class="big">40<span style="font-size:36px;color:var(--text-muted)">ms</span></div>
+          <p class="note">On the device, the moment you ask.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 8 · ARCHITECTURE -->
+  <section data-screen-label="08" data-bg="dim">
+    <div class="frame">
+      <div class="arch-head">
+        <span class="k" data-anim="meta">System <span class="idx">08 / 10</span></span>
+        <h2 class="d title" data-anim="rise" style="--i:1">How it holds together.</h2>
+      </div>
+      <div class="layers">
+        <div class="layer" data-anim="layer" style="--i:0"><span class="ln">L4</span><span class="lt">Interface</span><span class="ld">native · 120fps</span></div>
+        <div class="layer" data-anim="layer" style="--i:1"><span class="ln">L3</span><span class="lt">Orchestrator</span><span class="ld">plan · route · act</span></div>
+        <div class="layer accent" data-anim="layer" style="--i:2"><span class="ln">L2</span><span class="lt">Aurora core</span><span class="ld">on-device · 9B</span></div>
+        <div class="layer" data-anim="layer" style="--i:3"><span class="ln">L1</span><span class="lt">Silicon</span><span class="ld">neural engine</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 9 · PROOF / BENCHMARK -->
+  <section data-screen-label="09" data-bg="base">
+    <div class="frame">
+      <div class="bench-head">
+        <span class="k" data-anim="meta">Proof <span class="idx">09 / 10</span></span>
+        <h2 class="d title" data-anim="rise" style="--i:1">Measured, not claimed.</h2>
+      </div>
+      <div class="bench">
+        <div class="metric">
+          <div class="v"><span data-anim="num" data-count-to="2.4" data-count-decimals="1">0</span><span class="u">×</span></div>
+          <div class="track"><i data-anim="bar" style="--i:0"></i></div>
+          <span class="l">Faster inference</span>
+        </div>
+        <div class="metric">
+          <div class="v"><span data-anim="num" data-count-to="98.7" data-count-decimals="1">0</span><span class="u">%</span></div>
+          <div class="track"><i data-anim="bar" style="--i:1"></i></div>
+          <span class="l">Task accuracy</span>
+        </div>
+        <div class="metric">
+          <div class="v"><span data-anim="num" data-count-to="0" data-count-prefix="" data-count-suffix="">0</span><span class="u">leaks</span></div>
+          <div class="track"><i data-anim="bar" style="--i:2"></i></div>
+          <span class="l">Data off device</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 10 · CLOSING -->
+  <section data-screen-label="10" data-bg="strong">
+    <div class="frame closing">
+      <div class="field" data-lt-field></div>
+      <h2 class="d phrase" data-anim="closing">The product<br/>is the <b>light</b>.</h2>
+      <span class="sub" data-anim="meta" style="--i:1">LT-9 Aurora · Available today</span>
+      <div class="breathe-rule lt-breathe"></div>
+    </div>
+  </section>
+</deck-stage>
+
+<script src="../../motion/launch-theatre.js"></script>
+<script src="../../slides/deck-stage.js"></script>
+</body>
+</html>

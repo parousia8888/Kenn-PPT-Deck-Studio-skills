@@ -1,0 +1,71 @@
+/* ----------------------------------------------------------------------------
+   Academy Prospectus — Colour system
+   Warm, institutional, quietly premium. Colour is used as SECTION IDENTITY,
+   never as decoration. Base is parchment; text is charcoal; four muted
+   accents (terracotta, forest, navy, gold) each own a chapter of the deck.
+---------------------------------------------------------------------------- */
+
+:root {
+  /* — Base / surfaces (warm white → parchment) — */
+  --paper:        #FAF6EF;   /* primary background, warm white */
+  --porcelain:    #F3ECE0;   /* secondary surface */
+  --parchment:    #EBE1CF;   /* calm colour field, panels */
+  --paper-deep:   #E3D8C3;   /* deepest paper, dividers fill */
+  --paper-ink:    #211E1A;   /* dark surface for cover / contrast slides */
+
+  /* — Ink / text (charcoal → soft black) — */
+  --ink:          #221F1A;   /* soft black, display text */
+  --charcoal:     #3B362E;   /* primary body text */
+  --ink-muted:    #6C6457;   /* secondary text, captions */
+  --ink-faint:    #978D7D;   /* metadata, disabled, fine print */
+  --ink-on-dark:  #F1E9DA;   /* text on dark / accent surfaces */
+
+  /* — Accent palette (muted, section identities) — */
+  --terracotta:        #B05C3B;
+  --terracotta-deep:   #8E462C;
+  --terracotta-field:  #F1E4DA;   /* calm tinted background */
+
+  --forest:        #3C5A45;
+  --forest-deep:   #2C4634;
+  --forest-field:  #E2E9E1;
+
+  --navy:          #324A63;
+  --navy-deep:     #25394E;
+  --navy-field:    #DFE5EA;
+
+  --gold:          #A98545;
+  --gold-deep:     #876A35;
+  --gold-field:    #F1E8D4;
+
+  /* — Lines, borders, dividers — */
+  --line:         #DCD2C1;   /* hairline rules, card borders */
+  --line-strong:  #C7BAA3;   /* stronger structural rule */
+  --line-faint:   #E8DFD0;
+
+  /* — Shadows (soft, paper-lifted, never harsh) — */
+  --shadow-card:   0 1px 2px rgba(40, 33, 22, 0.05), 0 8px 24px rgba(40, 33, 22, 0.06);
+  --shadow-lift:   0 2px 6px rgba(40, 33, 22, 0.07), 0 18px 44px rgba(40, 33, 22, 0.10);
+  --shadow-image:  0 12px 40px rgba(40, 33, 22, 0.16);
+
+  /* — Semantic aliases — */
+  --bg-base:        var(--paper);
+  --surface-card:   var(--paper);
+  --surface-panel:  var(--porcelain);
+  --surface-field:  var(--parchment);
+  --text-display:   var(--ink);
+  --text-body:      var(--charcoal);
+  --text-muted:     var(--ink-muted);
+  --text-meta:      var(--ink-faint);
+  --border-hair:    var(--line);
+  --accent:         var(--terracotta);   /* default brand accent */
+}
+
+/* — Section identity scopes —
+   Apply one of these to a slide/section root to recolour its accent,
+   metadata, rules and tinted field in a single move. Colour = chapter. */
+[data-accent="terracotta"] { --accent: var(--terracotta); --accent-deep: var(--terracotta-deep); --accent-field: var(--terracotta-field); }
+[data-accent="forest"]     { --accent: var(--forest);     --accent-deep: var(--forest-deep);     --accent-field: var(--forest-field); }
+[data-accent="navy"]       { --accent: var(--navy);       --accent-deep: var(--navy-deep);       --accent-field: var(--navy-field); }
+[data-accent="gold"]       { --accent: var(--gold);       --accent-deep: var(--gold-deep);       --accent-field: var(--gold-field); }
+
+:root { --accent-deep: var(--terracotta-deep); --accent-field: var(--terracotta-field); }

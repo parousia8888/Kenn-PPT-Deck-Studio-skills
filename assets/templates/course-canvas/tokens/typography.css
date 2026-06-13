@@ -1,0 +1,64 @@
+/* ============================================================
+   Course Canvas — Typography
+   Three voices:
+   1. Display serif (Newsreader)  — chapter & slide titles
+   2. Teaching sans (Inter)       — body, lists, captions
+   3. Quiet mono (JetBrains Mono) — lesson numbers, time, formulas,
+                                    definitions, metadata, labels
+   Windows-safe fallback stacks; Chinese never depends on macOS
+   system fonts.
+   ============================================================ */
+
+:root {
+  /* ---------- Font families ---------- */
+  /* Display serif + Chinese serif (editorial pages) */
+  --font-display: "Newsreader", "Noto Serif SC", "Source Han Serif SC",
+                  "SimSun", Georgia, "Times New Roman", serif;
+  --font-serif:   "Newsreader", "Noto Serif SC", "Source Han Serif SC",
+                  "SimSun", Georgia, serif;
+
+  /* Teaching sans + Chinese sans (body, UI) */
+  --font-sans:    "Inter", "Segoe UI", "Microsoft YaHei UI",
+                  "Microsoft YaHei", "Noto Sans SC", Arial, sans-serif;
+
+  /* Quiet mono layer */
+  --font-mono:    "JetBrains Mono", "Cascadia Code", "Consolas",
+                  "Courier New", monospace;
+
+  /* ---------- Type scale (fixed for 16:9 decks, px) ---------- */
+  /* Built on a 1.25 major-third-ish ramp, tuned for projection. */
+  --fs-display:   88px;  /* course cover title          */
+  --fs-h1:        60px;  /* chapter / slide title       */
+  --fs-h2:        42px;  /* section heading             */
+  --fs-h3:        30px;  /* sub-heading                 */
+  --fs-lead:      26px;  /* lead paragraph / definition */
+  --fs-body:      22px;  /* teaching body (deck min)    */
+  --fs-small:     18px;  /* captions, list sub-text     */
+  --fs-meta:      15px;  /* mono metadata, tabs         */
+  --fs-micro:     13px;  /* fine print, source notes    */
+
+  /* ---------- Document scale (handouts / prose, px) ---------- */
+  --fs-doc-h1:    34px;
+  --fs-doc-h2:    24px;
+  --fs-doc-body:  17px;
+  --fs-doc-small: 14px;
+
+  /* ---------- Weights ---------- */
+  --fw-regular:   400; /* @kind font */
+  --fw-medium:    500; /* @kind font */
+  --fw-semibold:  600; /* @kind font */
+  --fw-bold:      700; /* @kind font */
+
+  /* ---------- Line heights ---------- */
+  --lh-tight:     1.05;  /* @kind other */
+  --lh-snug:      1.2;   /* @kind other */
+  --lh-body:      1.5;   /* @kind other */
+  --lh-relaxed:   1.62;  /* @kind other */
+
+  /* ---------- Letter spacing ---------- */
+  --ls-display:  -0.02em;  /* @kind other */
+  --ls-tight:    -0.01em;  /* @kind other */
+  --ls-normal:    0em;     /* @kind other */
+  --ls-label:     0.08em;  /* @kind other */
+  --ls-tab:       0.16em;  /* @kind other */
+}

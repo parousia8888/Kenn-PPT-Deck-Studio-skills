@@ -1,0 +1,55 @@
+<!-- @dsCard group="Slides" viewport="1280x720" name="10 · Homework / Next" subtitle="Assignment card with due dates beside next-lesson preview" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Homework</title>
+<link rel="stylesheet" href="../styles.css">
+<link rel="stylesheet" href="./deck.css">
+<style>
+  html,body{margin:0;height:100%;}
+  body{background:#2A2723;display:grid;place-items:center;}
+  .task{ display:grid; grid-template-columns:auto 1fr auto; gap:14px; align-items:baseline; padding:13px 0; border-bottom:1px solid var(--rule); }
+  .task__n{ font-family:var(--font-mono); font-weight:700; color:var(--oxblood); }
+  .task__due{ font-family:var(--font-mono); font-size:var(--fs-micro); letter-spacing:.06em; color:var(--text-meta); text-transform:uppercase; white-space:nowrap; }
+  .next{ background:var(--board); color:var(--chalk); border-radius:var(--radius-md); padding:32px; height:100%; box-sizing:border-box; display:flex; flex-direction:column; box-shadow:var(--shadow-board); }
+</style>
+</head>
+<body>
+<section class="cc-slide cc-reveal-on" data-bg="divider" data-screen-label="Homework">
+  <div class="cc-cols-2" style="grid-template-columns:1fr 0.74fr;gap:48px;height:100%;align-items:stretch;">
+
+    <div class="cc-main" style="display:flex;flex-direction:column;">
+      <span class="cc-eyebrow">HOMEWORK</span>
+      <h1 class="cc-title" style="margin-top:10px;">Practise before<br>we meet again</h1>
+      <hr class="cc-rule cc-rule--ink" style="margin:16px 0 6px;max-width:480px;">
+
+      <div style="margin-top:8px;">
+        <div class="task"><span class="task__n">01</span><div><b>Reading.</b> Chapter 6, §6.1–6.3 — the empirical rule.</div><span class="task__due">DUE WED</span></div>
+        <div class="task"><span class="task__n">02</span><div><b>Problem set 4.</b> Q1–Q8: z-scores &amp; percentages.</div><span class="task__due">DUE WED</span></div>
+        <div class="task"><span class="task__n">03</span><div><b>Bring data.</b> One measurement you think is normal.</div><span class="task__due">DUE FRI</span></div>
+      </div>
+
+      <div class="cc-callout cc-callout--straw cc-push" style="max-width:560px;">
+        <div class="cc-callout__label">Office hours</div>
+        Thursday 15:00–16:30, Room 118 — bring Q5 and Q7 if you get stuck.
+      </div>
+    </div>
+
+    <div class="next">
+      <span class="cc-eyebrow" style="color:var(--chalk-straw);">NEXT LESSON</span>
+      <div style="font-family:var(--font-display);font-weight:600;font-size:92px;line-height:.9;margin-top:auto;color:var(--chalk);">05</div>
+      <div style="font-family:var(--font-display);font-size:var(--fs-h2);line-height:1.1;margin-top:14px;">Sampling &amp;<br>the mean</div>
+      <p style="font-size:var(--fs-small);color:var(--chalk-sage);margin:14px 0 0;line-height:1.45;">Why averages of samples behave more normally than the things they're made of.</p>
+      <div style="font-family:var(--font-mono);font-size:var(--fs-micro);letter-spacing:.14em;color:var(--chalk-sage);margin-top:20px;">MON · 09:00 · STUDIO B</div>
+    </div>
+  </div>
+
+  <div class="cc-footer">
+    <span class="cc-footer__brand"><span class="cc-footer__dot"></span>COURSE CANVAS</span>
+    <span>STAT 1 · LESSON 04 · HOMEWORK</span>
+  </div>
+</section>
+<script src="./cc-bg.js"></script>
+</body>
+</html>

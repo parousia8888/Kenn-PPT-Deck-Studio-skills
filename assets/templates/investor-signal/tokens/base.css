@@ -1,0 +1,116 @@
+/* Investor Signal — Base reset, surface helpers, and the semantic
+   slide-enter animation system. All animation has a static fallback:
+   the visible end-state is the BASE style; we animate FROM hidden only
+   when JS marks an ancestor [data-anim-on] and motion is allowed. */
+
+*, *::before, *::after { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+body {
+  font-family: var(--font-body);
+  color: var(--text-primary);
+  background: var(--surface-base);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* ---------------- Surfaces ---------------- */
+.is-stage    { background: var(--surface-base); color: var(--text-primary); }
+.is-evidence { background: var(--paper-050); color: var(--ink-900); }
+
+/* ---------------- Type helpers ---------------- */
+.is-eyebrow {
+  font-family: var(--font-mono);
+  font-size: var(--fs-mono);
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+  color: var(--accent);
+  font-weight: var(--fw-medium);
+}
+.is-source {
+  font-family: var(--font-mono);
+  font-size: var(--fs-micro);
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+.is-thesis {
+  font-family: var(--font-display);
+  font-weight: var(--fw-black);
+  font-size: var(--fs-d1);
+  line-height: var(--lh-tight);
+  letter-spacing: var(--tracking-display);
+  text-wrap: balance;
+}
+.is-metric {
+  font-family: var(--font-display);
+  font-weight: var(--fw-black);
+  letter-spacing: var(--tracking-mega);
+  font-variant-numeric: tabular-nums;
+  line-height: 1;
+}
+.mono { font-family: var(--font-mono); font-variant-numeric: tabular-nums; }
+.accent { color: var(--accent); }
+
+/* ================================================================
+   SEMANTIC SLIDE-ENTER ANIMATION SYSTEM
+   Markup declares a recipe with [data-anim="<recipe>"].
+   Hidden pre-state applies ONLY while the slide is inactive AND
+   motion is allowed. data-anim-on (set by motion.js when the slide
+   is active) plays it. Static fallback = full end-state visible.
+   ================================================================ */
+@media (prefers-reduced-motion: no-preference) {
+  body:not(.low-power) [data-deck-active="false"] [data-anim] { will-change: transform, opacity, clip-path; }
+
+  /* default hidden states — applied only when slide inactive */
+  body:not(.low-power) [data-deck-active="false"] [data-anim="rise"]      { opacity: 0; transform: translateY(28px); }
+  body:not(.low-power) [data-deck-active="false"] [data-anim="mask-up"]   { clip-path: inset(0 0 100% 0); }
+  body:not(.low-power) [data-deck-active="false"] [data-anim="mask-left"] { clip-path: inset(0 100% 0 0); }
+  body:not(.low-power) [data-deck-active="false"] [data-anim="push"]      { opacity: 0; transform: scale(1.06); }
+  body:not(.low-power) [data-deck-active="false"] [data-anim="screen"]    { opacity: 0; transform: translateY(40px) scale(0.985); clip-path: inset(0 0 8% 0); }
+  body:not(.low-power) [data-deck-active="false"] [data-anim="underline"]::after { transform: scaleX(0); }
+  body:not(.low-power) [data-deck-active="false"] [data-anim="cell"]      { opacity: 0; transform: translateY(16px); }
+  body:not(.low-power) [data-deck-active="false"] [data-anim="node"]      { opacity: 0; transform: scale(0.82); }
+  body:not(.low-power) [data-deck-active="false"] [data-anim="draw"]      { stroke-dashoffset: var(--draw-len, 1200); }
+  body:not(.low-power) [data-deck-active="false"] [data-anim="grow"]      { transform: scaleY(0.04); transform-origin: bottom; }
+
+  /* active transitions */
+  body:not(.low-power) [data-deck-active="true"] [data-anim] {
+    transition: opacity var(--dur-base) var(--ease-stage),
+                transform var(--dur-slow) var(--ease-stage),
+                clip-path var(--dur-reveal) var(--ease-mask),
+                stroke-dashoffset var(--dur-reveal) var(--ease-draw);
+    transition-delay: var(--anim-delay, 0ms);
+  }
+  body:not(.low-power) [data-deck-active="true"] [data-anim="screen"] {
+    transition: opacity var(--dur-slow) var(--ease-stage),
+                transform var(--dur-reveal) var(--ease-stage),
+                clip-path var(--dur-reveal) var(--ease-mask);
+    transition-delay: var(--anim-delay, 0ms);
+  }
+  body:not(.low-power) [data-deck-active="true"] [data-anim="grow"] {
+    transition: transform var(--dur-slow) var(--ease-stage);
+    transition-delay: var(--anim-delay, 0ms);
+  }
+}
+
+/* underline draw: a pseudo bar that wipes in from the left */
+[data-anim="underline"] { position: relative; }
+[data-anim="underline"]::after {
+  content: ""; position: absolute; left: 0; bottom: -0.12em; height: 0.09em;
+  width: 100%; background: var(--accent); transform-origin: left center;
+  transition: transform var(--dur-slow) var(--ease-out); transition-delay: var(--anim-delay, 0ms);
+}
+
+/* ---------------- Low-power / static mode ---------------- */
+.low-power [data-anim] { transition: none !important; animation: none !important;
+  opacity: 1 !important; transform: none !important; clip-path: none !important; stroke-dashoffset: 0 !important; }
+.low-power .is-bg-canvas { display: none !important; }
+.lp-hint {
+  position: fixed; left: 16px; bottom: 14px; z-index: var(--z-overlay);
+  font-family: var(--font-mono); font-size: 11px; letter-spacing: var(--tracking-label);
+  text-transform: uppercase; color: var(--text-muted);
+  border: 1px solid var(--hairline); padding: 5px 9px; border-radius: var(--radius-1);
+  background: color-mix(in srgb, var(--surface-base) 70%, transparent);
+  display: none;
+}
+.low-power .lp-hint { display: block; }

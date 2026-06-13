@@ -1,0 +1,79 @@
+/* Investor Signal — Color System
+   Two surfaces, one accent.
+   - Stage  : near-black obsidian keynote (default)
+   - Evidence: off-white memo / data pages
+   Accent marks traction, insight, urgency — never decoration.
+   Default accent is Electric Vermilion. Swap via [data-accent].
+*/
+:root {
+  /* ---- Obsidian / ink scale (raw) ---- */
+  --obsidian-900: #08090B;   /* deepest stage black */
+  --obsidian-850: #0B0D10;
+  --obsidian-800: #101317;   /* raised stage panel */
+  --obsidian-700: #181C22;   /* stage card */
+  --obsidian-600: #232931;   /* hairline on dark */
+  --ink-900:      #0A0C0F;   /* evidence ink (near-black) */
+  --ink-700:      #2A2F37;
+
+  /* ---- Cool gray scale ---- */
+  --gray-500: #6B7480;       /* muted on dark */
+  --gray-400: #8A929C;
+  --gray-300: #A8AFB8;       /* secondary on dark */
+  --gray-200: #C9CDD3;
+  --gray-150: #DBDEE2;       /* hairline on light */
+  --gray-100: #E7E9EC;
+  --gray-050: #F0F1EE;
+
+  /* ---- Paper / white scale ---- */
+  --paper-000: #FFFFFF;
+  --paper-050: #F6F6F2;      /* primary evidence page (warm off-white) */
+  --paper-100: #EFEFEA;      /* sunk evidence panel */
+  --white:     #F5F6F8;      /* white text on stage */
+
+  /* ---- Accents (single accent per deck) ---- */
+  --vermilion: #FB3B1E;
+  --vermilion-deep: #D62B12;
+  --cobalt:    #2D5BE3;
+  --cobalt-deep: #1E40C4;
+  --chartreuse: #C2F23C;
+  --chartreuse-deep: #A8D81F;
+
+  /* Active accent — overridable per [data-accent] */
+  --accent:      var(--vermilion);
+  --accent-deep: var(--vermilion-deep);
+  /* Ink that reads on top of the accent fill */
+  --accent-ink:  #FFFFFF;
+
+  /* ---------- Semantic aliases: STAGE (dark, default) ---------- */
+  --surface-base:   var(--obsidian-900);
+  --surface-raised: var(--obsidian-800);
+  --surface-card:   var(--obsidian-700);
+  --hairline:       var(--obsidian-600);
+  --text-primary:   var(--white);
+  --text-secondary: var(--gray-300);
+  --text-muted:     var(--gray-500);
+  --text-on-accent: var(--accent-ink);
+}
+
+/* ---------- Accent themes ---------- */
+[data-accent="cobalt"] {
+  --accent: var(--cobalt);
+  --accent-deep: var(--cobalt-deep);
+  --accent-ink: #FFFFFF;
+}
+[data-accent="chartreuse"] {
+  --accent: var(--chartreuse);
+  --accent-deep: var(--chartreuse-deep);
+  --accent-ink: #0A0C0F;   /* dark ink reads on bright chartreuse */
+}
+
+/* ---------- Evidence (light) surface scope ---------- */
+[data-mode="evidence"] {
+  --surface-base:   var(--paper-050);
+  --surface-raised: var(--paper-000);
+  --surface-card:   var(--paper-000);
+  --hairline:       var(--gray-150);
+  --text-primary:   var(--ink-900);
+  --text-secondary: var(--ink-700);
+  --text-muted:     var(--gray-500);
+}

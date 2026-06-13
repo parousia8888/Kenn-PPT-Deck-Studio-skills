@@ -1,0 +1,66 @@
+/* Launch Theatre — Color system
+ * A black stage with controlled light. Deep blacks, graphite structure,
+ * soft (never pure) white type, and a single luminous accent reserved for
+ * reveals, progress, and key product moments. No decorative gradients.
+ */
+:root {
+  /* ---- Stage blacks : the void the product emerges from ---- */
+  --stage-0:    #000000; /* true black — full-bleed stage, letterbox */
+  --stage-1:    #060709; /* near-black — default deck background      */
+  --stage-2:    #0B0D10; /* lifted stage — section acts              */
+  --stage-3:    #101317; /* panel base                               */
+
+  /* ---- Graphite : structure, surfaces, hairlines ---- */
+  --graphite-1: #15191E; /* raised surface                           */
+  --graphite-2: #1E242B; /* product UI panel                         */
+  --graphite-3: #2A323A; /* strong surface / chip                    */
+  --graphite-4: #3A434C; /* hairline-strong, dividers                */
+
+  /* ---- Light : type and luminance ---- */
+  --smoke:      #555E68; /* faint — disabled, deep metadata          */
+  --ash:        #7E8893; /* muted — secondary readouts               */
+  --silver:     #AEB7C0; /* secondary text                           */
+  --soft-white: #E9ECEF; /* primary text (the working white)         */
+  --pure-white: #FFFFFF; /* reserved — single peak emphasis only     */
+
+  /* ---- Signal : the one luminous accent (glacial cyan) ---- */
+  --signal:        #3BE0E6; /* the accent — reveals, progress, focus  */
+  --signal-bright: #8AF4F7; /* peak luminance — light sweep, spark    */
+  --signal-dim:    #1C9CA2; /* receded accent — inactive states       */
+  --signal-deep:   #0B4F53; /* accent shadow / track fill             */
+  --signal-rgb:    59, 224, 230; /* @kind color */
+
+  /* ---- Alternate stage accents (swap --accent to retheme) ----
+   * Documented so a launch can take its own light. Pick exactly one.   */
+  --alt-orange: #FF6A3D; /* signal orange — hardware / energy         */
+  --alt-green:  #6CF07A; /* laser green — performance / live          */
+  --alt-blue:   #5AA0FF; /* titanium blue — enterprise / trust        */
+
+  /* ---- Semantic aliases (consume these, not the raw values) ---- */
+  --bg-stage:        var(--stage-1);
+  --bg-stage-pure:   var(--stage-0);
+  --bg-act:          var(--stage-2);
+  --bg-panel:        var(--graphite-2);
+  --surface:         var(--graphite-1);
+  --surface-raised:  var(--graphite-2);
+  --surface-chip:    var(--graphite-3);
+
+  --text-primary:    var(--soft-white);
+  --text-secondary:  var(--silver);
+  --text-muted:      var(--ash);
+  --text-faint:      var(--smoke);
+  --text-peak:       var(--pure-white);
+
+  --accent:          var(--signal);
+  --accent-bright:   var(--signal-bright);
+  --accent-dim:      var(--signal-dim);
+  --accent-track:    var(--signal-deep);
+  --accent-rgb:      var(--signal-rgb);
+
+  --hairline:        rgba(255, 255, 255, 0.08);
+  --hairline-strong: rgba(255, 255, 255, 0.16);
+  --hairline-accent: rgba(var(--accent-rgb), 0.55);
+
+  --scrim:           rgba(0, 0, 0, 0.62); /* protection over imagery   */
+  --scrim-soft:      rgba(0, 0, 0, 0.32);
+}

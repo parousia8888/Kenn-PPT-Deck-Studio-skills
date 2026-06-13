@@ -1,0 +1,33 @@
+<!-- @dsCard group="Colors" viewport="700x150" name="Accent — International Blue" subtitle="The single technical color; everything else is grayscale" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../styles.css">
+<style>
+  html,body{margin:0;background:var(--paper-0);font-family:var(--font-mono);}
+  .wrap{padding:18px 20px;display:flex;gap:16px;align-items:stretch;}
+  .big{flex:1.4;background:var(--blue);border:1px solid var(--blue-deep);display:flex;flex-direction:column;justify-content:space-between;padding:12px;}
+  .big .k{font-size:10px;letter-spacing:0.14em;text-transform:uppercase;color:rgba(255,255,255,0.7);}
+  .big .v{font-family:var(--font-display);font-weight:300;font-size:30px;color:#fff;letter-spacing:-0.01em;}
+  .stack{flex:1;display:flex;flex-direction:column;gap:8px;}
+  .chip{flex:1;border:1px solid var(--rule);display:flex;align-items:center;justify-content:space-between;padding:0 12px;}
+  .chip .n{font-size:10px;letter-spacing:0.1em;text-transform:uppercase;}
+  .chip .h{font-size:9.5px;color:var(--gray-2);}
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="big">
+      <span class="k">Accent / Primary</span>
+      <span class="v">International<br>Blue</span>
+      <span class="k">#1A36C4</span>
+    </div>
+    <div class="stack">
+      <div class="chip" style="background:var(--blue-deep)"><span class="n" style="color:#fff">Deep · pressed</span><span class="h" style="color:rgba(255,255,255,0.6)">#11268C</span></div>
+      <div class="chip" style="background:var(--blue-tint)"><span class="n">Tint · faint fill</span><span class="h">#DFE2F4</span></div>
+      <div class="chip" style="background:var(--paper-pure)"><span class="n" style="color:var(--blue)">On paper</span><span class="h">accent text</span></div>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,66 @@
+<!-- @dsCard group="Slides" viewport="1280x720" name="08 · Methodology" subtitle="Process boxes reveal in order; arrows draw between them" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Proof Atlas — Methodology</title>
+<link rel="stylesheet" href="../styles.css">
+<link rel="stylesheet" href="../assets/atlas-anim.css">
+<link rel="stylesheet" href="slide-base.css">
+<script src="../assets/atlas-motion.js"></script>
+</head>
+<body>
+<div class="slide atlas-stage" data-stage data-autoplay data-atlas-bg="quiet">
+  <div class="slide-inner">
+    <div class="slide-head">
+      <div class="brand"><span class="xh"><i></i></span><span class="nm">Proof Atlas</span></div>
+      <div class="head-meta">
+        <span class="tag accent">Methodology</span>
+        <span class="coord">PROTOCOL PA-M-04</span>
+      </div>
+    </div>
+
+    <div class="slide-body">
+      <h1 data-anim="mask" data-seq="0" class="title" style="font-size:34px;margin-bottom:6px;">How the evidence was gathered</h1>
+      <p data-anim="mask" data-seq="1" class="lead" style="font-size:16px;margin-bottom:40px;">A four-stage protocol from intake to independent verification.</p>
+
+      <div class="flow">
+        <div data-anim="cell" data-seq="2" class="fbox"><span class="fnum">01</span><div class="ft">Intake</div><div class="fd">3,402 cases logged with source IDs and timestamps.</div></div>
+        <div data-anim="draw-x" data-seq="3" class="arrow" style="width:42px;"></div>
+        <div data-anim="cell" data-seq="4" class="fbox"><span class="fnum">02</span><div class="ft">Measure</div><div class="fd">Outcomes scored against the pre-registered baseline.</div></div>
+        <div data-anim="draw-x" data-seq="5" class="arrow" style="width:42px;"></div>
+        <div data-anim="cell" data-seq="6" class="fbox"><span class="fnum">03</span><div class="ft">Corroborate</div><div class="fd">Each finding cross-checked against ≥2 sources.</div></div>
+        <div data-anim="draw-x" data-seq="7" class="arrow" style="width:42px;"></div>
+        <div data-anim="cell" data-seq="8" class="fbox"><span class="fnum">04</span><div class="ft">Audit</div><div class="fd">Independent panel reviews a sample of n=412.</div></div>
+      </div>
+
+      <div data-anim="cell" data-seq="9" class="mnotes">
+        <div class="mn"><span class="mk">Sampling</span>Stratified by region; proportional to caseload.</div>
+        <div class="mn"><span class="mk">Confidence</span>95% CI; effects reported with bounds.</div>
+        <div class="mn"><span class="mk">Exclusions</span>Cases pending review held out of headline figures.</div>
+      </div>
+
+      <div data-anim="source" style="margin-top:auto;padding-top:14px;">
+        <span class="source">Source · protocol PA-M-04, pre-registered · audit panel SRC-3310</span>
+      </div>
+    </div>
+
+    <div class="slide-foot">
+      <span>Field Program Review · 2026</span>
+      <span class="seq">Methodology · 08 / 10</span>
+    </div>
+  </div>
+</div>
+<style>
+  .flow { display: flex; align-items: stretch; margin-bottom: 32px; }
+  .fbox { flex: 1; background: var(--paper-pure); border: 1px solid var(--rule); padding: 16px 18px; display: flex; flex-direction: column; }
+  .fbox .fnum { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.1em; color: var(--blue); margin-bottom: 12px; }
+  .fbox .ft { font-family: var(--font-display); font-weight: 500; font-size: 22px; color: var(--ink); margin-bottom: 8px; letter-spacing: -0.01em; }
+  .fbox .fd { font-family: var(--font-body); font-size: 12.5px; line-height: 1.45; color: var(--gray-1); }
+  .mnotes { display: grid; grid-template-columns: repeat(3,1fr); gap: 0; border-top: 2px solid var(--ink); }
+  .mnotes .mn { padding: 16px 20px 0 0; font-family: var(--font-body); font-size: 13px; color: var(--gray-1); line-height: 1.45; border-right: 1px solid var(--rule); }
+  .mnotes .mn:last-child { border-right: none; padding-right: 0; }
+  .mnotes .mk { display: block; font-family: var(--font-mono); font-size: 9.5px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink); margin-bottom: 6px; }
+</style>
+</body>
+</html>

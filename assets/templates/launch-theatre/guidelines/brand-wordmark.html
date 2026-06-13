@@ -1,0 +1,24 @@
+<!-- @dsCard group="Brand" viewport="700x230" name="Wordmark" subtitle="Thin display lockup with the accent tick" -->
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8" /><link rel="stylesheet" href="../styles.css" />
+<style>
+  body { margin: 0; background: var(--stage-0); padding: 40px; display: flex; flex-direction: column; gap: 30px; }
+  .mark { display: flex; align-items: center; gap: 18px; }
+  .tick { width: 30px; height: 2px; background: var(--accent); box-shadow: var(--glow-soft); }
+  .word { font-family: var(--font-display); font-weight: 200; font-size: 40px; letter-spacing: -0.02em; color: var(--text-primary); }
+  .word b { font-weight: 500; }
+  .stack { display: flex; flex-direction: column; line-height: 1; }
+  .sm { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.42em; text-transform: uppercase; color: var(--text-muted); }
+</style></head><body>
+<div class="mark">
+  <span class="tick"></span>
+  <span class="word">Launch <b>Theatre</b></span>
+</div>
+<div class="mark">
+  <span class="tick"></span>
+  <div class="stack">
+    <span class="word" style="font-size:26px">Launch Theatre</span>
+    <span class="sm" style="margin-top:8px">PRODUCT LAUNCH SYSTEM</span>
+  </div>
+</div>
+</body></html>

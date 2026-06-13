@@ -1,0 +1,79 @@
+/* ============================================================
+   Course Canvas — Color System
+   A warm paper studio palette. Ink + graphite text on bone paper,
+   with a disciplined accent trio: oxblood (academic red),
+   chalk sage (green), and pale straw (highlight only).
+   No bright rainbow. No SaaS gradients.
+   ============================================================ */
+
+:root {
+  /* --- Paper / surfaces (warm ivory & bone) --- */
+  --paper-base:    #F3EDE1;  /* the canvas: warm bone paper            */
+  --paper-raised:  #FBF7EE;  /* cards, callouts: lighter warm sheet    */
+  --paper-sunken:  #E9E1D1;  /* wells, insets, table zebra             */
+  --paper-edge:    #EFE7D8;  /* margin / gutter band                   */
+
+  /* --- Ink & graphite text --- */
+  --ink:           #211D18;  /* warm near-black, primary text          */
+  --ink-soft:      #36302A;  /* headings on paper                      */
+  --graphite:      #4E4840;  /* secondary text, captions               */
+  --graphite-mute: #837A6D;  /* metadata, faint labels                 */
+  --graphite-faint:#A89E8E;  /* placeholders, disabled                 */
+
+  /* --- Accent 1 : deep oxblood / academic red --- */
+  --oxblood:       #8A2D22;  /* primary accent: chapter rules, marks   */
+  --oxblood-deep:  #6B2019;  /* pressed / strong emphasis              */
+  --oxblood-tint:  #EDDAD3;  /* wash behind red callouts               */
+
+  /* --- Accent 2 : muted chalk sage green --- */
+  --sage:          #5E7257;  /* secondary accent: correct, examples    */
+  --sage-deep:     #45563F;  /* pressed sage                           */
+  --sage-tint:     #DEE4D6;  /* wash behind sage callouts              */
+
+  /* --- Accent 3 : pale straw yellow (HIGHLIGHT ONLY) --- */
+  --straw:         #E7CD80;  /* highlighter swipe behind key terms     */
+  --straw-soft:    #F2E4B6;  /* faint highlight wash                   */
+  --straw-deep:    #C9A94E;  /* straw rule / underline                 */
+
+  /* --- Rule lines (thin, paper-drawn) --- */
+  --rule:          #D9D0BE;  /* default hairline                       */
+  --rule-strong:   #C4B8A0;  /* heavier divider                        */
+  --rule-ink:      #2C2720;  /* ink rule under chapter titles          */
+
+  /* --- Blackboard (micro-diagrams, formulas) --- */
+  --board:         #2A322B;  /* dark sage-charcoal chalkboard          */
+  --board-deep:    #20271F;
+  --chalk:         #EDE7D6;  /* chalk text on board                    */
+  --chalk-sage:    #A9BBA0;  /* chalk green annotations                */
+  --chalk-straw:   #DFC684;  /* chalk highlight                        */
+
+  /* ---------- Semantic aliases ---------- */
+  --bg-canvas:        var(--paper-base);
+  --surface-card:     var(--paper-raised);
+  --surface-well:     var(--paper-sunken);
+  --surface-margin:   var(--paper-edge);
+
+  --text-display:     var(--ink);
+  --text-heading:     var(--ink-soft);
+  --text-body:        var(--ink);
+  --text-secondary:   var(--graphite);
+  --text-meta:        var(--graphite-mute);
+  --text-faint:       var(--graphite-faint);
+  --text-on-board:    var(--chalk);
+
+  --accent-primary:   var(--oxblood);
+  --accent-primary-strong: var(--oxblood-deep);
+  --accent-secondary: var(--sage);
+  --accent-highlight: var(--straw);
+
+  --border-hairline:  var(--rule);
+  --border-divider:   var(--rule-strong);
+  --border-ink:       var(--rule-ink);
+
+  /* status (kept inside the academic palette) */
+  --ok:      var(--sage);
+  --ok-tint: var(--sage-tint);
+  --warn:    var(--straw-deep);
+  --error:   var(--oxblood);
+  --error-tint: var(--oxblood-tint);
+}

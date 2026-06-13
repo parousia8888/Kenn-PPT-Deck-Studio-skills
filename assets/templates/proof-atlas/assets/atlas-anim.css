@@ -1,0 +1,111 @@
+/* Proof Atlas — Slide-enter animation recipes.
+   Each slide type declares its recipe with data-anim on child blocks.
+
+   STATIC-FIRST SAFETY: all hidden/initial states are gated behind
+   `html.anim-ready`, which atlas-motion.js sets only when it will actually
+   animate. If JS fails, never loads, or prefers-reduced-motion is on, the flag
+   is absent and ALL content renders in its final visible state. */
+
+/* ---------- Default hidden state (only when JS is driving motion) ---------- */
+.anim-ready .atlas-stage [data-anim] {
+  transition: opacity var(--d-base) var(--e-out),
+              transform var(--d-base) var(--e-out),
+              clip-path var(--d-slow) var(--e-out),
+              width var(--d-draw) var(--e-out),
+              height var(--d-draw) var(--e-out);
+  will-change: opacity, transform;
+}
+
+/* recipe: fade-up (generic, used sparingly) */
+.anim-ready .atlas-stage [data-anim="fade"]   { opacity: 0; transform: translateY(14px); }
+
+/* recipe: title mask reveal — wipe in from left */
+.anim-ready .atlas-stage [data-anim="mask"] {
+  opacity: 0;
+  clip-path: inset(0 100% 0 0);
+  transition: opacity var(--d-fast) var(--e-out),
+              clip-path var(--d-slow) var(--e-lock);
+}
+
+/* recipe: stamped headline — locks into place */
+.anim-ready .atlas-stage [data-anim="stamp"] {
+  opacity: 0; transform: scale(1.06) translateY(-4px);
+  transition: opacity var(--d-fast) var(--e-out),
+              transform var(--d-base) var(--e-lock);
+}
+
+/* recipe: ledger rows — slide from top, numbers before labels */
+.anim-ready .atlas-stage [data-anim="row"]  { opacity: 0; transform: translateY(-10px); }
+
+/* recipe: draw — axis / divider grows from origin */
+.anim-ready .atlas-stage [data-anim="draw-x"] { transform: scaleX(0); transform-origin: left center; transition: transform var(--d-draw) var(--e-out); }
+.anim-ready .atlas-stage [data-anim="draw-y"] { transform: scaleY(0); transform-origin: bottom center; transition: transform var(--d-draw) var(--e-out); }
+
+/* recipe: bar growth */
+.anim-ready .atlas-stage [data-anim="grow"] { transform: scaleY(0); transform-origin: bottom; transition: transform var(--d-draw) var(--e-out); }
+
+/* recipe: evidence cells — scanline appearance */
+.anim-ready .atlas-stage [data-anim="cell"] { opacity: 0; transform: translateY(8px) scale(0.985); }
+
+/* recipe: slow image push */
+.anim-ready .atlas-stage [data-anim="push"] { opacity: 0; transform: scale(1.06); transition: opacity var(--d-base) var(--e-out), transform var(--d-push) var(--e-out); }
+
+/* recipe: concept-map / timeline node pop */
+.anim-ready .atlas-stage [data-anim="node"] { opacity: 0; transform: scale(0.6); }
+
+/* recipe: annotation underline */
+.anim-ready .atlas-stage [data-anim="underline"] { width: 0 !important; }
+
+/* recipe: KPI number reveal */
+.anim-ready .atlas-stage [data-anim="num"] { opacity: 0; transform: translateY(12px); }
+
+/* recipe: source note — always fades in last */
+.anim-ready .atlas-stage [data-anim="source"] { opacity: 0; transform: translateY(6px); transition: opacity var(--d-slow) var(--e-out), transform var(--d-slow) var(--e-out); }
+
+/* ---------- END STATE (stage active) ---------- */
+.anim-ready .atlas-stage.is-in [data-anim] {
+  opacity: 1;
+  transform: none;
+  clip-path: inset(0 0 0 0);
+}
+.anim-ready .atlas-stage.is-in [data-anim="draw-x"],
+.anim-ready .atlas-stage.is-in [data-anim="draw-y"],
+.anim-ready .atlas-stage.is-in [data-anim="grow"] { transform: scaleX(1) scaleY(1); }
+.anim-ready .atlas-stage.is-in [data-anim="underline"] { width: var(--underline-w, 100%) !important; }
+
+/* ---------- STATIC FALLBACK (low-power) — force final state ---------- */
+body.low-power .atlas-stage [data-anim] {
+  opacity: 1 !important;
+  transform: none !important;
+  clip-path: inset(0 0 0 0) !important;
+  transition: none !important;
+}
+body.low-power .atlas-stage [data-anim="underline"] { width: var(--underline-w, 100%) !important; }
+body.low-power .atlas-stage [data-anim="draw-x"],
+body.low-power .atlas-stage [data-anim="draw-y"],
+body.low-power .atlas-stage [data-anim="grow"] { transform: scaleX(1) scaleY(1) !important; }
+
+/* ---------- REDUCED MOTION — never animate, always visible ---------- */
+@media (prefers-reduced-motion: reduce) {
+  .atlas-stage [data-anim] {
+    opacity: 1 !important;
+    transform: none !important;
+    clip-path: inset(0 0 0 0) !important;
+    transition: none !important;
+  }
+  .atlas-stage [data-anim="underline"] { width: var(--underline-w, 100%) !important; }
+  .atlas-stage [data-anim="draw-x"],
+  .atlas-stage [data-anim="draw-y"],
+  .atlas-stage [data-anim="grow"] { transform: scaleX(1) scaleY(1) !important; }
+}
+
+/* ---------- Low-power hint chip ---------- */
+.atlas-lowpower-hint {
+  position: fixed; bottom: 14px; left: 50%; transform: translateX(-50%);
+  z-index: 9999; display: none;
+  font-family: var(--font-mono); font-size: 10.5px; letter-spacing: 0.12em;
+  text-transform: uppercase; color: var(--gray-1);
+  background: var(--paper-pure); border: 1px solid var(--rule);
+  padding: 5px 10px; border-radius: var(--r-1);
+}
+body.low-power .atlas-lowpower-hint { display: block; }

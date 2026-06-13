@@ -1,0 +1,62 @@
+<!-- @dsCard group="Slides" viewport="1280x720" name="10 · Next Actions" subtitle="Checklist appears in sequence; final recommendation locks in last" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Proof Atlas — Next Actions</title>
+<link rel="stylesheet" href="../styles.css">
+<link rel="stylesheet" href="../assets/atlas-anim.css">
+<link rel="stylesheet" href="slide-base.css">
+<script src="../assets/atlas-motion.js"></script>
+</head>
+<body>
+<div class="slide atlas-stage" data-stage data-autoplay data-atlas-bg="cover">
+  <div class="slide-inner">
+    <div class="slide-head">
+      <div class="brand"><span class="xh"><i></i></span><span class="nm">Proof Atlas</span></div>
+      <div class="head-meta">
+        <span class="tag accent">Recommendations</span>
+        <span class="coord">ACTION REGISTER</span>
+      </div>
+    </div>
+
+    <div class="slide-body">
+      <h1 data-anim="mask" data-seq="0" class="title" style="font-size:34px;margin-bottom:24px;">Recommended next actions</h1>
+
+      <div class="actions">
+        <div class="acol">
+          <div class="ahd" data-anim="row" data-seq="1"><span>Action</span><span>Owner · Due</span></div>
+          <div data-anim="row" data-seq="2" class="checkrow"><span class="ix">A1</span><span class="checkbox done"></span><div class="atext"><div class="att">Extend observation window to four quarters.</div><div class="ameta">Research · 2026-Q3</div></div></div>
+          <div data-anim="row" data-seq="3" class="checkrow"><span class="ix">A2</span><span class="checkbox"></span><div class="atext"><div class="att">Add a third independent data feed for the audit panel.</div><div class="ameta">Data Office · 2026-Q3</div></div></div>
+          <div data-anim="row" data-seq="4" class="checkrow"><span class="ix">A3</span><span class="checkbox"></span><div class="atext"><div class="att">Resolve the 3.1% exception backlog before scale-up.</div><div class="ameta">Operations · 2026-Q4</div></div></div>
+          <div data-anim="row" data-seq="5" class="checkrow"><span class="ix">A4</span><span class="checkbox"></span><div class="atext"><div class="att">Pilot the model in two slower-onboarding regions.</div><div class="ameta">Program · 2027-Q1</div></div></div>
+        </div>
+
+        <div data-anim="stamp" data-seq="6" class="recommend">
+          <div class="rk">Recommendation</div>
+          <div class="rtitle">Proceed to phased national scale-up, conditional on A2 and A3.</div>
+          <div class="source" style="margin-top:18px;">Source · review board decision · PA-REV-2026-04</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="slide-foot">
+      <span>Field Program Review · 2026</span>
+      <span class="seq">Next Actions · 10 / 10</span>
+    </div>
+  </div>
+</div>
+<style>
+  .actions { display: grid; grid-template-columns: 1.5fr 1fr; gap: 44px; flex: 1; align-items: start; }
+  .ahd { display: flex; align-items: center; justify-content: space-between; padding-bottom: 8px; border-bottom: 2px solid var(--ink); font-family: var(--font-mono); font-size: 9.5px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gray-2); }
+  .checkrow .atext { flex: 1; }
+  .checkrow .att { font-family: var(--font-body); font-size: 15px; color: var(--ink); line-height: 1.35; }
+  .checkrow .ameta { font-family: var(--font-mono); font-size: 9.5px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--gray-2); margin-top: 5px; }
+  .recommend { align-self: stretch; background: var(--ink); color: var(--paper-pure); padding: 26px 28px; display: flex; flex-direction: column; }
+  .recommend .rk { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--blue-tint); margin-bottom: 16px; }
+  .recommend .rtitle { font-family: var(--font-display); font-weight: 300; font-size: 27px; line-height: 1.18; letter-spacing: -0.01em; }
+  .recommend .source { color: var(--gray-3); }
+  .recommend .source::before { background: var(--blue-tint); }
+</style>
+</body>
+</html>

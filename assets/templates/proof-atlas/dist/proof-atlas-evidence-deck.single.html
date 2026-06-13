@@ -1,0 +1,1376 @@
+<!DOCTYPE html>
+<html lang="en" data-packaged="single-html" data-font-mode="online">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Proof Atlas — Full Evidence Deck</title>
+<style data-inlined-from="../../styles.css">
+/* ===== Inlined from styles.css ===== */
+/* Proof Atlas — Global stylesheet entry point.
+   Consumers link THIS file. It is an import manifest only; all rules live in
+   the token files below. Order: fonts → colors → type → spacing → motion. */
+
+
+/* ===== Inlined from tokens/fonts.css ===== */
+/* Proof Atlas — Webfonts
+   All families are Google-hosted and CDN-loadable. Every consuming stack
+   below ships explicit Windows + macOS + CJK fallbacks so the system stays
+   readable if the webfont fails to load.
+
+   Display sans : Manrope        (rational geometric sans; light for big numbers)
+   Body sans    : Inter          (compact, high legibility at small sizes)
+   Mono         : JetBrains Mono (data labels, coordinates, source IDs, headers)
+*/
+
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&family=Noto+Serif+SC:wght@300;400;600&display=swap');
+
+
+
+/* ===== Inlined from tokens/colors.css ===== */
+/* Proof Atlas — Color System
+   Off-white paper, ink black text, ONE technical accent (International Blue).
+   Secondary palette is strictly grayscale. No gradients, no glossy fills.
+   A single restrained oxide-red is reserved for risk/limitation semantics only. */
+
+:root {
+  /* ---- Paper (base surfaces) ---- */
+  --paper-0:  #F4F2EC;   /* page base — warm off-white */
+  --paper-1:  #EFEDE5;   /* recessed panel / table zebra */
+  --paper-2:  #E7E4DA;   /* hairline fill / muted cell */
+  --paper-pure: #FBFAF6; /* lifted cell / evidence slot */
+
+  /* ---- Ink (text + rules), neutral grayscale ramp ---- */
+  --ink:      #17150F;   /* primary text, near-black warm */
+  --ink-2:    #3A372F;   /* strong secondary text */
+  --gray-1:   #5C584D;   /* secondary text */
+  --gray-2:   #847F71;   /* tertiary / captions */
+  --gray-3:   #A8A294;   /* disabled, faint labels */
+  --gray-4:   #C9C3B5;   /* hairline rule on paper */
+  --gray-5:   #DAD5C8;   /* light divider */
+
+  /* ---- Accent: International Blue (the one technical color) ---- */
+  --blue:      #1A36C4;  /* primary accent */
+  --blue-deep: #11268C;  /* pressed / dense */
+  --blue-tint: #DFE2F4;  /* faint fill behind accent marks */
+
+  /* ---- Restrained semantics (used sparingly, never decoratively) ---- */
+  --oxide:      #9C3A2B; /* risk / limitation marker — red oxide */
+  --oxide-tint: #ECDBD5;
+  --green:      #2E6B4F; /* positive delta only */
+
+  /* ---- Semantic aliases ---- */
+  --bg-page:        var(--paper-0);
+  --bg-panel:       var(--paper-1);
+  --bg-cell:        var(--paper-pure);
+  --bg-cell-muted:  var(--paper-2);
+
+  --text-primary:   var(--ink);
+  --text-secondary: var(--gray-1);
+  --text-tertiary:  var(--gray-2);
+  --text-faint:     var(--gray-3);
+  --text-on-accent: var(--paper-pure);
+
+  --accent:         var(--blue);
+  --accent-deep:    var(--blue-deep);
+
+  --rule:           var(--gray-4);   /* standard hairline */
+  --rule-strong:    var(--ink);      /* structural rule */
+  --rule-faint:     var(--gray-5);
+
+  --marker-risk:    var(--oxide);
+  --marker-up:      var(--green);
+  --marker-down:    var(--oxide);
+}
+
+
+
+/* ===== Inlined from tokens/typography.css ===== */
+/* Proof Atlas — Typography
+   Display : Manrope (light weights for large numbers)
+   Body    : Inter
+   Mono    : JetBrains Mono (labels, coordinates, source IDs, table headers)
+   Every stack carries Windows + CJK fallbacks. */
+
+:root {
+  /* ---- Families (full fallback stacks) ---- */
+  --font-display: "Manrope", "Inter", "Segoe UI", "Microsoft YaHei UI", "Microsoft YaHei", "Noto Sans SC", Arial, sans-serif;
+  --font-body:    "Inter", "Segoe UI", "Microsoft YaHei UI", "Microsoft YaHei", "Noto Sans SC", Arial, sans-serif;
+  --font-mono:    "JetBrains Mono", "Cascadia Code", "Consolas", "Courier New", monospace;
+  --font-serif:   "Noto Serif SC", "Source Han Serif SC", "SimSun", "Songti SC", Georgia, serif;
+
+  /* ---- Weights ---- */
+  --w-thin:    200; /* @kind font */  /* huge display numerals */
+  --w-light:   300; /* @kind font */  /* large display */
+  --w-regular: 400; /* @kind font */
+  --w-medium:  500; /* @kind font */
+  --w-semi:    600; /* @kind font */
+  --w-bold:    700; /* @kind font */
+
+  /* ---- Display scale (large, light-weight numbers & titles) ---- */
+  --t-display-xxl: 132px;  /* hero metric / cover numeral */
+  --t-display-xl:  92px;
+  --t-display-l:   64px;
+  --t-display-m:   44px;
+
+  /* ---- Text scale ---- */
+  --t-title:    30px;   /* slide title */
+  --t-subtitle: 22px;
+  --t-lead:     19px;   /* lead paragraph */
+  --t-body:     16px;
+  --t-small:    14px;
+  --t-caption:  12.5px;
+
+  /* ---- Mono / label scale ---- */
+  --t-label:    12px;   /* standard mono label */
+  --t-label-sm: 10.5px; /* coordinate / source ID */
+  --t-label-lg: 14px;
+
+  /* ---- Line heights ---- */
+  --lh-tight:   1.04; /* @kind font */  /* display numerals */
+  --lh-snug:    1.18; /* @kind font */  /* titles */
+  --lh-body:    1.5; /* @kind font */   /* paragraphs */
+  --lh-label:   1.2; /* @kind font */
+
+  /* ---- Tracking ---- */
+  --ls-label:    0.14em; /* @kind font */  /* uppercase mono labels */
+  --ls-label-sm: 0.08em; /* @kind font */
+  --ls-display: -0.02em; /* @kind font */  /* tighten large light numerals */
+  --ls-title:   -0.01em; /* @kind font */
+}
+
+
+
+/* ===== Inlined from tokens/spacing.css ===== */
+/* Proof Atlas — Spacing, Grid & Structure
+   The atlas grid is the spine of the system: an 8px base unit, a coordinate
+   gutter, hairline rules, and near-zero corner radii. No shadows anywhere. */
+
+:root {
+  /* ---- Base spacing (8px unit) ---- */
+  --s-1:  4px;
+  --s-2:  8px;
+  --s-3:  12px;
+  --s-4:  16px;
+  --s-5:  24px;
+  --s-6:  32px;
+  --s-7:  48px;
+  --s-8:  64px;
+  --s-9:  96px;
+  --s-10: 128px;
+
+  /* ---- Slide frame (1280x720 reference; scales to 1920) ---- */
+  --frame-margin:  56px;   /* outer page margin */
+  --frame-gutter:  24px;   /* inter-module gutter */
+  --coord-gutter:  40px;   /* width reserved for coordinate labels */
+
+  /* ---- Corner radii (kept minimal — institutional, not glossy) ---- */
+  --r-0: 0px;     /* default — square evidence cells */
+  --r-1: 2px;     /* chips, small controls */
+  --r-2: 3px;
+
+  /* ---- Hairline rules ---- */
+  --rule-w:        1px; /* @kind spacing */
+  --rule-w-strong: 2px; /* @kind spacing */
+  --tick:          6px; /* @kind spacing */     /* coordinate tick length */
+
+  /* ---- Border helpers ---- */
+  --border-hair:   1px solid var(--rule);
+  --border-faint:  1px solid var(--rule-faint);
+  --border-strong: 2px solid var(--rule-strong);
+
+  /* Explicitly no shadows. Depth comes from rules and paper tone only. */
+  --shadow-none: none;
+}
+
+
+
+/* ===== Inlined from tokens/motion.css ===== */
+/* Proof Atlas — Motion
+   Information-first motion. Bars grow, timelines draw, evidence cells appear
+   in sequence, source notes fade in last. Easings are controlled and precise —
+   the dossier assembling itself, never bouncy or decorative. */
+
+:root {
+  /* ---- Durations ---- */
+  --d-instant: 120ms; /* @kind other */
+  --d-fast:    220ms; /* @kind other */
+  --d-base:    420ms; /* @kind other */
+  --d-slow:    680ms; /* @kind other */
+  --d-draw:    900ms; /* @kind other */  /* axis / timeline draw */
+  --d-push:    1400ms; /* @kind other */ /* slow image push */
+
+  /* ---- Easings ---- */
+  --e-standard: cubic-bezier(0.22, 0.61, 0.36, 1); /* @kind other */  /* precise settle */
+  --e-out:      cubic-bezier(0.16, 1, 0.3, 1); /* @kind other */       /* decisive ease-out */
+  --e-in:       cubic-bezier(0.55, 0, 1, 0.45); /* @kind other */
+  --e-linear:   linear; /* @kind other */                              /* draws & scans */
+  --e-lock:     cubic-bezier(0.83, 0, 0.17, 1); /* @kind other */      /* title "locks in" */
+
+  /* ---- Sequence rhythm (stagger steps between revealed items) ---- */
+  --stagger:    80ms; /* @kind other */
+  --stagger-lg: 140ms; /* @kind other */
+
+  /* ---- Background scan ---- */
+  --scan-period: 14s; /* @kind other */  /* slow coordinate scan loop */
+}
+
+
+
+</style>
+<style data-inlined-from="../../assets/atlas-anim.css">
+/* ===== Inlined from assets/atlas-anim.css ===== */
+/* Proof Atlas — Slide-enter animation recipes.
+   Each slide type declares its recipe with data-anim on child blocks.
+
+   STATIC-FIRST SAFETY: all hidden/initial states are gated behind
+   `html.anim-ready`, which atlas-motion.js sets only when it will actually
+   animate. If JS fails, never loads, or prefers-reduced-motion is on, the flag
+   is absent and ALL content renders in its final visible state. */
+
+/* ---------- Default hidden state (only when JS is driving motion) ---------- */
+.anim-ready .atlas-stage [data-anim] {
+  transition: opacity var(--d-base) var(--e-out),
+              transform var(--d-base) var(--e-out),
+              clip-path var(--d-slow) var(--e-out),
+              width var(--d-draw) var(--e-out),
+              height var(--d-draw) var(--e-out);
+  will-change: opacity, transform;
+}
+
+/* recipe: fade-up (generic, used sparingly) */
+.anim-ready .atlas-stage [data-anim="fade"]   { opacity: 0; transform: translateY(14px); }
+
+/* recipe: title mask reveal — wipe in from left */
+.anim-ready .atlas-stage [data-anim="mask"] {
+  opacity: 0;
+  clip-path: inset(0 100% 0 0);
+  transition: opacity var(--d-fast) var(--e-out),
+              clip-path var(--d-slow) var(--e-lock);
+}
+
+/* recipe: stamped headline — locks into place */
+.anim-ready .atlas-stage [data-anim="stamp"] {
+  opacity: 0; transform: scale(1.06) translateY(-4px);
+  transition: opacity var(--d-fast) var(--e-out),
+              transform var(--d-base) var(--e-lock);
+}
+
+/* recipe: ledger rows — slide from top, numbers before labels */
+.anim-ready .atlas-stage [data-anim="row"]  { opacity: 0; transform: translateY(-10px); }
+
+/* recipe: draw — axis / divider grows from origin */
+.anim-ready .atlas-stage [data-anim="draw-x"] { transform: scaleX(0); transform-origin: left center; transition: transform var(--d-draw) var(--e-out); }
+.anim-ready .atlas-stage [data-anim="draw-y"] { transform: scaleY(0); transform-origin: bottom center; transition: transform var(--d-draw) var(--e-out); }
+
+/* recipe: bar growth */
+.anim-ready .atlas-stage [data-anim="grow"] { transform: scaleY(0); transform-origin: bottom; transition: transform var(--d-draw) var(--e-out); }
+
+/* recipe: evidence cells — scanline appearance */
+.anim-ready .atlas-stage [data-anim="cell"] { opacity: 0; transform: translateY(8px) scale(0.985); }
+
+/* recipe: slow image push */
+.anim-ready .atlas-stage [data-anim="push"] { opacity: 0; transform: scale(1.06); transition: opacity var(--d-base) var(--e-out), transform var(--d-push) var(--e-out); }
+
+/* recipe: concept-map / timeline node pop */
+.anim-ready .atlas-stage [data-anim="node"] { opacity: 0; transform: scale(0.6); }
+
+/* recipe: annotation underline */
+.anim-ready .atlas-stage [data-anim="underline"] { width: 0 !important; }
+
+/* recipe: KPI number reveal */
+.anim-ready .atlas-stage [data-anim="num"] { opacity: 0; transform: translateY(12px); }
+
+/* recipe: source note — always fades in last */
+.anim-ready .atlas-stage [data-anim="source"] { opacity: 0; transform: translateY(6px); transition: opacity var(--d-slow) var(--e-out), transform var(--d-slow) var(--e-out); }
+
+/* ---------- END STATE (stage active) ---------- */
+.anim-ready .atlas-stage.is-in [data-anim] {
+  opacity: 1;
+  transform: none;
+  clip-path: inset(0 0 0 0);
+}
+.anim-ready .atlas-stage.is-in [data-anim="draw-x"],
+.anim-ready .atlas-stage.is-in [data-anim="draw-y"],
+.anim-ready .atlas-stage.is-in [data-anim="grow"] { transform: scaleX(1) scaleY(1); }
+.anim-ready .atlas-stage.is-in [data-anim="underline"] { width: var(--underline-w, 100%) !important; }
+
+/* ---------- STATIC FALLBACK (low-power) — force final state ---------- */
+body.low-power .atlas-stage [data-anim] {
+  opacity: 1 !important;
+  transform: none !important;
+  clip-path: inset(0 0 0 0) !important;
+  transition: none !important;
+}
+body.low-power .atlas-stage [data-anim="underline"] { width: var(--underline-w, 100%) !important; }
+body.low-power .atlas-stage [data-anim="draw-x"],
+body.low-power .atlas-stage [data-anim="draw-y"],
+body.low-power .atlas-stage [data-anim="grow"] { transform: scaleX(1) scaleY(1) !important; }
+
+/* ---------- REDUCED MOTION — never animate, always visible ---------- */
+@media (prefers-reduced-motion: reduce) {
+  .atlas-stage [data-anim] {
+    opacity: 1 !important;
+    transform: none !important;
+    clip-path: inset(0 0 0 0) !important;
+    transition: none !important;
+  }
+  .atlas-stage [data-anim="underline"] { width: var(--underline-w, 100%) !important; }
+  .atlas-stage [data-anim="draw-x"],
+  .atlas-stage [data-anim="draw-y"],
+  .atlas-stage [data-anim="grow"] { transform: scaleX(1) scaleY(1) !important; }
+}
+
+/* ---------- Low-power hint chip ---------- */
+.atlas-lowpower-hint {
+  position: fixed; bottom: 14px; left: 50%; transform: translateX(-50%);
+  z-index: 9999; display: none;
+  font-family: var(--font-mono); font-size: 10.5px; letter-spacing: 0.12em;
+  text-transform: uppercase; color: var(--gray-1);
+  background: var(--paper-pure); border: 1px solid var(--rule);
+  padding: 5px 10px; border-radius: var(--r-1);
+}
+body.low-power .atlas-lowpower-hint { display: block; }
+
+</style>
+<style data-inlined-from="../../slides/slide-base.css">
+/* ===== Inlined from slides/slide-base.css ===== */
+/* Proof Atlas — Slide chrome shared by all ten layouts.
+   1280×720 reference frame, coordinate gutter, hairline header/footer.
+   Link AFTER styles.css and assets/atlas-anim.css. */
+
+*, *::before, *::after { box-sizing: border-box; }
+html, body { margin: 0; background: #cfccc2; }
+body { display: flex; align-items: center; justify-content: center; min-height: 100vh; }
+
+.slide {
+  position: relative;
+  width: 1280px;
+  height: 720px;
+  background: var(--paper-0);
+  color: var(--ink);
+  overflow: hidden;
+  font-family: var(--font-body);
+}
+
+/* content sits above the canvas field */
+.slide-inner {
+  position: relative;
+  z-index: 1;
+  height: 100%;
+  padding: 38px 56px 30px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ---------- Brand mark ---------- */
+.xh { position: relative; width: 18px; height: 18px; flex: none; }
+.xh::before, .xh::after { content: ""; position: absolute; background: var(--blue); }
+.xh::before { left: 50%; top: 0; width: 1.5px; height: 100%; transform: translateX(-50%); }
+.xh::after { top: 50%; left: 0; height: 1.5px; width: 100%; transform: translateY(-50%); }
+.xh i { position: absolute; left: 50%; top: 50%; width: 7px; height: 7px; border: 1.5px solid var(--blue); border-radius: 50%; transform: translate(-50%,-50%); background: var(--paper-0); }
+
+/* ---------- Header ---------- */
+.slide-head {
+  display: flex; align-items: center; justify-content: space-between;
+  padding-bottom: 12px; border-bottom: 1px solid var(--rule); flex: none;
+}
+.brand { display: flex; align-items: center; gap: 11px; }
+.brand .nm { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.28em; text-transform: uppercase; color: var(--ink); }
+.head-meta { display: flex; align-items: center; gap: 20px; }
+
+.tag {
+  font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.14em;
+  text-transform: uppercase; color: var(--gray-1);
+  border: 1px solid var(--rule); padding: 5px 9px; border-radius: var(--r-1);
+  background: var(--paper-pure); white-space: nowrap;
+}
+.tag.accent { color: var(--blue); border-color: var(--blue); }
+.tag.solid { color: var(--paper-pure); background: var(--ink); border-color: var(--ink); }
+.tag.risk { color: var(--oxide); border-color: var(--oxide); }
+.coord { font-family: var(--font-mono); font-size: 10.5px; letter-spacing: 0.06em; color: var(--blue); white-space: nowrap; }
+
+/* ---------- Body ---------- */
+.slide-body { flex: 1; display: flex; flex-direction: column; min-height: 0; padding-top: 26px; }
+
+.kicker { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--blue); }
+.title { font-family: var(--font-display); font-weight: 300; font-size: 46px; line-height: 1.06; letter-spacing: -0.015em; color: var(--ink); margin: 0; text-wrap: balance; }
+.title b { font-weight: 600; }
+.lead { font-family: var(--font-body); font-size: 18px; line-height: 1.5; color: var(--gray-1); max-width: 60ch; margin: 0; text-wrap: pretty; }
+
+/* ---------- Footer ---------- */
+.slide-foot {
+  display: flex; align-items: center; justify-content: space-between;
+  border-top: 1px solid var(--rule); padding-top: 11px; flex: none;
+  font-family: var(--font-mono); font-size: 9.5px; letter-spacing: 0.1em;
+  text-transform: uppercase; color: var(--gray-3);
+}
+.slide-foot .seq { color: var(--gray-1); }
+
+/* ---------- Common helpers ---------- */
+.rule-v { width: 1px; background: var(--rule); align-self: stretch; }
+.num-xl { font-family: var(--font-display); font-weight: 200; font-size: 112px; line-height: 0.92; letter-spacing: -0.03em; color: var(--ink); font-variant-numeric: tabular-nums; }
+.num-xl small { font-size: 0.32em; font-weight: 300; color: var(--gray-1); }
+.source { display: flex; align-items: center; gap: 7px; font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gray-3); }
+.source::before { content: ""; width: 5px; height: 5px; background: var(--blue); flex: none; }
+
+.cell { background: var(--paper-pure); border: 1px solid var(--rule); display: flex; flex-direction: column; }
+.cell-hd { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 7px 10px; border-bottom: 1px solid var(--rule); font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gray-2); }
+.cell-bd { padding: 12px; flex: 1; }
+
+/* ---------- Image / evidence slot ---------- */
+.img-slot {
+  position: relative; background: var(--paper-2); border: 1px solid var(--rule);
+  overflow: hidden; display: flex; align-items: center; justify-content: center;
+}
+.img-slot .ph { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--gray-3); }
+/* corner crop marks */
+.img-slot::before, .img-slot::after { content: ""; position: absolute; width: 10px; height: 10px; border: 1px solid var(--gray-2); opacity: 0.5; }
+.img-slot::before { top: 6px; left: 6px; border-right: none; border-bottom: none; }
+.img-slot::after { bottom: 6px; right: 6px; border-left: none; border-top: none; }
+
+/* ---------- Checklist row ---------- */
+.checkrow { display: flex; align-items: flex-start; gap: 14px; padding: 14px 0; border-bottom: 1px solid var(--rule-faint); }
+.checkbox { width: 16px; height: 16px; border: 1.5px solid var(--blue); flex: none; margin-top: 2px; position: relative; }
+.checkbox.done::after { content: ""; position: absolute; inset: 3px; background: var(--blue); }
+.checkrow .ix { font-family: var(--font-mono); font-size: 11px; color: var(--gray-3); width: 28px; flex: none; margin-top: 3px; }
+
+/* ---------- Flow arrow ---------- */
+.arrow { position: relative; height: 1.5px; background: var(--ink); align-self: center; }
+.arrow::after { content: ""; position: absolute; right: -1px; top: 50%; width: 7px; height: 7px; border-top: 1.5px solid var(--ink); border-right: 1.5px solid var(--ink); transform: translateY(-50%) rotate(45deg); }
+
+/* ---------- Metric block ---------- */
+.metric { display: flex; flex-direction: column; gap: 8px; }
+.metric .label { font-family: var(--font-body); font-size: 13px; color: var(--gray-1); line-height: 1.4; max-width: 28ch; }
+.delta { font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.04em; }
+.delta.up { color: var(--green); }
+.delta.down { color: var(--oxide); }
+
+</style>
+<style>
+  html, body { margin: 0; width: 100%; height: 100%; background: #17150f; overflow: hidden; }
+  body { display: block; min-height: 100vh; }
+  .deck-shell { position: fixed; inset: 0; display: grid; place-items: center; overflow: hidden; background: #17150f; }
+  .deck-canvas { width: 1280px; height: 720px; position: relative; transform-origin: center center; }
+  .deck-canvas > .slide { position: absolute; inset: 0; box-shadow: 0 30px 90px rgba(0,0,0,0.35); }
+  .deck-canvas:not(.deck-ready) > .slide ~ .slide { display: none; }
+  .deck-nav { position: fixed; right: 18px; bottom: 16px; z-index: 80; display: flex; align-items: center; gap: 10px;
+    font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.12em; color: var(--gray-3); }
+  .deck-nav button { width: 34px; height: 34px; border: 1px solid var(--rule); background: var(--paper-pure);
+    color: var(--ink); border-radius: var(--r-1); cursor: pointer; font: inherit; display: grid; place-items: center; }
+  .deck-nav button:hover { border-color: var(--blue); color: var(--blue); }
+  .deck-nav .count { min-width: 58px; text-align: center; }
+  @media print {
+    @page { size: 1280px 720px; margin: 0; }
+    html, body { background: #fff; overflow: visible; }
+    .deck-shell { position: static; display: block; background: #fff; }
+    .deck-canvas { transform: none !important; width: 1280px; height: auto; }
+    .deck-canvas > .slide { display: block !important; position: relative !important; page-break-after: always; box-shadow: none; }
+    .deck-nav, .atlas-lowpower-hint { display: none !important; }
+  }
+/* ===== Slide-local styles from slides/03-kpi-ledger.html ===== */
+.ledger-row { display: grid; grid-template-columns: 44px 180px 1fr 130px 90px; align-items: center; gap: 18px; padding: 18px 0; border-bottom: 1px solid var(--rule-faint); }
+  .ledger-row .rix { font-family: var(--font-mono); font-size: 12px; color: var(--gray-3); }
+  .ledger-row .rnum { font-family: var(--font-display); font-weight: 200; font-size: 46px; line-height: 1; letter-spacing: -0.02em; color: var(--ink); font-variant-numeric: tabular-nums; }
+  .ledger-row .rnum small { font-size: 0.4em; font-weight: 300; color: var(--gray-1); }
+  .ledger-row .rlbl .rt { font-family: var(--font-body); font-size: 15px; font-weight: 500; color: var(--ink); }
+  .ledger-row .rlbl .rs { font-family: var(--font-body); font-size: 12.5px; color: var(--gray-2); margin-top: 2px; }
+  .ledger-row .delta { text-align: right; }
+  .ledger-row .rsrc { font-family: var(--font-mono); font-size: 9.5px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--gray-3); text-align: right; }
+
+/* ===== Slide-local styles from slides/04-timeline.html ===== */
+.timeline { position: relative; margin: 64px 0 40px; }
+  .timeline .axis { position: absolute; left: 0; right: 0; top: 50%; height: 1.5px; background: var(--ink); transform-origin: left center; }
+  .nodes { position: relative; display: flex; justify-content: space-between; }
+  .node { display: flex; flex-direction: column; align-items: center; flex: 1; position: relative; }
+  .node .ndate { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.08em; color: var(--blue); margin-bottom: 14px; }
+  .node .ndot { width: 11px; height: 11px; border-radius: 50%; background: var(--paper-0); border: 1.5px solid var(--ink); margin-bottom: 14px; }
+  .node .ndot.accent { background: var(--blue); border-color: var(--blue); width: 14px; height: 14px; }
+  .node .ninfo { text-align: center; }
+  .node .ninfo .nt { font-family: var(--font-body); font-size: 14px; font-weight: 500; color: var(--ink); }
+  .node .ninfo .ns { font-family: var(--font-mono); font-size: 9.5px; letter-spacing: 0.06em; color: var(--gray-2); margin-top: 4px; }
+
+/* ===== Slide-local styles from slides/05-before-after.html ===== */
+.cmp { display: grid; grid-template-columns: 1fr 1px 1fr; gap: 48px; flex: 1; align-items: start; }
+  .cmp-divider { width: 1px; background: var(--ink); align-self: stretch; transform-origin: top center; }
+  .cmp-col { display: flex; flex-direction: column; }
+  .cmp-label { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--gray-2); margin-bottom: 22px; }
+  .cmp-label.accent { color: var(--blue); }
+  .cmp-stats { display: flex; gap: 40px; margin-top: 28px; padding-top: 18px; border-top: 1px solid var(--rule); }
+  .cmp-stats .cs-n { display: block; font-family: var(--font-display); font-weight: 300; font-size: 30px; color: var(--ink); letter-spacing: -0.01em; }
+  .cmp-stats .cs-l { display: block; font-family: var(--font-mono); font-size: 9.5px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--gray-2); margin-top: 6px; }
+
+/* ===== Slide-local styles from slides/06-evidence-grid.html ===== */
+.egrid { display: grid; grid-template-columns: repeat(4, 1fr); grid-template-rows: repeat(2, 1fr); gap: 16px; flex: 1; min-height: 0; }
+  .ecell { display: flex; flex-direction: column; border: 1px solid var(--rule); background: var(--paper-pure); }
+  .ecell .eh { display: flex; align-items: center; justify-content: space-between; padding: 6px 9px; border-bottom: 1px solid var(--rule); font-family: var(--font-mono); font-size: 8.5px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gray-2); white-space: nowrap; }
+  .ecell .eh .ec { color: var(--blue); }
+  .ecell .eslot { flex: 1; min-height: 0; }
+  .ecell .ecap { padding: 7px 9px; border-top: 1px solid var(--rule-faint); font-family: var(--font-body); font-size: 11px; line-height: 1.3; color: var(--gray-1); }
+
+/* ===== Slide-local styles from slides/07-case-study.html ===== */
+.cs { display: grid; grid-template-columns: 1fr 1.1fr; gap: 44px; flex: 1; min-height: 0; }
+  .cs-image { display: flex; flex-direction: column; min-height: 0; }
+  .cs-image .img-slot { flex: 1; }
+  .cs-body { display: flex; flex-direction: column; }
+  .cs-facts { display: flex; flex-direction: column; border-top: 1px solid var(--rule); }
+  .cs-facts .fact { display: grid; grid-template-columns: 110px 1fr; gap: 16px; padding: 13px 0; border-bottom: 1px solid var(--rule-faint); }
+  .cs-facts .fk { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--blue); padding-top: 2px; }
+  .cs-facts .fv { font-family: var(--font-body); font-size: 15px; color: var(--ink); line-height: 1.4; }
+  .cs-interp { margin-top: 22px; padding: 16px 18px; background: var(--paper-pure); border-left: 2px solid var(--ink); font-family: var(--font-body); font-size: 15px; line-height: 1.5; color: var(--ink-2); }
+  .cs-interp .il { display: block; font-family: var(--font-mono); font-size: 9.5px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gray-2); margin-bottom: 7px; }
+
+/* ===== Slide-local styles from slides/08-methodology.html ===== */
+.flow { display: flex; align-items: stretch; margin-bottom: 32px; }
+  .fbox { flex: 1; background: var(--paper-pure); border: 1px solid var(--rule); padding: 16px 18px; display: flex; flex-direction: column; }
+  .fbox .fnum { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.1em; color: var(--blue); margin-bottom: 12px; }
+  .fbox .ft { font-family: var(--font-display); font-weight: 500; font-size: 22px; color: var(--ink); margin-bottom: 8px; letter-spacing: -0.01em; }
+  .fbox .fd { font-family: var(--font-body); font-size: 12.5px; line-height: 1.45; color: var(--gray-1); }
+  .mnotes { display: grid; grid-template-columns: repeat(3,1fr); gap: 0; border-top: 2px solid var(--ink); }
+  .mnotes .mn { padding: 16px 20px 0 0; font-family: var(--font-body); font-size: 13px; color: var(--gray-1); line-height: 1.45; border-right: 1px solid var(--rule); }
+  .mnotes .mn:last-child { border-right: none; padding-right: 0; }
+  .mnotes .mk { display: block; font-family: var(--font-mono); font-size: 9.5px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink); margin-bottom: 6px; }
+
+/* ===== Slide-local styles from slides/09-risk-limitation.html ===== */
+.risks { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .risk-row { display: flex; gap: 13px; padding: 14px 16px; background: var(--paper-pure); border: 1px solid var(--rule); border-left: 2px solid var(--oxide); }
+  .risk-row .rm { width: 8px; height: 8px; margin-top: 4px; background: var(--oxide); flex: none; transform: rotate(45deg); }
+  .risk-row .rtop { display: flex; align-items: center; gap: 10px; margin-bottom: 5px; }
+  .risk-row .rlvl { font-family: var(--font-mono); font-size: 9.5px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--oxide); }
+  .risk-row .rid { font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.06em; color: var(--gray-3); }
+  .risk-row .rttl { font-family: var(--font-body); font-size: 15px; font-weight: 500; color: var(--ink); margin-bottom: 4px; line-height: 1.3; }
+  .risk-row .rtxt { font-family: var(--font-body); font-size: 12.5px; color: var(--gray-1); line-height: 1.45; }
+
+/* ===== Slide-local styles from slides/10-next-actions.html ===== */
+.actions { display: grid; grid-template-columns: 1.5fr 1fr; gap: 44px; flex: 1; align-items: start; }
+  .ahd { display: flex; align-items: center; justify-content: space-between; padding-bottom: 8px; border-bottom: 2px solid var(--ink); font-family: var(--font-mono); font-size: 9.5px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gray-2); }
+  .checkrow .atext { flex: 1; }
+  .checkrow .att { font-family: var(--font-body); font-size: 15px; color: var(--ink); line-height: 1.35; }
+  .checkrow .ameta { font-family: var(--font-mono); font-size: 9.5px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--gray-2); margin-top: 5px; }
+  .recommend { align-self: stretch; background: var(--ink); color: var(--paper-pure); padding: 26px 28px; display: flex; flex-direction: column; }
+  .recommend .rk { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--blue-tint); margin-bottom: 16px; }
+  .recommend .rtitle { font-family: var(--font-display); font-weight: 300; font-size: 27px; line-height: 1.18; letter-spacing: -0.01em; }
+  .recommend .source { color: var(--gray-3); }
+  .recommend .source::before { background: var(--blue-tint); }
+</style>
+</head>
+<body>
+  <div class="deck-shell">
+    <div class="deck-canvas" data-deck>
+      <!-- 01 · Report Cover -->
+      <div class="slide atlas-stage" data-stage data-screen-label="01" data-slide-title="Report Cover" data-atlas-bg="cover">
+        <div class="slide-inner">
+          <div class="slide-head">
+            <div class="brand"><span class="xh"><i></i></span><span class="nm">Proof Atlas</span></div>
+            <div class="head-meta">
+              <span class="tag accent">Evidence Report</span>
+              <span class="coord">[ 42.361°N · 071.057°W ]</span>
+            </div>
+          </div>
+      
+          <div class="slide-body" style="justify-content:center;">
+            <div data-anim="mask" data-seq="0" style="font-family:var(--font-mono);font-size:13px;letter-spacing:0.24em;text-transform:uppercase;color:var(--blue);margin-bottom:22px;">Field Program Review · Volume 04</div>
+            <h1 data-anim="mask" data-seq="1" style="font-family:var(--font-display);font-weight:200;font-size:96px;line-height:0.98;letter-spacing:-0.03em;margin:0;max-width:18ch;">Outcomes of the<br><b style="font-weight:600;">2026 Field Program</b></h1>
+            <p data-anim="mask" data-seq="2" style="font-family:var(--font-body);font-size:19px;line-height:1.5;color:var(--gray-1);max-width:54ch;margin:30px 0 0;">A structured review of measured results across twelve regions — findings, evidence, methodology, and recommended next actions.</p>
+      
+            <div data-anim="source" style="display:flex;gap:48px;margin-top:48px;">
+              <div><div style="font-family:var(--font-mono);font-size:9.5px;letter-spacing:0.12em;text-transform:uppercase;color:var(--gray-3);margin-bottom:6px;">Report ID</div><div style="font-family:var(--font-mono);font-size:14px;color:var(--ink);">PA-REV-2026-04</div></div>
+              <div class="rule-v"></div>
+              <div><div style="font-family:var(--font-mono);font-size:9.5px;letter-spacing:0.12em;text-transform:uppercase;color:var(--gray-3);margin-bottom:6px;">Issued</div><div style="font-family:var(--font-mono);font-size:14px;color:var(--ink);">2026-06-13 · 14:02 UTC</div></div>
+              <div class="rule-v"></div>
+              <div><div style="font-family:var(--font-mono);font-size:9.5px;letter-spacing:0.12em;text-transform:uppercase;color:var(--gray-3);margin-bottom:6px;">Classification</div><div style="font-family:var(--font-mono);font-size:14px;color:var(--ink);">Internal · Reviewed</div></div>
+            </div>
+          </div>
+      
+          <div class="slide-foot">
+            <span>Proof Atlas · Evidence Reporting System</span>
+            <span class="seq">Cover · 01 / 10</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 02 · Executive Finding -->
+      <div class="slide atlas-stage" data-stage data-screen-label="02" data-slide-title="Executive Finding" data-atlas-bg="cover">
+        <div class="slide-inner">
+          <div class="slide-head">
+            <div class="brand"><span class="xh"><i></i></span><span class="nm">Proof Atlas</span></div>
+            <div class="head-meta">
+              <span class="tag solid">Finding 01</span>
+              <span class="coord">[ KEY RESULT ]</span>
+            </div>
+          </div>
+      
+          <div class="slide-body" style="justify-content:center;">
+            <div data-anim="stamp" data-seq="0" style="font-family:var(--font-mono);font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:var(--blue);margin-bottom:24px;">Executive Finding</div>
+            <h1 data-anim="stamp" data-seq="1" style="font-family:var(--font-display);font-weight:300;font-size:58px;line-height:1.08;letter-spacing:-0.02em;margin:0;max-width:21ch;">Adoption outpaced the forecast in <b style="font-weight:600;">every region</b> measured.</h1>
+      
+            <div data-anim="stamp" data-seq="2" style="display:flex;gap:0;margin-top:46px;border-top:2px solid var(--ink);">
+              <div style="flex:1;padding:20px 28px 0 0;border-right:1px solid var(--rule);">
+                <div class="num-xl" style="font-size:78px;">+38<small>%</small></div>
+                <div style="font-family:var(--font-body);font-size:14px;color:var(--gray-1);margin-top:10px;max-width:24ch;">above the projected 12-month adoption target.</div>
+              </div>
+              <div style="flex:1;padding:20px 28px 0;border-right:1px solid var(--rule);">
+                <div class="num-xl" style="font-size:78px;">12<small>/12</small></div>
+                <div style="font-family:var(--font-body);font-size:14px;color:var(--gray-1);margin-top:10px;max-width:24ch;">regions exceeded baseline within two quarters.</div>
+              </div>
+              <div style="flex:1;padding:20px 0 0 28px;">
+                <div class="num-xl" style="font-size:78px;">94<small>%</small></div>
+                <div style="font-family:var(--font-body);font-size:14px;color:var(--gray-1);margin-top:10px;max-width:24ch;">of the finding corroborated by 2+ sources.</div>
+              </div>
+            </div>
+      
+            <div data-anim="source" style="display:flex;gap:28px;margin-top:24px;">
+              <span class="source">Source · program telemetry · SRC-2087</span>
+              <span class="source">Source · regional audit · n=3,402</span>
+            </div>
+          </div>
+      
+          <div class="slide-foot">
+            <span>Field Program Review · 2026</span>
+            <span class="seq">Finding · 02 / 10</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 03 · KPI Ledger -->
+      <div class="slide atlas-stage" data-stage data-screen-label="03" data-slide-title="KPI Ledger" data-atlas-bg="quiet">
+        <div class="slide-inner">
+          <div class="slide-head">
+            <div class="brand"><span class="xh"><i></i></span><span class="nm">Proof Atlas</span></div>
+            <div class="head-meta">
+              <span class="tag accent">Indicators</span>
+              <span class="coord">2026-Q2 · n=3,402</span>
+            </div>
+          </div>
+      
+          <div class="slide-body" style="padding-top:18px;">
+            <div data-anim="mask" data-seq="0" style="display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:6px;">
+              <h1 class="title" style="font-size:34px;">Key indicators ledger</h1>
+              <span style="font-family:var(--font-mono);font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:var(--gray-3);">Value · Δ vs. baseline · source</span>
+            </div>
+      
+            <div style="border-top:2px solid var(--ink);">
+              <!-- ledger row template repeated -->
+              <div data-anim="row" data-seq="1" class="ledger-row">
+                <span class="rix">01</span>
+                <span class="rnum">2.4<small>×</small></span>
+                <div class="rlbl"><div class="rt">Program throughput</div><div class="rs">Cases processed vs. prior period</div></div>
+                <span class="delta up">▴ +1.1×</span>
+                <span class="rsrc">SRC-2087</span>
+              </div>
+              <div data-anim="row" data-seq="2" class="ledger-row">
+                <span class="rix">02</span>
+                <span class="rnum">84.2<small>%</small></span>
+                <div class="rlbl"><div class="rt">Verified outcomes</div><div class="rs">Findings corroborated by ≥2 sources</div></div>
+                <span class="delta up">▴ +9 pts</span>
+                <span class="rsrc">n=412</span>
+              </div>
+              <div data-anim="row" data-seq="3" class="ledger-row">
+                <span class="rix">03</span>
+                <span class="rnum">11.6<small>d</small></span>
+                <div class="rlbl"><div class="rt">Median resolution time</div><div class="rs">Intake to confirmed outcome</div></div>
+                <span class="delta up">▴ −4.2 d</span>
+                <span class="rsrc">SRC-3310</span>
+              </div>
+              <div data-anim="row" data-seq="4" class="ledger-row">
+                <span class="rix">04</span>
+                <span class="rnum">3.1<small>%</small></span>
+                <div class="rlbl"><div class="rt">Unresolved exceptions</div><div class="rs">Cases pending secondary review</div></div>
+                <span class="delta down">▾ +0.4 pts</span>
+                <span class="rsrc">L-04</span>
+              </div>
+            </div>
+      
+            <div data-anim="source" style="margin-top:auto;padding-top:18px;">
+              <span class="source">Source · consolidated program ledger · audit panel n=3,402 · 2026-Q2</span>
+            </div>
+          </div>
+      
+          <div class="slide-foot">
+            <span>Field Program Review · 2026</span>
+            <span class="seq">KPI Ledger · 03 / 10</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 04 · Timeline -->
+      <div class="slide atlas-stage" data-stage data-screen-label="04" data-slide-title="Timeline" data-atlas-bg="cover">
+        <div class="slide-inner">
+          <div class="slide-head">
+            <div class="brand"><span class="xh"><i></i></span><span class="nm">Proof Atlas</span></div>
+            <div class="head-meta">
+              <span class="tag accent">Chronology</span>
+              <span class="coord">2025-09 → 2026-06</span>
+            </div>
+          </div>
+      
+          <div class="slide-body">
+            <h1 data-anim="mask" data-seq="0" class="title" style="font-size:36px;margin-bottom:8px;">Program rollout, by quarter</h1>
+            <p data-anim="mask" data-seq="1" class="lead" style="font-size:16px;">Five verified milestones from pilot authorization to the 2026 review.</p>
+      
+            <div class="timeline">
+              <div data-anim="draw-x" class="axis"></div>
+              <div class="nodes">
+                <div class="node"><span class="ndate" data-anim="node" data-seq="2">2025-09</span><span class="ndot" data-anim="node" data-seq="2"></span><div class="ninfo" data-anim="node" data-seq="2"><div class="nt">Pilot authorized</div><div class="ns">3 regions authorized</div></div></div>
+                <div class="node"><span class="ndate" data-anim="node" data-seq="3">2025-11</span><span class="ndot" data-anim="node" data-seq="3"></span><div class="ninfo" data-anim="node" data-seq="3"><div class="nt">Baseline measured</div><div class="ns">n=1,180 cases</div></div></div>
+                <div class="node"><span class="ndate" data-anim="node" data-seq="4">2026-01</span><span class="ndot accent" data-anim="node" data-seq="4"></span><div class="ninfo" data-anim="node" data-seq="4"><div class="nt">Full deployment</div><div class="ns">12 regions live</div></div></div>
+                <div class="node"><span class="ndate" data-anim="node" data-seq="5">2026-04</span><span class="ndot" data-anim="node" data-seq="5"></span><div class="ninfo" data-anim="node" data-seq="5"><div class="nt">Target exceeded</div><div class="ns">+38% · n=3,402</div></div></div>
+                <div class="node"><span class="ndate" data-anim="node" data-seq="6">2026-06</span><span class="ndot" data-anim="node" data-seq="6"></span><div class="ninfo" data-anim="node" data-seq="6"><div class="nt">Review issued</div><div class="ns">PA-REV-2026-04</div></div></div>
+              </div>
+            </div>
+      
+            <div data-anim="source" style="margin-top:auto;">
+              <span class="source">Source · program event log, audited · entries SRC-1004 → PA-REV-2026-04</span>
+            </div>
+          </div>
+      
+          <div class="slide-foot">
+            <span>Field Program Review · 2026</span>
+            <span class="seq">Timeline · 04 / 10</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 05 · Before / After -->
+      <div class="slide atlas-stage" data-stage data-screen-label="05" data-slide-title="Before / After" data-atlas-bg="quiet">
+        <div class="slide-inner">
+          <div class="slide-head">
+            <div class="brand"><span class="xh"><i></i></span><span class="nm">Proof Atlas</span></div>
+            <div class="head-meta">
+              <span class="tag accent">Comparison</span>
+              <span class="coord">BASELINE → 2026-Q2</span>
+            </div>
+          </div>
+      
+          <div class="slide-body">
+            <h1 data-anim="mask" data-seq="0" class="title" style="font-size:36px;margin-bottom:26px;">Before deployment vs. after</h1>
+      
+            <div class="cmp">
+              <!-- BEFORE -->
+              <div class="cmp-col">
+                <div data-anim="fade" data-seq="1" class="cmp-label">Before · Baseline period</div>
+                <div data-anim="fade" data-seq="2" class="num-xl" style="font-size:96px;">1.0<small>×</small></div>
+                <div data-anim="fade" data-seq="2" class="metric label" style="margin-top:6px;min-height:46px;">Reference throughput across 12 regions.</div>
+                <div data-anim="fade" data-seq="3" class="cmp-stats">
+                  <div><span class="cs-n">62%</span><span class="cs-l">verified outcomes</span></div>
+                  <div><span class="cs-n">15.8d</span><span class="cs-l">median resolution</span></div>
+                </div>
+                <span data-anim="source" class="source" style="margin-top:18px;">Source · baseline audit · SRC-1442</span>
+              </div>
+      
+              <div data-anim="draw-y" data-seq="4" class="cmp-divider"></div>
+      
+              <!-- AFTER -->
+              <div class="cmp-col">
+                <div data-anim="fade" data-seq="5" class="cmp-label accent">After · 2026-Q2</div>
+                <div data-anim="fade" data-seq="6" class="num-xl" style="font-size:96px;color:var(--blue);">2.4<small style="color:var(--blue);opacity:.6;">×</small></div>
+                <div data-anim="fade" data-seq="6" class="metric label" style="margin-top:6px;min-height:46px;">Throughput after full deployment <span class="delta up" style="white-space:nowrap;">▴ +140%</span></div>
+                <div data-anim="fade" data-seq="7" class="cmp-stats">
+                  <div><span class="cs-n">84%</span><span class="cs-l">verified outcomes</span></div>
+                  <div><span class="cs-n">11.6d</span><span class="cs-l">median resolution</span></div>
+                </div>
+                <span data-anim="source" class="source" style="margin-top:18px;">Source · program telemetry · SRC-2087</span>
+              </div>
+            </div>
+          </div>
+      
+          <div class="slide-foot">
+            <span>Field Program Review · 2026</span>
+            <span class="seq">Comparison · 05 / 10</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 06 · Evidence Grid -->
+      <div class="slide atlas-stage" data-stage data-screen-label="06" data-slide-title="Evidence Grid" data-atlas-bg="quiet">
+        <div class="slide-inner">
+          <div class="slide-head">
+            <div class="brand"><span class="xh"><i></i></span><span class="nm">Proof Atlas</span></div>
+            <div class="head-meta">
+              <span class="tag accent">Evidence Board</span>
+              <span class="coord">PLATE 06 · 8 EXHIBITS</span>
+            </div>
+          </div>
+      
+          <div class="slide-body" style="padding-top:18px;">
+            <h1 data-anim="mask" data-seq="0" class="title" style="font-size:32px;margin-bottom:18px;">Field evidence, regions A–H</h1>
+      
+            <div class="egrid" id="grid"></div>
+      
+            <div data-anim="source" style="margin-top:auto;padding-top:14px;">
+              <span class="source">Source · field photography &amp; intake records · exhibits EX-101 → EX-108</span>
+            </div>
+          </div>
+      
+          <div class="slide-foot">
+            <span>Field Program Review · 2026</span>
+            <span class="seq">Evidence Grid · 06 / 10</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 07 · Case Study -->
+      <div class="slide atlas-stage" data-stage data-screen-label="07" data-slide-title="Case Study" data-atlas-bg="quiet">
+        <div class="slide-inner">
+          <div class="slide-head">
+            <div class="brand"><span class="xh"><i></i></span><span class="nm">Proof Atlas</span></div>
+            <div class="head-meta">
+              <span class="tag solid">Case 03</span>
+              <span class="coord">[ 41.878°N · 087.629°W ]</span>
+            </div>
+          </div>
+      
+          <div class="slide-body">
+            <div class="cs">
+              <div class="cs-image">
+                <div data-anim="push" class="img-slot" style="height:100%;">
+                  <span class="ph">CASE PLATE · EX-203</span>
+                </div>
+                <div data-anim="source" class="source" style="margin-top:10px;">Source · site record · EX-203 · captured 2026-03</div>
+              </div>
+      
+              <div class="cs-body">
+                <div data-anim="mask" data-seq="0" class="kicker" style="margin-bottom:10px;">Case Study · North Region</div>
+                <h1 data-anim="mask" data-seq="1" class="title" style="font-size:34px;margin-bottom:22px;">A constrained pilot that scaled cleanly</h1>
+      
+                <div class="cs-facts">
+                  <div data-anim="row" data-seq="2" class="fact"><span class="fk">Scope</span><span class="fv">3 intake sites · 1,180 cases over 14 weeks</span></div>
+                  <div data-anim="row" data-seq="3" class="fact"><span class="fk">Result</span><span class="fv">Throughput 2.6× baseline; zero data loss</span></div>
+                  <div data-anim="row" data-seq="4" class="fact"><span class="fk">Verification</span><span class="fv">Independently audited, n=412 sampled</span></div>
+                </div>
+      
+                <div data-anim="stamp" data-seq="5" class="cs-interp">
+                  <span class="il">Interpretation</span>
+                  The North pilot demonstrates the model holds under real constraints — the gains were not an artifact of low volume.
+                </div>
+              </div>
+            </div>
+          </div>
+      
+          <div class="slide-foot">
+            <span>Field Program Review · 2026</span>
+            <span class="seq">Case Study · 07 / 10</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 08 · Methodology -->
+      <div class="slide atlas-stage" data-stage data-screen-label="08" data-slide-title="Methodology" data-atlas-bg="quiet">
+        <div class="slide-inner">
+          <div class="slide-head">
+            <div class="brand"><span class="xh"><i></i></span><span class="nm">Proof Atlas</span></div>
+            <div class="head-meta">
+              <span class="tag accent">Methodology</span>
+              <span class="coord">PROTOCOL PA-M-04</span>
+            </div>
+          </div>
+      
+          <div class="slide-body">
+            <h1 data-anim="mask" data-seq="0" class="title" style="font-size:34px;margin-bottom:6px;">How the evidence was gathered</h1>
+            <p data-anim="mask" data-seq="1" class="lead" style="font-size:16px;margin-bottom:40px;">A four-stage protocol from intake to independent verification.</p>
+      
+            <div class="flow">
+              <div data-anim="cell" data-seq="2" class="fbox"><span class="fnum">01</span><div class="ft">Intake</div><div class="fd">3,402 cases logged with source IDs and timestamps.</div></div>
+              <div data-anim="draw-x" data-seq="3" class="arrow" style="width:42px;"></div>
+              <div data-anim="cell" data-seq="4" class="fbox"><span class="fnum">02</span><div class="ft">Measure</div><div class="fd">Outcomes scored against the pre-registered baseline.</div></div>
+              <div data-anim="draw-x" data-seq="5" class="arrow" style="width:42px;"></div>
+              <div data-anim="cell" data-seq="6" class="fbox"><span class="fnum">03</span><div class="ft">Corroborate</div><div class="fd">Each finding cross-checked against ≥2 sources.</div></div>
+              <div data-anim="draw-x" data-seq="7" class="arrow" style="width:42px;"></div>
+              <div data-anim="cell" data-seq="8" class="fbox"><span class="fnum">04</span><div class="ft">Audit</div><div class="fd">Independent panel reviews a sample of n=412.</div></div>
+            </div>
+      
+            <div data-anim="cell" data-seq="9" class="mnotes">
+              <div class="mn"><span class="mk">Sampling</span>Stratified by region; proportional to caseload.</div>
+              <div class="mn"><span class="mk">Confidence</span>95% CI; effects reported with bounds.</div>
+              <div class="mn"><span class="mk">Exclusions</span>Cases pending review held out of headline figures.</div>
+            </div>
+      
+            <div data-anim="source" style="margin-top:auto;padding-top:14px;">
+              <span class="source">Source · protocol PA-M-04, pre-registered · audit panel SRC-3310</span>
+            </div>
+          </div>
+      
+          <div class="slide-foot">
+            <span>Field Program Review · 2026</span>
+            <span class="seq">Methodology · 08 / 10</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 09 · Risk / Limitation -->
+      <div class="slide atlas-stage" data-stage data-screen-label="09" data-slide-title="Risk / Limitation" data-atlas-bg="quiet">
+        <div class="slide-inner">
+          <div class="slide-head">
+            <div class="brand"><span class="xh"><i></i></span><span class="nm">Proof Atlas</span></div>
+            <div class="head-meta">
+              <span class="tag risk">Limitations</span>
+              <span class="coord">CANDOR REGISTER</span>
+            </div>
+          </div>
+      
+          <div class="slide-body">
+            <h1 data-anim="mask" data-seq="0" class="title" style="font-size:34px;margin-bottom:6px;">What these findings cannot claim</h1>
+            <p data-anim="mask" data-seq="1" class="lead" style="font-size:16px;margin-bottom:30px;">Four limitations are recorded openly. None invalidate the headline result; each bounds it.</p>
+      
+            <div class="risks">
+              <div data-anim="row" data-seq="2" class="risk-row">
+                <span class="rm"></span>
+                <div class="rbody"><div class="rtop"><span class="rlvl">Limitation</span><span class="rid">L-01</span></div><div class="rttl">Sample skews to early-adopter regions.</div><div class="rtxt">Results may overstate effect for slower-onboarding regions; weight before extrapolating nationally.</div></div>
+              </div>
+              <div data-anim="row" data-seq="3" class="risk-row">
+                <span class="rm"></span>
+                <div class="rbody"><div class="rtop"><span class="rlvl">Limitation</span><span class="rid">L-02</span></div><div class="rttl">Observation window is two quarters.</div><div class="rtxt">Durability of gains beyond six months is projected, not yet measured.</div></div>
+              </div>
+              <div data-anim="row" data-seq="4" class="risk-row">
+                <span class="rm"></span>
+                <div class="rbody"><div class="rtop"><span class="rlvl">Risk</span><span class="rid">L-03</span></div><div class="rttl">3.1% of exceptions remain unresolved.</div><div class="rtxt">Held out of headline figures; could shift verified-outcome rate by up to 1.4 points.</div></div>
+              </div>
+              <div data-anim="row" data-seq="5" class="risk-row">
+                <span class="rm"></span>
+                <div class="rbody"><div class="rtop"><span class="rlvl">Caveat</span><span class="rid">L-04</span></div><div class="rttl">Audit panel and program share one data feed.</div><div class="rtxt">Independence is procedural, not architectural; a third feed is recommended for the next review.</div></div>
+              </div>
+            </div>
+      
+            <div data-anim="source" style="margin-top:auto;padding-top:14px;">
+              <span class="source">Source · limitations register PA-M-04 · reviewed by audit panel SRC-3310</span>
+            </div>
+          </div>
+      
+          <div class="slide-foot">
+            <span>Field Program Review · 2026</span>
+            <span class="seq">Limitations · 09 / 10</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 10 · Next Actions -->
+      <div class="slide atlas-stage" data-stage data-screen-label="10" data-slide-title="Next Actions" data-atlas-bg="cover">
+        <div class="slide-inner">
+          <div class="slide-head">
+            <div class="brand"><span class="xh"><i></i></span><span class="nm">Proof Atlas</span></div>
+            <div class="head-meta">
+              <span class="tag accent">Recommendations</span>
+              <span class="coord">ACTION REGISTER</span>
+            </div>
+          </div>
+      
+          <div class="slide-body">
+            <h1 data-anim="mask" data-seq="0" class="title" style="font-size:34px;margin-bottom:24px;">Recommended next actions</h1>
+      
+            <div class="actions">
+              <div class="acol">
+                <div class="ahd" data-anim="row" data-seq="1"><span>Action</span><span>Owner · Due</span></div>
+                <div data-anim="row" data-seq="2" class="checkrow"><span class="ix">A1</span><span class="checkbox done"></span><div class="atext"><div class="att">Extend observation window to four quarters.</div><div class="ameta">Research · 2026-Q3</div></div></div>
+                <div data-anim="row" data-seq="3" class="checkrow"><span class="ix">A2</span><span class="checkbox"></span><div class="atext"><div class="att">Add a third independent data feed for the audit panel.</div><div class="ameta">Data Office · 2026-Q3</div></div></div>
+                <div data-anim="row" data-seq="4" class="checkrow"><span class="ix">A3</span><span class="checkbox"></span><div class="atext"><div class="att">Resolve the 3.1% exception backlog before scale-up.</div><div class="ameta">Operations · 2026-Q4</div></div></div>
+                <div data-anim="row" data-seq="5" class="checkrow"><span class="ix">A4</span><span class="checkbox"></span><div class="atext"><div class="att">Pilot the model in two slower-onboarding regions.</div><div class="ameta">Program · 2027-Q1</div></div></div>
+              </div>
+      
+              <div data-anim="stamp" data-seq="6" class="recommend">
+                <div class="rk">Recommendation</div>
+                <div class="rtitle">Proceed to phased national scale-up, conditional on A2 and A3.</div>
+                <div class="source" style="margin-top:18px;">Source · review board decision · PA-REV-2026-04</div>
+              </div>
+            </div>
+          </div>
+      
+          <div class="slide-foot">
+            <span>Field Program Review · 2026</span>
+            <span class="seq">Next Actions · 10 / 10</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script data-inlined-from="../../assets/atlas-motion.js">
+/* Proof Atlas — Motion engine (vanilla, standalone-safe).
+   1. Animated atlas-grid canvas background (subtle, premium, readable).
+   2. Semantic slide-enter reveal controller (reads data-anim recipes).
+   3. Reduced-motion + low-power fallback.
+   4. Keyboard toggle: press B → static low-power mode.
+
+   Usage:
+     <div class="atlas-stage" data-stage data-atlas-bg="cover"> … </div>
+     <script src="assets/atlas-motion.js"><\/script>
+   Auto-inits everything on load. API also exposed on window.AtlasMotion. */
+(function () {
+  "use strict";
+
+  var prefersReduced = window.matchMedia &&
+    window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  // Static-first safety: only gate hidden states once we know motion will run.
+  // If this script never executes (load failure), the flag is never set and all
+  // [data-anim] content stays in its final visible state.
+  if (!prefersReduced) {
+    document.documentElement.classList.add("anim-ready");
+  }
+
+  var loops = [];           // active rAF background instances
+  var STAGGER = 80;         // ms between sequenced items
+  var SOURCE_DELAY = 360;   // source notes wait this long after their group
+
+  /* ---------------------------------------------------------------
+     1. ATLAS GRID BACKGROUND  (canvas 2D)
+     A faint coordinate field: ruled grid, intersection ticks, sparse
+     measurement marks, and a slow scanning band. Density set by mode:
+       "cover"  — visible on covers / chapter pages
+       "quiet"  — subdued for data-heavy pages
+  ----------------------------------------------------------------*/
+  function mountBackground(host, mode) {
+    mode = mode || "cover";
+    var quiet = mode === "quiet";
+
+    var cv = document.createElement("canvas");
+    cv.className = "atlas-bg-canvas";
+    cv.style.cssText = "position:absolute;inset:0;width:100%;height:100%;z-index:0;pointer-events:none;display:block;";
+    if (getComputedStyle(host).position === "static") host.style.position = "relative";
+    host.insertBefore(cv, host.firstChild);
+    // lift real content above the canvas
+    for (var i = 0; i < host.children.length; i++) {
+      var ch = host.children[i];
+      if (ch === cv) continue;
+      var pos = getComputedStyle(ch).position;
+      if (pos === "static") ch.style.position = "relative";
+      if (!ch.style.zIndex) ch.style.zIndex = "1";
+    }
+
+    var ctx = cv.getContext("2d");
+    var W = 0, H = 0, dpr = Math.min(window.devicePixelRatio || 1, 2);
+    var GRID = quiet ? 64 : 48;          // grid cell size (css px)
+    var marks = [];                       // sparse measurement marks
+
+    function resize() {
+      var r = host.getBoundingClientRect();
+      W = Math.max(1, r.width); H = Math.max(1, r.height);
+      cv.width = W * dpr; cv.height = H * dpr;
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      seedMarks();
+    }
+    function seedMarks() {
+      marks = [];
+      var cols = Math.ceil(W / GRID), rows = Math.ceil(H / GRID);
+      var n = Math.round(cols * rows * (quiet ? 0.04 : 0.07));
+      for (var k = 0; k < n; k++) {
+        marks.push({
+          x: Math.floor(Math.random() * cols) * GRID,
+          y: Math.floor(Math.random() * rows) * GRID,
+          t: Math.random() * Math.PI * 2,
+          kind: Math.random() < 0.5 ? "tick" : "ring"
+        });
+      }
+    }
+
+    function drawStatic() {
+      ctx.clearRect(0, 0, W, H);
+      grid(0);                 // no scan
+      ctx.restore && null;
+    }
+
+    function grid(scanX) {
+      ctx.clearRect(0, 0, W, H);
+      var ink = "23,21,15";    // --ink rgb
+      var base = quiet ? 0.045 : 0.07;
+
+      // fine grid
+      ctx.lineWidth = 1;
+      ctx.strokeStyle = "rgba(" + ink + "," + base + ")";
+      ctx.beginPath();
+      for (var x = 0; x <= W; x += GRID) { ctx.moveTo(x + 0.5, 0); ctx.lineTo(x + 0.5, H); }
+      for (var y = 0; y <= H; y += GRID) { ctx.moveTo(0, y + 0.5); ctx.lineTo(W, y + 0.5); }
+      ctx.stroke();
+
+      // major grid (every 4th line, slightly stronger)
+      ctx.strokeStyle = "rgba(" + ink + "," + (base * 1.8) + ")";
+      ctx.beginPath();
+      for (var x2 = 0; x2 <= W; x2 += GRID * 4) { ctx.moveTo(x2 + 0.5, 0); ctx.lineTo(x2 + 0.5, H); }
+      for (var y2 = 0; y2 <= H; y2 += GRID * 4) { ctx.moveTo(0, y2 + 0.5); ctx.lineTo(W, y2 + 0.5); }
+      ctx.stroke();
+
+      // intersection ticks at major nodes
+      ctx.strokeStyle = "rgba(" + ink + "," + (base * 2.6) + ")";
+      ctx.beginPath();
+      for (var gx = 0; gx <= W; gx += GRID * 4) {
+        for (var gy = 0; gy <= H; gy += GRID * 4) {
+          ctx.moveTo(gx - 3, gy + 0.5); ctx.lineTo(gx + 3, gy + 0.5);
+          ctx.moveTo(gx + 0.5, gy - 3); ctx.lineTo(gx + 0.5, gy + 3);
+        }
+      }
+      ctx.stroke();
+
+      // sparse measurement marks (gently pulsing)
+      var now = performance.now() / 1000;
+      for (var m = 0; m < marks.length; m++) {
+        var mk = marks[m];
+        var pulse = 0.5 + 0.5 * Math.sin(now * 0.6 + mk.t);
+        var a = base * (1.5 + pulse * 1.6);
+        ctx.strokeStyle = "rgba(" + ink + "," + a + ")";
+        ctx.lineWidth = 1;
+        if (mk.kind === "ring") {
+          ctx.beginPath(); ctx.arc(mk.x, mk.y, 3.2, 0, Math.PI * 2); ctx.stroke();
+        } else {
+          ctx.beginPath();
+          ctx.moveTo(mk.x - 4, mk.y); ctx.lineTo(mk.x + 4, mk.y);
+          ctx.moveTo(mk.x, mk.y - 4); ctx.lineTo(mk.x, mk.y + 4);
+          ctx.stroke();
+        }
+      }
+
+      // slow scanning band — a faint vertical sweep (the "reading" line)
+      if (scanX !== null) {
+        var bandW = 140;
+        var g = ctx.createLinearGradient(scanX - bandW, 0, scanX + bandW, 0);
+        g.addColorStop(0, "rgba(26,54,196,0)");
+        g.addColorStop(0.5, "rgba(26,54,196," + (quiet ? 0.022 : 0.04) + ")");
+        g.addColorStop(1, "rgba(26,54,196,0)");
+        ctx.fillStyle = g;
+        ctx.fillRect(scanX - bandW, 0, bandW * 2, H);
+        // crisp scan line
+        ctx.strokeStyle = "rgba(26,54,196," + (quiet ? 0.05 : 0.09) + ")";
+        ctx.lineWidth = 1;
+        ctx.beginPath(); ctx.moveTo(scanX + 0.5, 0); ctx.lineTo(scanX + 0.5, H); ctx.stroke();
+      }
+    }
+
+    var raf = null, start = null;
+    function frame(ts) {
+      if (document.body.classList.contains("low-power")) return;
+      if (!start) start = ts;
+      var period = 14000;
+      var p = ((ts - start) % period) / period;     // 0..1
+      var scanX = -160 + p * (W + 320);
+      grid(scanX);
+      raf = requestAnimationFrame(frame);
+    }
+
+    var inst = {
+      host: host,
+      stop: function () { if (raf) cancelAnimationFrame(raf); raf = null; },
+      startLoop: function () {
+        this.stop();
+        if (prefersReduced || document.body.classList.contains("low-power")) { drawStatic(); return; }
+        drawStatic();            // paint one frame immediately (robust if rAF is throttled)
+        start = null; raf = requestAnimationFrame(frame);
+      },
+      resize: function () { resize(); if (prefersReduced || document.body.classList.contains("low-power")) drawStatic(); }
+    };
+
+    resize();
+    inst.startLoop();
+    var rh = function () { inst.resize(); };
+    window.addEventListener("resize", rh);
+    loops.push(inst);
+    return inst;
+  }
+
+  /* ---------------------------------------------------------------
+     2. REVEAL CONTROLLER
+     Sequences [data-anim] blocks within a stage. Order = data-seq if set,
+     else document order. Source notes always come last.
+  ----------------------------------------------------------------*/
+  function play(stage) {
+    if (!stage) return;
+    if (prefersReduced || document.body.classList.contains("low-power")) {
+      stage.classList.add("is-in");   // CSS forces final state anyway
+      return;
+    }
+    var items = Array.prototype.slice.call(stage.querySelectorAll("[data-anim]"));
+    // group: sources last
+    var primary = items.filter(function (el) { return el.getAttribute("data-anim") !== "source"; });
+    var sources = items.filter(function (el) { return el.getAttribute("data-anim") === "source"; });
+
+    primary.forEach(function (el) {
+      var seq = el.hasAttribute("data-seq") ? parseInt(el.getAttribute("data-seq"), 10) : null;
+      var idx = seq !== null ? seq : primary.indexOf(el);
+      var delay = el.hasAttribute("data-delay") ? parseInt(el.getAttribute("data-delay"), 10) : idx * STAGGER;
+      el.style.transitionDelay = delay + "ms";
+    });
+    var maxPrimary = primary.reduce(function (mx, el) {
+      var d = parseInt(el.style.transitionDelay, 10) || 0; return Math.max(mx, d);
+    }, 0);
+    sources.forEach(function (el, i) {
+      el.style.transitionDelay = (maxPrimary + SOURCE_DELAY + i * STAGGER) + "ms";
+    });
+
+    // commit the initial hidden state with a forced reflow, then reveal.
+    // No rAF — setTimeout fires even when the tab is backgrounded, so content
+    // can never get stuck hidden.
+    void stage.offsetWidth;
+    setTimeout(function () { stage.classList.add("is-in"); }, 30);
+  }
+
+  function reset(stage) {
+    if (!stage) return;
+    stage.classList.remove("is-in");
+    Array.prototype.slice.call(stage.querySelectorAll("[data-anim]")).forEach(function (el) {
+      el.style.transitionDelay = "";
+    });
+  }
+
+  /* ---------------------------------------------------------------
+     3 + 4. LOW-POWER MODE (press B)
+  ----------------------------------------------------------------*/
+  function ensureHint() {
+    if (document.querySelector(".atlas-lowpower-hint")) return;
+    var h = document.createElement("div");
+    h.className = "atlas-lowpower-hint";
+    h.textContent = "STATIC MODE · PRESS B TO RESUME MOTION";
+    document.body.appendChild(h);
+  }
+  function setLowPower(on) {
+    document.body.classList.toggle("low-power", on);
+    if (on) {
+      loops.forEach(function (l) { l.stop(); l.resize(); }); // freeze + draw static frame
+    } else {
+      loops.forEach(function (l) { l.startLoop(); });
+    }
+  }
+  function toggleLowPower() { setLowPower(!document.body.classList.contains("low-power")); }
+
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "b" || e.key === "B") {
+      var t = e.target;
+      if (t && (t.tagName === "INPUT" || t.tagName === "TEXTAREA" || t.isContentEditable)) return;
+      toggleLowPower();
+    }
+  });
+
+  /* ---------------------------------------------------------------
+     AUTO-INIT
+  ----------------------------------------------------------------*/
+  function init() {
+    ensureHint();
+    // backgrounds
+    Array.prototype.slice.call(document.querySelectorAll("[data-atlas-bg]")).forEach(function (host) {
+      mountBackground(host, host.getAttribute("data-atlas-bg") || "cover");
+    });
+    // standalone stages (single-page cards). Deck hosts call play() per slide.
+    var stages = Array.prototype.slice.call(document.querySelectorAll("[data-stage]"));
+    if (stages.length === 1 && !document.querySelector("[data-deck]")) {
+      play(stages[0]);
+    } else {
+      stages.forEach(function (s) {
+        if (s.hasAttribute("data-autoplay")) play(s);
+      });
+    }
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", init);
+  } else { init(); }
+
+  window.AtlasMotion = {
+    mountBackground: mountBackground,
+    play: play,
+    reset: reset,
+    setLowPower: setLowPower,
+    toggleLowPower: toggleLowPower,
+    loops: loops
+  };
+})();
+
+</script>
+  <script>
+/* ===== Slide-local script from slides/06-evidence-grid.html ===== */
+var cells = [
+    ["EX-101","A","Intake station, North region"],
+    ["EX-102","B","Verified caseload, East"],
+    ["EX-103","C","Field measurement, South"],
+    ["EX-104","D","Throughput log, West"],
+    ["EX-105","E","Audit sampling, Central"],
+    ["EX-106","F","Outcome review, Coastal"],
+    ["EX-107","G","Exception handling, Inland"],
+    ["EX-108","H","Closeout record, Capital"]
+  ];
+  document.getElementById('grid').innerHTML = cells.map(function(c,i){
+    return '<div class="ecell" data-anim="cell" data-seq="'+(i+1)+'">'+
+      '<div class="eh"><span>'+c[0]+'</span><span class="ec">REGION '+c[1]+'</span></div>'+
+      '<div class="eslot img-slot"><span class="ph">FIG '+c[0].slice(3)+'</span></div>'+
+      '<div class="ecap">'+c[2]+'</div>'+
+    '</div>';
+  }).join('');
+  </script>
+  <script>
+    (function () {
+      "use strict";
+      var canvas = document.querySelector(".deck-canvas");
+      var slides = Array.prototype.slice.call(document.querySelectorAll(".deck-canvas > .slide"));
+      var index = 0;
+
+      function fit() {
+        var scale = Math.min(window.innerWidth / 1280, window.innerHeight / 720);
+        canvas.style.transform = "scale(" + scale + ")";
+      }
+
+      function buildNav() {
+        var nav = document.createElement("div");
+        nav.className = "deck-nav";
+        nav.innerHTML = '<button data-prev aria-label="Previous">&#8249;</button><span class="count"></span><button data-next aria-label="Next">&#8250;</button>';
+        document.body.appendChild(nav);
+        nav.querySelector("[data-prev]").addEventListener("click", prev);
+        nav.querySelector("[data-next]").addEventListener("click", next);
+        return nav;
+      }
+
+      var nav = buildNav();
+      function updateNav() {
+        nav.querySelector(".count").textContent = String(index + 1).padStart(2, "0") + " / " + String(slides.length).padStart(2, "0");
+      }
+
+      function setBgLoops() {
+        var loops = window.AtlasMotion && window.AtlasMotion.loops;
+        if (!loops) return;
+        loops.forEach(function (loop) {
+          if (loop.host === slides[index] && !document.body.classList.contains("low-power")) {
+            loop.resize();
+            loop.startLoop();
+          }
+          else loop.stop();
+        });
+      }
+
+      function go(nextIndex) {
+        index = Math.max(0, Math.min(slides.length - 1, nextIndex));
+        slides.forEach(function (slide, i) {
+          var active = i === index;
+          slide.style.display = active ? "" : "none";
+          slide.toggleAttribute("data-deck-active", active);
+          slide.setAttribute("aria-hidden", active ? "false" : "true");
+          if (window.AtlasMotion) window.AtlasMotion.reset(slide);
+        });
+        updateNav();
+        setBgLoops();
+        if (window.AtlasMotion) window.AtlasMotion.play(slides[index]);
+      }
+
+      function next() { go(index + 1); }
+      function prev() { go(index - 1); }
+
+      document.addEventListener("keydown", function (e) {
+        if (e.metaKey || e.ctrlKey || e.altKey) return;
+        var key = e.key.toLowerCase();
+        if (document.body.classList.contains("low-power")) {
+          if (key === "b" && window.AtlasMotion) setTimeout(setBgLoops, 40);
+          return;
+        }
+        if (key === "arrowright" || key === " " || key === "pagedown") { e.preventDefault(); next(); }
+        else if (key === "arrowleft" || key === "pageup") { e.preventDefault(); prev(); }
+        else if (key === "home") { e.preventDefault(); go(0); }
+        else if (key === "end") { e.preventDefault(); go(slides.length - 1); }
+        else if (key === "r" && window.AtlasMotion) { e.preventDefault(); window.AtlasMotion.reset(slides[index]); window.AtlasMotion.play(slides[index]); }
+      });
+
+      window.addEventListener("resize", fit);
+      window.addEventListener("beforeprint", function () {
+        slides.forEach(function (slide) { slide.style.display = ""; slide.setAttribute("data-deck-active", ""); });
+      });
+      window.addEventListener("afterprint", function () { go(index); });
+
+      canvas.classList.add("deck-ready");
+      fit();
+      go(0);
+      window.ProofAtlasDeck = { slides: slides, go: go, next: next, prev: prev, get index() { return index; } };
+    })();
+  </script>
+</body>
+</html>

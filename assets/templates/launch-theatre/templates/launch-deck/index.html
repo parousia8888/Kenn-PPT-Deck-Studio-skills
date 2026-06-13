@@ -1,0 +1,67 @@
+<!-- @template name="Launch Theatre Deck" description="Cinematic product-launch deck — black stage, optical background, semantic slide reveals, B for low-power." -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Launch Theatre — Deck</title>
+<!-- React UMD must load BEFORE ds-base.js (the DS bundle calls React.createElement) -->
+<script src="https://unpkg.com/react@18.3.1/umd/react.production.min.js" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.production.min.js" crossorigin="anonymous"></script>
+<script src="./ds-base.js"></script>
+<style>
+  html, body { margin: 0; background: #000; }
+</style>
+</head>
+<body>
+<!--
+  Launch Theatre deck starter. Each <section> is one act. Patterns:
+    • data-bg="strong|base|dim"   per-slide optical field intensity
+    • <div class="field" data-lt-field></div>   contained background (cover/reveal/closing)
+    • data-anim="<recipe>"  on blocks  — cover-title, meta, tension, product,
+      feature(+.lt-feature__line), step, before/divider/after, layer, bar/num, closing, rise
+    • style="--i:N"  staggers a sequence
+  Copy more slide layouts from ../../slides/index.html. Press B for static mode.
+-->
+<deck-stage>
+
+  <!-- COVER -->
+  <section data-screen-label="01" data-bg="strong">
+    <div class="frame cover">
+      <div class="field" data-lt-field></div>
+      <span class="k" data-anim="meta">Launch <span class="idx">01 / 03</span></span>
+      <h1 class="d title" data-anim="cover-title">Your<b>.</b></h1>
+      <dl class="meta">
+        <div data-anim="meta" style="--i:1"><dt>Product</dt><dd>Name here</dd></div>
+        <div data-anim="meta" style="--i:2"><dt>Version</dt><dd class="on">v1.0</dd></div>
+        <div data-anim="meta" style="--i:3"><dt>Date</dt><dd>2026</dd></div>
+      </dl>
+    </div>
+  </section>
+
+  <!-- TENSION -->
+  <section data-screen-label="02" data-bg="base">
+    <div class="frame tension">
+      <div class="field" data-lt-field></div>
+      <p class="d sentence" data-anim="tension">One sentence that <b>shifts</b> the room.</p>
+      <span class="sub" data-anim="meta" style="--i:2">— The shift</span>
+    </div>
+  </section>
+
+  <!-- CLOSING -->
+  <section data-screen-label="03" data-bg="strong">
+    <div class="frame closing">
+      <div class="field" data-lt-field></div>
+      <h2 class="d phrase" data-anim="closing">The closing<br/><b>line</b>.</h2>
+      <span class="sub" data-anim="meta" style="--i:1">Available today</span>
+      <div class="breathe-rule lt-breathe"></div>
+    </div>
+  </section>
+
+</deck-stage>
+
+<!-- motion controller + deck shell, loaded from the DS root -->
+<script src="../../motion/launch-theatre.js"></script>
+<script src="../../slides/deck-stage.js"></script>
+</body>
+</html>

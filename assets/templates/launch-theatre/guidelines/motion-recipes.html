@@ -1,0 +1,25 @@
+<!-- @dsCard group="Motion" viewport="700x260" name="Reveal recipes" subtitle="Semantic slide-enter animations — one recipe per slide type" -->
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8" /><link rel="stylesheet" href="../styles.css" /><link rel="stylesheet" href="../motion/launch-theatre.css" />
+<style>
+  body { margin: 0; background: var(--bg-stage); padding: 30px; }
+  .grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
+  .tile { border: 1px solid var(--hairline); border-radius: var(--radius-sm); padding: 18px; min-height: 150px; display: flex; flex-direction: column; justify-content: space-between; overflow: hidden; }
+  .name { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--text-faint); }
+  .big { font-family: var(--font-display); font-weight: 200; letter-spacing: -0.03em; color: var(--text-primary); }
+  .num { font-family: var(--font-display); font-weight: 200; font-size: 52px; letter-spacing: -0.03em; color: var(--accent); line-height: 1; }
+  .line { height: 1px; background: var(--accent); box-shadow: var(--glow-soft); display: block; margin-bottom: 14px; }
+  /* continuous sweep on the product tile for liveliness */
+  #demo .lt-sweep::after { animation: lt-sweep-cross 3.6s var(--ease-light) 0.6s infinite !important; }
+</style></head><body>
+<!-- lt-on present from parse: content holds its revealed end-state (thumbnail-safe) -->
+<div id="demo" class="lt-on">
+  <div class="grid">
+    <div class="tile"><span class="name">tension</span><div class="big" style="font-size:22px" data-anim="tension">Say less.</div></div>
+    <div class="tile"><span class="name">feature · line draw</span><div data-anim="feature"><span class="lt-feature__line line"></span><div class="big" style="font-size:20px">On-device</div></div></div>
+    <div class="tile"><span class="name">benchmark · number</span><div class="num">2.4×</div></div>
+    <div class="tile" style="position:relative"><span class="name">product · sweep</span><div data-anim="product" style="position:relative;border-radius:var(--radius-sm);overflow:hidden;background:var(--graphite-2);border:1px solid var(--hairline-strong);height:74px"><span class="lt-sweep"></span></div></div>
+  </div>
+</div>
+<script src="../motion/launch-theatre.js"></script>
+</body></html>

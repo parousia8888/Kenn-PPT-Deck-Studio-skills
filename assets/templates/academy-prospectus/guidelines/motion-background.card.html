@@ -1,0 +1,26 @@
+<!-- @dsCard group="Brand" viewport="700x180" name="Motion · Paper-Light Background" subtitle="Live breathing paper texture (press B for static)" -->
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><link rel="stylesheet" href="../styles.css"><link rel="stylesheet" href="../slides/prospectus-slides.css">
+<style>
+ html,body{margin:0;}
+ .demo{position:relative;width:100%;height:180px;overflow:hidden;background:var(--paper);}
+ .demo .paper-bg{position:absolute;inset:0;}
+ .cap{position:absolute;left:24px;top:50%;transform:translateY(-50%);z-index:2;max-width:60%;}
+ .cap h4{font-family:var(--font-display);font-weight:500;font-size:22px;color:var(--ink);margin:0 0 6px;}
+ .cap p{font-family:var(--font-body);font-size:13.5px;line-height:1.5;color:var(--ink-muted);margin:0;}
+ .hint{font-family:var(--font-meta);font-size:9.5px;letter-spacing:0.14em;text-transform:uppercase;color:var(--ink-faint);margin-top:8px;}
+</style></head>
+<body>
+ <div class="demo" id="demo">
+  <div class="cap"><h4>Paper, gently breathing</h4><p>Laid-paper fibres with a slow vignette that swells and recedes — almost photographic, never techy.</p><div class="hint">Press B · static low-power mode</div></div>
+ </div>
+ <script src="../slides/prospectus-motion.js"></script>
+ <script>
+  // mount the breathing background into the demo box (no .slide present here)
+  window.addEventListener('load',function(){
+    var box=document.getElementById('demo');
+    var c=document.querySelector('.paper-bg');
+    if(c) box.insertBefore(c, box.firstChild);
+  });
+ </script>
+</body></html>

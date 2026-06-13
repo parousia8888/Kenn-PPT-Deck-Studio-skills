@@ -1,0 +1,65 @@
+<!-- @dsCard group="Slides" viewport="1280x720" name="05 · Step-by-Step" subtitle="Numbered worked procedure beside a blackboard micro-diagram" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Step by Step</title>
+<link rel="stylesheet" href="../styles.css">
+<link rel="stylesheet" href="./deck.css">
+<style>
+  html,body{margin:0;height:100%;}
+  body{background:#2A2723;display:grid;place-items:center;}
+  .board-eq{ font-size:40px; line-height:1.2; letter-spacing:.01em; }
+  .board-eq sup, .board-eq sub{ font-size:.6em; }
+</style>
+</head>
+<body>
+<section class="cc-slide cc-reveal-on" data-bg="teaching" data-screen-label="Step by Step">
+  <div class="cc-grid cc-grid--wide">
+    <div class="cc-margin" style="display:flex;flex-direction:column;height:100%;">
+      <span class="cc-tab cc-tab--ox">METHOD</span>
+      <div class="cc-numtab" style="margin-top:14px;font-size:84px;">M2</div>
+      <span class="cc-clock cc-push">WORK ALONG</span>
+    </div>
+
+    <div class="cc-main" style="display:flex;flex-direction:column;height:100%;">
+      <span class="cc-eyebrow">STEP-BY-STEP</span>
+      <h1 class="cc-title" style="margin-top:10px;">Turning a value into a z-score</h1>
+      <hr class="cc-rule cc-rule--ink">
+
+      <div class="cc-cols-2" style="grid-template-columns:1fr 0.92fr;gap:44px;align-items:start;flex:1;">
+        <ol class="cc-steps">
+          <li data-step data-reveal="1"><div><span class="cc-steps__title">Find the center</span><span class="cc-steps__body">Write down the mean μ of the dataset.</span></div></li>
+          <li data-step data-reveal="2"><div><span class="cc-steps__title">Measure the gap</span><span class="cc-steps__body">Subtract the mean from your value: x − μ.</span></div></li>
+          <li data-step data-reveal="3"><div><span class="cc-steps__title">Scale by spread</span><span class="cc-steps__body">Divide by the standard deviation σ.</span></div></li>
+          <li data-step data-reveal="4"><div><span class="cc-steps__title">Read the result</span><span class="cc-steps__body">The z-score is how many σ from the mean you are.</span></div></li>
+        </ol>
+
+        <div class="cc-board" data-reveal="3" style="align-self:stretch;display:flex;flex-direction:column;justify-content:center;gap:18px;">
+          <div class="cc-board__title">Worked once</div>
+          <div class="board-eq">z = <span style="display:inline-block;text-align:center;">
+            <span style="border-bottom:2px solid var(--chalk);padding:0 8px;display:block;">x − μ</span>
+            <span style="display:block;padding-top:4px;">σ</span>
+          </span></div>
+          <div style="font-size:15px;letter-spacing:.06em;color:var(--chalk-sage);">
+            x = 86 &nbsp; μ = 74 &nbsp; σ = 8<br>
+            <span class="cc-straw">z = (86 − 74) / 8 = 1.5</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="cc-cue" style="margin-top:6px;">
+        <span class="cc-cue__label">Teaching cue</span>
+        <span>Pause after step 3 — have students predict the sign of z before you reveal the number.</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="cc-footer">
+    <span class="cc-footer__brand"><span class="cc-footer__dot"></span>COURSE CANVAS</span>
+    <span>STAT 1 · LESSON 04 · METHOD M2</span>
+  </div>
+</section>
+<script src="./cc-bg.js"></script>
+</body>
+</html>

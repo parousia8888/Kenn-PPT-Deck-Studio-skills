@@ -1,0 +1,67 @@
+<!-- @dsCard group="Slides" viewport="1280x720" name="06 · Evidence Grid" subtitle="Cells appear in scanline order; captions follow images" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Proof Atlas — Evidence Grid</title>
+<link rel="stylesheet" href="../styles.css">
+<link rel="stylesheet" href="../assets/atlas-anim.css">
+<link rel="stylesheet" href="slide-base.css">
+<script src="../assets/atlas-motion.js"></script>
+</head>
+<body>
+<div class="slide atlas-stage" data-stage data-autoplay data-atlas-bg="quiet">
+  <div class="slide-inner">
+    <div class="slide-head">
+      <div class="brand"><span class="xh"><i></i></span><span class="nm">Proof Atlas</span></div>
+      <div class="head-meta">
+        <span class="tag accent">Evidence Board</span>
+        <span class="coord">PLATE 06 · 8 EXHIBITS</span>
+      </div>
+    </div>
+
+    <div class="slide-body" style="padding-top:18px;">
+      <h1 data-anim="mask" data-seq="0" class="title" style="font-size:32px;margin-bottom:18px;">Field evidence, regions A–H</h1>
+
+      <div class="egrid" id="grid"></div>
+
+      <div data-anim="source" style="margin-top:auto;padding-top:14px;">
+        <span class="source">Source · field photography &amp; intake records · exhibits EX-101 → EX-108</span>
+      </div>
+    </div>
+
+    <div class="slide-foot">
+      <span>Field Program Review · 2026</span>
+      <span class="seq">Evidence Grid · 06 / 10</span>
+    </div>
+  </div>
+</div>
+<style>
+  .egrid { display: grid; grid-template-columns: repeat(4, 1fr); grid-template-rows: repeat(2, 1fr); gap: 16px; flex: 1; min-height: 0; }
+  .ecell { display: flex; flex-direction: column; border: 1px solid var(--rule); background: var(--paper-pure); }
+  .ecell .eh { display: flex; align-items: center; justify-content: space-between; padding: 6px 9px; border-bottom: 1px solid var(--rule); font-family: var(--font-mono); font-size: 8.5px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gray-2); white-space: nowrap; }
+  .ecell .eh .ec { color: var(--blue); }
+  .ecell .eslot { flex: 1; min-height: 0; }
+  .ecell .ecap { padding: 7px 9px; border-top: 1px solid var(--rule-faint); font-family: var(--font-body); font-size: 11px; line-height: 1.3; color: var(--gray-1); }
+</style>
+<script>
+  var cells = [
+    ["EX-101","A","Intake station, North region"],
+    ["EX-102","B","Verified caseload, East"],
+    ["EX-103","C","Field measurement, South"],
+    ["EX-104","D","Throughput log, West"],
+    ["EX-105","E","Audit sampling, Central"],
+    ["EX-106","F","Outcome review, Coastal"],
+    ["EX-107","G","Exception handling, Inland"],
+    ["EX-108","H","Closeout record, Capital"]
+  ];
+  document.getElementById('grid').innerHTML = cells.map(function(c,i){
+    return '<div class="ecell" data-anim="cell" data-seq="'+(i+1)+'">'+
+      '<div class="eh"><span>'+c[0]+'</span><span class="ec">REGION '+c[1]+'</span></div>'+
+      '<div class="eslot img-slot"><span class="ph">FIG '+c[0].slice(3)+'</span></div>'+
+      '<div class="ecap">'+c[2]+'</div>'+
+    '</div>';
+  }).join('');
+</script>
+</body>
+</html>

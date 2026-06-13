@@ -1,0 +1,15 @@
+/* ----------------------------------------------------------------------------
+   Academy Prospectus — Webfonts
+   Loaded from Google Fonts so the system works on Windows, macOS and Linux
+   without shipping binaries. Every consuming stack also lists explicit
+   Windows + CJK fallbacks (see typography.css) so the deck stays readable
+   if the webfont request fails.
+
+   Display serif ....... Spectral      (literary, editorial prospectus serif)
+   Body humanist sans .. Source Sans 3 (calm, readable institutional sans)
+   Metadata / mono ..... JetBrains Mono (course codes, age groups, durations)
+   CJK serif ........... Noto Serif SC
+   CJK sans ............ Noto Sans SC
+---------------------------------------------------------------------------- */
+
+@import url("https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500&family=Source+Sans+3:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500;600&family=Noto+Serif+SC:wght@400;500;600&family=Noto+Sans+SC:wght@300;400;500&display=swap");

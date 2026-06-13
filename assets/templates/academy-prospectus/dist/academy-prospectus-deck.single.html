@@ -1,0 +1,1218 @@
+<!-- @template name="Academy Prospectus Deck" description="A warm, editorial 10-layout school prospectus deck — live presentation and PDF brochure in one." -->
+<!DOCTYPE html>
+<html lang="en" data-packaged="single-html" data-font-mode="online">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Academy Prospectus — Full Deck</title>
+
+<!-- Academy Prospectus canonical deck: static HTML, no React runtime needed. -->
+<style data-inlined-from="../../styles.css">
+/* ===== Inlined from styles.css ===== */
+/* ----------------------------------------------------------------------------
+   Academy Prospectus — Design System global entry point
+   Consumers link THIS one file. It is a manifest of @imports only.
+   Order: fonts first (CSS requires @import before other rules), then tokens.
+---------------------------------------------------------------------------- */
+
+
+/* ===== Inlined from tokens/fonts.css ===== */
+/* ----------------------------------------------------------------------------
+   Academy Prospectus — Webfonts
+   Loaded from Google Fonts so the system works on Windows, macOS and Linux
+   without shipping binaries. Every consuming stack also lists explicit
+   Windows + CJK fallbacks (see typography.css) so the deck stays readable
+   if the webfont request fails.
+
+   Display serif ....... Spectral      (literary, editorial prospectus serif)
+   Body humanist sans .. Source Sans 3 (calm, readable institutional sans)
+   Metadata / mono ..... JetBrains Mono (course codes, age groups, durations)
+   CJK serif ........... Noto Serif SC
+   CJK sans ............ Noto Sans SC
+---------------------------------------------------------------------------- */
+
+@import url("https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500&family=Source+Sans+3:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500;600&family=Noto+Serif+SC:wght@400;500;600&family=Noto+Sans+SC:wght@300;400;500&display=swap");
+
+
+
+/* ===== Inlined from tokens/colors.css ===== */
+/* ----------------------------------------------------------------------------
+   Academy Prospectus — Colour system
+   Warm, institutional, quietly premium. Colour is used as SECTION IDENTITY,
+   never as decoration. Base is parchment; text is charcoal; four muted
+   accents (terracotta, forest, navy, gold) each own a chapter of the deck.
+---------------------------------------------------------------------------- */
+
+:root {
+  /* — Base / surfaces (warm white → parchment) — */
+  --paper:        #FAF6EF;   /* primary background, warm white */
+  --porcelain:    #F3ECE0;   /* secondary surface */
+  --parchment:    #EBE1CF;   /* calm colour field, panels */
+  --paper-deep:   #E3D8C3;   /* deepest paper, dividers fill */
+  --paper-ink:    #211E1A;   /* dark surface for cover / contrast slides */
+
+  /* — Ink / text (charcoal → soft black) — */
+  --ink:          #221F1A;   /* soft black, display text */
+  --charcoal:     #3B362E;   /* primary body text */
+  --ink-muted:    #6C6457;   /* secondary text, captions */
+  --ink-faint:    #978D7D;   /* metadata, disabled, fine print */
+  --ink-on-dark:  #F1E9DA;   /* text on dark / accent surfaces */
+
+  /* — Accent palette (muted, section identities) — */
+  --terracotta:        #B05C3B;
+  --terracotta-deep:   #8E462C;
+  --terracotta-field:  #F1E4DA;   /* calm tinted background */
+
+  --forest:        #3C5A45;
+  --forest-deep:   #2C4634;
+  --forest-field:  #E2E9E1;
+
+  --navy:          #324A63;
+  --navy-deep:     #25394E;
+  --navy-field:    #DFE5EA;
+
+  --gold:          #A98545;
+  --gold-deep:     #876A35;
+  --gold-field:    #F1E8D4;
+
+  /* — Lines, borders, dividers — */
+  --line:         #DCD2C1;   /* hairline rules, card borders */
+  --line-strong:  #C7BAA3;   /* stronger structural rule */
+  --line-faint:   #E8DFD0;
+
+  /* — Shadows (soft, paper-lifted, never harsh) — */
+  --shadow-card:   0 1px 2px rgba(40, 33, 22, 0.05), 0 8px 24px rgba(40, 33, 22, 0.06);
+  --shadow-lift:   0 2px 6px rgba(40, 33, 22, 0.07), 0 18px 44px rgba(40, 33, 22, 0.10);
+  --shadow-image:  0 12px 40px rgba(40, 33, 22, 0.16);
+
+  /* — Semantic aliases — */
+  --bg-base:        var(--paper);
+  --surface-card:   var(--paper);
+  --surface-panel:  var(--porcelain);
+  --surface-field:  var(--parchment);
+  --text-display:   var(--ink);
+  --text-body:      var(--charcoal);
+  --text-muted:     var(--ink-muted);
+  --text-meta:      var(--ink-faint);
+  --border-hair:    var(--line);
+  --accent:         var(--terracotta);   /* default brand accent */
+}
+
+/* — Section identity scopes —
+   Apply one of these to a slide/section root to recolour its accent,
+   metadata, rules and tinted field in a single move. Colour = chapter. */
+[data-accent="terracotta"] { --accent: var(--terracotta); --accent-deep: var(--terracotta-deep); --accent-field: var(--terracotta-field); }
+[data-accent="forest"]     { --accent: var(--forest);     --accent-deep: var(--forest-deep);     --accent-field: var(--forest-field); }
+[data-accent="navy"]       { --accent: var(--navy);       --accent-deep: var(--navy-deep);       --accent-field: var(--navy-field); }
+[data-accent="gold"]       { --accent: var(--gold);       --accent-deep: var(--gold-deep);       --accent-field: var(--gold-field); }
+
+:root { --accent-deep: var(--terracotta-deep); --accent-field: var(--terracotta-field); }
+
+
+
+/* ===== Inlined from tokens/typography.css ===== */
+/* ----------------------------------------------------------------------------
+   Academy Prospectus — Typography
+   Display: refined literary serif (Spectral).
+   Body:    humanist sans (Source Sans 3).
+   Meta:    mono (JetBrains Mono) for course codes, age groups, durations.
+   Every stack carries Windows + CJK fallbacks so it renders everywhere.
+---------------------------------------------------------------------------- */
+
+:root {
+  /* — Families (explicit Windows + CJK fallbacks on every stack) — */
+  --font-display: "Spectral", "Noto Serif SC", "Source Han Serif SC", "SimSun", Georgia, "Times New Roman", serif;
+  --font-serif:   "Spectral", "Noto Serif SC", "Source Han Serif SC", "SimSun", Georgia, serif;
+  --font-body:    "Source Sans 3", "Segoe UI", "Microsoft YaHei UI", "Microsoft YaHei", "Noto Sans SC", Arial, sans-serif;
+  --font-meta:    "JetBrains Mono", "Cascadia Code", "Consolas", "Courier New", monospace;
+
+  /* — Type scale (presentation-grade; generous) — */
+  --fs-hero:     clamp(48px, 6.4vw, 104px);  /* @kind spacing */ /* institution cover title */
+  --fs-display:  clamp(40px, 4.6vw, 72px);   /* @kind spacing */ /* statement / philosophy */
+  --fs-title:    clamp(30px, 3.2vw, 48px);   /* @kind spacing */ /* slide titles */
+  --fs-heading:  clamp(22px, 2.0vw, 30px);   /* @kind spacing */ /* sub-headings, card titles */
+  --fs-lead:     clamp(18px, 1.5vw, 24px);   /* @kind spacing */ /* lead paragraph */
+  --fs-body:     clamp(15px, 1.15vw, 19px);  /* @kind spacing */ /* body copy */
+  --fs-small:    14px;                        /* @kind spacing */
+  --fs-meta:     12.5px;                       /* @kind spacing */ /* mono metadata labels */
+  --fs-kpi:      clamp(52px, 6vw, 92px);      /* @kind spacing */ /* outcome numbers */
+
+  /* — Weights — */
+  --fw-light:   300;  /* @kind other */
+  --fw-reg:     400;  /* @kind other */
+  --fw-med:     500;  /* @kind other */
+  --fw-semi:    600;  /* @kind other */
+  --fw-bold:    700;  /* @kind other */
+
+  /* — Line heights — */
+  --lh-tight:   1.04;  /* @kind other */
+  --lh-snug:    1.18;  /* @kind other */
+  --lh-title:   1.12;  /* @kind other */
+  --lh-body:    1.62;  /* @kind other */
+  --lh-loose:   1.78;  /* @kind other */
+
+  /* — Letter spacing — */
+  --ls-meta:    0.18em;   /* @kind spacing */ /* small-caps / mono labels */
+  --ls-tight:  -0.015em;  /* @kind spacing */
+  --ls-display:-0.02em;   /* @kind spacing */
+}
+
+/* — Metadata label helper: course codes, age groups, module labels —
+   Mono, uppercase, tracked. The signature "small-caps" device of the system. */
+.meta-label {
+  font-family: var(--font-meta);
+  font-size: var(--fs-meta);
+  font-weight: var(--fw-med);
+  letter-spacing: var(--ls-meta);
+  text-transform: uppercase;
+  color: var(--text-meta);
+}
+
+
+
+/* ===== Inlined from tokens/spacing.css ===== */
+/* ----------------------------------------------------------------------------
+   Academy Prospectus — Spacing, radii, layout
+   An 8px base rhythm with generous editorial margins. Corners are gentle,
+   never bubbly — this is a brochure, not an app.
+---------------------------------------------------------------------------- */
+
+:root {
+  /* — Spacing scale (8px base) — */
+  --s-1:  4px;
+  --s-2:  8px;
+  --s-3:  12px;
+  --s-4:  16px;
+  --s-5:  24px;
+  --s-6:  32px;
+  --s-7:  48px;
+  --s-8:  64px;
+  --s-9:  96px;
+  --s-10: 128px;
+
+  /* — Editorial page margins (the calm air around everything) — */
+  --margin-slide:   clamp(48px, 6vw, 110px);  /* @kind spacing */ /* outer slide margin */
+  --gutter:         clamp(24px, 2.4vw, 48px); /* @kind spacing */ /* column gutter */
+  --measure:        62ch;                      /* @kind other */ /* ideal reading width */
+
+  /* — Radii (soft, restrained) — */
+  --r-xs:  3px;
+  --r-sm:  6px;
+  --r-md:  10px;
+  --r-lg:  16px;
+  --r-image: 4px;     /* documentary photos keep tight, near-square corners */
+  --r-pill: 999px;
+
+  /* — Hairline weights — */
+  --hair: 1px;
+  --rule: 2px;
+}
+
+
+
+/* ===== Inlined from tokens/motion.css ===== */
+/* ----------------------------------------------------------------------------
+   Academy Prospectus — Motion tokens
+   Page-like, warm, editorial. Gentle fades and soft reveals — never techy.
+   Durations are deliberately slow; easing settles like a turning page.
+---------------------------------------------------------------------------- */
+
+:root {
+  /* — Durations — */
+  --dur-fast:  360ms;   /* @kind other */
+  --dur-med:   680ms;   /* @kind other */
+  --dur-slow:  1050ms;  /* @kind other */
+  --dur-ink:   1400ms;   /* @kind other */ /* ink-on-paper title reveal */
+
+  /* — Easing — */
+  --ease-page: cubic-bezier(0.22, 0.61, 0.36, 1);  /* @kind other */ /* soft settle, page turn */
+  --ease-ink:  cubic-bezier(0.16, 1, 0.30, 1);     /* @kind other */ /* ink bloom, long tail */
+  --ease-calm: cubic-bezier(0.40, 0.00, 0.20, 1);  /* @kind other */ /* even, unhurried */
+
+  /* — Stagger steps for sequenced reveals (teacher cards, plan columns) — */
+  --stagger:   120ms;   /* @kind other */
+}
+
+
+
+</style>
+<style data-inlined-from="../../slides/prospectus-slides.css">
+/* ===== Inlined from slides/prospectus-slides.css ===== */
+/* ============================================================================
+   Academy Prospectus — Slide system
+   A fixed 1280×720 editorial canvas. Ten reusable brochure layouts, a calm
+   paper-light background, and a semantic slide-enter animation system.
+   Requires the design-system tokens (link styles.css before this file).
+   ============================================================================ */
+
+/* ---- Stage & canvas ----------------------------------------------------- */
+.deck-stage,
+.deck-stage *,
+.deck-stage *::before,
+.deck-stage *::after {
+  box-sizing: border-box;
+}
+
+.deck-stage {
+  position: fixed;
+  inset: 0;
+  background: #1c1916;          /* letterbox */
+  overflow: hidden;
+  display: grid;
+  place-items: center;
+}
+
+.slide {
+  position: relative;
+  width: 1280px;
+  height: 720px;
+  flex: none;
+  background: var(--paper);
+  color: var(--text-body);
+  font-family: var(--font-body);
+  overflow: hidden;
+  isolation: isolate;
+}
+
+/* When used as a standalone card / page, centre the single slide */
+body.single-slide {
+  margin: 0;
+  background: #1c1916;
+  display: grid;
+  place-items: center;
+  min-height: 100vh;
+}
+
+/* Paper-light background canvas lives INSIDE the active slide: above the
+   slide's opaque paper fill, below the content. */
+.slide > * { position: relative; z-index: 1; }
+.paper-bg { position: absolute; inset: 0; pointer-events: none; }
+.slide > .paper-bg { z-index: 0; }
+
+/* ---- Shared slide furniture --------------------------------------------- */
+.slide-pad {
+  position: absolute;
+  inset: 64px 96px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Top metadata rail: institution mark · section label · folio */
+.slide-rail {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding-bottom: 18px;
+  border-bottom: var(--hair) solid var(--line);
+}
+.slide-rail .mark {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-family: var(--font-display);
+  font-size: 19px;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+}
+.slide-rail .mark .glyph {
+  width: 26px; height: 26px;
+  display: grid; place-items: center;
+  border: 1.5px solid var(--accent);
+  border-radius: 50%;
+  color: var(--accent);
+  font-family: var(--font-display);
+  font-size: 14px; font-weight: 600;
+  font-style: italic;
+}
+.slide-rail .section {
+  font-family: var(--font-meta);
+  font-size: 12px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+.slide-rail .folio {
+  font-family: var(--font-meta);
+  font-size: 12px;
+  letter-spacing: 0.16em;
+  color: var(--ink-faint);
+}
+
+/* Eyebrow / chapter label */
+.eyebrow {
+  font-family: var(--font-meta);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--accent);
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+}
+.eyebrow::before {
+  content: "";
+  width: 28px; height: 1.5px;
+  background: var(--accent);
+  display: inline-block;
+}
+
+/* Display + body type helpers tuned for the 1280×720 canvas */
+.t-hero    { font-family: var(--font-display); font-weight: 400; font-size: 88px; line-height: 1.02; letter-spacing: -0.02em; color: var(--ink); }
+.t-statement { font-family: var(--font-display); font-weight: 400; font-size: 58px; line-height: 1.12; letter-spacing: -0.015em; color: var(--ink); }
+.t-title   { font-family: var(--font-display); font-weight: 500; font-size: 40px; line-height: 1.1; letter-spacing: -0.01em; color: var(--ink); }
+.t-heading { font-family: var(--font-display); font-weight: 500; font-size: 25px; line-height: 1.18; color: var(--ink); }
+.t-lead    { font-family: var(--font-body); font-weight: 400; font-size: 21px; line-height: 1.6; color: var(--charcoal); }
+.t-body    { font-family: var(--font-body); font-weight: 400; font-size: 17px; line-height: 1.62; color: var(--charcoal); }
+.t-small   { font-family: var(--font-body); font-weight: 400; font-size: 14.5px; line-height: 1.55; color: var(--ink-muted); }
+.t-serif-italic { font-style: italic; font-family: var(--font-display); }
+
+/* Mono metadata chip (course code, age group, duration) */
+.chip {
+  font-family: var(--font-meta);
+  font-size: 11.5px;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent-deep);
+  background: var(--accent-field);
+  border: var(--hair) solid color-mix(in srgb, var(--accent) 22%, transparent);
+  border-radius: var(--r-pill);
+  padding: 6px 13px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  white-space: nowrap;
+}
+.chip--bare {
+  background: transparent;
+  border: none;
+  padding: 0;
+  color: var(--ink-faint);
+}
+
+/* Documentary image frame */
+.img-frame {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--r-image);
+  background: var(--parchment);
+  box-shadow: var(--shadow-image);
+}
+.img-frame img { width: 100%; height: 100%; object-fit: cover; display: block;
+  /* warm documentary grade */ filter: saturate(0.92) contrast(1.02); }
+.img-frame .caption {
+  position: absolute; left: 0; bottom: 0; right: 0;
+  padding: 14px 16px 12px;
+  background: linear-gradient(transparent, rgba(28,22,14,0.62));
+  color: var(--ink-on-dark);
+  font-family: var(--font-meta);
+  font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase;
+}
+
+/* Documentary photo PLACEHOLDER — used until real photography is supplied.
+   Reads as an intentional editorial image frame, not a broken asset. */
+.img-ph {
+  position: relative;
+  width: 100%; height: 100%;
+  background:
+    radial-gradient(120% 90% at 30% 20%, color-mix(in srgb, var(--accent-field) 60%, var(--parchment)), var(--parchment) 70%),
+    var(--parchment);
+  display: grid; place-items: center;
+  overflow: hidden;
+}
+.img-ph::after {
+  content: attr(data-label);
+  position: absolute; left: 14px; bottom: 12px;
+  font-family: var(--font-meta); font-size: 10px; letter-spacing: 0.16em;
+  text-transform: uppercase; color: color-mix(in srgb, var(--ink-faint) 80%, var(--accent));
+}
+.img-ph .lens {
+  width: 38px; height: 38px; border-radius: 50%;
+  border: 1.5px solid color-mix(in srgb, var(--accent) 50%, transparent);
+  position: relative; opacity: 0.7;
+}
+.img-ph .lens::before {
+  content: ""; position: absolute; inset: 8px; border-radius: 50%;
+  border: 1.5px solid color-mix(in srgb, var(--accent) 38%, transparent);
+}
+
+/* ============================================================================
+   LAYOUT 1 — Institution cover
+   ============================================================================ */
+.l-cover { display: grid; grid-template-columns: 1.04fr 0.96fr; height: 100%; }
+.l-cover .cover-text {
+  padding: 64px 56px 56px 96px;
+  display: flex; flex-direction: column; justify-content: space-between;
+}
+.l-cover .cover-img { position: relative; }
+.l-cover .cover-img .img-frame { position: absolute; inset: 0; border-radius: 0; box-shadow: none; }
+.l-cover .cover-img::after {
+  content: ""; position: absolute; inset: 0;
+  box-shadow: inset 0 0 120px rgba(28,22,14,0.18);
+}
+.l-cover .established {
+  font-family: var(--font-meta); font-size: 12px; letter-spacing: 0.24em;
+  text-transform: uppercase; color: var(--ink-faint);
+}
+
+/* ============================================================================
+   LAYOUT 2 — Brand promise  /  LAYOUT 3 — Teaching philosophy
+   ============================================================================ */
+.l-statement { display: flex; flex-direction: column; justify-content: center; height: 100%;
+  padding: 0 var(--margin-slide); max-width: 1040px; }
+.l-statement .lead-follow { margin-top: 30px; max-width: 60ch; }
+
+.l-promise { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; height: 100%;
+  padding: 0 96px; }
+
+/* ============================================================================
+   LAYOUT 4 — Curriculum system  (structured module grid)
+   ============================================================================ */
+.l-curriculum .grid {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px;
+  background: var(--line); border: var(--hair) solid var(--line);
+  margin-top: 30px; flex: 1;
+}
+.module {
+  background: var(--paper);
+  padding: 24px 24px 22px;
+  display: flex; flex-direction: column; gap: 10px;
+}
+.module .code { font-family: var(--font-meta); font-size: 11.5px; letter-spacing: 0.16em;
+  color: var(--accent); text-transform: uppercase; }
+.module h4 { font-family: var(--font-display); font-weight: 500; font-size: 21px; color: var(--ink); margin: 2px 0 0; }
+.module p { font-family: var(--font-body); font-size: 14.5px; line-height: 1.5; color: var(--ink-muted); margin: 0; }
+.module .module-foot { margin-top: auto; padding-top: 12px; display: flex; gap: 8px; flex-wrap: wrap;
+  border-top: var(--hair) solid var(--line-faint); }
+
+/* ============================================================================
+   LAYOUT 5 — Course pathway  (left→right line with stations)
+   ============================================================================ */
+.l-pathway .pathway { position: relative; flex: 1; display: flex; align-items: center; margin-top: 8px; }
+.l-pathway .track {
+  position: absolute; left: 0; right: 0; top: 50%; height: 2px;
+  background: var(--line-strong);
+  transform-origin: left center;
+}
+.l-pathway .stations { position: relative; display: grid; grid-template-columns: repeat(4, 1fr);
+  width: 100%; }
+.station { display: flex; flex-direction: column; align-items: flex-start; gap: 14px; padding-right: 28px; }
+.station .node {
+  width: 16px; height: 16px; border-radius: 50%;
+  background: var(--paper); border: 3px solid var(--accent);
+  box-shadow: 0 0 0 5px var(--paper);
+}
+.station .stage { font-family: var(--font-meta); font-size: 11px; letter-spacing: 0.16em;
+  text-transform: uppercase; color: var(--ink-faint); }
+.station h4 { font-family: var(--font-display); font-weight: 500; font-size: 22px; margin: 0; color: var(--ink); }
+.station p { font-family: var(--font-body); font-size: 14px; line-height: 1.5; color: var(--ink-muted); margin: 0; }
+.station .dur { color: var(--accent-deep); font-family: var(--font-meta); font-size: 11px; letter-spacing: 0.12em; }
+.station.is-up { flex-direction: column-reverse; }
+
+/* ============================================================================
+   LAYOUT 6 — Teacher team  (editorial profile cards, no generic avatars)
+   ============================================================================ */
+.l-teachers .roster { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; margin-top: 24px; flex: 1; }
+.teacher { display: flex; flex-direction: column; }
+.teacher .portrait { aspect-ratio: 4/5; border-radius: var(--r-image); overflow: hidden;
+  background: var(--parchment); box-shadow: var(--shadow-card); }
+.teacher .portrait img { width: 100%; height: 100%; object-fit: cover; filter: saturate(0.9) contrast(1.02); }
+.teacher .name { font-family: var(--font-display); font-weight: 500; font-size: 20px; color: var(--ink); margin: 12px 0 2px; }
+.teacher .disc { font-family: var(--font-meta); font-size: 10.5px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); }
+.teacher .bio { font-family: var(--font-body); font-size: 13px; line-height: 1.42; color: var(--ink-muted); margin: 8px 0 0;
+  padding-top: 8px; border-top: var(--hair) solid var(--line); }
+
+/* ============================================================================
+   LAYOUT 7 — Learning environment  (image gallery, soft crop masks)
+   ============================================================================ */
+.l-environment .gallery { display: grid; grid-template-columns: 1.5fr 1fr 1fr; grid-template-rows: 1fr 1fr;
+  gap: 16px; margin-top: 30px; flex: 1; }
+.l-environment .gallery .img-frame:nth-child(1) { grid-row: span 2; }
+
+/* ============================================================================
+   LAYOUT 8 — Student outcomes  (KPI numbers + captions)
+   ============================================================================ */
+.l-outcomes .kpis { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px;
+  background: var(--line); border-top: var(--hair) solid var(--line); border-bottom: var(--hair) solid var(--line);
+  margin-top: 36px; }
+.kpi { background: var(--paper); padding: 32px 24px 30px; display: flex; flex-direction: column; gap: 8px; }
+.kpi .num { font-family: var(--font-display); font-weight: 400; font-size: 72px; line-height: 1; letter-spacing: -0.02em; color: var(--accent-deep); }
+.kpi .num .unit { font-size: 32px; color: var(--accent); }
+.kpi .cap { font-family: var(--font-body); font-size: 14.5px; line-height: 1.45; color: var(--ink-muted); }
+.kpi .src { font-family: var(--font-meta); font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-faint); margin-top: auto; }
+
+/* ============================================================================
+   LAYOUT 9 — Testimonial / case story
+   ============================================================================ */
+.l-testimonial { display: grid; grid-template-columns: 0.82fr 1.18fr; height: 100%; }
+.l-testimonial .story-img { position: relative; }
+.l-testimonial .story-img .img-frame { position: absolute; inset: 0; border-radius: 0; box-shadow: none; }
+.l-testimonial .quote-side { padding: 72px 96px 64px 72px; display: flex; flex-direction: column; justify-content: center; }
+.l-testimonial .quote {
+  font-family: var(--font-display); font-weight: 400; font-size: 34px; line-height: 1.34;
+  letter-spacing: -0.01em; color: var(--ink);
+}
+.l-testimonial .quote .qline { display: block; }
+.l-testimonial .mark-q { font-family: var(--font-display); font-size: 70px; line-height: 0.4; color: var(--accent);
+  height: 34px; display: block; }
+.l-testimonial .attribution { margin-top: 36px; display: flex; align-items: center; gap: 16px; }
+.l-testimonial .attribution .who { font-family: var(--font-body); font-weight: 600; font-size: 16px; color: var(--ink); }
+.l-testimonial .attribution .role { font-family: var(--font-meta); font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-faint); }
+
+/* ============================================================================
+   LAYOUT 10 — Enrollment / pricing / contact
+   ============================================================================ */
+.l-enroll .plans { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-top: 30px; }
+.plan { border: var(--hair) solid var(--line); border-radius: var(--r-md); padding: 26px 24px 24px;
+  display: flex; flex-direction: column; gap: 12px; background: var(--paper); }
+.plan.is-feature { border-color: var(--accent); box-shadow: var(--shadow-card); background: color-mix(in srgb, var(--accent-field) 55%, var(--paper)); }
+.plan .tier { font-family: var(--font-meta); font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--accent); }
+.plan .price { font-family: var(--font-display); font-weight: 400; font-size: 40px; color: var(--ink); line-height: 1; }
+.plan .price .per { font-family: var(--font-body); font-size: 14px; color: var(--ink-faint); }
+.plan ul { list-style: none; padding: 0; margin: 6px 0 0; display: flex; flex-direction: column; gap: 9px; }
+.plan li { font-family: var(--font-body); font-size: 14px; color: var(--ink-muted); padding-left: 20px; position: relative; line-height: 1.4; }
+.plan li::before { content: ""; position: absolute; left: 0; top: 8px; width: 8px; height: 8px;
+  border-radius: 50%; background: var(--accent); opacity: 0.55; }
+.l-enroll .contact { margin-top: auto; padding-top: 22px; border-top: var(--rule) solid var(--ink);
+  display: flex; align-items: flex-end; justify-content: space-between; gap: 32px; }
+.l-enroll .contact .lines { display: flex; gap: 48px; flex-wrap: wrap; }
+.l-enroll .contact .lines div .k { font-family: var(--font-meta); font-size: 10.5px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink-faint); }
+.l-enroll .contact .lines div .v { font-family: var(--font-body); font-size: 16px; color: var(--ink); margin-top: 4px; }
+
+/* ============================================================================
+   SEMANTIC SLIDE-ENTER ANIMATION SYSTEM
+   Built on CSS @keyframes, not transitions — animations replay cleanly when
+   [data-deck-active] is applied to a now-visible slide (transitions from a
+   display:none slide are unreliable). The RESTING style of every element is
+   the FINAL visible design, so print, no-JS and reduced-motion always show
+   finished content; the animation only plays its hidden→visible arc when the
+   slide is active and motion is allowed.
+
+   Each [data-animate] may set `--step` (0,1,2…) to stagger within a slide.
+   ============================================================================ */
+.qline { display: block; }
+
+@keyframes ap-rise   { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: none; } }
+@keyframes ap-ink    { from { opacity: 0; filter: blur(10px); }          to { opacity: 1; filter: blur(0); } }
+@keyframes ap-push   { from { opacity: 0; clip-path: inset(0 0 0 22%); } to { opacity: 1; clip-path: inset(0 0 0 0); } }
+@keyframes ap-curtain{ from { clip-path: inset(0 0 100% 0); }            to { clip-path: inset(0 0 0 0); } }
+@keyframes ap-draw   { from { transform: scaleX(0); }                     to { transform: scaleX(1); } }
+@keyframes ap-lift   { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: none; } }
+
+@media (prefers-reduced-motion: no-preference) {
+  /* generic recipe — gentle upward fade, staggered by --step */
+  body.motion .slide[data-deck-active] [data-animate] {
+    animation: ap-rise var(--dur-med) var(--ease-page) both;
+    animation-delay: calc(var(--step, 0) * 110ms);
+  }
+
+  /* — prospectus-cover: title blooms like ink; image pushes; mark settles last — */
+  body.motion .slide[data-anim="prospectus-cover"][data-deck-active] [data-part="title"] {
+    animation: ap-ink var(--dur-ink) var(--ease-ink) both;
+  }
+  body.motion .slide[data-anim="prospectus-cover"][data-deck-active] [data-part="image"] {
+    animation: ap-push var(--dur-slow) var(--ease-ink) both; animation-delay: 240ms;
+  }
+  body.motion .slide[data-anim="prospectus-cover"][data-deck-active] [data-part="mark"] {
+    animation: ap-rise var(--dur-med) var(--ease-page) both; animation-delay: 640ms;
+  }
+
+  /* — philosophy: statement first; supporting paragraph soft-up after — */
+  body.motion .slide[data-anim="philosophy"][data-deck-active] [data-part="statement"] {
+    animation: ap-lift var(--dur-slow) var(--ease-ink) both;
+  }
+  body.motion .slide[data-anim="philosophy"][data-deck-active] [data-part="follow"] {
+    animation: ap-rise var(--dur-med) var(--ease-page) both; animation-delay: 480ms;
+  }
+
+  /* — curriculum-pathway: track draws L→R; stations settle along it — */
+  body.motion .slide[data-anim="curriculum-pathway"][data-deck-active] .track {
+    transform-origin: left center;
+    animation: ap-draw var(--dur-slow) var(--ease-calm) both;
+  }
+  body.motion .slide[data-anim="curriculum-pathway"][data-deck-active] .station {
+    animation: ap-rise var(--dur-med) var(--ease-page) both;
+    animation-delay: calc(var(--step, 0) * 150ms + 280ms);
+  }
+
+  /* — environment-gallery: images reveal with a soft top-down crop mask — */
+  body.motion .slide[data-anim="environment-gallery"][data-deck-active] [data-animate] {
+    animation: ap-curtain var(--dur-slow) var(--ease-ink) both;
+    animation-delay: calc(var(--step, 0) * 140ms);
+  }
+
+  /* — outcomes: numbers fade up; captions follow the numbers — */
+  body.motion .slide[data-anim="outcomes"][data-deck-active] [data-part="cap"] {
+    animation-delay: calc(var(--step, 0) * 110ms + 360ms);
+  }
+
+  /* — testimonial: quote line by line; attribution last — */
+  body.motion .slide[data-anim="testimonial"][data-deck-active] [data-part="attr"] {
+    animation: ap-rise var(--dur-med) var(--ease-page) both; animation-delay: 820ms;
+  }
+}
+
+/* ---- Low-power / static mode ------------------------------------------- */
+body.low-power .paper-bg { display: none; }
+.lowpower-hint {
+  position: fixed; left: 18px; bottom: 16px; z-index: 50;
+  font-family: var(--font-meta); font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--ink-faint); background: var(--porcelain);
+  border: var(--hair) solid var(--line); border-radius: var(--r-pill);
+  padding: 7px 14px; display: none; align-items: center; gap: 8px;
+}
+body.low-power .lowpower-hint { display: inline-flex; }
+.lowpower-hint::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--gold); }
+
+/* ---- Deck navigation chrome -------------------------------------------- */
+.deck-nav { position: fixed; bottom: 18px; right: 20px; z-index: 50; display: flex; align-items: center; gap: 12px;
+  font-family: var(--font-meta); font-size: 12px; letter-spacing: 0.14em; color: var(--ink-faint); }
+.deck-nav button {
+  width: 38px; height: 38px; border-radius: 50%;
+  border: var(--hair) solid var(--line-strong); background: var(--paper);
+  color: var(--ink); cursor: pointer; font-size: 15px; display: grid; place-items: center;
+  transition: background var(--dur-fast) var(--ease-page), border-color var(--dur-fast) var(--ease-page);
+}
+.deck-nav button:hover { background: var(--porcelain); border-color: var(--ink-faint); }
+.deck-nav button:active { transform: scale(0.96); }
+.deck-nav .count { min-width: 56px; text-align: center; }
+
+</style>
+
+<style>
+  html, body { margin: 0; height: 100%; background: #1c1916; }
+  .deck-stage { position: fixed; inset: 0; display: grid; place-items: center; overflow: hidden; background: #1c1916; }
+  .deck-canvas { width: 1280px; height: 720px; position: relative; transform-origin: center center; }
+  .deck-canvas .slide { box-shadow: 0 30px 90px rgba(0,0,0,0.45); }
+  /* Before the engine boots, show only the first slide (no stacked flash).
+     The engine adds `.deck-ready`, after which inline display controls
+     visibility. If JS never runs, the cover stays visible; print reveals all. */
+  .deck-canvas:not(.deck-ready) .slide ~ .slide { display: none; }
+  /* PDF / print: one slide per page, all revealed */
+  @media print {
+    @page { size: 1280px 720px; margin: 0; }
+    html, body { background: #fff; }
+    .deck-stage { position: static; display: block; }
+    .deck-canvas { transform: none !important; }
+    .deck-canvas .slide { position: relative !important; page-break-after: always; box-shadow: none; }
+    .deck-nav, .lowpower-hint { display: none !important; }
+  }
+</style>
+</head>
+<body>
+  <div class="deck-stage">
+    <div class="deck-canvas">
+    <section class="slide l-cover" data-anim="prospectus-cover" data-accent="terracotta" data-screen-label="Cover">
+        <div class="cover-text">
+          <div class="established" data-animate data-part="mark">Established 1994 · Hangzhou & Singapore</div>
+          <div>
+            <div class="eyebrow" data-animate data-part="mark" style="--step:0">Academy Prospectus 2026</div>
+            <h1 class="t-hero" data-animate data-part="title" style="margin:22px 0 0">Linden<br>Academy</h1>
+            <div class="t-lead t-serif-italic" data-animate data-part="title" style="color:var(--ink-muted); margin-top:18px">林登语言与人文学院</div>
+          </div>
+          <div class="slide-rail" style="border:none; padding:0" data-animate data-part="mark">
+            <span class="mark"><span class="glyph">L</span> A school of language, thought &amp; character</span>
+          </div>
+        </div>
+        <div class="cover-img">
+          <div class="img-frame" data-animate data-part="image">
+            <div class="img-ph" data-label="Cover · the reading hall, autumn light"><span class="lens"></span></div>
+          </div>
+        </div>
+      </section>
+
+    <section class="slide l-promise" data-anim="philosophy" data-accent="gold" data-screen-label="Promise">
+        <div>
+          <div class="eyebrow" data-animate>Our promise</div>
+          <h2 class="t-statement" data-animate data-part="statement" style="margin-top:24px; font-size:50px">
+            A serious education, given <span class="t-serif-italic">gently</span>.
+          </h2>
+          <p class="t-lead" data-animate data-part="follow" style="margin-top:26px; color:var(--ink-muted); max-width:42ch">
+            For three decades, families have trusted Linden to hold high standards and a kind hand at the
+            same time. We promise honest reporting, teachers who know each child, and a classroom that feels
+            like a place worth returning to.
+          </p>
+          <div data-animate data-part="follow" style="margin-top:30px; display:flex; gap:10px; flex-wrap:wrap">
+            <span class="chip">Since 1994</span>
+            <span class="chip">Two campuses</span>
+            <span class="chip">4,200 alumni</span>
+          </div>
+        </div>
+        <div style="height:480px">
+          <div class="img-frame" data-animate style="height:100%"><div class="img-ph" data-label="A morning seminar in progress"><span class="lens"></span></div></div>
+        </div>
+      </section>
+
+    <section class="slide" data-anim="philosophy" data-accent="forest" data-screen-label="Philosophy">
+        <div class="slide-pad">
+          <div class="slide-rail" data-animate>
+            <span class="mark"><span class="glyph">L</span> Linden Academy</span>
+            <span class="section">Teaching Philosophy</span>
+            <span class="folio">03 / 24</span>
+          </div>
+          <div class="l-statement" style="padding:0; flex:1; max-width:none">
+            <div class="eyebrow" data-animate style="margin-bottom:26px">What we believe</div>
+            <h2 class="t-statement" data-animate data-part="statement" style="max-width:18ch">
+              We teach the <span class="t-serif-italic">person</span>, not only the syllabus.
+            </h2>
+            <p class="t-lead" data-animate data-part="follow" style="max-width:58ch; margin-top:28px; color:var(--ink-muted)">
+              Small classes, attentive teachers, and a curriculum built around curiosity. Every learner is
+              read closely — their strengths named, their gaps met with patience — so that progress is real,
+              measured, and their own.
+            </p>
+          </div>
+        </div>
+      </section>
+
+    <section class="slide l-curriculum" data-anim="curriculum" data-accent="navy" data-screen-label="Curriculum">
+        <div class="slide-pad">
+          <div class="slide-rail" data-animate>
+            <span class="mark"><span class="glyph">L</span> Linden Academy</span>
+            <span class="section">Curriculum System</span>
+            <span class="folio">04 / 24</span>
+          </div>
+          <div style="display:flex; align-items:flex-end; justify-content:space-between; gap:24px; margin-top:24px">
+            <h2 class="t-title" data-animate style="max-width:20ch">A structured path from foundation to fluency</h2>
+            <span class="chip" data-animate>6 Modules · 3 Levels</span>
+          </div>
+          <div class="grid">
+            <div class="module" data-animate style="--step:0"><span class="code">LA · 101</span><h4>Foundations of Language</h4><p>Phonics, grammar architecture, and confident first speech.</p><div class="module-foot"><span class="chip chip--bare">Ages 8–11</span><span class="chip chip--bare">90 min</span></div></div>
+            <div class="module" data-animate style="--step:1"><span class="code">LA · 204</span><h4>Reading &amp; Composition</h4><p>Close reading, structured essays, and a literary vocabulary.</p><div class="module-foot"><span class="chip chip--bare">Ages 11–14</span><span class="chip chip--bare">90 min</span></div></div>
+            <div class="module" data-animate style="--step:2"><span class="code">LA · 309</span><h4>Rhetoric &amp; Debate</h4><p>Argument, evidence, and speaking with poise before an audience.</p><div class="module-foot"><span class="chip chip--bare">Ages 14–17</span><span class="chip chip--bare">120 min</span></div></div>
+            <div class="module" data-animate style="--step:3"><span class="code">LA · 220</span><h4>World Literature</h4><p>Texts in translation, cultural context, and comparative study.</p><div class="module-foot"><span class="chip chip--bare">Ages 13–16</span><span class="chip chip--bare">90 min</span></div></div>
+            <div class="module" data-animate style="--step:4"><span class="code">LA · 405</span><h4>Examination Studio</h4><p>Targeted preparation for IELTS, IGCSE and university entry.</p><div class="module-foot"><span class="chip chip--bare">Ages 15+</span><span class="chip chip--bare">120 min</span></div></div>
+            <div class="module" data-animate style="--step:5"><span class="code">LA · 510</span><h4>Independent Seminar</h4><p>A capstone research project, mentored to publication standard.</p><div class="module-foot"><span class="chip chip--bare">Adult</span><span class="chip chip--bare">Flexible</span></div></div>
+          </div>
+        </div>
+      </section>
+
+    <section class="slide l-pathway" data-anim="curriculum-pathway" data-accent="terracotta" data-screen-label="Pathway">
+        <div class="slide-pad">
+          <div class="slide-rail" data-animate>
+            <span class="mark"><span class="glyph">L</span> Linden Academy</span>
+            <span class="section">Course Pathway</span>
+            <span class="folio">05 / 24</span>
+          </div>
+          <div style="margin-top:24px">
+            <div class="eyebrow" data-animate>The journey, at a glance</div>
+            <h2 class="t-title" data-animate style="margin-top:14px">From first words to independent voice</h2>
+          </div>
+          <div class="pathway">
+            <div class="track"></div>
+            <div class="stations">
+              <div class="station" data-animate style="--step:0"><div class="node"></div><span class="stage">Stage 01</span><h4>Arrive</h4><p>Placement, a personal study map, and a homeroom teacher.</p><span class="dur">Week 1</span></div>
+              <div class="station is-up" data-animate style="--step:1"><div class="node"></div><span class="stage">Stage 02</span><h4>Build</h4><p>Core modules in small cohorts, with weekly feedback.</p><span class="dur">Terms 1–4</span></div>
+              <div class="station" data-animate style="--step:2"><div class="node"></div><span class="stage">Stage 03</span><h4>Stretch</h4><p>Electives, debate, and a mentored independent project.</p><span class="dur">Terms 5–6</span></div>
+              <div class="station is-up" data-animate style="--step:3"><div class="node"></div><span class="stage">Stage 04</span><h4>Launch</h4><p>Examinations, portfolios, and university guidance.</p><span class="dur">Graduation</span></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    <section class="slide l-teachers" data-anim="teacher-team" data-accent="forest" data-screen-label="Teachers">
+        <div class="slide-pad">
+          <div class="slide-rail" data-animate>
+            <span class="mark"><span class="glyph">L</span> Linden Academy</span>
+            <span class="section">The Teaching Faculty</span>
+            <span class="folio">06 / 24</span>
+          </div>
+          <div style="display:flex; align-items:flex-end; justify-content:space-between; margin-top:24px">
+            <h2 class="t-title" data-animate>Taught by scholars who stay</h2>
+            <span class="chip" data-animate>Average tenure · 11 years</span>
+          </div>
+          <div class="roster">
+            <div class="teacher" data-animate style="--step:0"><div class="portrait"><div class="img-ph" data-label="Portrait"><span class="lens"></span></div></div><div class="name">Dr. Elena Voss</div><div class="disc">Director · Linguistics</div><p class="bio">PhD Cambridge. Twenty years shaping how language is taught with rigour and warmth.</p></div>
+            <div class="teacher" data-animate style="--step:1"><div class="portrait"><div class="img-ph" data-label="Portrait"><span class="lens"></span></div></div><div class="name">Marcus Adeyemi</div><div class="disc">Lead · Rhetoric</div><p class="bio">Former debate champion who coaches students to speak with clarity and conviction.</p></div>
+            <div class="teacher" data-animate style="--step:2"><div class="portrait"><div class="img-ph" data-label="Portrait"><span class="lens"></span></div></div><div class="name">Hana Sato</div><div class="disc">Faculty · Literature</div><p class="bio">Translator and editor; she opens world texts and the cultures behind them.</p></div>
+            <div class="teacher" data-animate style="--step:3"><div class="portrait"><div class="img-ph" data-label="Portrait"><span class="lens"></span></div></div><div class="name">James O'Riordan</div><div class="disc">Faculty · Examinations</div><p class="bio">Examiner-trained mentor with a decade of record university placements.</p></div>
+          </div>
+        </div>
+      </section>
+
+    <section class="slide l-environment" data-anim="environment-gallery" data-accent="gold" data-screen-label="Environment">
+        <div class="slide-pad">
+          <div class="slide-rail" data-animate>
+            <span class="mark"><span class="glyph">L</span> Linden Academy</span>
+            <span class="section">The Learning Environment</span>
+            <span class="folio">07 / 24</span>
+          </div>
+          <div style="margin-top:20px; display:flex; align-items:flex-end; justify-content:space-between">
+            <h2 class="t-title" data-animate style="--step:0">Rooms built for attention</h2>
+            <p class="t-small" data-animate style="--step:0; max-width:34ch; text-align:right">Two campuses, library-quiet studios, and gardens for the long afternoons of reading.</p>
+          </div>
+          <div class="gallery">
+            <div class="img-frame" data-animate style="--step:0"><div class="img-ph" data-label="The reading hall"><span class="lens"></span></div></div>
+            <div class="img-frame" data-animate style="--step:1"><div class="img-ph" data-label="Seminar studio"><span class="lens"></span></div></div>
+            <div class="img-frame" data-animate style="--step:2"><div class="img-ph" data-label="The garden court"><span class="lens"></span></div></div>
+            <div class="img-frame" data-animate style="--step:3"><div class="img-ph" data-label="Language lab"><span class="lens"></span></div></div>
+            <div class="img-frame" data-animate style="--step:4"><div class="img-ph" data-label="The archive"><span class="lens"></span></div></div>
+          </div>
+        </div>
+      </section>
+
+    <section class="slide l-outcomes" data-anim="outcomes" data-accent="navy" data-screen-label="Outcomes">
+        <div class="slide-pad">
+          <div class="slide-rail" data-animate>
+            <span class="mark"><span class="glyph">L</span> Linden Academy</span>
+            <span class="section">Student Outcomes</span>
+            <span class="folio">08 / 24</span>
+          </div>
+          <div style="margin-top:26px">
+            <div class="eyebrow" data-animate>Results, honestly reported</div>
+            <h2 class="t-title" data-animate style="margin-top:14px; max-width:24ch">Progress you can measure, year after year</h2>
+          </div>
+          <div class="kpis">
+            <div class="kpi"><div class="num" data-animate style="--step:0">94<span class="unit">%</span></div><div class="cap" data-animate data-part="cap" style="--step:0">reached their target exam grade within two terms</div><div class="src">Cohort 2024–25 · n=312</div></div>
+            <div class="kpi"><div class="num" data-animate style="--step:1">+2.1</div><div class="cap" data-animate data-part="cap" style="--step:1">average IELTS band gain across a single year</div><div class="src">Verified by certified examiners</div></div>
+            <div class="kpi"><div class="num" data-animate style="--step:2">87<span class="unit">%</span></div><div class="cap" data-animate data-part="cap" style="--step:2">admitted to one of their top-three universities</div><div class="src">Graduating class of 2025</div></div>
+            <div class="kpi"><div class="num" data-animate style="--step:3">1:8</div><div class="cap" data-animate data-part="cap" style="--step:3">teacher-to-student ratio in every core seminar</div><div class="src">Academy standard, all campuses</div></div>
+          </div>
+          <p class="t-small" data-animate style="margin-top:24px; color:var(--ink-faint)">Figures independently audited. Full methodology available on request — we publish what we can stand behind.</p>
+        </div>
+      </section>
+
+    <section class="slide l-testimonial" data-anim="testimonial" data-accent="terracotta" data-screen-label="Testimonial">
+        <div class="story-img">
+          <div class="img-frame"><div class="img-ph" data-label="Mei-Ling, class of 2023"><span class="lens"></span></div></div>
+        </div>
+        <div class="quote-side">
+          <span class="mark-q" data-animate>&ldquo;</span>
+          <div class="quote">
+            <span class="qline" data-animate style="--step:0">My daughter arrived shy and</span>
+            <span class="qline" data-animate style="--step:1">unsure of her English. She left</span>
+            <span class="qline" data-animate style="--step:2">able to <span class="t-serif-italic">argue a case</span> in front of</span>
+            <span class="qline" data-animate style="--step:3">a room — and to enjoy it.</span>
+          </div>
+          <div class="attribution" data-animate data-part="attr">
+            <div style="width:46px; height:46px; border-radius:50%; overflow:hidden; flex:none"><div class="img-ph" data-label=""></div></div>
+            <div>
+              <div class="who">Mrs. Chen Wei</div>
+              <div class="role">Parent · Hangzhou Campus</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    <section class="slide l-enroll" data-anim="enrollment" data-accent="forest" data-screen-label="Enrollment">
+        <div class="slide-pad">
+          <div class="slide-rail" data-animate>
+            <span class="mark"><span class="glyph">L</span> Linden Academy</span>
+            <span class="section">Enrollment &amp; Fees</span>
+            <span class="folio">10 / 24</span>
+          </div>
+          <div style="display:flex; align-items:flex-end; justify-content:space-between; margin-top:22px">
+            <h2 class="t-title" data-animate>Choose a path to begin</h2>
+            <p class="t-small" data-animate style="max-width:30ch; text-align:right">Fees are per term. Sibling and scholarship support available — please ask.</p>
+          </div>
+          <div class="plans">
+            <div class="plan" data-animate style="--step:0">
+              <span class="tier">Foundation</span>
+              <div class="price">¥ 6,800<span class="per"> / term</span></div>
+              <ul><li>Two seminars each week</li><li>Small cohorts of eight</li><li>Termly written reports</li><li>Library &amp; study access</li></ul>
+            </div>
+            <div class="plan is-feature" data-animate style="--step:1">
+              <span class="tier">Scholar · Most chosen</span>
+              <div class="price">¥ 11,400<span class="per"> / term</span></div>
+              <ul><li>Four seminars each week</li><li>One-to-one mentor hour</li><li>Examination studio access</li><li>Independent project support</li></ul>
+            </div>
+            <div class="plan" data-animate style="--step:2">
+              <span class="tier">Atelier · Adult</span>
+              <div class="price">¥ 9,200<span class="per"> / term</span></div>
+              <ul><li>Flexible evening schedule</li><li>Conversation &amp; rhetoric</li><li>Professional writing track</li><li>Certificate on completion</li></ul>
+            </div>
+          </div>
+          <div class="contact" data-animate data-part="attr">
+            <div class="lines">
+              <div><div class="k">Admissions</div><div class="v">admissions@lindenacademy.edu</div></div>
+              <div><div class="k">Telephone</div><div class="v">+86 571 8800 0000</div></div>
+              <div><div class="k">Visit</div><div class="v">14 Linden Court, Hangzhou</div></div>
+            </div>
+            <span class="mark"><span class="glyph">L</span> lindenacademy.edu</span>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+
+  <script>
+    // Fit the fixed 1280x720 canvas into any viewport (letterboxed on black)
+    (function () {
+      var canvas = document.querySelector(".deck-canvas");
+      function fit() {
+        var s = Math.min(window.innerWidth / 1280, window.innerHeight / 720);
+        canvas.style.transform = "scale(" + s + ")";
+      }
+      window.addEventListener("resize", fit);
+      fit();
+    })();
+  </script>
+
+  <!-- Motion engine: paper background, semantic slide-enter, B = low-power, R = replay -->
+  <script data-inlined-from="../../slides/prospectus-motion.js">
+/* ============================================================================
+   Academy Prospectus — Motion engine
+   - Paper-light dynamic background (canvas 2D): barely-visible page fibres,
+     slow vignette breathing, occasional gentle light drift. Photographic,
+     never techy.
+   - Semantic slide-enter system: activates [data-deck-active] per slide so the
+     CSS recipes play; multi-slide decks get keyboard / click navigation.
+   - Low-power mode: press B to stop rAF, cancel motion, reveal all content
+     statically, and show a hint.
+   - Respects prefers-reduced-motion and gracefully degrades with no JS.
+   ============================================================================ */
+(function () {
+  "use strict";
+
+  var reduceMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var lowPower = false;
+  var rafId = null;
+
+  /* ---------------------------------------------------------------------- */
+  /*  Paper-light background                                                 */
+  /*  One canvas, parked inside the ACTIVE slide (above its opaque paper      */
+  /*  fill, below the content) so the breathing light reads on the page.     */
+  /* ---------------------------------------------------------------------- */
+  function PaperBackground() {
+    var W = 1280, H = 720;                       // the fixed slide canvas
+    var dpr = Math.min(window.devicePixelRatio || 1, 2);
+    var canvas = document.createElement("canvas");
+    canvas.className = "paper-bg";
+    canvas.width = W * dpr; canvas.height = H * dpr;
+    canvas.style.width = W + "px"; canvas.style.height = H + "px";
+    var ctx = canvas.getContext("2d");
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+    var fibreLayer = document.createElement("canvas");
+    fibreLayer.width = W; fibreLayer.height = H;
+    var fctx = fibreLayer.getContext("2d");
+
+    // very faint, short, randomly oriented fibres — like laid paper (drawn once)
+    (function buildFibres() {
+      var count = Math.floor((W * H) / 5200);
+      for (var i = 0; i < count; i++) {
+        var x = Math.random() * W, y = Math.random() * H;
+        var a = Math.random() * Math.PI;
+        var len = 6 + Math.random() * 16;
+        var dark = Math.random() > 0.5;
+        fctx.strokeStyle = dark ? "rgba(70,55,35,0.020)" : "rgba(255,250,240,0.05)";
+        fctx.lineWidth = 1;
+        fctx.beginPath();
+        fctx.moveTo(x, y);
+        fctx.lineTo(x + Math.cos(a) * len, y + Math.sin(a) * len);
+        fctx.stroke();
+      }
+    })();
+
+    var t0 = performance.now();
+    var lastDraw = 0;
+
+    function draw(now) {
+      if (lowPower) return;
+      if (now - lastDraw < 40) { rafId = requestAnimationFrame(draw); return; }  // ~25fps, barely perceptible
+      lastDraw = now;
+      var t = (now - t0) / 1000;
+
+      ctx.clearRect(0, 0, W, H);
+      ctx.drawImage(fibreLayer, 0, 0, W, H);
+
+      // slow breathing vignette — light gently swells, recedes and wanders
+      var breathe = 0.5 + 0.5 * Math.sin(t * 0.18);            // ~35s period
+      var drift = Math.sin(t * 0.07) * 0.05;
+      var cx = W * (0.5 + drift), cy = H * (0.40 + drift * 0.6);
+      var rad = Math.max(W, H) * (0.66 + 0.05 * breathe);
+      var g = ctx.createRadialGradient(cx, cy, rad * 0.18, cx, cy, rad);
+      g.addColorStop(0, "rgba(255,252,245," + (0.04 + 0.05 * breathe).toFixed(3) + ")");
+      g.addColorStop(1, "rgba(74,58,36," + (0.05 + 0.04 * breathe).toFixed(3) + ")");
+      ctx.fillStyle = g;
+      ctx.fillRect(0, 0, W, H);
+
+      rafId = requestAnimationFrame(draw);
+    }
+
+    function staticFrame() {
+      ctx.clearRect(0, 0, W, H);
+      ctx.drawImage(fibreLayer, 0, 0, W, H);
+    }
+
+    return {
+      attachTo: function (slideEl) {
+        if (!slideEl) return;
+        if (canvas.parentNode !== slideEl) slideEl.insertBefore(canvas, slideEl.firstChild);
+      },
+      start: function () { if (!rafId && !lowPower) { lastDraw = 0; rafId = requestAnimationFrame(draw); } },
+      stop: function () { if (rafId) { cancelAnimationFrame(rafId); rafId = null; } staticFrame(); },
+      hide: function () { canvas.style.display = "none"; },
+      show: function () { canvas.style.display = ""; }
+    };
+  }
+
+  /* ---------------------------------------------------------------------- */
+  /*  Slide activation + navigation                                          */
+  /* ---------------------------------------------------------------------- */
+  function Deck(bg) {
+    var slides = Array.prototype.slice.call(document.querySelectorAll(".slide"));
+    var index = 0;
+    var multi = slides.length > 1;
+    var natural = [];   // each slide's intended display (grid / flex / block)
+
+    // No slides on the page (e.g. a foundations card just wants the paper bg):
+    // keep the background running but skip all slide management.
+    if (slides.length === 0) {
+      return { slides: slides, go: function () {}, next: function () {}, prev: function () {},
+        replay: function () {}, revealAll: function () {}, restore: function () {},
+        get index() { return 0; }, multi: false };
+    }
+
+    function activate(i) {
+      // hide every other slide (display-based = robust for capture / print / PDF)
+      slides.forEach(function (s, n) {
+        if (n !== i) {
+          s.removeAttribute("data-deck-active");
+          if (multi) s.style.display = "none";
+        }
+      });
+      var cur = slides[i];
+      cur.removeAttribute("data-deck-active");   // reset to from-state
+      if (multi) cur.style.display = natural[i] || "block";
+      if (bg) bg.attachTo(cur);
+      // Force the from-state to be painted as the transition baseline BEFORE
+      // revealing — otherwise a slide coming from display:none jumps instead of
+      // transitioning. Reading layout flushes styles; rAF then triggers the
+      // semantic entrance recipe.
+      void cur.offsetWidth;
+      requestAnimationFrame(function () {
+        if (deckRef.index === i) cur.setAttribute("data-deck-active", "");
+      });
+      updateChrome();
+    }
+
+    // replay a slide's entrance
+    function replay(i) { activate(i); }
+
+    var deckRef = { index: 0 };
+    var chrome = null;
+    function buildChrome() {
+      if (!multi) return;
+      chrome = document.createElement("div");
+      chrome.className = "deck-nav";
+      chrome.innerHTML =
+        '<button data-prev aria-label="Previous">&#8249;</button>' +
+        '<span class="count"></span>' +
+        '<button data-next aria-label="Next">&#8250;</button>';
+      document.body.appendChild(chrome);
+      chrome.querySelector("[data-prev]").addEventListener("click", prev);
+      chrome.querySelector("[data-next]").addEventListener("click", next);
+    }
+    function updateChrome() {
+      if (!chrome) return;
+      chrome.querySelector(".count").textContent =
+        String(index + 1).padStart(2, "0") + " / " + String(slides.length).padStart(2, "0");
+    }
+
+    function go(i) {
+      index = Math.max(0, Math.min(slides.length - 1, i));
+      deckRef.index = index;
+      activate(index);
+    }
+    function next() { if (index < slides.length - 1) go(index + 1); }
+    function prev() { if (index > 0) go(index - 1); }
+
+    buildChrome();
+    if (multi) {
+      // Neutralise the pre-JS CSS guard so inline display fully controls visibility,
+      // then capture each slide's intended display (grid / flex / block) while all
+      // are visible, and overlay them.
+      var canvas = slides[0].parentNode;
+      if (canvas && canvas.classList) canvas.classList.add("deck-ready");
+      slides.forEach(function (s, n) {
+        s.style.display = "";
+        natural[n] = getComputedStyle(s).display;
+        if (natural[n] === "none") natural[n] = "block";
+        s.style.position = "absolute";
+        s.style.inset = "0";
+      });
+    }
+    activate(0);
+
+    return { slides: slides, go: go, next: next, prev: prev, replay: replay,
+      get index() { return index; }, multi: multi,
+      revealAll: function () {
+        slides.forEach(function (s, n) { s.style.display = natural[n] || ""; s.setAttribute("data-deck-active", ""); });
+      },
+      restore: function () { activate(index); } };
+  }
+
+  /* ---------------------------------------------------------------------- */
+  /*  Low-power toggle (B)                                                   */
+  /* ---------------------------------------------------------------------- */
+  function setupHint() {
+    if (document.querySelector(".lowpower-hint")) return;
+    var hint = document.createElement("div");
+    hint.className = "lowpower-hint";
+    hint.textContent = "Static mode — press B to resume";
+    document.body.appendChild(hint);
+  }
+
+  function enterLowPower(bg) {
+    lowPower = true;
+    document.body.classList.add("low-power");
+    document.body.classList.remove("motion");      // reveal all content statically
+    if (bg) bg.stop();
+    // ensure every slide shows its final state
+    document.querySelectorAll(".slide").forEach(function (s) { s.setAttribute("data-deck-active", ""); });
+  }
+  function exitLowPower(bg, deck) {
+    lowPower = false;
+    document.body.classList.remove("low-power");
+    if (!reduceMotion) document.body.classList.add("motion");
+    if (bg) { bg.show(); bg.start(); }
+    if (deck && deck.multi) {
+      // restore single-active behaviour
+      deck.slides.forEach(function (s, n) { if (n !== deck.index) s.removeAttribute("data-deck-active"); });
+    }
+  }
+
+  /* ---------------------------------------------------------------------- */
+  /*  Boot                                                                   */
+  /* ---------------------------------------------------------------------- */
+  function boot() {
+    // motion is opt-in via this class; without it the CSS shows finished content
+    if (!reduceMotion) document.body.classList.add("motion");
+
+    var bg = null;
+    if (!reduceMotion) { bg = PaperBackground(); }
+
+    var deck = Deck(bg);    // attaches bg to the first slide via activate(0)
+    if (bg) bg.start();
+    setupHint();
+
+    document.addEventListener("keydown", function (e) {
+      if (e.metaKey || e.ctrlKey || e.altKey) return;
+      var k = e.key.toLowerCase();
+      if (k === "b") { e.preventDefault(); lowPower ? exitLowPower(bg, deck) : enterLowPower(bg); return; }
+      if (lowPower) return;
+      if (deck.multi) {
+        if (k === "arrowright" || k === " " || k === "pagedown") { e.preventDefault(); deck.next(); }
+        else if (k === "arrowleft" || k === "pageup") { e.preventDefault(); deck.prev(); }
+        else if (k === "r") { deck.replay(deck.index); }
+      } else if (k === "r") {
+        deck.replay(0);
+      }
+    });
+
+    // expose for the deck template / debugging
+    window.ProspectusDeck = deck;
+    window.addEventListener("beforeprint", function () { if (deck.revealAll) deck.revealAll(); });
+    window.addEventListener("afterprint", function () { if (deck.restore) deck.restore(); });
+  }
+
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", boot);
+  else boot();
+})();
+
+</script>
+</body>
+</html>

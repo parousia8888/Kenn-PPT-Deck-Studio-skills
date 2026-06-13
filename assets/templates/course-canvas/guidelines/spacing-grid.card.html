@@ -1,0 +1,24 @@
+<!-- @dsCard group="Spacing" viewport="700x180" name="Slide grid" subtitle="Margin-note gutter + main column on the fixed 16:9 canvas" -->
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><link rel="stylesheet" href="../styles.css">
+<style>
+  html,body{margin:0;background:var(--paper-base);}
+  .wrap{padding:18px 24px;font-family:var(--font-mono);}
+  .frame{border:1px solid var(--rule-ink);height:118px;display:grid;grid-template-columns:160px 1fr;position:relative;}
+  .gut{background:var(--paper-edge);border-right:1px dashed var(--rule-strong);padding:10px;font-size:10px;color:var(--graphite-mute);letter-spacing:.08em;text-transform:uppercase;}
+  .main{padding:12px;}
+  .main .t{font-family:var(--font-display);font-size:20px;color:var(--ink);}
+  .main .r{height:2px;background:var(--oxblood);width:42px;margin-top:8px;}
+  .main .l{height:8px;background:var(--paper-sunken);border-radius:2px;margin-top:10px;}
+  .main .l.s{width:70%}
+  .cap{font-size:10px;color:var(--graphite-mute);margin-top:8px;letter-spacing:.08em;}
+</style></head>
+<body>
+<div class="wrap">
+  <div class="frame">
+    <div class="gut">Margin<br>gutter<br>· notes ·</div>
+    <div class="main"><div class="t">Slide title</div><div class="r"></div><div class="l"></div><div class="l s"></div></div>
+  </div>
+  <div class="cap">1280×720 · outer 96/72 · gutter 220 · gap 48</div>
+</div>
+</body></html>

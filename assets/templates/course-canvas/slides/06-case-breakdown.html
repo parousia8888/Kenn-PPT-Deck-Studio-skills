@@ -1,0 +1,83 @@
+<!-- @dsCard group="Slides" viewport="1280x720" name="06 · Case Breakdown" subtitle="Real-world case with an annotated bell-curve diagram" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Case Breakdown</title>
+<link rel="stylesheet" href="../styles.css">
+<link rel="stylesheet" href="./deck.css">
+<style>
+  html,body{margin:0;height:100%;}
+  body{background:#2A2723;display:grid;place-items:center;}
+  .axis-lab{ font-family:var(--font-mono); font-size:13px; fill:var(--graphite-mute); letter-spacing:.04em; }
+  .brk-lab{ font-family:var(--font-mono); font-size:14px; font-weight:700; }
+  .datum{ display:flex; justify-content:space-between; align-items:baseline; padding:7px 0; border-bottom:1px solid var(--rule); }
+  .datum b{ font-family:var(--font-mono); font-size:var(--fs-body); color:var(--ink); }
+  .datum span{ font-size:var(--fs-small); color:var(--text-secondary); }
+</style>
+</head>
+<body>
+<section class="cc-slide cc-reveal-on" data-bg="teaching" data-screen-label="Case Breakdown">
+  <div class="cc-row cc-between" style="align-items:flex-end;">
+    <div>
+      <span class="cc-eyebrow cc-eyebrow--sage">CASE BREAKDOWN</span>
+      <h1 class="cc-title" style="margin-top:10px;">One student's<br>exam result</h1>
+    </div>
+    <span class="cc-tab cc-tab--sage">WORKED EXAMPLE</span>
+  </div>
+  <hr class="cc-rule cc-rule--ink" style="margin:16px 0 18px;">
+
+  <div class="cc-cols-2" style="grid-template-columns:0.78fr 1fr;gap:52px;align-items:center;">
+    <div class="cc-stack cc-stack-4">
+      <p class="cc-small cc-dim" style="margin:0;max-width:34ch;">A national exam is scaled so scores spread normally. One student scores <b style="color:var(--ink);">660</b>. Where do they stand?</p>
+      <div data-reveal="1">
+        <div class="datum"><span>Mean&nbsp;&nbsp;μ</span><b>500</b></div>
+        <div class="datum"><span>Std. deviation&nbsp;&nbsp;σ</span><b>100</b></div>
+        <div class="datum"><span>Their score&nbsp;&nbsp;x</span><b>660</b></div>
+      </div>
+      <div class="cc-callout cc-callout--straw" data-reveal="2">
+        <div class="cc-callout__label">Interpretation</div>
+        z = (660 − 500)/100 = <b>+1.6</b> → roughly the <b>top 5%</b> of test-takers.
+      </div>
+    </div>
+
+    <div data-reveal="1">
+      <svg viewBox="0 0 520 320" width="100%" fill="none">
+        <!-- 68% shaded band under curve -->
+        <path d="M200 248 L200 185 C 232 138 246 58 260 52 C 274 58 288 138 320 185 L320 248 Z" fill="#F2E4B6"/>
+        <!-- baseline -->
+        <line x1="20" y1="248" x2="500" y2="248" stroke="#2C2720" stroke-width="2"/>
+        <!-- bell curve -->
+        <path d="M20 248 C 120 247 165 238 200 185 C 232 138 246 58 260 52 C 274 58 288 138 320 185 C 355 238 400 247 500 248" stroke="#211D18" stroke-width="2.5" stroke-linecap="round"/>
+        <!-- sigma guides -->
+        <line x1="200" y1="248" x2="200" y2="185" stroke="#8A2D22" stroke-width="1.5" stroke-dasharray="3 4"/>
+        <line x1="320" y1="248" x2="320" y2="185" stroke="#8A2D22" stroke-width="1.5" stroke-dasharray="3 4"/>
+        <line x1="260" y1="248" x2="260" y2="52" stroke="#5E7257" stroke-width="1.5" stroke-dasharray="3 4"/>
+        <!-- student marker at +1.6 sigma (x = 260 + 1.6*60 = 356) -->
+        <line x1="356" y1="248" x2="356" y2="120" stroke="#8A2D22" stroke-width="2.5"/>
+        <circle cx="356" cy="120" r="5" fill="#8A2D22"/>
+        <text x="362" y="112" font-family="var(--font-mono)" font-size="14" font-weight="700" fill="#8A2D22">x = 660</text>
+        <!-- axis ticks -->
+        <text class="axis-lab" x="140" y="266" text-anchor="middle">−2σ</text>
+        <text class="axis-lab" x="200" y="266" text-anchor="middle">−1σ</text>
+        <text class="axis-lab" x="260" y="266" text-anchor="middle">μ</text>
+        <text class="axis-lab" x="320" y="266" text-anchor="middle">+1σ</text>
+        <text class="axis-lab" x="380" y="266" text-anchor="middle">+2σ</text>
+        <!-- 68% bracket -->
+        <path d="M200 282 v6 h120 v-6" stroke="#C9A94E" stroke-width="2" fill="none"/>
+        <text class="brk-lab" x="260" y="306" text-anchor="middle" fill="#C9A94E">68%</text>
+        <!-- 95% bracket -->
+        <path d="M140 296 v8 h240 v-8" stroke="#5E7257" stroke-width="2" fill="none"/>
+        <text class="brk-lab" x="260" y="320" text-anchor="middle" fill="#45563F">95%</text>
+      </svg>
+    </div>
+  </div>
+
+  <div class="cc-footer">
+    <span class="cc-footer__brand"><span class="cc-footer__dot"></span>COURSE CANVAS</span>
+    <span>STAT 1 · LESSON 04 · CASE</span>
+  </div>
+</section>
+<script src="./cc-bg.js"></script>
+</body>
+</html>

@@ -1,0 +1,37 @@
+<!-- @dsCard group="Colors" viewport="700x150" name="Paper & Ink" subtitle="Off-white base surfaces and the neutral ink ramp" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../styles.css">
+<style>
+  html,body{margin:0;background:var(--paper-0);font-family:var(--font-mono);}
+  .wrap{padding:18px 20px;}
+  .row{display:flex;gap:0;border:1px solid var(--rule);}
+  .sw{flex:1;height:80px;display:flex;flex-direction:column;justify-content:flex-end;padding:8px;border-right:1px solid var(--rule);}
+  .sw:last-child{border-right:none;}
+  .nm{font-size:10px;letter-spacing:0.08em;text-transform:uppercase;color:var(--ink);}
+  .hx{font-size:9.5px;color:var(--gray-2);margin-top:2px;}
+  .lbl{font-size:10px;letter-spacing:0.14em;text-transform:uppercase;color:var(--gray-2);margin-bottom:8px;}
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="lbl">Paper · surfaces</div>
+    <div class="row">
+      <div class="sw" style="background:var(--paper-pure)"><span class="nm">Pure</span><span class="hx">#FBFAF6</span></div>
+      <div class="sw" style="background:var(--paper-0)"><span class="nm">Page</span><span class="hx">#F4F2EC</span></div>
+      <div class="sw" style="background:var(--paper-1)"><span class="nm">Panel</span><span class="hx">#EFEDE5</span></div>
+      <div class="sw" style="background:var(--paper-2)"><span class="nm">Muted</span><span class="hx">#E7E4DA</span></div>
+    </div>
+    <div class="lbl" style="margin-top:14px;">Ink · text + rules</div>
+    <div class="row">
+      <div class="sw" style="background:var(--ink)"><span class="nm" style="color:var(--paper-pure)">Ink</span><span class="hx" style="color:var(--gray-3)">#17150F</span></div>
+      <div class="sw" style="background:var(--ink-2)"><span class="nm" style="color:var(--paper-pure)">Ink 2</span><span class="hx" style="color:var(--gray-3)">#3A372F</span></div>
+      <div class="sw" style="background:var(--gray-1)"><span class="nm" style="color:var(--paper-pure)">Gray 1</span><span class="hx" style="color:var(--gray-4)">#5C584D</span></div>
+      <div class="sw" style="background:var(--gray-2)"><span class="nm">Gray 2</span><span class="hx" style="color:var(--ink)">#847F71</span></div>
+      <div class="sw" style="background:var(--gray-3)"><span class="nm">Gray 3</span><span class="hx" style="color:var(--ink-2)">#A8A294</span></div>
+    </div>
+  </div>
+</body>
+</html>

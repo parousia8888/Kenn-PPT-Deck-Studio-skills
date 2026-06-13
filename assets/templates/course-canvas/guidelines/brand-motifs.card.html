@@ -1,0 +1,23 @@
+<!-- @dsCard group="Brand" viewport="700x190" name="Signature motifs" subtitle="Numbered tab, annotation bracket, margin note, highlighter" -->
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><link rel="stylesheet" href="../styles.css">
+<style>
+  html,body{margin:0;background:var(--paper-base);}
+  .wrap{padding:22px 24px;display:grid;grid-template-columns:1fr 1fr;gap:22px 28px;font-family:var(--font-sans);color:var(--ink);}
+  .cell{display:flex;flex-direction:column;gap:8px;}
+  .cap{font-family:var(--font-mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--graphite-mute);}
+  .tab{display:inline-flex;align-items:center;gap:6px;font-family:var(--font-mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--paper-raised);background:var(--oxblood);padding:4px 12px;border-radius:999px;width:max-content;}
+  .bracket{border-left:2px solid var(--oxblood);border-top:2px solid var(--oxblood);border-bottom:2px solid var(--oxblood);border-radius:3px 0 0 3px;padding:6px 0 6px 10px;font-size:14px;color:var(--graphite);max-width:170px;}
+  .mn{border-left:2px solid var(--sage);padding-left:10px;font-size:13px;color:var(--graphite);max-width:200px;}
+  .mn b{display:block;font-family:var(--font-mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--graphite-mute);}
+  .hl{font-size:16px;}
+  .key{background:linear-gradient(var(--straw),var(--straw));background-repeat:no-repeat;background-position:0 88%;background-size:100% 42%;padding:0 2px;font-weight:500;}
+</style></head>
+<body>
+<div class="wrap">
+  <div class="cell"><span class="cap">Numbered tab</span><span class="tab">Lesson 04</span></div>
+  <div class="cell"><span class="cap">Annotation bracket</span><div class="bracket">distance from the mean, in σ units</div></div>
+  <div class="cell"><span class="cap">Margin note</span><div class="mn"><b>Before we start</b>Comfortable with mean &amp; spread.</div></div>
+  <div class="cell"><span class="cap">Highlighter</span><div class="hl">Convert a value into a <span class="key">z-score</span>.</div></div>
+</div>
+</body></html>

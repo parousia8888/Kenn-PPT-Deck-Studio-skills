@@ -1,0 +1,23 @@
+<!-- @dsCard group="Spacing" viewport="700x160" name="Radii & shadows" subtitle="Small corners only; warm low paper shadows" -->
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><link rel="stylesheet" href="../styles.css">
+<style>
+  html,body{margin:0;background:var(--paper-base);}
+  .wrap{padding:22px 24px;display:flex;gap:26px;align-items:center;font-family:var(--font-mono);}
+  .box{width:84px;height:64px;background:var(--paper-raised);border:1px solid var(--rule);display:flex;align-items:flex-end;justify-content:center;padding-bottom:6px;font-size:10px;color:var(--graphite-mute);}
+  .col{display:flex;flex-direction:column;gap:6px;align-items:center;}
+  .col>span{font-size:10px;color:var(--graphite-mute);letter-spacing:.08em;text-transform:uppercase;}
+</style></head>
+<body>
+<div class="wrap">
+  <div class="col"><span>radii</span><div style="display:flex;gap:12px">
+    <div class="box" style="border-radius:2px">2</div>
+    <div class="box" style="border-radius:4px">4</div>
+    <div class="box" style="border-radius:6px">6</div>
+  </div></div>
+  <div class="col"><span>shadows</span><div style="display:flex;gap:18px">
+    <div class="box" style="box-shadow:var(--shadow-card);border-color:transparent;border-radius:4px">card</div>
+    <div class="box" style="box-shadow:var(--shadow-raised);border-color:transparent;border-radius:4px">raised</div>
+  </div></div>
+</div>
+</body></html>

@@ -1,0 +1,29 @@
+/* Launch Theatre — Motion tokens
+ * Cinematic but restrained: slow mask reveals, optical light, number reveals.
+ * No bounce, no overshoot, no playful spring. Timing is the drama.
+ */
+:root {
+  /* ---- Easing : stage curves ---- */
+  --ease-stage:    cubic-bezier(0.16, 1, 0.30, 1);   /* @kind other */
+  --ease-mask:     cubic-bezier(0.76, 0, 0.24, 1);   /* @kind other */
+  --ease-light:    cubic-bezier(0.40, 0, 0.20, 1);   /* @kind other */
+  --ease-out-soft: cubic-bezier(0.22, 0.61, 0.36, 1);/* @kind other */
+  --ease-linear:   linear;                            /* @kind other */
+
+  /* ---- Durations ---- */
+  --dur-instant: 120ms;  /* @kind other */
+  --dur-fast:    320ms;  /* @kind other */
+  --dur-med:     720ms;  /* @kind other */
+  --dur-slow:    1200ms; /* @kind other */
+  --dur-cine:    1800ms; /* @kind other */
+  --dur-hold:    2600ms; /* @kind other */
+
+  /* ---- Stagger (per-item delay in sequences) ---- */
+  --stagger:     90ms;  /* @kind other */
+  --stagger-lg:  180ms; /* @kind other */
+
+  /* ---- Distances ---- */
+  --rise:        28px;  /* @kind spacing */
+  --rise-lg:     56px;  /* @kind spacing */
+  --push:        1.06;  /* @kind other */
+}

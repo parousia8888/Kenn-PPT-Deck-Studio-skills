@@ -1,0 +1,19 @@
+<!-- @dsCard group="Spacing" viewport="700x250" name="Negative space" subtitle="Wide stage margins frame a single idea" -->
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8" /><link rel="stylesheet" href="../styles.css" />
+<style>
+  body { margin: 0; background: var(--bg-stage); padding: 0; }
+  .stage { position: relative; height: 250px; background: var(--stage-1); }
+  .safe { position: absolute; inset: 32px 56px; border: 1px dashed var(--hairline-strong); display: flex; flex-direction: column; justify-content: flex-end; padding: 18px; }
+  .corner { position: absolute; font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--text-faint); }
+  .k { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--accent); margin-bottom: 12px; }
+  .t { font-family: var(--font-display); font-weight: 200; font-size: 44px; letter-spacing: -0.03em; color: var(--text-primary); line-height: 0.96; }
+</style></head><body>
+<div class="stage">
+  <span class="corner" style="top:14px;left:18px">margin 32 / 56</span>
+  <div class="safe">
+    <span class="k">— Tension</span>
+    <div class="t">Most launches<br/>say too much.</div>
+  </div>
+</div>
+</body></html>

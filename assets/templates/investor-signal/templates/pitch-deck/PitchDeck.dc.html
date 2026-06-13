@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<!-- @template name="Investor Signal — Pitch Deck" description="Obsidian keynote deck starter: thesis, problem, traction, ask — with dynamic background, semantic reveals, and press-B static mode." -->
+<helmet>
+  <script src="./ds-base.js"></script>
+  <script src="../../motion.js"></script>
+  <style>
+    html,body{height:100%;margin:0;background:#000;overflow:hidden}
+  </style>
+</helmet>
+
+<div style="position:fixed;inset:0;background:#000;overflow:hidden">
+  <div id="is-scaler" style="width:1920px;height:1080px;position:absolute;top:50%;left:50%;transform:translate(-50%,-50%) scale(1);transform-origin:center center">
+
+    <!-- 1 · THESIS -->
+    <section data-slide data-mode="stage" data-screen-label="01" style="position:absolute;inset:0;width:1920px;height:1080px;overflow:hidden;background:#08090B;color:#F5F6F8;opacity:1">
+      <canvas class="is-bg-canvas" style="position:absolute;inset:0;width:100%;height:100%;z-index:0"></canvas>
+      <div style="position:absolute;left:120px;right:120px;top:56px;display:flex;justify-content:space-between;align-items:center;z-index:2">
+        <div class="is-eyebrow">Series A · Confidential · 2026</div>
+        <div class="is-source">01 / 04</div>
+      </div>
+      <div style="position:relative;z-index:1;height:100%;display:flex;flex-direction:column;justify-content:center;padding:0 120px">
+        <h1 data-anim="mask-up" data-anim-order="0" style="font-family:var(--font-display);font-weight:800;font-size:112px;line-height:.96;letter-spacing:-.03em;margin:0;max-width:1500px">We price <span style="color:var(--accent)">private risk</span><br>in real time.</h1>
+        <p data-anim="rise" data-anim-order="1" style="font-family:var(--font-body);font-weight:500;font-size:28px;line-height:1.32;color:var(--text-secondary);max-width:1100px;margin:40px 0 0">A continuous, auditable mark for every private position — so capital stops waiting on the next quarterly PDF.</p>
+      </div>
+      <div style="position:absolute;left:120px;bottom:52px;font-family:var(--font-mono);font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--text-muted);z-index:2">Investor Signal, Inc.</div>
+    </section>
+
+    <!-- 2 · PROBLEM -->
+    <section data-slide data-mode="stage" data-screen-label="02" style="position:absolute;inset:0;width:1920px;height:1080px;overflow:hidden;background:#08090B;color:#F5F6F8;opacity:0;pointer-events:none">
+      <canvas class="is-bg-canvas" style="position:absolute;inset:0;width:100%;height:100%;z-index:0"></canvas>
+      <div style="position:absolute;left:120px;right:120px;top:56px;display:flex;justify-content:space-between;align-items:center;z-index:2">
+        <div class="is-eyebrow">The problem</div><div class="is-source">02 / 04</div>
+      </div>
+      <div style="position:relative;z-index:1;height:100%;display:flex;flex-direction:column;justify-content:center;padding:0 120px">
+        <h2 data-anim="mask-up" data-anim-order="0" style="font-family:var(--font-display);font-weight:800;font-size:84px;line-height:1;letter-spacing:-.025em;margin:0;max-width:1480px">Private positions are still marked on quarterly PDFs.</h2>
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:64px;margin-top:88px;max-width:1400px">
+          <div data-anim="rise" data-anim-order="1"><div class="is-metric" style="font-size:64px;color:var(--accent)">90<span style="font-size:34px">days</span></div><div class="is-source" style="margin-top:14px">Stale between marks</div></div>
+          <div data-anim="rise" data-anim-order="2"><div class="is-metric" style="font-size:64px">$13<span style="font-size:34px">T</span></div><div class="is-source" style="margin-top:14px">Private AUM, opaque</div></div>
+          <div data-anim="rise" data-anim-order="3"><div class="is-metric" style="font-size:64px">71<span style="font-size:34px">%</span></div><div class="is-source" style="margin-top:14px">LPs cite valuation lag</div></div>
+        </div>
+      </div>
+      <div style="position:absolute;left:120px;bottom:52px;font-family:var(--font-mono);font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--text-muted);z-index:2">— Investor question: why is this broken today?</div>
+    </section>
+
+    <!-- 3 · TRACTION -->
+    <section data-slide data-mode="stage" data-screen-label="03" style="position:absolute;inset:0;width:1920px;height:1080px;overflow:hidden;background:#08090B;color:#F5F6F8;opacity:0;pointer-events:none">
+      <canvas class="is-bg-canvas" style="position:absolute;inset:0;width:100%;height:100%;z-index:0"></canvas>
+      <div style="position:absolute;left:120px;right:120px;top:56px;display:flex;justify-content:space-between;align-items:center;z-index:2">
+        <div class="is-eyebrow">Traction</div><div class="is-source">03 / 04</div>
+      </div>
+      <div style="position:relative;z-index:1;height:100%;display:flex;flex-direction:column;justify-content:center;padding:0 120px">
+        <div class="is-source" data-anim="rise" data-anim-order="0" style="margin-bottom:18px">Annual recurring revenue</div>
+        <div class="is-metric" data-anim="rise" data-anim-order="1" style="font-size:168px">$<span data-count="4.2" data-count-dec="1" data-count-suf="M">0.0M</span></div>
+        <div data-anim="rise" data-anim-order="2" style="font-family:var(--font-mono);color:var(--accent);font-size:24px;margin-top:18px">▲ <span data-count="218" data-count-suf="% YoY">0% YoY</span></div>
+        <div style="display:flex;gap:64px;margin-top:64px">
+          <div data-anim="rise" data-anim-order="3"><div class="is-metric" style="font-size:48px"><span data-count="34">0</span></div><div class="is-source" style="margin-top:8px">Funds live</div></div>
+          <div data-anim="rise" data-anim-order="4"><div class="is-metric" style="font-size:48px">$<span data-count="61" data-count-suf="B">0B</span></div><div class="is-source" style="margin-top:8px">AUM under coverage</div></div>
+          <div data-anim="rise" data-anim-order="5"><div class="is-metric" style="font-size:48px">0<span style="font-size:28px">%</span></div><div class="is-source" style="margin-top:8px">Net logo churn</div></div>
+        </div>
+      </div>
+      <div style="position:absolute;left:120px;bottom:52px;font-family:var(--font-mono);font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--text-muted);z-index:2">Source: company data · ARR as of Q1 2026</div>
+    </section>
+
+    <!-- 4 · ASK -->
+    <section data-slide data-mode="stage" data-screen-label="04" style="position:absolute;inset:0;width:1920px;height:1080px;overflow:hidden;background:#08090B;color:#F5F6F8;opacity:0;pointer-events:none">
+      <canvas class="is-bg-canvas" style="position:absolute;inset:0;width:100%;height:100%;z-index:0"></canvas>
+      <div style="position:absolute;left:120px;right:120px;top:56px;display:flex;justify-content:space-between;align-items:center;z-index:2">
+        <div class="is-eyebrow">The ask</div><div class="is-source">04 / 04</div>
+      </div>
+      <div style="position:relative;z-index:1;height:100%;display:flex;flex-direction:column;justify-content:center;padding:0 120px">
+        <h2 data-anim="mask-up" data-anim-order="0" style="font-family:var(--font-display);font-weight:800;font-size:84px;line-height:1;letter-spacing:-.025em;margin:0">Raising <span style="color:var(--accent)">$12M</span> Series A.</h2>
+        <div data-anim="rise" data-anim-order="1" style="display:flex;flex-direction:column;gap:18px;font-family:var(--font-body);font-size:24px;margin-top:64px;max-width:760px">
+          <div style="display:flex;justify-content:space-between;border-bottom:1px solid var(--obsidian-600);padding-bottom:14px"><span>Coverage engineering</span><span style="font-family:var(--font-mono);color:var(--accent)">50%</span></div>
+          <div style="display:flex;justify-content:space-between;border-bottom:1px solid var(--obsidian-600);padding-bottom:14px"><span>Desk go-to-market</span><span style="font-family:var(--font-mono)">30%</span></div>
+          <div style="display:flex;justify-content:space-between;border-bottom:1px solid var(--obsidian-600);padding-bottom:14px"><span>Compliance &amp; audit</span><span style="font-family:var(--font-mono)">20%</span></div>
+        </div>
+        <div data-anim="rise" data-anim-order="2" style="font-family:var(--font-mono);font-size:18px;color:var(--text-secondary);margin-top:32px">Target: <span style="color:var(--accent)">$15M ARR · 120 funds</span> in 18 months.</div>
+      </div>
+      <div style="position:absolute;left:120px;bottom:52px;font-family:var(--font-mono);font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--text-muted);z-index:2">hello@investorsignal.co</div>
+    </section>
+
+  </div>
+
+  <div style="position:fixed;bottom:22px;left:50%;transform:translateX(-50%);z-index:200;display:flex;align-items:center;gap:14px">
+    <button onClick="{{ prev }}" style="width:40px;height:40px;border:1px solid #2a2f36;background:rgba(12,14,18,.7);color:#d8dbe0;border-radius:2px;cursor:pointer;font-size:18px;font-family:var(--font-mono);backdrop-filter:blur(6px)">‹</button>
+    <span style="font-family:var(--font-mono);font-size:13px;letter-spacing:.12em;color:#8a929c;min-width:54px;text-align:center"><span id="is-cur">1</span> / 04</span>
+    <button onClick="{{ next }}" style="width:40px;height:40px;border:1px solid #2a2f36;background:rgba(12,14,18,.7);color:#d8dbe0;border-radius:2px;cursor:pointer;font-size:18px;font-family:var(--font-mono);backdrop-filter:blur(6px)">›</button>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  componentDidMount() {
+    const root = document;
+    this.i = 0;
+    this.slides = Array.from(root.querySelectorAll('[data-slide]'));
+    this.scaler = root.getElementById('is-scaler');
+    this.fit = () => {
+      if (!this.scaler) return;
+      const s = Math.min(window.innerWidth / 1920, window.innerHeight / 1080);
+      this.scaler.style.transform = 'translate(-50%, -50%) scale(' + s + ')';
+    };
+    this.go = (n) => {
+      this.i = Math.max(0, Math.min(this.slides.length - 1, n));
+      this.slides.forEach((sl, k) => {
+        const on = k === this.i;
+        sl.style.opacity = on ? '1' : '0';
+        sl.style.pointerEvents = on ? 'auto' : 'none';
+      });
+      const cur = root.getElementById('is-cur');
+      if (cur) cur.textContent = this.i + 1;
+      if (window.InvestorSignal) window.InvestorSignal.activate(this.slides[this.i]);
+    };
+    this.key = (e) => {
+      if (e.key === 'ArrowRight' || e.key === 'PageDown') this.go(this.i + 1);
+      else if (e.key === 'ArrowLeft' || e.key === 'PageUp') this.go(this.i - 1);
+    };
+    window.addEventListener('resize', this.fit);
+    window.addEventListener('keydown', this.key);
+    this.fit();
+    const boot = () => {
+      if (window.InvestorSignal) { window.InvestorSignal.init(); this.go(0); }
+      else setTimeout(boot, 80);
+    };
+    boot();
+  }
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.fit);
+    window.removeEventListener('keydown', this.key);
+  }
+  renderVals() {
+    return {
+      prev: () => this.go(this.i - 1),
+      next: () => this.go(this.i + 1),
+    };
+  }
+}
+</script>
+</body>
+</html>

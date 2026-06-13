@@ -1,0 +1,83 @@
+<!-- @dsCard group="Slides" viewport="1280x720" name="03 · KPI Ledger" subtitle="Rows reveal top-down; numbers appear before labels" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Proof Atlas — KPI Ledger</title>
+<link rel="stylesheet" href="../styles.css">
+<link rel="stylesheet" href="../assets/atlas-anim.css">
+<link rel="stylesheet" href="slide-base.css">
+<script src="../assets/atlas-motion.js"></script>
+</head>
+<body>
+<div class="slide atlas-stage" data-stage data-autoplay data-atlas-bg="quiet">
+  <div class="slide-inner">
+    <div class="slide-head">
+      <div class="brand"><span class="xh"><i></i></span><span class="nm">Proof Atlas</span></div>
+      <div class="head-meta">
+        <span class="tag accent">Indicators</span>
+        <span class="coord">2026-Q2 · n=3,402</span>
+      </div>
+    </div>
+
+    <div class="slide-body" style="padding-top:18px;">
+      <div data-anim="mask" data-seq="0" style="display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:6px;">
+        <h1 class="title" style="font-size:34px;">Key indicators ledger</h1>
+        <span style="font-family:var(--font-mono);font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:var(--gray-3);">Value · Δ vs. baseline · source</span>
+      </div>
+
+      <div style="border-top:2px solid var(--ink);">
+        <!-- ledger row template repeated -->
+        <div data-anim="row" data-seq="1" class="ledger-row">
+          <span class="rix">01</span>
+          <span class="rnum">2.4<small>×</small></span>
+          <div class="rlbl"><div class="rt">Program throughput</div><div class="rs">Cases processed vs. prior period</div></div>
+          <span class="delta up">▴ +1.1×</span>
+          <span class="rsrc">SRC-2087</span>
+        </div>
+        <div data-anim="row" data-seq="2" class="ledger-row">
+          <span class="rix">02</span>
+          <span class="rnum">84.2<small>%</small></span>
+          <div class="rlbl"><div class="rt">Verified outcomes</div><div class="rs">Findings corroborated by ≥2 sources</div></div>
+          <span class="delta up">▴ +9 pts</span>
+          <span class="rsrc">n=412</span>
+        </div>
+        <div data-anim="row" data-seq="3" class="ledger-row">
+          <span class="rix">03</span>
+          <span class="rnum">11.6<small>d</small></span>
+          <div class="rlbl"><div class="rt">Median resolution time</div><div class="rs">Intake to confirmed outcome</div></div>
+          <span class="delta up">▴ −4.2 d</span>
+          <span class="rsrc">SRC-3310</span>
+        </div>
+        <div data-anim="row" data-seq="4" class="ledger-row">
+          <span class="rix">04</span>
+          <span class="rnum">3.1<small>%</small></span>
+          <div class="rlbl"><div class="rt">Unresolved exceptions</div><div class="rs">Cases pending secondary review</div></div>
+          <span class="delta down">▾ +0.4 pts</span>
+          <span class="rsrc">L-04</span>
+        </div>
+      </div>
+
+      <div data-anim="source" style="margin-top:auto;padding-top:18px;">
+        <span class="source">Source · consolidated program ledger · audit panel n=3,402 · 2026-Q2</span>
+      </div>
+    </div>
+
+    <div class="slide-foot">
+      <span>Field Program Review · 2026</span>
+      <span class="seq">KPI Ledger · 03 / 10</span>
+    </div>
+  </div>
+</div>
+<style>
+  .ledger-row { display: grid; grid-template-columns: 44px 180px 1fr 130px 90px; align-items: center; gap: 18px; padding: 18px 0; border-bottom: 1px solid var(--rule-faint); }
+  .ledger-row .rix { font-family: var(--font-mono); font-size: 12px; color: var(--gray-3); }
+  .ledger-row .rnum { font-family: var(--font-display); font-weight: 200; font-size: 46px; line-height: 1; letter-spacing: -0.02em; color: var(--ink); font-variant-numeric: tabular-nums; }
+  .ledger-row .rnum small { font-size: 0.4em; font-weight: 300; color: var(--gray-1); }
+  .ledger-row .rlbl .rt { font-family: var(--font-body); font-size: 15px; font-weight: 500; color: var(--ink); }
+  .ledger-row .rlbl .rs { font-family: var(--font-body); font-size: 12.5px; color: var(--gray-2); margin-top: 2px; }
+  .ledger-row .delta { text-align: right; }
+  .ledger-row .rsrc { font-family: var(--font-mono); font-size: 9.5px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--gray-3); text-align: right; }
+</style>
+</body>
+</html>

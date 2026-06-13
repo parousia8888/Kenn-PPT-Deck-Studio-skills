@@ -1,0 +1,403 @@
+<!-- @dsCard group="Pitch Deck" viewport="1280x720" name="Pitch deck — interactive" subtitle="10 investor layouts · dynamic background · press B for static mode" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Investor Signal — Pitch Deck</title>
+<link rel="stylesheet" href="../../styles.css">
+<style>
+  html, body { height: 100%; background: #000; overflow: hidden; }
+  .stage { position: fixed; inset: 0; background: #000; overflow: hidden; }
+  .scaler { width: var(--slide-w); height: var(--slide-h); position: absolute; top: 50%; left: 50%;
+            transform: translate(-50%, -50%) scale(1); transform-origin: center center; }
+
+  .slide {
+    position: absolute; inset: 0; width: var(--slide-w); height: var(--slide-h);
+    overflow: hidden; opacity: 0; pointer-events: none;
+    display: flex; flex-direction: column;
+  }
+  .slide[data-deck-active="true"] { opacity: 1; pointer-events: auto; }
+  .slide[data-mode="evidence"] { background: var(--paper-050); color: var(--ink-900); }
+  .slide:not([data-mode]) , .slide[data-mode="stage"] { background: var(--obsidian-900); color: var(--white); }
+  .is-bg-canvas { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none; }
+
+  .pad { position: relative; z-index: 1; flex: 1; display: flex; flex-direction: column;
+         padding: var(--slide-margin); }
+  .pad-tight { padding: 88px var(--slide-margin); }
+
+  /* slide chrome */
+  .chrome { position: absolute; left: var(--slide-margin); right: var(--slide-margin);
+            display: flex; align-items: center; justify-content: space-between; z-index: 2; }
+  .chrome.top { top: 56px; } .chrome.bot { bottom: 52px; }
+  .chrome .mark { display: flex; align-items: center; gap: 12px; }
+  .pageno { font-family: var(--font-mono); font-size: 13px; letter-spacing: .14em; color: var(--text-muted); }
+  .footer-src { font-family: var(--font-mono); font-size: 13px; letter-spacing: .12em; text-transform: uppercase; color: var(--text-muted); }
+
+  h1.thesis { font-family: var(--font-display); font-weight: 800; font-size: var(--fs-d1);
+              line-height: .96; letter-spacing: -.03em; margin: 0; text-wrap: balance; }
+  h2.title { font-family: var(--font-display); font-weight: 800; font-size: var(--fs-d3);
+             line-height: 1.0; letter-spacing: -.025em; margin: 0; }
+  .lead { font-family: var(--font-body); font-weight: 500; font-size: var(--fs-lead);
+          line-height: 1.32; letter-spacing: -.01em; color: var(--text-secondary); max-width: 1180px; }
+  .eyebrow { font-family: var(--font-mono); font-size: 16px; letter-spacing: .16em; text-transform: uppercase;
+             color: var(--accent); font-weight: 500; }
+  .src { font-family: var(--font-mono); font-size: 14px; letter-spacing: .1em; color: var(--text-muted); }
+  .metric { font-family: var(--font-display); font-weight: 800; letter-spacing: -.04em; line-height: 1;
+            font-variant-numeric: tabular-nums; }
+  .mono { font-family: var(--font-mono); font-variant-numeric: tabular-nums; }
+  .hair { border: 0; border-top: 1px solid var(--hairline); margin: 0; }
+
+  /* nav (outside the scaled canvas) */
+  .nav { position: fixed; bottom: 22px; left: 50%; transform: translateX(-50%); z-index: 200;
+         display: flex; align-items: center; gap: 14px; }
+  .nav button { width: 40px; height: 40px; border: 1px solid #2a2f36; background: rgba(12,14,18,.7);
+                color: #d8dbe0; border-radius: 2px; cursor: pointer; font-size: 18px; font-family: var(--font-mono);
+                display: grid; place-items: center; transition: border-color .2s, color .2s; backdrop-filter: blur(6px); }
+  .nav button:hover { border-color: var(--accent); color: #fff; }
+  .nav .count { font-family: var(--font-mono); font-size: 13px; letter-spacing: .12em; color: #8a929c; min-width: 64px; text-align: center; }
+</style>
+</head>
+<body>
+<div class="stage">
+  <div class="scaler" id="scaler">
+
+    <!-- ============ 1 · TITLE / THESIS ============ -->
+    <section class="slide" data-slide data-mode="stage" data-deck-active="true" data-screen-label="01">
+      <canvas class="is-bg-canvas"></canvas>
+      <div class="chrome top"><div class="mark" id="m1"></div><div class="pageno">01 / 10</div></div>
+      <div class="pad" style="justify-content:center">
+        <div class="eyebrow" data-anim="rise" data-anim-order="0" style="margin-bottom:34px">Series A · Confidential · 2026</div>
+        <h1 class="thesis" data-anim="mask-up" data-anim-order="1" style="max-width:1500px">
+          We price <span class="accent">private risk</span><br>in real time.
+        </h1>
+        <div class="lead" data-anim="rise" data-anim-order="2" style="margin-top:40px">
+          A continuous, auditable mark for every private position — so capital stops waiting on the next quarterly PDF.
+        </div>
+      </div>
+      <div class="chrome bot"><div class="footer-src">Investor Signal, Inc.</div><div class="src">hello@investorsignal.co</div></div>
+    </section>
+
+    <!-- ============ 2 · PROBLEM ============ -->
+    <section class="slide" data-slide data-mode="stage" data-deck-active="false" data-screen-label="02">
+      <canvas class="is-bg-canvas"></canvas>
+      <div class="chrome top"><div class="eyebrow">The problem</div><div class="pageno">02 / 10</div></div>
+      <div class="pad" style="justify-content:center">
+        <h2 class="title" data-anim="mask-up" data-anim-order="0" style="font-size:var(--fs-d2);max-width:1480px">
+          Private positions are still marked<br>on <span data-anim="underline" data-anim-order="2">quarterly PDFs</span>.
+        </h2>
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:64px;margin-top:88px;max-width:1400px">
+          <div data-anim="rise" data-anim-order="3"><div class="metric accent" style="font-size:64px">90<span style="font-size:34px">days</span></div><div class="src" style="margin-top:14px;text-transform:uppercase">Stale between marks</div></div>
+          <div data-anim="rise" data-anim-order="4"><div class="metric" style="font-size:64px">$13<span style="font-size:34px">T</span></div><div class="src" style="margin-top:14px;text-transform:uppercase">Private AUM, opaque</div></div>
+          <div data-anim="rise" data-anim-order="5"><div class="metric" style="font-size:64px">71<span style="font-size:34px">%</span></div><div class="src" style="margin-top:14px;text-transform:uppercase">LPs cite valuation lag</div></div>
+        </div>
+      </div>
+      <div class="chrome bot"><div class="footer-src">— Investor question: why is this broken today?</div><div class="src">Source: industry survey, 2025</div></div>
+    </section>
+
+    <!-- ============ 3 · WHY NOW ============ -->
+    <section class="slide" data-slide data-mode="stage" data-deck-active="false" data-screen-label="03">
+      <canvas class="is-bg-canvas"></canvas>
+      <div class="chrome top"><div class="eyebrow">Why now</div><div class="pageno">03 / 10</div></div>
+      <div class="pad" style="justify-content:center">
+        <h2 class="title" data-anim="rise" data-anim-order="0" style="max-width:1300px;margin-bottom:96px">
+          Three forces converged in the last 18 months.
+        </h2>
+        <div style="position:relative">
+          <svg width="1680" height="6" style="position:absolute;top:9px;left:0" viewBox="0 0 1680 6" preserveAspectRatio="none">
+            <line x1="0" y1="3" x2="1680" y2="3" stroke="var(--hairline)" stroke-width="1"/>
+            <line x1="0" y1="3" x2="1680" y2="3" stroke="var(--accent)" stroke-width="2"
+                  data-anim="draw" data-anim-order="1" style="--draw-len:1680" stroke-dasharray="1680" />
+          </svg>
+          <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:48px;position:relative">
+            <div data-anim="node" data-anim-order="2"><span style="display:block;width:20px;height:20px;border-radius:999px;background:var(--accent)"></span><div class="mono accent" style="margin-top:24px;font-size:14px;letter-spacing:.1em">2024</div><div style="font-size:22px;margin-top:8px;max-width:300px;line-height:1.3">Disclosure APIs mandated for registered funds</div></div>
+            <div data-anim="node" data-anim-order="3"><span style="display:block;width:20px;height:20px;border-radius:999px;background:var(--accent)"></span><div class="mono accent" style="margin-top:24px;font-size:14px;letter-spacing:.1em">2025</div><div style="font-size:22px;margin-top:8px;max-width:300px;line-height:1.3">Secondaries volume doubled, repricing demand surged</div></div>
+            <div data-anim="node" data-anim-order="4"><span style="display:block;width:20px;height:20px;border-radius:999px;background:var(--accent)"></span><div class="mono accent" style="margin-top:24px;font-size:14px;letter-spacing:.1em">2025</div><div style="font-size:22px;margin-top:8px;max-width:300px;line-height:1.3">Frontier models can read filings at audit grade</div></div>
+            <div data-anim="node" data-anim-order="5"><span style="display:block;width:20px;height:20px;border-radius:999px;background:var(--white)"></span><div class="mono accent" style="margin-top:24px;font-size:14px;letter-spacing:.1em">NOW</div><div style="font-size:22px;margin-top:8px;max-width:300px;line-height:1.3">The continuous private mark becomes buildable</div></div>
+          </div>
+        </div>
+      </div>
+      <div class="chrome bot"><div class="footer-src">— Investor question: why hasn't this existed before?</div><div class="src"></div></div>
+    </section>
+
+    <!-- ============ 4 · PRODUCT SOLUTION ============ -->
+    <section class="slide" data-slide data-mode="evidence" data-deck-active="false" data-screen-label="04">
+      <canvas class="is-bg-canvas"></canvas>
+      <div class="chrome top"><div class="eyebrow">What we built</div><div class="pageno">04 / 10</div></div>
+      <div class="pad" style="justify-content:center">
+        <h2 class="title" data-anim="rise" data-anim-order="0" style="max-width:1300px;margin-bottom:72px">
+          One pipeline from disclosure to <span class="accent">defensible mark</span>.
+        </h2>
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:0;border-top:1px solid var(--hairline)">
+          <div data-anim="cell" data-anim-order="1" style="padding:48px 48px 56px 0;border-right:1px solid var(--hairline)">
+            <div class="mono accent" style="font-size:14px;letter-spacing:.14em">01 · INGEST</div>
+            <div style="font-family:var(--font-display);font-weight:700;font-size:34px;margin:22px 0 14px;letter-spacing:-.02em">Every filing, normalized</div>
+            <div style="font-size:20px;line-height:1.5;color:var(--ink-700)">Disclosures, secondaries prints, and cap-table events parsed into one structured ledger.</div>
+          </div>
+          <div data-anim="cell" data-anim-order="2" style="padding:48px;border-right:1px solid var(--hairline)">
+            <div class="mono accent" style="font-size:14px;letter-spacing:.14em">02 · PRICE</div>
+            <div style="font-family:var(--font-display);font-weight:700;font-size:34px;margin:22px 0 14px;letter-spacing:-.02em">A mark you can defend</div>
+            <div style="font-size:20px;line-height:1.5;color:var(--ink-700)">Comparable-driven valuation with a full audit trail to every input behind the number.</div>
+          </div>
+          <div data-anim="cell" data-anim-order="3" style="padding:48px 0 56px 48px">
+            <div class="mono accent" style="font-size:14px;letter-spacing:.14em">03 · ALERT</div>
+            <div style="font-family:var(--font-display);font-weight:700;font-size:34px;margin:22px 0 14px;letter-spacing:-.02em">Signal before the print</div>
+            <div style="font-size:20px;line-height:1.5;color:var(--ink-700)">Material moves surface the moment evidence changes — not 90 days later.</div>
+          </div>
+        </div>
+      </div>
+      <div class="chrome bot"><div class="footer-src">— Investor question: what exactly does it do?</div><div class="src"></div></div>
+    </section>
+
+    <!-- ============ 5 · PRODUCT SCREENSHOT / DEMO ============ -->
+    <section class="slide" data-slide data-mode="stage" data-deck-active="false" data-screen-label="05">
+      <canvas class="is-bg-canvas"></canvas>
+      <div class="chrome top"><div class="eyebrow">The product</div><div class="pageno">05 / 10</div></div>
+      <div class="pad" style="flex-direction:row;align-items:center;gap:80px">
+        <div style="flex:0 0 420px">
+          <h2 class="title" data-anim="rise" data-anim-order="0" style="font-size:var(--fs-d3)">Live marks,<br>one terminal.</h2>
+          <div class="lead" data-anim="rise" data-anim-order="1" style="font-size:22px;margin-top:28px">Every position priced continuously, with the evidence one click away.</div>
+          <div class="mono" data-anim="rise" data-anim-order="2" style="margin-top:36px;color:var(--accent);font-size:15px;letter-spacing:.1em">▲ 6 positions repriced today</div>
+        </div>
+        <div style="flex:1" data-anim="screen" data-anim-order="1">
+          <div style="background:var(--obsidian-850);border:1px solid var(--obsidian-600);border-radius:8px;box-shadow:var(--shadow-frame);overflow:hidden">
+            <div style="display:flex;align-items:center;gap:12px;padding:14px 18px;border-bottom:1px solid var(--obsidian-600);background:var(--obsidian-800)">
+              <span style="width:8px;height:8px;border-radius:999px;background:var(--accent)"></span>
+              <span class="mono src" style="text-transform:uppercase">signal · portfolio · live</span>
+              <span class="mono" style="margin-left:auto;color:var(--gray-500);font-size:12px">updated 0.4s ago</span>
+            </div>
+            <div style="display:grid;grid-template-columns:1.3fr 1fr;gap:1px;background:var(--obsidian-600)">
+              <div style="background:var(--obsidian-850);padding:26px 28px">
+                <div class="src" style="text-transform:uppercase">Marked portfolio value</div>
+                <div class="metric" style="font-size:60px;margin-top:10px">$248.6M</div>
+                <div class="mono accent" style="margin-top:8px;font-size:15px">▲ +1.8% intraday</div>
+                <div style="display:flex;align-items:flex-end;gap:6px;height:120px;margin-top:30px">
+                  <div style="flex:1;height:42%;background:var(--obsidian-600)"></div>
+                  <div style="flex:1;height:55%;background:var(--obsidian-600)"></div>
+                  <div style="flex:1;height:48%;background:var(--obsidian-600)"></div>
+                  <div style="flex:1;height:68%;background:var(--obsidian-600)"></div>
+                  <div style="flex:1;height:61%;background:var(--obsidian-600)"></div>
+                  <div style="flex:1;height:80%;background:var(--obsidian-600)"></div>
+                  <div style="flex:1;height:92%;background:var(--accent)"></div>
+                </div>
+              </div>
+              <div style="background:var(--obsidian-850);padding:26px 28px">
+                <div class="src" style="text-transform:uppercase">Repriced today</div>
+                <div style="margin-top:18px;display:flex;flex-direction:column;gap:16px">
+                  <div style="display:flex;justify-content:space-between;align-items:center"><span class="mono" style="font-size:15px">Helix Bio</span><span class="mono accent" style="font-size:15px">▲ 4.2%</span></div>
+                  <hr class="hair">
+                  <div style="display:flex;justify-content:space-between;align-items:center"><span class="mono" style="font-size:15px">Northwind</span><span class="mono accent" style="font-size:15px">▲ 2.1%</span></div>
+                  <hr class="hair">
+                  <div style="display:flex;justify-content:space-between;align-items:center"><span class="mono" style="font-size:15px">Atlas Grid</span><span class="mono" style="font-size:15px;color:var(--gray-400)">▼ 0.6%</span></div>
+                  <hr class="hair">
+                  <div style="display:flex;justify-content:space-between;align-items:center"><span class="mono" style="font-size:15px">Orbital</span><span class="mono accent" style="font-size:15px">▲ 3.0%</span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="chrome bot"><div class="footer-src">— Investor question: is it real?</div><div class="src">Illustrative data</div></div>
+    </section>
+
+    <!-- ============ 6 · MARKET MAP ============ -->
+    <section class="slide" data-slide data-mode="evidence" data-deck-active="false" data-screen-label="06">
+      <canvas class="is-bg-canvas"></canvas>
+      <div class="chrome top"><div class="eyebrow">Market</div><div class="pageno">06 / 10</div></div>
+      <div class="pad" style="flex-direction:row;gap:96px;align-items:center">
+        <div style="flex:0 0 560px">
+          <h2 class="title" data-anim="rise" data-anim-order="0" style="margin-bottom:52px">A wedge into a structurally large market.</h2>
+          <div style="display:flex;flex-direction:column;gap:0">
+            <div data-anim="cell" data-anim-order="1" style="display:flex;justify-content:space-between;align-items:baseline;padding:22px 0;border-top:1px solid var(--hairline)">
+              <div><div class="mono" style="font-size:13px;letter-spacing:.14em;color:var(--gray-500)">TAM</div><div style="font-size:22px;margin-top:4px">Private market data & valuation</div></div>
+              <div class="metric" style="font-size:46px">$28B</div>
+            </div>
+            <div data-anim="cell" data-anim-order="2" style="display:flex;justify-content:space-between;align-items:baseline;padding:22px 0;border-top:1px solid var(--hairline)">
+              <div><div class="mono" style="font-size:13px;letter-spacing:.14em;color:var(--gray-500)">SAM</div><div style="font-size:22px;margin-top:4px">Funds marking illiquid books</div></div>
+              <div class="metric" style="font-size:46px">$9.4B</div>
+            </div>
+            <div data-anim="cell" data-anim-order="3" style="display:flex;justify-content:space-between;align-items:baseline;padding:22px 0;border-top:1px solid var(--hairline);border-bottom:1px solid var(--hairline)">
+              <div><div class="mono accent" style="font-size:13px;letter-spacing:.14em">SOM · 3 yr</div><div style="font-size:22px;margin-top:4px;font-weight:600">Continuous-mark subscriptions</div></div>
+              <div class="metric accent" style="font-size:46px">$640M</div>
+            </div>
+          </div>
+        </div>
+        <div style="flex:1;display:grid;place-items:center;position:relative;height:560px">
+          <div data-anim="node" data-anim-order="2" style="position:absolute;width:520px;height:520px;border-radius:999px;border:1px solid var(--gray-150)"></div>
+          <div data-anim="node" data-anim-order="3" style="position:absolute;width:360px;height:360px;border-radius:999px;border:1px solid var(--gray-150);background:var(--paper-100)"></div>
+          <div data-anim="node" data-anim-order="4" style="position:absolute;width:190px;height:190px;border-radius:999px;background:var(--accent);display:grid;place-items:center;text-align:center">
+            <div><div class="mono" style="color:var(--accent-ink);font-size:13px;letter-spacing:.1em">ENTRY</div><div style="color:var(--accent-ink);font-family:var(--font-display);font-weight:800;font-size:26px;margin-top:2px">Secondaries<br>desks</div></div>
+          </div>
+        </div>
+      </div>
+      <div class="chrome bot"><div class="footer-src">— Investor question: how big can this be?</div><div class="src">Source: internal model, bottom-up</div></div>
+    </section>
+
+    <!-- ============ 7 · BUSINESS MODEL ============ -->
+    <section class="slide" data-slide data-mode="evidence" data-deck-active="false" data-screen-label="07">
+      <canvas class="is-bg-canvas"></canvas>
+      <div class="chrome top"><div class="eyebrow">Business model</div><div class="pageno">07 / 10</div></div>
+      <div class="pad" style="justify-content:center">
+        <h2 class="title" data-anim="rise" data-anim-order="0" style="max-width:1200px;margin-bottom:18px">Per-seat SaaS, priced to AUM under coverage.</h2>
+        <div class="lead" data-anim="rise" data-anim-order="1" style="font-size:22px;margin-bottom:64px">Land with one desk. Expand across the fund as coverage compounds.</div>
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:28px">
+          <div data-anim="cell" data-anim-order="2" style="border:1px solid var(--hairline);padding:40px 36px;background:var(--paper-000)">
+            <div class="mono" style="font-size:13px;letter-spacing:.14em;color:var(--gray-500)">DESK</div>
+            <div class="metric" style="font-size:52px;margin:14px 0 4px">$4K<span style="font-size:22px;color:var(--gray-500)">/mo</span></div>
+            <div class="src" style="text-transform:uppercase">Up to 5 analysts</div>
+          </div>
+          <div data-anim="cell" data-anim-order="3" style="border:2px solid var(--accent);padding:40px 36px;background:var(--paper-000);position:relative">
+            <div class="mono accent" style="font-size:13px;letter-spacing:.14em">FUND · POPULAR</div>
+            <div class="metric" style="font-size:52px;margin:14px 0 4px">$22K<span style="font-size:22px;color:var(--gray-500)">/mo</span></div>
+            <div class="src" style="text-transform:uppercase">Unlimited seats · API</div>
+          </div>
+          <div data-anim="cell" data-anim-order="4" style="border:1px solid var(--hairline);padding:40px 36px;background:var(--paper-000)">
+            <div class="mono" style="font-size:13px;letter-spacing:.14em;color:var(--gray-500)">PLATFORM</div>
+            <div class="metric" style="font-size:52px;margin:14px 0 4px">+12<span style="font-size:22px;color:var(--gray-500)">bps</span></div>
+            <div class="src" style="text-transform:uppercase">On AUM under coverage</div>
+          </div>
+        </div>
+        <div style="display:flex;gap:64px;margin-top:56px" data-anim="rise" data-anim-order="5">
+          <div><span class="metric accent" style="font-size:36px">128%</span> <span class="src" style="text-transform:uppercase;margin-left:8px">Net revenue retention</span></div>
+          <div><span class="metric" style="font-size:36px">9.4x</span> <span class="src" style="text-transform:uppercase;margin-left:8px">LTV / CAC</span></div>
+          <div><span class="metric" style="font-size:36px">87%</span> <span class="src" style="text-transform:uppercase;margin-left:8px">Gross margin</span></div>
+        </div>
+      </div>
+      <div class="chrome bot"><div class="footer-src">— Investor question: how do you make money?</div><div class="src"></div></div>
+    </section>
+
+    <!-- ============ 8 · TRACTION ============ -->
+    <section class="slide" data-slide data-mode="stage" data-deck-active="false" data-screen-label="08">
+      <canvas class="is-bg-canvas"></canvas>
+      <div class="chrome top"><div class="eyebrow">Traction</div><div class="pageno">08 / 10</div></div>
+      <div class="pad" style="flex-direction:row;align-items:center;gap:80px">
+        <div style="flex:0 0 720px">
+          <div class="src" data-anim="rise" data-anim-order="0" style="text-transform:uppercase;margin-bottom:18px">Annual recurring revenue</div>
+          <div class="metric" data-anim="rise" data-anim-order="1" style="font-size:var(--fs-mega)">
+            $<span data-count="4.2" data-count-dec="1" data-count-suf="M">$0.0M</span>
+          </div>
+          <div class="mono accent" data-anim="rise" data-anim-order="2" style="font-size:24px;margin-top:18px">▲ <span data-count="218" data-count-suf="% YoY">0% YoY</span></div>
+          <div style="display:flex;gap:64px;margin-top:64px">
+            <div data-anim="rise" data-anim-order="3"><div class="metric" style="font-size:48px"><span data-count="34">0</span></div><div class="src" style="text-transform:uppercase;margin-top:8px">Funds live</div></div>
+            <div data-anim="rise" data-anim-order="4"><div class="metric" style="font-size:48px">$<span data-count="61" data-count-suf="B">0B</span></div><div class="src" style="text-transform:uppercase;margin-top:8px">AUM under coverage</div></div>
+            <div data-anim="rise" data-anim-order="5"><div class="metric" style="font-size:48px">0<span style="font-size:28px">%</span></div><div class="src" style="text-transform:uppercase;margin-top:8px">Net logo churn</div></div>
+          </div>
+        </div>
+        <div style="flex:1;display:flex;align-items:flex-end;gap:18px;height:520px;border-left:1px solid var(--obsidian-600);padding-left:56px">
+          <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:14px;height:100%;justify-content:flex-end"><div data-anim="grow" data-anim-order="2" style="width:100%;height:14%;background:var(--obsidian-600)"></div><div class="mono src">Q1</div></div>
+          <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:14px;height:100%;justify-content:flex-end"><div data-anim="grow" data-anim-order="3" style="width:100%;height:26%;background:var(--obsidian-600)"></div><div class="mono src">Q2</div></div>
+          <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:14px;height:100%;justify-content:flex-end"><div data-anim="grow" data-anim-order="4" style="width:100%;height:44%;background:var(--obsidian-600)"></div><div class="mono src">Q3</div></div>
+          <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:14px;height:100%;justify-content:flex-end"><div data-anim="grow" data-anim-order="5" style="width:100%;height:68%;background:var(--obsidian-600)"></div><div class="mono src">Q4</div></div>
+          <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:14px;height:100%;justify-content:flex-end"><div data-anim="grow" data-anim-order="6" style="width:100%;height:100%;background:var(--accent)"></div><div class="mono accent">Q1'</div></div>
+        </div>
+      </div>
+      <div class="chrome bot"><div class="footer-src">— Investor question: is it working?</div><div class="src">Source: company data · ARR as of Q1 2026</div></div>
+    </section>
+
+    <!-- ============ 9 · COMPETITIVE POSITIONING ============ -->
+    <section class="slide" data-slide data-mode="evidence" data-deck-active="false" data-screen-label="09">
+      <canvas class="is-bg-canvas"></canvas>
+      <div class="chrome top"><div class="eyebrow">Positioning</div><div class="pageno">09 / 10</div></div>
+      <div class="pad" style="flex-direction:row;gap:88px;align-items:center">
+        <div style="flex:0 0 480px">
+          <h2 class="title" data-anim="rise" data-anim-order="0" style="margin-bottom:40px">We sit where the others cannot.</h2>
+          <div class="lead" data-anim="rise" data-anim-order="1" style="font-size:21px">Incumbents are either continuous but public-only, or private but quarterly. We are continuous <span class="accent">and</span> private.</div>
+          <div style="margin-top:48px;display:flex;flex-direction:column;gap:18px">
+            <div class="mono" data-anim="cell" data-anim-order="2" style="font-size:15px;display:flex;gap:14px;align-items:center"><span style="width:10px;height:10px;background:var(--accent);border-radius:999px"></span>Investor Signal — continuous, private, audited</div>
+            <div class="mono" data-anim="cell" data-anim-order="3" style="font-size:15px;display:flex;gap:14px;align-items:center;color:var(--ink-700)"><span style="width:10px;height:10px;border:1px solid var(--gray-400);border-radius:999px"></span>Public-market terminals — continuous, public-only</div>
+            <div class="mono" data-anim="cell" data-anim-order="4" style="font-size:15px;display:flex;gap:14px;align-items:center;color:var(--ink-700)"><span style="width:10px;height:10px;border:1px solid var(--gray-400);border-radius:999px"></span>Valuation firms — private, but quarterly</div>
+          </div>
+        </div>
+        <div style="flex:1;position:relative;aspect-ratio:1;max-height:560px" data-anim="rise" data-anim-order="2">
+          <div style="position:absolute;inset:0;border-left:1px solid var(--ink-900);border-bottom:1px solid var(--ink-900)"></div>
+          <div style="position:absolute;left:50%;top:0;bottom:0;border-left:1px dashed var(--gray-150)"></div>
+          <div style="position:absolute;top:50%;left:0;right:0;border-top:1px dashed var(--gray-150)"></div>
+          <div class="mono src" style="position:absolute;bottom:-32px;left:0;text-transform:uppercase">Quarterly</div>
+          <div class="mono src" style="position:absolute;bottom:-32px;right:0;text-transform:uppercase">Continuous</div>
+          <div class="mono src" style="position:absolute;top:50%;left:-86px;transform:rotate(-90deg);text-transform:uppercase">Public ↑ Private</div>
+          <!-- plotted players -->
+          <div style="position:absolute;left:16%;top:24%;text-align:center"><span style="display:block;width:14px;height:14px;border:1px solid var(--gray-400);border-radius:999px;margin:0 auto"></span><div class="mono" style="font-size:12px;margin-top:8px;color:var(--ink-700)">Terminals</div></div>
+          <div style="position:absolute;left:22%;top:70%;text-align:center"><span style="display:block;width:14px;height:14px;border:1px solid var(--gray-400);border-radius:999px;margin:0 auto"></span><div class="mono" style="font-size:12px;margin-top:8px;color:var(--ink-700)">Valuation firms</div></div>
+          <div data-anim="node" data-anim-order="5" style="position:absolute;left:74%;top:72%;text-align:center"><span style="display:block;width:22px;height:22px;background:var(--accent);border-radius:999px;margin:0 auto;box-shadow:0 0 0 6px color-mix(in srgb,var(--accent) 22%,transparent)"></span><div class="mono accent" style="font-size:13px;margin-top:10px;font-weight:600">Investor Signal</div></div>
+        </div>
+      </div>
+      <div class="chrome bot"><div class="footer-src">— Investor question: why won't an incumbent crush you?</div><div class="src"></div></div>
+    </section>
+
+    <!-- ============ 10 · TEAM / ASK / MILESTONE ============ -->
+    <section class="slide" data-slide data-mode="stage" data-deck-active="false" data-screen-label="10">
+      <canvas class="is-bg-canvas"></canvas>
+      <div class="chrome top"><div class="mark" id="m10"></div><div class="pageno">10 / 10</div></div>
+      <div class="pad" style="justify-content:center">
+        <div class="eyebrow" data-anim="rise" data-anim-order="0" style="margin-bottom:28px">The ask</div>
+        <h2 class="title" data-anim="mask-up" data-anim-order="1" style="font-size:var(--fs-d2)">Raising <span class="accent">$12M</span> Series A.</h2>
+        <div style="display:grid;grid-template-columns:1.1fr 1fr;gap:96px;margin-top:80px;align-items:start">
+          <div data-anim="rise" data-anim-order="2">
+            <div class="src" style="text-transform:uppercase;margin-bottom:22px">Use of funds → next milestone</div>
+            <div style="display:flex;flex-direction:column;gap:18px;font-size:22px">
+              <div style="display:flex;justify-content:space-between;border-bottom:1px solid var(--obsidian-600);padding-bottom:14px"><span>Coverage engineering</span><span class="mono accent">50%</span></div>
+              <div style="display:flex;justify-content:space-between;border-bottom:1px solid var(--obsidian-600);padding-bottom:14px"><span>Desk go-to-market</span><span class="mono">30%</span></div>
+              <div style="display:flex;justify-content:space-between;border-bottom:1px solid var(--obsidian-600);padding-bottom:14px"><span>Compliance & audit</span><span class="mono">20%</span></div>
+            </div>
+            <div class="mono" data-anim="rise" data-anim-order="4" style="margin-top:32px;font-size:18px;color:var(--text-secondary)">Target: <span class="accent">$15M ARR · 120 funds</span> in 18 months.</div>
+          </div>
+          <div data-anim="rise" data-anim-order="3">
+            <div class="src" style="text-transform:uppercase;margin-bottom:22px">Team</div>
+            <div style="display:flex;flex-direction:column;gap:22px">
+              <div><div style="font-family:var(--font-display);font-weight:700;font-size:24px">Maya Ellison · CEO</div><div class="src" style="text-transform:none;color:var(--text-secondary);margin-top:4px">Ex-valuation lead, $40B secondaries book</div></div>
+              <div><div style="font-family:var(--font-display);font-weight:700;font-size:24px">Daniel Roe · CTO</div><div class="src" style="text-transform:none;color:var(--text-secondary);margin-top:4px">Built risk infra at two market-data firms</div></div>
+              <div><div style="font-family:var(--font-display);font-weight:700;font-size:24px">Priya Nandakumar · Head of Data</div><div class="src" style="text-transform:none;color:var(--text-secondary);margin-top:4px">Filings ML, audit-grade pipelines</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="chrome bot"><div class="footer-src">Investor Signal, Inc.</div><div class="src">hello@investorsignal.co</div></div>
+    </section>
+
+  </div>
+</div>
+
+<div class="nav">
+  <button id="prev" aria-label="Previous">‹</button>
+  <span class="count"><span id="cur">1</span> / 10</span>
+  <button id="next" aria-label="Next">›</button>
+</div>
+
+<script src="../../motion.js"></script>
+<script>
+  // ---- inline wordmark into corners (avoid bundle dependency) ----
+  var WM = '<svg width="150" height="27" viewBox="0 0 220 40" fill="none" style="color:currentColor"><rect x="1" y="1" width="38" height="38" stroke="currentColor" stroke-width="1.5"/><path d="M9 28 L17 21 L23 25 L31 11" stroke="var(--accent)" stroke-width="2.4" fill="none"/><circle cx="31" cy="11" r="2.6" fill="var(--accent)"/><text x="54" y="18" font-family="var(--font-display)" font-size="15" font-weight="800" letter-spacing="-0.2" fill="currentColor">INVESTOR</text><text x="54" y="34" font-family="var(--font-mono)" font-size="12.5" font-weight="500" letter-spacing="3.6" fill="currentColor" opacity="0.62">SIGNAL</text></svg>';
+  document.getElementById('m1').innerHTML = WM;
+  document.getElementById('m10').innerHTML = WM;
+
+  // ---- scaling ----
+  var scaler = document.getElementById('scaler');
+  function fit() {
+    var s = Math.min(window.innerWidth / 1920, window.innerHeight / 1080);
+    scaler.style.transform = 'translate(-50%, -50%) scale(' + s + ')';
+  }
+  window.addEventListener('resize', fit); fit();
+
+  // ---- nav ----
+  var slides = Array.from(document.querySelectorAll('.slide'));
+  var i = 0;
+  function go(n) {
+    i = Math.max(0, Math.min(slides.length - 1, n));
+    slides.forEach(function (s, k) { s.setAttribute('data-deck-active', k === i ? 'true' : 'false'); });
+    document.getElementById('cur').textContent = i + 1;
+    if (window.InvestorSignal) InvestorSignal.activate(slides[i]);
+  }
+  document.getElementById('prev').onclick = function () { go(i - 1); };
+  document.getElementById('next').onclick = function () { go(i + 1); };
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'ArrowRight' || e.key === 'PageDown') go(i + 1);
+    else if (e.key === 'ArrowLeft' || e.key === 'PageUp') go(i - 1);
+  });
+
+  // ---- boot ----
+  window.addEventListener('DOMContentLoaded', function () {
+    if (window.InvestorSignal) { InvestorSignal.init(); InvestorSignal.activate(slides[0]); }
+  });
+</script>
+</body>
+</html>

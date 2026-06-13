@@ -1,0 +1,45 @@
+/* Launch Theatre — Typography
+ * Display grotesk at thin → medium weights, body small and precise, mono for
+ * every technical readout (version, date, model name, benchmark label).
+ * Type is a stage instrument: large, tracked tight, generous in air.
+ */
+:root {
+  /* ---- Families (explicit Windows + Chinese fallbacks on every stack) ---- */
+  --font-display: "Manrope", "Segoe UI", "Microsoft YaHei UI", "Microsoft YaHei", "Noto Sans SC", Arial, sans-serif;
+  --font-body:    "Hanken Grotesk", "Segoe UI", "Microsoft YaHei UI", "Microsoft YaHei", "Noto Sans SC", Arial, sans-serif;
+  --font-mono:    "JetBrains Mono", "Cascadia Code", "Consolas", "Courier New", monospace;
+  --font-serif:   "Noto Serif SC", "Source Han Serif SC", "SimSun", "Songti SC", Georgia, serif; /* editorial CJK */
+
+  /* ---- Weights ---- */
+  --w-thin:    200; /* @kind font */
+  --w-light:   300; /* @kind font */
+  --w-regular: 400; /* @kind font */
+  --w-medium:  500; /* @kind font */
+  --w-semi:    600; /* @kind font */
+
+  /* ---- Display scale (stage-sized; built around a 1920×1080 frame) ---- */
+  --text-mega:     clamp(5rem, 11vw, 11.5rem);  /* launch cover title    */
+  --text-hero:     clamp(3.5rem, 7.5vw, 7.5rem); /* product reveal        */
+  --text-display:  clamp(2.75rem, 5vw, 5rem);    /* tension / statement   */
+  --text-title:    clamp(2rem, 3.4vw, 3.5rem);   /* slide titles          */
+  --text-headline: clamp(1.5rem, 2.2vw, 2.25rem);/* feature names         */
+  --text-lead:     clamp(1.125rem, 1.5vw, 1.5rem);/* lead paragraph       */
+  --text-body:     1.0625rem;  /* 17px — restrained body                  */
+  --text-small:    0.875rem;   /* 14px — captions                         */
+  --text-mono:     0.8125rem;  /* 13px — readouts                         */
+  --text-micro:    0.6875rem;  /* 11px — tracked mono labels / kickers    */
+
+  /* ---- Tracking ---- */
+  --track-mega:   -0.045em; /* @kind other */
+  --track-tight:  -0.03em;  /* @kind other */
+  --track-display:-0.02em;  /* @kind other */
+  --track-normal: 0em;      /* @kind other */
+  --track-wide:   0.06em;   /* @kind other */
+  --track-mono:   0.22em;   /* @kind other */
+
+  /* ---- Line height ---- */
+  --leading-none:  0.96; /* @kind other */
+  --leading-tight: 1.06; /* @kind other */
+  --leading-snug:  1.28; /* @kind other */
+  --leading-body:  1.6;  /* @kind other */
+}

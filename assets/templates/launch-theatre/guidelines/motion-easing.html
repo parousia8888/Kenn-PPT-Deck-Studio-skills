@@ -1,0 +1,21 @@
+<!-- @dsCard group="Motion" viewport="700x230" name="Easing & timing" subtitle="Slow, optical, no bounce. Press B for static low-power mode." -->
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8" /><link rel="stylesheet" href="../styles.css" />
+<style>
+  body { margin: 0; background: var(--bg-stage); padding: 32px; }
+  .tbl { display: grid; grid-template-columns: 1fr 1fr; gap: 12px 48px; font-family: var(--font-mono); font-size: 12px; }
+  .k { color: var(--text-primary); letter-spacing: 0.04em; }
+  .v { color: var(--text-faint); text-align: right; }
+  .h { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); grid-column: 1 / -1; margin-top: 8px; }
+</style></head><body>
+<div class="tbl">
+  <span class="h">Easing</span>
+  <span class="k">ease-stage</span><span class="v">slow settle · reveals</span>
+  <span class="k">ease-mask</span><span class="v">mask wipe</span>
+  <span class="k">ease-light</span><span class="v">light sweep</span>
+  <span class="h">Duration</span>
+  <span class="k">fast · 320ms</span><span class="v">hover / press</span>
+  <span class="k">slow · 1200ms</span><span class="v">mask, product fade</span>
+  <span class="k">cine · 1800ms</span><span class="v">cover title, sweep</span>
+</div>
+</body></html>

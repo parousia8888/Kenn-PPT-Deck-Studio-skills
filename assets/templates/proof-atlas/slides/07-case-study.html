@@ -1,0 +1,69 @@
+<!-- @dsCard group="Slides" viewport="1280x720" name="07 · Case Study" subtitle="Case image reveals, then facts, then interpretation" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Proof Atlas — Case Study</title>
+<link rel="stylesheet" href="../styles.css">
+<link rel="stylesheet" href="../assets/atlas-anim.css">
+<link rel="stylesheet" href="slide-base.css">
+<script src="../assets/atlas-motion.js"></script>
+</head>
+<body>
+<div class="slide atlas-stage" data-stage data-autoplay data-atlas-bg="quiet">
+  <div class="slide-inner">
+    <div class="slide-head">
+      <div class="brand"><span class="xh"><i></i></span><span class="nm">Proof Atlas</span></div>
+      <div class="head-meta">
+        <span class="tag solid">Case 03</span>
+        <span class="coord">[ 41.878°N · 087.629°W ]</span>
+      </div>
+    </div>
+
+    <div class="slide-body">
+      <div class="cs">
+        <div class="cs-image">
+          <div data-anim="push" class="img-slot" style="height:100%;">
+            <span class="ph">CASE PLATE · EX-203</span>
+          </div>
+          <div data-anim="source" class="source" style="margin-top:10px;">Source · site record · EX-203 · captured 2026-03</div>
+        </div>
+
+        <div class="cs-body">
+          <div data-anim="mask" data-seq="0" class="kicker" style="margin-bottom:10px;">Case Study · North Region</div>
+          <h1 data-anim="mask" data-seq="1" class="title" style="font-size:34px;margin-bottom:22px;">A constrained pilot that scaled cleanly</h1>
+
+          <div class="cs-facts">
+            <div data-anim="row" data-seq="2" class="fact"><span class="fk">Scope</span><span class="fv">3 intake sites · 1,180 cases over 14 weeks</span></div>
+            <div data-anim="row" data-seq="3" class="fact"><span class="fk">Result</span><span class="fv">Throughput 2.6× baseline; zero data loss</span></div>
+            <div data-anim="row" data-seq="4" class="fact"><span class="fk">Verification</span><span class="fv">Independently audited, n=412 sampled</span></div>
+          </div>
+
+          <div data-anim="stamp" data-seq="5" class="cs-interp">
+            <span class="il">Interpretation</span>
+            The North pilot demonstrates the model holds under real constraints — the gains were not an artifact of low volume.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="slide-foot">
+      <span>Field Program Review · 2026</span>
+      <span class="seq">Case Study · 07 / 10</span>
+    </div>
+  </div>
+</div>
+<style>
+  .cs { display: grid; grid-template-columns: 1fr 1.1fr; gap: 44px; flex: 1; min-height: 0; }
+  .cs-image { display: flex; flex-direction: column; min-height: 0; }
+  .cs-image .img-slot { flex: 1; }
+  .cs-body { display: flex; flex-direction: column; }
+  .cs-facts { display: flex; flex-direction: column; border-top: 1px solid var(--rule); }
+  .cs-facts .fact { display: grid; grid-template-columns: 110px 1fr; gap: 16px; padding: 13px 0; border-bottom: 1px solid var(--rule-faint); }
+  .cs-facts .fk { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--blue); padding-top: 2px; }
+  .cs-facts .fv { font-family: var(--font-body); font-size: 15px; color: var(--ink); line-height: 1.4; }
+  .cs-interp { margin-top: 22px; padding: 16px 18px; background: var(--paper-pure); border-left: 2px solid var(--ink); font-family: var(--font-body); font-size: 15px; line-height: 1.5; color: var(--ink-2); }
+  .cs-interp .il { display: block; font-family: var(--font-mono); font-size: 9.5px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gray-2); margin-bottom: 7px; }
+</style>
+</body>
+</html>

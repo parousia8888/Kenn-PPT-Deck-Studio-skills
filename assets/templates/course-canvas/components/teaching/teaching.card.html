@@ -1,0 +1,69 @@
+<!-- @dsCard group="Components" viewport="700x560" name="Teaching — Callout, KeyTerm, Steps, NumberTab, MarginNote, RuleHeading" subtitle="The teaching-specific primitives" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../../styles.css">
+<style>
+  html,body{margin:0;background:var(--paper-base);}
+  .wrap{padding:28px 30px;font-family:var(--font-sans);color:var(--ink);}
+  .sec{font-family:var(--font-mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--graphite-mute);margin:22px 0 12px;}
+  .sec:first-child{margin-top:0;}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:18px;align-items:start;}
+  .stack{display:grid;gap:12px;}
+  p.body{font-size:17px;line-height:1.55;color:var(--ink);max-width:60ch;margin:0;}
+</style>
+</head>
+<body>
+<div class="wrap" id="root"></div>
+
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="../../_ds_bundle.js"></script>
+<script type="text/babel" data-presets="react">
+  const NS = window.CourseCanvasDesignSystem_019e16;
+  const { Callout, KeyTerm, NumberTab, MarginNote, StepList, RuleHeading } = NS;
+  function Demo() {
+    return (
+      <React.Fragment>
+        <p className="sec">Rule heading + key terms</p>
+        <RuleHeading eyebrow="Key concept" title="Normal distribution" />
+        <p className="body" style={{marginTop:'12px'}}>
+          A <KeyTerm>z-score</KeyTerm> rewrites any value as how many <KeyTerm variant="ox">σ</KeyTerm> it
+          sits from the <KeyTerm variant="underline">mean</KeyTerm>.
+        </p>
+
+        <p className="sec">Number tabs</p>
+        <div style={{display:'flex',gap:'48px',alignItems:'flex-end'}}>
+          <NumberTab value="04" label="of 12 · Unit II" size={88} />
+          <NumberTab value="M2" variant="sage" size={72} />
+          <NumberTab value="D1" size={72} />
+        </div>
+
+        <p className="sec">Callouts</p>
+        <div className="grid2">
+          <Callout variant="sage" label="In plain words">Most results land near average; the further out, the rarer.</Callout>
+          <Callout variant="straw" label="Interpretation">z = +1.6 → roughly the top 5%.</Callout>
+          <Callout variant="ox" label="Watch out">A z-score can be negative — direction matters.</Callout>
+          <Callout variant="note" label="You'll see it in">Heights, test scores, measurement error.</Callout>
+        </div>
+
+        <p className="sec">Steps + margin note</p>
+        <div className="grid2">
+          <StepList steps={[
+            { title: "Find the center", body: "Write down the mean μ." },
+            { title: "Measure the gap", body: "Subtract the mean: x − μ." },
+            { title: "Scale by spread", body: "Divide by σ." },
+          ]} />
+          <MarginNote label="Etymology" variant="ox">
+            From Latin <i>norma</i> — a carpenter's square, the standard against which things are measured.
+          </MarginNote>
+        </div>
+      </React.Fragment>
+    );
+  }
+  ReactDOM.createRoot(document.getElementById("root")).render(<Demo/>);
+</script>
+</body>
+</html>

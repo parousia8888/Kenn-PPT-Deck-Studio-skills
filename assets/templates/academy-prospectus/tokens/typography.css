@@ -1,0 +1,56 @@
+/* ----------------------------------------------------------------------------
+   Academy Prospectus — Typography
+   Display: refined literary serif (Spectral).
+   Body:    humanist sans (Source Sans 3).
+   Meta:    mono (JetBrains Mono) for course codes, age groups, durations.
+   Every stack carries Windows + CJK fallbacks so it renders everywhere.
+---------------------------------------------------------------------------- */
+
+:root {
+  /* — Families (explicit Windows + CJK fallbacks on every stack) — */
+  --font-display: "Spectral", "Noto Serif SC", "Source Han Serif SC", "SimSun", Georgia, "Times New Roman", serif;
+  --font-serif:   "Spectral", "Noto Serif SC", "Source Han Serif SC", "SimSun", Georgia, serif;
+  --font-body:    "Source Sans 3", "Segoe UI", "Microsoft YaHei UI", "Microsoft YaHei", "Noto Sans SC", Arial, sans-serif;
+  --font-meta:    "JetBrains Mono", "Cascadia Code", "Consolas", "Courier New", monospace;
+
+  /* — Type scale (presentation-grade; generous) — */
+  --fs-hero:     clamp(48px, 6.4vw, 104px);  /* @kind spacing */ /* institution cover title */
+  --fs-display:  clamp(40px, 4.6vw, 72px);   /* @kind spacing */ /* statement / philosophy */
+  --fs-title:    clamp(30px, 3.2vw, 48px);   /* @kind spacing */ /* slide titles */
+  --fs-heading:  clamp(22px, 2.0vw, 30px);   /* @kind spacing */ /* sub-headings, card titles */
+  --fs-lead:     clamp(18px, 1.5vw, 24px);   /* @kind spacing */ /* lead paragraph */
+  --fs-body:     clamp(15px, 1.15vw, 19px);  /* @kind spacing */ /* body copy */
+  --fs-small:    14px;                        /* @kind spacing */
+  --fs-meta:     12.5px;                       /* @kind spacing */ /* mono metadata labels */
+  --fs-kpi:      clamp(52px, 6vw, 92px);      /* @kind spacing */ /* outcome numbers */
+
+  /* — Weights — */
+  --fw-light:   300;  /* @kind other */
+  --fw-reg:     400;  /* @kind other */
+  --fw-med:     500;  /* @kind other */
+  --fw-semi:    600;  /* @kind other */
+  --fw-bold:    700;  /* @kind other */
+
+  /* — Line heights — */
+  --lh-tight:   1.04;  /* @kind other */
+  --lh-snug:    1.18;  /* @kind other */
+  --lh-title:   1.12;  /* @kind other */
+  --lh-body:    1.62;  /* @kind other */
+  --lh-loose:   1.78;  /* @kind other */
+
+  /* — Letter spacing — */
+  --ls-meta:    0.18em;   /* @kind spacing */ /* small-caps / mono labels */
+  --ls-tight:  -0.015em;  /* @kind spacing */
+  --ls-display:-0.02em;   /* @kind spacing */
+}
+
+/* — Metadata label helper: course codes, age groups, module labels —
+   Mono, uppercase, tracked. The signature "small-caps" device of the system. */
+.meta-label {
+  font-family: var(--font-meta);
+  font-size: var(--fs-meta);
+  font-weight: var(--fw-med);
+  letter-spacing: var(--ls-meta);
+  text-transform: uppercase;
+  color: var(--text-meta);
+}

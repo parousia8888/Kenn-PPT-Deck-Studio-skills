@@ -1,0 +1,30 @@
+<!-- @dsCard group="Brand" viewport="700x180" name="Wordmark" subtitle="Registration crosshair + tracked wordmark; the evidence-system signature" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../styles.css">
+<style>
+  html,body{margin:0;background:var(--paper-0);}
+  .wrap{padding:0;height:180px;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:14px;}
+  .mark{display:flex;align-items:center;gap:14px;}
+  .xh{position:relative;width:26px;height:26px;flex:none;}
+  .xh::before,.xh::after{content:"";position:absolute;background:var(--blue);}
+  .xh::before{left:50%;top:0;width:1.5px;height:100%;transform:translateX(-50%);}
+  .xh::after{top:50%;left:0;height:1.5px;width:100%;transform:translateY(-50%);}
+  .xh i{position:absolute;left:50%;top:50%;width:9px;height:9px;border:1.5px solid var(--blue);border-radius:50%;transform:translate(-50%,-50%);background:var(--paper-0);}
+  .word{font-family:var(--font-display);font-weight:300;font-size:34px;letter-spacing:0.02em;color:var(--ink);}
+  .word b{font-weight:600;}
+  .sub{font-family:var(--font-mono);font-size:10px;letter-spacing:0.34em;text-transform:uppercase;color:var(--gray-2);}
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="mark">
+      <div class="xh"><i></i></div>
+      <div class="word">Proof <b>Atlas</b></div>
+    </div>
+    <div class="sub">Evidence · Reports · Proof</div>
+  </div>
+</body>
+</html>

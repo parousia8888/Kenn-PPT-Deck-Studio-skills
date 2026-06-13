@@ -1,0 +1,24 @@
+<!-- @dsCard group="Spacing" viewport="700x150" name="Spacing scale" subtitle="4px base unit, named steps" -->
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><link rel="stylesheet" href="../styles.css">
+<style>
+  html,body{margin:0;background:var(--paper-base);}
+  .wrap{padding:20px 24px;font-family:var(--font-mono);}
+  .row{display:flex;align-items:flex-end;gap:14px;}
+  .c{display:flex;flex-direction:column;align-items:center;gap:6px;}
+  .bar{background:var(--oxblood);width:var(--w);height:var(--w);border-radius:2px;}
+  .c span{font-size:10px;color:var(--graphite-mute);}
+</style></head>
+<body>
+<div class="wrap">
+  <div class="row">
+    <div class="c"><div class="bar" style="--w:8px"></div><span>2 · 8</span></div>
+    <div class="c"><div class="bar" style="--w:16px"></div><span>4 · 16</span></div>
+    <div class="c"><div class="bar" style="--w:24px"></div><span>6 · 24</span></div>
+    <div class="c"><div class="bar" style="--w:32px"></div><span>8 · 32</span></div>
+    <div class="c"><div class="bar" style="--w:48px"></div><span>12 · 48</span></div>
+    <div class="c"><div class="bar" style="--w:64px"></div><span>16 · 64</span></div>
+    <div class="c"><div class="bar" style="--w:80px"></div><span>20 · 80</span></div>
+  </div>
+</div>
+</body></html>

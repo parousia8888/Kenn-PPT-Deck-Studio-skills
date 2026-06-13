@@ -1,0 +1,45 @@
+/* Investor Signal — Spacing, Layout, Radius, Borders, Shadow
+   Swiss / PE-memo discipline: sharp corners, hairline rules, controlled depth.
+*/
+:root {
+  /* ---- Spacing scale (8px base) ---- */
+  --sp-1:  4px;
+  --sp-2:  8px;
+  --sp-3:  12px;
+  --sp-4:  16px;
+  --sp-5:  24px;
+  --sp-6:  32px;
+  --sp-7:  48px;
+  --sp-8:  64px;
+  --sp-9:  96px;
+  --sp-10: 128px;
+
+  /* ---- Slide canvas + safe margins ---- */
+  --slide-w: 1920px;
+  --slide-h: 1080px;
+  --slide-margin: 120px;   /* keynote safe edge at 1920 */
+  --slide-margin-sm: 80px; /* compact / card preview */
+
+  /* ---- Radius — minimal, architectural ---- */
+  --radius-0: 0px;
+  --radius-1: 2px;     /* default control radius */
+  --radius-2: 4px;
+  --radius-3: 8px;     /* product frame only */
+  --radius-pill: 999px;
+
+  /* ---- Borders ---- */
+  --border-hair: 1px solid var(--hairline);
+  --border-accent: 2px solid var(--accent);
+  --rule-weight: 1px; /* @kind spacing */
+
+  /* ---- Shadow — controlled, premium (product frames) ---- */
+  --shadow-frame: 0 40px 120px -40px rgba(0,0,0,0.65), 0 2px 0 0 rgba(255,255,255,0.04) inset;
+  --shadow-raise: 0 24px 64px -32px rgba(0,0,0,0.55);
+  --shadow-evidence: 0 24px 60px -36px rgba(15,18,22,0.22);
+
+  /* ---- Z layers ---- */
+  --z-bg: 0;       /* @kind other */
+  --z-content: 10; /* @kind other */
+  --z-chrome: 50;  /* @kind other */
+  --z-overlay: 100;/* @kind other */
+}

@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Proof Atlas — Full Evidence Deck</title>
+<link rel="stylesheet" href="../../styles.css">
+<link rel="stylesheet" href="../../assets/atlas-anim.css">
+<link rel="stylesheet" href="../../slides/slide-base.css">
+<style>
+  html, body { margin: 0; width: 100%; height: 100%; background: #17150f; overflow: hidden; }
+  body { display: block; min-height: 100vh; }
+  .deck-shell { position: fixed; inset: 0; display: grid; place-items: center; overflow: hidden; background: #17150f; }
+  .deck-canvas { width: 1280px; height: 720px; position: relative; transform-origin: center center; }
+  .deck-canvas > .slide { position: absolute; inset: 0; box-shadow: 0 30px 90px rgba(0,0,0,0.35); }
+  .deck-canvas:not(.deck-ready) > .slide ~ .slide { display: none; }
+  .deck-nav { position: fixed; right: 18px; bottom: 16px; z-index: 80; display: flex; align-items: center; gap: 10px;
+    font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.12em; color: var(--gray-3); }
+  .deck-nav button { width: 34px; height: 34px; border: 1px solid var(--rule); background: var(--paper-pure);
+    color: var(--ink); border-radius: var(--r-1); cursor: pointer; font: inherit; display: grid; place-items: center; }
+  .deck-nav button:hover { border-color: var(--blue); color: var(--blue); }
+  .deck-nav .count { min-width: 58px; text-align: center; }
+  @media print {
+    @page { size: 1280px 720px; margin: 0; }
+    html, body { background: #fff; overflow: visible; }
+    .deck-shell { position: static; display: block; background: #fff; }
+    .deck-canvas { transform: none !important; width: 1280px; height: auto; }
+    .deck-canvas > .slide { display: block !important; position: relative !important; page-break-after: always; box-shadow: none; }
+    .deck-nav, .atlas-lowpower-hint { display: none !important; }
+  }
+/* ===== Slide-local styles from slides/03-kpi-ledger.html ===== */
+.ledger-row { display: grid; grid-template-columns: 44px 180px 1fr 130px 90px; align-items: center; gap: 18px; padding: 18px 0; border-bottom: 1px solid var(--rule-faint); }
+  .ledger-row .rix { font-family: var(--font-mono); font-size: 12px; color: var(--gray-3); }
+  .ledger-row .rnum { font-family: var(--font-display); font-weight: 200; font-size: 46px; line-height: 1; letter-spacing: -0.02em; color: var(--ink); font-variant-numeric: tabular-nums; }
+  .ledger-row .rnum small { font-size: 0.4em; font-weight: 300; color: var(--gray-1); }
+  .ledger-row .rlbl .rt { font-family: var(--font-body); font-size: 15px; font-weight: 500; color: var(--ink); }
+  .ledger-row .rlbl .rs { font-family: var(--font-body); font-size: 12.5px; color: var(--gray-2); margin-top: 2px; }
+  .ledger-row .delta { text-align: right; }
+  .ledger-row .rsrc { font-family: var(--font-mono); font-size: 9.5px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--gray-3); text-align: right; }
+
+/* ===== Slide-local styles from slides/04-timeline.html ===== */
+.timeline { position: relative; margin: 64px 0 40px; }
+  .timeline .axis { position: absolute; left: 0; right: 0; top: 50%; height: 1.5px; background: var(--ink); transform-origin: left center; }
+  .nodes { position: relative; display: flex; justify-content: space-between; }
+  .node { display: flex; flex-direction: column; align-items: center; flex: 1; position: relative; }
+  .node .ndate { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.08em; color: var(--blue); margin-bottom: 14px; }
+  .node .ndot { width: 11px; height: 11px; border-radius: 50%; background: var(--paper-0); border: 1.5px solid var(--ink); margin-bottom: 14px; }
+  .node .ndot.accent { background: var(--blue); border-color: var(--blue); width: 14px; height: 14px; }
+  .node .ninfo { text-align: center; }
+  .node .ninfo .nt { font-family: var(--font-body); font-size: 14px; font-weight: 500; color: var(--ink); }
+  .node .ninfo .ns { font-family: var(--font-mono); font-size: 9.5px; letter-spacing: 0.06em; color: var(--gray-2); margin-top: 4px; }
+
+/* ===== Slide-local styles from slides/05-before-after.html ===== */
+.cmp { display: grid; grid-template-columns: 1fr 1px 1fr; gap: 48px; flex: 1; align-items: start; }
+  .cmp-divider { width: 1px; background: var(--ink); align-self: stretch; transform-origin: top center; }
+  .cmp-col { display: flex; flex-direction: column; }
+  .cmp-label { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--gray-2); margin-bottom: 22px; }
+  .cmp-label.accent { color: var(--blue); }
+  .cmp-stats { display: flex; gap: 40px; margin-top: 28px; padding-top: 18px; border-top: 1px solid var(--rule); }
+  .cmp-stats .cs-n { display: block; font-family: var(--font-display); font-weight: 300; font-size: 30px; color: var(--ink); letter-spacing: -0.01em; }
+  .cmp-stats .cs-l { display: block; font-family: var(--font-mono); font-size: 9.5px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--gray-2); margin-top: 6px; }
+
+/* ===== Slide-local styles from slides/06-evidence-grid.html ===== */
+.egrid { display: grid; grid-template-columns: repeat(4, 1fr); grid-template-rows: repeat(2, 1fr); gap: 16px; flex: 1; min-height: 0; }
+  .ecell { display: flex; flex-direction: column; border: 1px solid var(--rule); background: var(--paper-pure); }
+  .ecell .eh { display: flex; align-items: center; justify-content: space-between; padding: 6px 9px; border-bottom: 1px solid var(--rule); font-family: var(--font-mono); font-size: 8.5px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gray-2); white-space: nowrap; }
+  .ecell .eh .ec { color: var(--blue); }
+  .ecell .eslot { flex: 1; min-height: 0; }
+  .ecell .ecap { padding: 7px 9px; border-top: 1px solid var(--rule-faint); font-family: var(--font-body); font-size: 11px; line-height: 1.3; color: var(--gray-1); }
+
+/* ===== Slide-local styles from slides/07-case-study.html ===== */
+.cs { display: grid; grid-template-columns: 1fr 1.1fr; gap: 44px; flex: 1; min-height: 0; }
+  .cs-image { display: flex; flex-direction: column; min-height: 0; }
+  .cs-image .img-slot { flex: 1; }
+  .cs-body { display: flex; flex-direction: column; }
+  .cs-facts { display: flex; flex-direction: column; border-top: 1px solid var(--rule); }
+  .cs-facts .fact { display: grid; grid-template-columns: 110px 1fr; gap: 16px; padding: 13px 0; border-bottom: 1px solid var(--rule-faint); }
+  .cs-facts .fk { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--blue); padding-top: 2px; }
+  .cs-facts .fv { font-family: var(--font-body); font-size: 15px; color: var(--ink); line-height: 1.4; }
+  .cs-interp { margin-top: 22px; padding: 16px 18px; background: var(--paper-pure); border-left: 2px solid var(--ink); font-family: var(--font-body); font-size: 15px; line-height: 1.5; color: var(--ink-2); }
+  .cs-interp .il { display: block; font-family: var(--font-mono); font-size: 9.5px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gray-2); margin-bottom: 7px; }
+
+/* ===== Slide-local styles from slides/08-methodology.html ===== */
+.flow { display: flex; align-items: stretch; margin-bottom: 32px; }
+  .fbox { flex: 1; background: var(--paper-pure); border: 1px solid var(--rule); padding: 16px 18px; display: flex; flex-direction: column; }
+  .fbox .fnum { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.1em; color: var(--blue); margin-bottom: 12px; }
+  .fbox .ft { font-family: var(--font-display); font-weight: 500; font-size: 22px; color: var(--ink); margin-bottom: 8px; letter-spacing: -0.01em; }
+  .fbox .fd { font-family: var(--font-body); font-size: 12.5px; line-height: 1.45; color: var(--gray-1); }
+  .mnotes { display: grid; grid-template-columns: repeat(3,1fr); gap: 0; border-top: 2px solid var(--ink); }
+  .mnotes .mn { padding: 16px 20px 0 0; font-family: var(--font-body); font-size: 13px; color: var(--gray-1); line-height: 1.45; border-right: 1px solid var(--rule); }
+  .mnotes .mn:last-child { border-right: none; padding-right: 0; }
+  .mnotes .mk { display: block; font-family: var(--font-mono); font-size: 9.5px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink); margin-bottom: 6px; }
+
+/* ===== Slide-local styles from slides/09-risk-limitation.html ===== */
+.risks { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .risk-row { display: flex; gap: 13px; padding: 14px 16px; background: var(--paper-pure); border: 1px solid var(--rule); border-left: 2px solid var(--oxide); }
+  .risk-row .rm { width: 8px; height: 8px; margin-top: 4px; background: var(--oxide); flex: none; transform: rotate(45deg); }
+  .risk-row .rtop { display: flex; align-items: center; gap: 10px; margin-bottom: 5px; }
+  .risk-row .rlvl { font-family: var(--font-mono); font-size: 9.5px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--oxide); }
+  .risk-row .rid { font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.06em; color: var(--gray-3); }
+  .risk-row .rttl { font-family: var(--font-body); font-size: 15px; font-weight: 500; color: var(--ink); margin-bottom: 4px; line-height: 1.3; }
+  .risk-row .rtxt { font-family: var(--font-body); font-size: 12.5px; color: var(--gray-1); line-height: 1.45; }
+
+/* ===== Slide-local styles from slides/10-next-actions.html ===== */
+.actions { display: grid; grid-template-columns: 1.5fr 1fr; gap: 44px; flex: 1; align-items: start; }
+  .ahd { display: flex; align-items: center; justify-content: space-between; padding-bottom: 8px; border-bottom: 2px solid var(--ink); font-family: var(--font-mono); font-size: 9.5px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gray-2); }
+  .checkrow .atext { flex: 1; }
+  .checkrow .att { font-family: var(--font-body); font-size: 15px; color: var(--ink); line-height: 1.35; }
+  .checkrow .ameta { font-family: var(--font-mono); font-size: 9.5px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--gray-2); margin-top: 5px; }
+  .recommend { align-self: stretch; background: var(--ink); color: var(--paper-pure); padding: 26px 28px; display: flex; flex-direction: column; }
+  .recommend .rk { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--blue-tint); margin-bottom: 16px; }
+  .recommend .rtitle { font-family: var(--font-display); font-weight: 300; font-size: 27px; line-height: 1.18; letter-spacing: -0.01em; }
+  .recommend .source { color: var(--gray-3); }
+  .recommend .source::before { background: var(--blue-tint); }
+</style>
+</head>
+<body>
+  <div class="deck-shell">
+    <div class="deck-canvas" data-deck>
+      <!-- 01 · Report Cover -->
+      <div class="slide atlas-stage" data-stage data-screen-label="01" data-slide-title="Report Cover" data-atlas-bg="cover">
+        <div class="slide-inner">
+          <div class="slide-head">
+            <div class="brand"><span class="xh"><i></i></span><span class="nm">Proof Atlas</span></div>
+            <div class="head-meta">
+              <span class="tag accent">Evidence Report</span>
+              <span class="coord">[ 42.361°N · 071.057°W ]</span>
+            </div>
+          </div>
+      
+          <div class="slide-body" style="justify-content:center;">
+            <div data-anim="mask" data-seq="0" style="font-family:var(--font-mono);font-size:13px;letter-spacing:0.24em;text-transform:uppercase;color:var(--blue);margin-bottom:22px;">Field Program Review · Volume 04</div>
+            <h1 data-anim="mask" data-seq="1" style="font-family:var(--font-display);font-weight:200;font-size:96px;line-height:0.98;letter-spacing:-0.03em;margin:0;max-width:18ch;">Outcomes of the<br><b style="font-weight:600;">2026 Field Program</b></h1>
+            <p data-anim="mask" data-seq="2" style="font-family:var(--font-body);font-size:19px;line-height:1.5;color:var(--gray-1);max-width:54ch;margin:30px 0 0;">A structured review of measured results across twelve regions — findings, evidence, methodology, and recommended next actions.</p>
+      
+            <div data-anim="source" style="display:flex;gap:48px;margin-top:48px;">
+              <div><div style="font-family:var(--font-mono);font-size:9.5px;letter-spacing:0.12em;text-transform:uppercase;color:var(--gray-3);margin-bottom:6px;">Report ID</div><div style="font-family:var(--font-mono);font-size:14px;color:var(--ink);">PA-REV-2026-04</div></div>
+              <div class="rule-v"></div>
+              <div><div style="font-family:var(--font-mono);font-size:9.5px;letter-spacing:0.12em;text-transform:uppercase;color:var(--gray-3);margin-bottom:6px;">Issued</div><div style="font-family:var(--font-mono);font-size:14px;color:var(--ink);">2026-06-13 · 14:02 UTC</div></div>
+              <div class="rule-v"></div>
+              <div><div style="font-family:var(--font-mono);font-size:9.5px;letter-spacing:0.12em;text-transform:uppercase;color:var(--gray-3);margin-bottom:6px;">Classification</div><div style="font-family:var(--font-mono);font-size:14px;color:var(--ink);">Internal · Reviewed</div></div>
+            </div>
+          </div>
+      
+          <div class="slide-foot">
+            <span>Proof Atlas · Evidence Reporting System</span>
+            <span class="seq">Cover · 01 / 10</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 02 · Executive Finding -->
+      <div class="slide atlas-stage" data-stage data-screen-label="02" data-slide-title="Executive Finding" data-atlas-bg="cover">
+        <div class="slide-inner">
+          <div class="slide-head">
+            <div class="brand"><span class="xh"><i></i></span><span class="nm">Proof Atlas</span></div>
+            <div class="head-meta">
+              <span class="tag solid">Finding 01</span>
+              <span class="coord">[ KEY RESULT ]</span>
+            </div>
+          </div>
+      
+          <div class="slide-body" style="justify-content:center;">
+            <div data-anim="stamp" data-seq="0" style="font-family:var(--font-mono);font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:var(--blue);margin-bottom:24px;">Executive Finding</div>
+            <h1 data-anim="stamp" data-seq="1" style="font-family:var(--font-display);font-weight:300;font-size:58px;line-height:1.08;letter-spacing:-0.02em;margin:0;max-width:21ch;">Adoption outpaced the forecast in <b style="font-weight:600;">every region</b> measured.</h1>
+      
+            <div data-anim="stamp" data-seq="2" style="display:flex;gap:0;margin-top:46px;border-top:2px solid var(--ink);">
+              <div style="flex:1;padding:20px 28px 0 0;border-right:1px solid var(--rule);">
+                <div class="num-xl" style="font-size:78px;">+38<small>%</small></div>
+                <div style="font-family:var(--font-body);font-size:14px;color:var(--gray-1);margin-top:10px;max-width:24ch;">above the projected 12-month adoption target.</div>
+              </div>
+              <div style="flex:1;padding:20px 28px 0;border-right:1px solid var(--rule);">
+                <div class="num-xl" style="font-size:78px;">12<small>/12</small></div>
+                <div style="font-family:var(--font-body);font-size:14px;color:var(--gray-1);margin-top:10px;max-width:24ch;">regions exceeded baseline within two quarters.</div>
+              </div>
+              <div style="flex:1;padding:20px 0 0 28px;">
+                <div class="num-xl" style="font-size:78px;">94<small>%</small></div>
+                <div style="font-family:var(--font-body);font-size:14px;color:var(--gray-1);margin-top:10px;max-width:24ch;">of the finding corroborated by 2+ sources.</div>
+              </div>
+            </div>
+      
+            <div data-anim="source" style="display:flex;gap:28px;margin-top:24px;">
+              <span class="source">Source · program telemetry · SRC-2087</span>
+              <span class="source">Source · regional audit · n=3,402</span>
+            </div>
+          </div>
+      
+          <div class="slide-foot">
+            <span>Field Program Review · 2026</span>
+            <span class="seq">Finding · 02 / 10</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 03 · KPI Ledger -->
+      <div class="slide atlas-stage" data-stage data-screen-label="03" data-slide-title="KPI Ledger" data-atlas-bg="quiet">
+        <div class="slide-inner">
+          <div class="slide-head">
+            <div class="brand"><span class="xh"><i></i></span><span class="nm">Proof Atlas</span></div>
+            <div class="head-meta">
+              <span class="tag accent">Indicators</span>
+              <span class="coord">2026-Q2 · n=3,402</span>
+            </div>
+          </div>
+      
+          <div class="slide-body" style="padding-top:18px;">
+            <div data-anim="mask" data-seq="0" style="display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:6px;">
+              <h1 class="title" style="font-size:34px;">Key indicators ledger</h1>
+              <span style="font-family:var(--font-mono);font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:var(--gray-3);">Value · Δ vs. baseline · source</span>
+            </div>
+      
+            <div style="border-top:2px solid var(--ink);">
+              <!-- ledger row template repeated -->
+              <div data-anim="row" data-seq="1" class="ledger-row">
+                <span class="rix">01</span>
+                <span class="rnum">2.4<small>×</small></span>
+                <div class="rlbl"><div class="rt">Program throughput</div><div class="rs">Cases processed vs. prior period</div></div>
+                <span class="delta up">▴ +1.1×</span>
+                <span class="rsrc">SRC-2087</span>
+              </div>
+              <div data-anim="row" data-seq="2" class="ledger-row">
+                <span class="rix">02</span>
+                <span class="rnum">84.2<small>%</small></span>
+                <div class="rlbl"><div class="rt">Verified outcomes</div><div class="rs">Findings corroborated by ≥2 sources</div></div>
+                <span class="delta up">▴ +9 pts</span>
+                <span class="rsrc">n=412</span>
+              </div>
+              <div data-anim="row" data-seq="3" class="ledger-row">
+                <span class="rix">03</span>
+                <span class="rnum">11.6<small>d</small></span>
+                <div class="rlbl"><div class="rt">Median resolution time</div><div class="rs">Intake to confirmed outcome</div></div>
+                <span class="delta up">▴ −4.2 d</span>
+                <span class="rsrc">SRC-3310</span>
+              </div>
+              <div data-anim="row" data-seq="4" class="ledger-row">
+                <span class="rix">04</span>
+                <span class="rnum">3.1<small>%</small></span>
+                <div class="rlbl"><div class="rt">Unresolved exceptions</div><div class="rs">Cases pending secondary review</div></div>
+                <span class="delta down">▾ +0.4 pts</span>
+                <span class="rsrc">L-04</span>
+              </div>
+            </div>
+      
+            <div data-anim="source" style="margin-top:auto;padding-top:18px;">
+              <span class="source">Source · consolidated program ledger · audit panel n=3,402 · 2026-Q2</span>
+            </div>
+          </div>
+      
+          <div class="slide-foot">
+            <span>Field Program Review · 2026</span>
+            <span class="seq">KPI Ledger · 03 / 10</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 04 · Timeline -->
+      <div class="slide atlas-stage" data-stage data-screen-label="04" data-slide-title="Timeline" data-atlas-bg="cover">
+        <div class="slide-inner">
+          <div class="slide-head">
+            <div class="brand"><span class="xh"><i></i></span><span class="nm">Proof Atlas</span></div>
+            <div class="head-meta">
+              <span class="tag accent">Chronology</span>
+              <span class="coord">2025-09 → 2026-06</span>
+            </div>
+          </div>
+      
+          <div class="slide-body">
+            <h1 data-anim="mask" data-seq="0" class="title" style="font-size:36px;margin-bottom:8px;">Program rollout, by quarter</h1>
+            <p data-anim="mask" data-seq="1" class="lead" style="font-size:16px;">Five verified milestones from pilot authorization to the 2026 review.</p>
+      
+            <div class="timeline">
+              <div data-anim="draw-x" class="axis"></div>
+              <div class="nodes">
+                <div class="node"><span class="ndate" data-anim="node" data-seq="2">2025-09</span><span class="ndot" data-anim="node" data-seq="2"></span><div class="ninfo" data-anim="node" data-seq="2"><div class="nt">Pilot authorized</div><div class="ns">3 regions authorized</div></div></div>
+                <div class="node"><span class="ndate" data-anim="node" data-seq="3">2025-11</span><span class="ndot" data-anim="node" data-seq="3"></span><div class="ninfo" data-anim="node" data-seq="3"><div class="nt">Baseline measured</div><div class="ns">n=1,180 cases</div></div></div>
+                <div class="node"><span class="ndate" data-anim="node" data-seq="4">2026-01</span><span class="ndot accent" data-anim="node" data-seq="4"></span><div class="ninfo" data-anim="node" data-seq="4"><div class="nt">Full deployment</div><div class="ns">12 regions live</div></div></div>
+                <div class="node"><span class="ndate" data-anim="node" data-seq="5">2026-04</span><span class="ndot" data-anim="node" data-seq="5"></span><div class="ninfo" data-anim="node" data-seq="5"><div class="nt">Target exceeded</div><div class="ns">+38% · n=3,402</div></div></div>
+                <div class="node"><span class="ndate" data-anim="node" data-seq="6">2026-06</span><span class="ndot" data-anim="node" data-seq="6"></span><div class="ninfo" data-anim="node" data-seq="6"><div class="nt">Review issued</div><div class="ns">PA-REV-2026-04</div></div></div>
+              </div>
+            </div>
+      
+            <div data-anim="source" style="margin-top:auto;">
+              <span class="source">Source · program event log, audited · entries SRC-1004 → PA-REV-2026-04</span>
+            </div>
+          </div>
+      
+          <div class="slide-foot">
+            <span>Field Program Review · 2026</span>
+            <span class="seq">Timeline · 04 / 10</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 05 · Before / After -->
+      <div class="slide atlas-stage" data-stage data-screen-label="05" data-slide-title="Before / After" data-atlas-bg="quiet">
+        <div class="slide-inner">
+          <div class="slide-head">
+            <div class="brand"><span class="xh"><i></i></span><span class="nm">Proof Atlas</span></div>
+            <div class="head-meta">
+              <span class="tag accent">Comparison</span>
+              <span class="coord">BASELINE → 2026-Q2</span>
+            </div>
+          </div>
+      
+          <div class="slide-body">
+            <h1 data-anim="mask" data-seq="0" class="title" style="font-size:36px;margin-bottom:26px;">Before deployment vs. after</h1>
+      
+            <div class="cmp">
+              <!-- BEFORE -->
+              <div class="cmp-col">
+                <div data-anim="fade" data-seq="1" class="cmp-label">Before · Baseline period</div>
+                <div data-anim="fade" data-seq="2" class="num-xl" style="font-size:96px;">1.0<small>×</small></div>
+                <div data-anim="fade" data-seq="2" class="metric label" style="margin-top:6px;min-height:46px;">Reference throughput across 12 regions.</div>
+                <div data-anim="fade" data-seq="3" class="cmp-stats">
+                  <div><span class="cs-n">62%</span><span class="cs-l">verified outcomes</span></div>
+                  <div><span class="cs-n">15.8d</span><span class="cs-l">median resolution</span></div>
+                </div>
+                <span data-anim="source" class="source" style="margin-top:18px;">Source · baseline audit · SRC-1442</span>
+              </div>
+      
+              <div data-anim="draw-y" data-seq="4" class="cmp-divider"></div>
+      
+              <!-- AFTER -->
+              <div class="cmp-col">
+                <div data-anim="fade" data-seq="5" class="cmp-label accent">After · 2026-Q2</div>
+                <div data-anim="fade" data-seq="6" class="num-xl" style="font-size:96px;color:var(--blue);">2.4<small style="color:var(--blue);opacity:.6;">×</small></div>
+                <div data-anim="fade" data-seq="6" class="metric label" style="margin-top:6px;min-height:46px;">Throughput after full deployment <span class="delta up" style="white-space:nowrap;">▴ +140%</span></div>
+                <div data-anim="fade" data-seq="7" class="cmp-stats">
+                  <div><span class="cs-n">84%</span><span class="cs-l">verified outcomes</span></div>
+                  <div><span class="cs-n">11.6d</span><span class="cs-l">median resolution</span></div>
+                </div>
+                <span data-anim="source" class="source" style="margin-top:18px;">Source · program telemetry · SRC-2087</span>
+              </div>
+            </div>
+          </div>
+      
+          <div class="slide-foot">
+            <span>Field Program Review · 2026</span>
+            <span class="seq">Comparison · 05 / 10</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 06 · Evidence Grid -->
+      <div class="slide atlas-stage" data-stage data-screen-label="06" data-slide-title="Evidence Grid" data-atlas-bg="quiet">
+        <div class="slide-inner">
+          <div class="slide-head">
+            <div class="brand"><span class="xh"><i></i></span><span class="nm">Proof Atlas</span></div>
+            <div class="head-meta">
+              <span class="tag accent">Evidence Board</span>
+              <span class="coord">PLATE 06 · 8 EXHIBITS</span>
+            </div>
+          </div>
+      
+          <div class="slide-body" style="padding-top:18px;">
+            <h1 data-anim="mask" data-seq="0" class="title" style="font-size:32px;margin-bottom:18px;">Field evidence, regions A–H</h1>
+      
+            <div class="egrid" id="grid"></div>
+      
+            <div data-anim="source" style="margin-top:auto;padding-top:14px;">
+              <span class="source">Source · field photography &amp; intake records · exhibits EX-101 → EX-108</span>
+            </div>
+          </div>
+      
+          <div class="slide-foot">
+            <span>Field Program Review · 2026</span>
+            <span class="seq">Evidence Grid · 06 / 10</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 07 · Case Study -->
+      <div class="slide atlas-stage" data-stage data-screen-label="07" data-slide-title="Case Study" data-atlas-bg="quiet">
+        <div class="slide-inner">
+          <div class="slide-head">
+            <div class="brand"><span class="xh"><i></i></span><span class="nm">Proof Atlas</span></div>
+            <div class="head-meta">
+              <span class="tag solid">Case 03</span>
+              <span class="coord">[ 41.878°N · 087.629°W ]</span>
+            </div>
+          </div>
+      
+          <div class="slide-body">
+            <div class="cs">
+              <div class="cs-image">
+                <div data-anim="push" class="img-slot" style="height:100%;">
+                  <span class="ph">CASE PLATE · EX-203</span>
+                </div>
+                <div data-anim="source" class="source" style="margin-top:10px;">Source · site record · EX-203 · captured 2026-03</div>
+              </div>
+      
+              <div class="cs-body">
+                <div data-anim="mask" data-seq="0" class="kicker" style="margin-bottom:10px;">Case Study · North Region</div>
+                <h1 data-anim="mask" data-seq="1" class="title" style="font-size:34px;margin-bottom:22px;">A constrained pilot that scaled cleanly</h1>
+      
+                <div class="cs-facts">
+                  <div data-anim="row" data-seq="2" class="fact"><span class="fk">Scope</span><span class="fv">3 intake sites · 1,180 cases over 14 weeks</span></div>
+                  <div data-anim="row" data-seq="3" class="fact"><span class="fk">Result</span><span class="fv">Throughput 2.6× baseline; zero data loss</span></div>
+                  <div data-anim="row" data-seq="4" class="fact"><span class="fk">Verification</span><span class="fv">Independently audited, n=412 sampled</span></div>
+                </div>
+      
+                <div data-anim="stamp" data-seq="5" class="cs-interp">
+                  <span class="il">Interpretation</span>
+                  The North pilot demonstrates the model holds under real constraints — the gains were not an artifact of low volume.
+                </div>
+              </div>
+            </div>
+          </div>
+      
+          <div class="slide-foot">
+            <span>Field Program Review · 2026</span>
+            <span class="seq">Case Study · 07 / 10</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 08 · Methodology -->
+      <div class="slide atlas-stage" data-stage data-screen-label="08" data-slide-title="Methodology" data-atlas-bg="quiet">
+        <div class="slide-inner">
+          <div class="slide-head">
+            <div class="brand"><span class="xh"><i></i></span><span class="nm">Proof Atlas</span></div>
+            <div class="head-meta">
+              <span class="tag accent">Methodology</span>
+              <span class="coord">PROTOCOL PA-M-04</span>
+            </div>
+          </div>
+      
+          <div class="slide-body">
+            <h1 data-anim="mask" data-seq="0" class="title" style="font-size:34px;margin-bottom:6px;">How the evidence was gathered</h1>
+            <p data-anim="mask" data-seq="1" class="lead" style="font-size:16px;margin-bottom:40px;">A four-stage protocol from intake to independent verification.</p>
+      
+            <div class="flow">
+              <div data-anim="cell" data-seq="2" class="fbox"><span class="fnum">01</span><div class="ft">Intake</div><div class="fd">3,402 cases logged with source IDs and timestamps.</div></div>
+              <div data-anim="draw-x" data-seq="3" class="arrow" style="width:42px;"></div>
+              <div data-anim="cell" data-seq="4" class="fbox"><span class="fnum">02</span><div class="ft">Measure</div><div class="fd">Outcomes scored against the pre-registered baseline.</div></div>
+              <div data-anim="draw-x" data-seq="5" class="arrow" style="width:42px;"></div>
+              <div data-anim="cell" data-seq="6" class="fbox"><span class="fnum">03</span><div class="ft">Corroborate</div><div class="fd">Each finding cross-checked against ≥2 sources.</div></div>
+              <div data-anim="draw-x" data-seq="7" class="arrow" style="width:42px;"></div>
+              <div data-anim="cell" data-seq="8" class="fbox"><span class="fnum">04</span><div class="ft">Audit</div><div class="fd">Independent panel reviews a sample of n=412.</div></div>
+            </div>
+      
+            <div data-anim="cell" data-seq="9" class="mnotes">
+              <div class="mn"><span class="mk">Sampling</span>Stratified by region; proportional to caseload.</div>
+              <div class="mn"><span class="mk">Confidence</span>95% CI; effects reported with bounds.</div>
+              <div class="mn"><span class="mk">Exclusions</span>Cases pending review held out of headline figures.</div>
+            </div>
+      
+            <div data-anim="source" style="margin-top:auto;padding-top:14px;">
+              <span class="source">Source · protocol PA-M-04, pre-registered · audit panel SRC-3310</span>
+            </div>
+          </div>
+      
+          <div class="slide-foot">
+            <span>Field Program Review · 2026</span>
+            <span class="seq">Methodology · 08 / 10</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 09 · Risk / Limitation -->
+      <div class="slide atlas-stage" data-stage data-screen-label="09" data-slide-title="Risk / Limitation" data-atlas-bg="quiet">
+        <div class="slide-inner">
+          <div class="slide-head">
+            <div class="brand"><span class="xh"><i></i></span><span class="nm">Proof Atlas</span></div>
+            <div class="head-meta">
+              <span class="tag risk">Limitations</span>
+              <span class="coord">CANDOR REGISTER</span>
+            </div>
+          </div>
+      
+          <div class="slide-body">
+            <h1 data-anim="mask" data-seq="0" class="title" style="font-size:34px;margin-bottom:6px;">What these findings cannot claim</h1>
+            <p data-anim="mask" data-seq="1" class="lead" style="font-size:16px;margin-bottom:30px;">Four limitations are recorded openly. None invalidate the headline result; each bounds it.</p>
+      
+            <div class="risks">
+              <div data-anim="row" data-seq="2" class="risk-row">
+                <span class="rm"></span>
+                <div class="rbody"><div class="rtop"><span class="rlvl">Limitation</span><span class="rid">L-01</span></div><div class="rttl">Sample skews to early-adopter regions.</div><div class="rtxt">Results may overstate effect for slower-onboarding regions; weight before extrapolating nationally.</div></div>
+              </div>
+              <div data-anim="row" data-seq="3" class="risk-row">
+                <span class="rm"></span>
+                <div class="rbody"><div class="rtop"><span class="rlvl">Limitation</span><span class="rid">L-02</span></div><div class="rttl">Observation window is two quarters.</div><div class="rtxt">Durability of gains beyond six months is projected, not yet measured.</div></div>
+              </div>
+              <div data-anim="row" data-seq="4" class="risk-row">
+                <span class="rm"></span>
+                <div class="rbody"><div class="rtop"><span class="rlvl">Risk</span><span class="rid">L-03</span></div><div class="rttl">3.1% of exceptions remain unresolved.</div><div class="rtxt">Held out of headline figures; could shift verified-outcome rate by up to 1.4 points.</div></div>
+              </div>
+              <div data-anim="row" data-seq="5" class="risk-row">
+                <span class="rm"></span>
+                <div class="rbody"><div class="rtop"><span class="rlvl">Caveat</span><span class="rid">L-04</span></div><div class="rttl">Audit panel and program share one data feed.</div><div class="rtxt">Independence is procedural, not architectural; a third feed is recommended for the next review.</div></div>
+              </div>
+            </div>
+      
+            <div data-anim="source" style="margin-top:auto;padding-top:14px;">
+              <span class="source">Source · limitations register PA-M-04 · reviewed by audit panel SRC-3310</span>
+            </div>
+          </div>
+      
+          <div class="slide-foot">
+            <span>Field Program Review · 2026</span>
+            <span class="seq">Limitations · 09 / 10</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 10 · Next Actions -->
+      <div class="slide atlas-stage" data-stage data-screen-label="10" data-slide-title="Next Actions" data-atlas-bg="cover">
+        <div class="slide-inner">
+          <div class="slide-head">
+            <div class="brand"><span class="xh"><i></i></span><span class="nm">Proof Atlas</span></div>
+            <div class="head-meta">
+              <span class="tag accent">Recommendations</span>
+              <span class="coord">ACTION REGISTER</span>
+            </div>
+          </div>
+      
+          <div class="slide-body">
+            <h1 data-anim="mask" data-seq="0" class="title" style="font-size:34px;margin-bottom:24px;">Recommended next actions</h1>
+      
+            <div class="actions">
+              <div class="acol">
+                <div class="ahd" data-anim="row" data-seq="1"><span>Action</span><span>Owner · Due</span></div>
+                <div data-anim="row" data-seq="2" class="checkrow"><span class="ix">A1</span><span class="checkbox done"></span><div class="atext"><div class="att">Extend observation window to four quarters.</div><div class="ameta">Research · 2026-Q3</div></div></div>
+                <div data-anim="row" data-seq="3" class="checkrow"><span class="ix">A2</span><span class="checkbox"></span><div class="atext"><div class="att">Add a third independent data feed for the audit panel.</div><div class="ameta">Data Office · 2026-Q3</div></div></div>
+                <div data-anim="row" data-seq="4" class="checkrow"><span class="ix">A3</span><span class="checkbox"></span><div class="atext"><div class="att">Resolve the 3.1% exception backlog before scale-up.</div><div class="ameta">Operations · 2026-Q4</div></div></div>
+                <div data-anim="row" data-seq="5" class="checkrow"><span class="ix">A4</span><span class="checkbox"></span><div class="atext"><div class="att">Pilot the model in two slower-onboarding regions.</div><div class="ameta">Program · 2027-Q1</div></div></div>
+              </div>
+      
+              <div data-anim="stamp" data-seq="6" class="recommend">
+                <div class="rk">Recommendation</div>
+                <div class="rtitle">Proceed to phased national scale-up, conditional on A2 and A3.</div>
+                <div class="source" style="margin-top:18px;">Source · review board decision · PA-REV-2026-04</div>
+              </div>
+            </div>
+          </div>
+      
+          <div class="slide-foot">
+            <span>Field Program Review · 2026</span>
+            <span class="seq">Next Actions · 10 / 10</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="../../assets/atlas-motion.js"></script>
+  <script>
+/* ===== Slide-local script from slides/06-evidence-grid.html ===== */
+var cells = [
+    ["EX-101","A","Intake station, North region"],
+    ["EX-102","B","Verified caseload, East"],
+    ["EX-103","C","Field measurement, South"],
+    ["EX-104","D","Throughput log, West"],
+    ["EX-105","E","Audit sampling, Central"],
+    ["EX-106","F","Outcome review, Coastal"],
+    ["EX-107","G","Exception handling, Inland"],
+    ["EX-108","H","Closeout record, Capital"]
+  ];
+  document.getElementById('grid').innerHTML = cells.map(function(c,i){
+    return '<div class="ecell" data-anim="cell" data-seq="'+(i+1)+'">'+
+      '<div class="eh"><span>'+c[0]+'</span><span class="ec">REGION '+c[1]+'</span></div>'+
+      '<div class="eslot img-slot"><span class="ph">FIG '+c[0].slice(3)+'</span></div>'+
+      '<div class="ecap">'+c[2]+'</div>'+
+    '</div>';
+  }).join('');
+  </script>
+  <script>
+    (function () {
+      "use strict";
+      var canvas = document.querySelector(".deck-canvas");
+      var slides = Array.prototype.slice.call(document.querySelectorAll(".deck-canvas > .slide"));
+      var index = 0;
+
+      function fit() {
+        var scale = Math.min(window.innerWidth / 1280, window.innerHeight / 720);
+        canvas.style.transform = "scale(" + scale + ")";
+      }
+
+      function buildNav() {
+        var nav = document.createElement("div");
+        nav.className = "deck-nav";
+        nav.innerHTML = '<button data-prev aria-label="Previous">&#8249;</button><span class="count"></span><button data-next aria-label="Next">&#8250;</button>';
+        document.body.appendChild(nav);
+        nav.querySelector("[data-prev]").addEventListener("click", prev);
+        nav.querySelector("[data-next]").addEventListener("click", next);
+        return nav;
+      }
+
+      var nav = buildNav();
+      function updateNav() {
+        nav.querySelector(".count").textContent = String(index + 1).padStart(2, "0") + " / " + String(slides.length).padStart(2, "0");
+      }
+
+      function setBgLoops() {
+        var loops = window.AtlasMotion && window.AtlasMotion.loops;
+        if (!loops) return;
+        loops.forEach(function (loop) {
+          if (loop.host === slides[index] && !document.body.classList.contains("low-power")) {
+            loop.resize();
+            loop.startLoop();
+          }
+          else loop.stop();
+        });
+      }
+
+      function go(nextIndex) {
+        index = Math.max(0, Math.min(slides.length - 1, nextIndex));
+        slides.forEach(function (slide, i) {
+          var active = i === index;
+          slide.style.display = active ? "" : "none";
+          slide.toggleAttribute("data-deck-active", active);
+          slide.setAttribute("aria-hidden", active ? "false" : "true");
+          if (window.AtlasMotion) window.AtlasMotion.reset(slide);
+        });
+        updateNav();
+        setBgLoops();
+        if (window.AtlasMotion) window.AtlasMotion.play(slides[index]);
+      }
+
+      function next() { go(index + 1); }
+      function prev() { go(index - 1); }
+
+      document.addEventListener("keydown", function (e) {
+        if (e.metaKey || e.ctrlKey || e.altKey) return;
+        var key = e.key.toLowerCase();
+        if (document.body.classList.contains("low-power")) {
+          if (key === "b" && window.AtlasMotion) setTimeout(setBgLoops, 40);
+          return;
+        }
+        if (key === "arrowright" || key === " " || key === "pagedown") { e.preventDefault(); next(); }
+        else if (key === "arrowleft" || key === "pageup") { e.preventDefault(); prev(); }
+        else if (key === "home") { e.preventDefault(); go(0); }
+        else if (key === "end") { e.preventDefault(); go(slides.length - 1); }
+        else if (key === "r" && window.AtlasMotion) { e.preventDefault(); window.AtlasMotion.reset(slides[index]); window.AtlasMotion.play(slides[index]); }
+      });
+
+      window.addEventListener("resize", fit);
+      window.addEventListener("beforeprint", function () {
+        slides.forEach(function (slide) { slide.style.display = ""; slide.setAttribute("data-deck-active", ""); });
+      });
+      window.addEventListener("afterprint", function () { go(index); });
+
+      canvas.classList.add("deck-ready");
+      fit();
+      go(0);
+      window.ProofAtlasDeck = { slides: slides, go: go, next: next, prev: prev, get index() { return index; } };
+    })();
+  </script>
+</body>
+</html>

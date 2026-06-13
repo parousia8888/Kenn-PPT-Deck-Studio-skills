@@ -1,0 +1,5 @@
+<svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Investor Signal mark">
+  <rect x="1.5" y="1.5" width="45" height="45" stroke="currentColor" stroke-width="1.8"></rect>
+  <path d="M11 34 L21 25 L28 30 L37 13" stroke="var(--accent, #FB3B1E)" stroke-width="3" fill="none" stroke-linejoin="miter"></path>
+  <circle cx="37" cy="13" r="3.2" fill="var(--accent, #FB3B1E)"></circle>
+</svg>

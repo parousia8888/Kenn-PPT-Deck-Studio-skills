@@ -1,0 +1,290 @@
+<!-- @template name="Academy Prospectus Deck" description="A warm, editorial 10-layout school prospectus deck — live presentation and PDF brochure in one." -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Academy Prospectus — Linden Academy</title>
+
+<!-- React UMD before ds-base.js (the DS bundle calls React.createElement) -->
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+
+<!-- One line to load this design system (tokens + component bundle) -->
+<script src="./ds-base.js"></script>
+
+<!-- Slide system: layouts + motion engine -->
+<link rel="stylesheet" href="../../slides/prospectus-slides.css">
+
+<style>
+  html, body { margin: 0; height: 100%; background: #1c1916; }
+  .deck-stage { position: fixed; inset: 0; display: grid; place-items: center; overflow: hidden; background: #1c1916; }
+  .deck-canvas { width: 1280px; height: 720px; position: relative; transform-origin: center center; }
+  .deck-canvas .slide { box-shadow: 0 30px 90px rgba(0,0,0,0.45); }
+  /* Before the engine boots, show only the first slide (no stacked flash).
+     The engine adds `.deck-ready`, after which inline display controls
+     visibility. If JS never runs, the cover stays visible; print reveals all. */
+  .deck-canvas:not(.deck-ready) .slide ~ .slide { display: none; }
+  /* PDF / print: one slide per page, all revealed */
+  @media print {
+    @page { size: 1280px 720px; margin: 0; }
+    html, body { background: #fff; }
+    .deck-stage { position: static; display: block; }
+    .deck-canvas { transform: none !important; }
+    .deck-canvas .slide { position: relative !important; page-break-after: always; box-shadow: none; }
+    .deck-nav, .lowpower-hint { display: none !important; }
+  }
+</style>
+</head>
+<body>
+  <div class="deck-stage">
+    <div class="deck-canvas">
+    <section class="slide l-cover" data-anim="prospectus-cover" data-accent="terracotta" data-screen-label="Cover">
+        <div class="cover-text">
+          <div class="established" data-animate data-part="mark">Established 1994 · Hangzhou & Singapore</div>
+          <div>
+            <div class="eyebrow" data-animate data-part="mark" style="--step:0">Academy Prospectus 2026</div>
+            <h1 class="t-hero" data-animate data-part="title" style="margin:22px 0 0">Linden<br>Academy</h1>
+            <div class="t-lead t-serif-italic" data-animate data-part="title" style="color:var(--ink-muted); margin-top:18px">林登语言与人文学院</div>
+          </div>
+          <div class="slide-rail" style="border:none; padding:0" data-animate data-part="mark">
+            <span class="mark"><span class="glyph">L</span> A school of language, thought &amp; character</span>
+          </div>
+        </div>
+        <div class="cover-img">
+          <div class="img-frame" data-animate data-part="image">
+            <div class="img-ph" data-label="Cover · the reading hall, autumn light"><span class="lens"></span></div>
+          </div>
+        </div>
+      </section>
+
+    <section class="slide l-promise" data-anim="philosophy" data-accent="gold" data-screen-label="Promise">
+        <div>
+          <div class="eyebrow" data-animate>Our promise</div>
+          <h2 class="t-statement" data-animate data-part="statement" style="margin-top:24px; font-size:50px">
+            A serious education, given <span class="t-serif-italic">gently</span>.
+          </h2>
+          <p class="t-lead" data-animate data-part="follow" style="margin-top:26px; color:var(--ink-muted); max-width:42ch">
+            For three decades, families have trusted Linden to hold high standards and a kind hand at the
+            same time. We promise honest reporting, teachers who know each child, and a classroom that feels
+            like a place worth returning to.
+          </p>
+          <div data-animate data-part="follow" style="margin-top:30px; display:flex; gap:10px; flex-wrap:wrap">
+            <span class="chip">Since 1994</span>
+            <span class="chip">Two campuses</span>
+            <span class="chip">4,200 alumni</span>
+          </div>
+        </div>
+        <div style="height:480px">
+          <div class="img-frame" data-animate style="height:100%"><div class="img-ph" data-label="A morning seminar in progress"><span class="lens"></span></div></div>
+        </div>
+      </section>
+
+    <section class="slide" data-anim="philosophy" data-accent="forest" data-screen-label="Philosophy">
+        <div class="slide-pad">
+          <div class="slide-rail" data-animate>
+            <span class="mark"><span class="glyph">L</span> Linden Academy</span>
+            <span class="section">Teaching Philosophy</span>
+            <span class="folio">03 / 24</span>
+          </div>
+          <div class="l-statement" style="padding:0; flex:1; max-width:none">
+            <div class="eyebrow" data-animate style="margin-bottom:26px">What we believe</div>
+            <h2 class="t-statement" data-animate data-part="statement" style="max-width:18ch">
+              We teach the <span class="t-serif-italic">person</span>, not only the syllabus.
+            </h2>
+            <p class="t-lead" data-animate data-part="follow" style="max-width:58ch; margin-top:28px; color:var(--ink-muted)">
+              Small classes, attentive teachers, and a curriculum built around curiosity. Every learner is
+              read closely — their strengths named, their gaps met with patience — so that progress is real,
+              measured, and their own.
+            </p>
+          </div>
+        </div>
+      </section>
+
+    <section class="slide l-curriculum" data-anim="curriculum" data-accent="navy" data-screen-label="Curriculum">
+        <div class="slide-pad">
+          <div class="slide-rail" data-animate>
+            <span class="mark"><span class="glyph">L</span> Linden Academy</span>
+            <span class="section">Curriculum System</span>
+            <span class="folio">04 / 24</span>
+          </div>
+          <div style="display:flex; align-items:flex-end; justify-content:space-between; gap:24px; margin-top:24px">
+            <h2 class="t-title" data-animate style="max-width:20ch">A structured path from foundation to fluency</h2>
+            <span class="chip" data-animate>6 Modules · 3 Levels</span>
+          </div>
+          <div class="grid">
+            <div class="module" data-animate style="--step:0"><span class="code">LA · 101</span><h4>Foundations of Language</h4><p>Phonics, grammar architecture, and confident first speech.</p><div class="module-foot"><span class="chip chip--bare">Ages 8–11</span><span class="chip chip--bare">90 min</span></div></div>
+            <div class="module" data-animate style="--step:1"><span class="code">LA · 204</span><h4>Reading &amp; Composition</h4><p>Close reading, structured essays, and a literary vocabulary.</p><div class="module-foot"><span class="chip chip--bare">Ages 11–14</span><span class="chip chip--bare">90 min</span></div></div>
+            <div class="module" data-animate style="--step:2"><span class="code">LA · 309</span><h4>Rhetoric &amp; Debate</h4><p>Argument, evidence, and speaking with poise before an audience.</p><div class="module-foot"><span class="chip chip--bare">Ages 14–17</span><span class="chip chip--bare">120 min</span></div></div>
+            <div class="module" data-animate style="--step:3"><span class="code">LA · 220</span><h4>World Literature</h4><p>Texts in translation, cultural context, and comparative study.</p><div class="module-foot"><span class="chip chip--bare">Ages 13–16</span><span class="chip chip--bare">90 min</span></div></div>
+            <div class="module" data-animate style="--step:4"><span class="code">LA · 405</span><h4>Examination Studio</h4><p>Targeted preparation for IELTS, IGCSE and university entry.</p><div class="module-foot"><span class="chip chip--bare">Ages 15+</span><span class="chip chip--bare">120 min</span></div></div>
+            <div class="module" data-animate style="--step:5"><span class="code">LA · 510</span><h4>Independent Seminar</h4><p>A capstone research project, mentored to publication standard.</p><div class="module-foot"><span class="chip chip--bare">Adult</span><span class="chip chip--bare">Flexible</span></div></div>
+          </div>
+        </div>
+      </section>
+
+    <section class="slide l-pathway" data-anim="curriculum-pathway" data-accent="terracotta" data-screen-label="Pathway">
+        <div class="slide-pad">
+          <div class="slide-rail" data-animate>
+            <span class="mark"><span class="glyph">L</span> Linden Academy</span>
+            <span class="section">Course Pathway</span>
+            <span class="folio">05 / 24</span>
+          </div>
+          <div style="margin-top:24px">
+            <div class="eyebrow" data-animate>The journey, at a glance</div>
+            <h2 class="t-title" data-animate style="margin-top:14px">From first words to independent voice</h2>
+          </div>
+          <div class="pathway">
+            <div class="track"></div>
+            <div class="stations">
+              <div class="station" data-animate style="--step:0"><div class="node"></div><span class="stage">Stage 01</span><h4>Arrive</h4><p>Placement, a personal study map, and a homeroom teacher.</p><span class="dur">Week 1</span></div>
+              <div class="station is-up" data-animate style="--step:1"><div class="node"></div><span class="stage">Stage 02</span><h4>Build</h4><p>Core modules in small cohorts, with weekly feedback.</p><span class="dur">Terms 1–4</span></div>
+              <div class="station" data-animate style="--step:2"><div class="node"></div><span class="stage">Stage 03</span><h4>Stretch</h4><p>Electives, debate, and a mentored independent project.</p><span class="dur">Terms 5–6</span></div>
+              <div class="station is-up" data-animate style="--step:3"><div class="node"></div><span class="stage">Stage 04</span><h4>Launch</h4><p>Examinations, portfolios, and university guidance.</p><span class="dur">Graduation</span></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    <section class="slide l-teachers" data-anim="teacher-team" data-accent="forest" data-screen-label="Teachers">
+        <div class="slide-pad">
+          <div class="slide-rail" data-animate>
+            <span class="mark"><span class="glyph">L</span> Linden Academy</span>
+            <span class="section">The Teaching Faculty</span>
+            <span class="folio">06 / 24</span>
+          </div>
+          <div style="display:flex; align-items:flex-end; justify-content:space-between; margin-top:24px">
+            <h2 class="t-title" data-animate>Taught by scholars who stay</h2>
+            <span class="chip" data-animate>Average tenure · 11 years</span>
+          </div>
+          <div class="roster">
+            <div class="teacher" data-animate style="--step:0"><div class="portrait"><div class="img-ph" data-label="Portrait"><span class="lens"></span></div></div><div class="name">Dr. Elena Voss</div><div class="disc">Director · Linguistics</div><p class="bio">PhD Cambridge. Twenty years shaping how language is taught with rigour and warmth.</p></div>
+            <div class="teacher" data-animate style="--step:1"><div class="portrait"><div class="img-ph" data-label="Portrait"><span class="lens"></span></div></div><div class="name">Marcus Adeyemi</div><div class="disc">Lead · Rhetoric</div><p class="bio">Former debate champion who coaches students to speak with clarity and conviction.</p></div>
+            <div class="teacher" data-animate style="--step:2"><div class="portrait"><div class="img-ph" data-label="Portrait"><span class="lens"></span></div></div><div class="name">Hana Sato</div><div class="disc">Faculty · Literature</div><p class="bio">Translator and editor; she opens world texts and the cultures behind them.</p></div>
+            <div class="teacher" data-animate style="--step:3"><div class="portrait"><div class="img-ph" data-label="Portrait"><span class="lens"></span></div></div><div class="name">James O'Riordan</div><div class="disc">Faculty · Examinations</div><p class="bio">Examiner-trained mentor with a decade of record university placements.</p></div>
+          </div>
+        </div>
+      </section>
+
+    <section class="slide l-environment" data-anim="environment-gallery" data-accent="gold" data-screen-label="Environment">
+        <div class="slide-pad">
+          <div class="slide-rail" data-animate>
+            <span class="mark"><span class="glyph">L</span> Linden Academy</span>
+            <span class="section">The Learning Environment</span>
+            <span class="folio">07 / 24</span>
+          </div>
+          <div style="margin-top:20px; display:flex; align-items:flex-end; justify-content:space-between">
+            <h2 class="t-title" data-animate style="--step:0">Rooms built for attention</h2>
+            <p class="t-small" data-animate style="--step:0; max-width:34ch; text-align:right">Two campuses, library-quiet studios, and gardens for the long afternoons of reading.</p>
+          </div>
+          <div class="gallery">
+            <div class="img-frame" data-animate style="--step:0"><div class="img-ph" data-label="The reading hall"><span class="lens"></span></div></div>
+            <div class="img-frame" data-animate style="--step:1"><div class="img-ph" data-label="Seminar studio"><span class="lens"></span></div></div>
+            <div class="img-frame" data-animate style="--step:2"><div class="img-ph" data-label="The garden court"><span class="lens"></span></div></div>
+            <div class="img-frame" data-animate style="--step:3"><div class="img-ph" data-label="Language lab"><span class="lens"></span></div></div>
+            <div class="img-frame" data-animate style="--step:4"><div class="img-ph" data-label="The archive"><span class="lens"></span></div></div>
+          </div>
+        </div>
+      </section>
+
+    <section class="slide l-outcomes" data-anim="outcomes" data-accent="navy" data-screen-label="Outcomes">
+        <div class="slide-pad">
+          <div class="slide-rail" data-animate>
+            <span class="mark"><span class="glyph">L</span> Linden Academy</span>
+            <span class="section">Student Outcomes</span>
+            <span class="folio">08 / 24</span>
+          </div>
+          <div style="margin-top:26px">
+            <div class="eyebrow" data-animate>Results, honestly reported</div>
+            <h2 class="t-title" data-animate style="margin-top:14px; max-width:24ch">Progress you can measure, year after year</h2>
+          </div>
+          <div class="kpis">
+            <div class="kpi"><div class="num" data-animate style="--step:0">94<span class="unit">%</span></div><div class="cap" data-animate data-part="cap" style="--step:0">reached their target exam grade within two terms</div><div class="src">Cohort 2024–25 · n=312</div></div>
+            <div class="kpi"><div class="num" data-animate style="--step:1">+2.1</div><div class="cap" data-animate data-part="cap" style="--step:1">average IELTS band gain across a single year</div><div class="src">Verified by certified examiners</div></div>
+            <div class="kpi"><div class="num" data-animate style="--step:2">87<span class="unit">%</span></div><div class="cap" data-animate data-part="cap" style="--step:2">admitted to one of their top-three universities</div><div class="src">Graduating class of 2025</div></div>
+            <div class="kpi"><div class="num" data-animate style="--step:3">1:8</div><div class="cap" data-animate data-part="cap" style="--step:3">teacher-to-student ratio in every core seminar</div><div class="src">Academy standard, all campuses</div></div>
+          </div>
+          <p class="t-small" data-animate style="margin-top:24px; color:var(--ink-faint)">Figures independently audited. Full methodology available on request — we publish what we can stand behind.</p>
+        </div>
+      </section>
+
+    <section class="slide l-testimonial" data-anim="testimonial" data-accent="terracotta" data-screen-label="Testimonial">
+        <div class="story-img">
+          <div class="img-frame"><div class="img-ph" data-label="Mei-Ling, class of 2023"><span class="lens"></span></div></div>
+        </div>
+        <div class="quote-side">
+          <span class="mark-q" data-animate>&ldquo;</span>
+          <div class="quote">
+            <span class="qline" data-animate style="--step:0">My daughter arrived shy and</span>
+            <span class="qline" data-animate style="--step:1">unsure of her English. She left</span>
+            <span class="qline" data-animate style="--step:2">able to <span class="t-serif-italic">argue a case</span> in front of</span>
+            <span class="qline" data-animate style="--step:3">a room — and to enjoy it.</span>
+          </div>
+          <div class="attribution" data-animate data-part="attr">
+            <div style="width:46px; height:46px; border-radius:50%; overflow:hidden; flex:none"><div class="img-ph" data-label=""></div></div>
+            <div>
+              <div class="who">Mrs. Chen Wei</div>
+              <div class="role">Parent · Hangzhou Campus</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    <section class="slide l-enroll" data-anim="enrollment" data-accent="forest" data-screen-label="Enrollment">
+        <div class="slide-pad">
+          <div class="slide-rail" data-animate>
+            <span class="mark"><span class="glyph">L</span> Linden Academy</span>
+            <span class="section">Enrollment &amp; Fees</span>
+            <span class="folio">10 / 24</span>
+          </div>
+          <div style="display:flex; align-items:flex-end; justify-content:space-between; margin-top:22px">
+            <h2 class="t-title" data-animate>Choose a path to begin</h2>
+            <p class="t-small" data-animate style="max-width:30ch; text-align:right">Fees are per term. Sibling and scholarship support available — please ask.</p>
+          </div>
+          <div class="plans">
+            <div class="plan" data-animate style="--step:0">
+              <span class="tier">Foundation</span>
+              <div class="price">¥ 6,800<span class="per"> / term</span></div>
+              <ul><li>Two seminars each week</li><li>Small cohorts of eight</li><li>Termly written reports</li><li>Library &amp; study access</li></ul>
+            </div>
+            <div class="plan is-feature" data-animate style="--step:1">
+              <span class="tier">Scholar · Most chosen</span>
+              <div class="price">¥ 11,400<span class="per"> / term</span></div>
+              <ul><li>Four seminars each week</li><li>One-to-one mentor hour</li><li>Examination studio access</li><li>Independent project support</li></ul>
+            </div>
+            <div class="plan" data-animate style="--step:2">
+              <span class="tier">Atelier · Adult</span>
+              <div class="price">¥ 9,200<span class="per"> / term</span></div>
+              <ul><li>Flexible evening schedule</li><li>Conversation &amp; rhetoric</li><li>Professional writing track</li><li>Certificate on completion</li></ul>
+            </div>
+          </div>
+          <div class="contact" data-animate data-part="attr">
+            <div class="lines">
+              <div><div class="k">Admissions</div><div class="v">admissions@lindenacademy.edu</div></div>
+              <div><div class="k">Telephone</div><div class="v">+86 571 8800 0000</div></div>
+              <div><div class="k">Visit</div><div class="v">14 Linden Court, Hangzhou</div></div>
+            </div>
+            <span class="mark"><span class="glyph">L</span> lindenacademy.edu</span>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+
+  <script>
+    // Fit the fixed 1280x720 canvas into any viewport (letterboxed on black)
+    (function () {
+      var canvas = document.querySelector(".deck-canvas");
+      function fit() {
+        var s = Math.min(window.innerWidth / 1280, window.innerHeight / 720);
+        canvas.style.transform = "scale(" + s + ")";
+      }
+      window.addEventListener("resize", fit);
+      fit();
+    })();
+  </script>
+
+  <!-- Motion engine: paper background, semantic slide-enter, B = low-power -->
+  <script src="../../slides/prospectus-motion.js"></script>
+</body>
+</html>

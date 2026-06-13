@@ -1,0 +1,9 @@
+/* Launch Theatre — Webfonts
+ * Loaded from Google Fonts CDN. All stacks below carry explicit Windows +
+ * Chinese fallbacks so the deck stays readable if the CDN fails.
+ *   Display : Manrope        (modern grotesk, thin → medium)
+ *   Body    : Hanken Grotesk (precise, restrained)
+ *   Mono    : JetBrains Mono (technical readouts, versions, benchmarks)
+ *   Serif   : Noto Serif SC  (CJK editorial fallback for --font-serif)
+ */
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&family=Hanken+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&family=Noto+Serif+SC:wght@400;500;700&display=swap');

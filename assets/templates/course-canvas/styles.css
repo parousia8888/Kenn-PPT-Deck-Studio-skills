@@ -1,0 +1,16 @@
+/* ============================================================
+   Course Canvas — Design System entry point
+   A premium teaching-deck visual language: warm paper, editorial
+   serif, legible sans, and a quiet mono layer for the rigour of a
+   well-printed field manual.
+
+   This file is the single stylesheet consumers link. It is an
+   @import manifest only — all rules live in the imported files.
+   ============================================================ */
+
+@import url("tokens/fonts.css");
+@import url("tokens/colors.css");
+@import url("tokens/typography.css");
+@import url("tokens/spacing.css");
+@import url("tokens/effects.css");
+@import url("components/components.css");

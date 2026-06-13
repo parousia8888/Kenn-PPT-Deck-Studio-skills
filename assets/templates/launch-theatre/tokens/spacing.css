@@ -1,0 +1,38 @@
+/* Launch Theatre — Spacing & layout
+ * Negative space is a primary material. The scale is generous; stage margins
+ * are wide so a single idea can sit alone, framed by the void.
+ */
+:root {
+  /* ---- Base spacing scale (4px root) ---- */
+  --space-0:   0;
+  --space-1:   4px;
+  --space-2:   8px;
+  --space-3:   12px;
+  --space-4:   16px;
+  --space-5:   24px;
+  --space-6:   32px;
+  --space-7:   48px;
+  --space-8:   64px;
+  --space-9:   96px;
+  --space-10:  128px;
+  --space-11:  160px;
+  --space-12:  224px;
+
+  /* ---- Stage layout ---- */
+  --stage-w:        1920px; /* canonical stage width            */
+  --stage-h:        1080px; /* 16:9                             */
+  --margin-stage:   var(--space-9);  /* 96px — safe edge        */
+  --margin-stage-x: 128px;  /* wide horizontal safe margin      */
+  --gutter:         var(--space-7);  /* 48px column gutter      */
+
+  /* ---- Component spacing ---- */
+  --pad-tight:  var(--space-3);
+  --pad-snug:   var(--space-4);
+  --pad-base:   var(--space-5);
+  --pad-loose:  var(--space-7);
+
+  /* ---- Measure (line length caps) ---- */
+  --measure-lead:  18ch;  /* @kind other */
+  --measure-body:  56ch;  /* @kind other */
+  --measure-stage: 22ch;  /* @kind other */
+}

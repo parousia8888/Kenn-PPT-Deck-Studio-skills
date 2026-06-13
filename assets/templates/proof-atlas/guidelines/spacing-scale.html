@@ -1,0 +1,25 @@
+<!-- @dsCard group="Spacing" viewport="700x150" name="Spacing Scale" subtitle="8px base unit driving the modular grid" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../styles.css">
+<style>
+  html,body{margin:0;background:var(--paper-0);font-family:var(--font-mono);}
+  .wrap{padding:20px 24px;display:flex;align-items:flex-end;gap:14px;}
+  .col{display:flex;flex-direction:column;align-items:flex-start;gap:6px;}
+  .bar{background:var(--blue);width:18px;}
+  .v{font-size:9.5px;color:var(--gray-2);}
+  .k{font-size:9px;letter-spacing:0.08em;text-transform:uppercase;color:var(--ink);}
+</style>
+</head>
+<body>
+  <div class="wrap" id="w"></div>
+  <script>
+    var steps=[['1',4],['2',8],['3',12],['4',16],['5',24],['6',32],['7',48],['8',64],['9',96]];
+    document.getElementById('w').innerHTML=steps.map(function(s){
+      return '<div class="col"><div class="bar" style="height:'+s[1]+'px"></div><span class="k">s-'+s[0]+'</span><span class="v">'+s[1]+'</span></div>';
+    }).join('');
+  </script>
+</body>
+</html>

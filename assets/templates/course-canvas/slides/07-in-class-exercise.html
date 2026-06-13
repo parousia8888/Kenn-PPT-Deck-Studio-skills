@@ -1,0 +1,65 @@
+<!-- @dsCard group="Slides" viewport="1280x720" name="07 · In-Class Exercise" subtitle="Distinct rhythm: dashed sage frame, prompt, fill-in blanks, timer" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>In-Class Exercise</title>
+<link rel="stylesheet" href="../styles.css">
+<link rel="stylesheet" href="./deck.css">
+<style>
+  html,body{margin:0;height:100%;}
+  body{background:#2A2723;display:grid;place-items:center;}
+  .timer{ display:inline-flex; flex-direction:column; align-items:center; justify-content:center;
+          width:96px; height:96px; border:3px solid var(--sage); border-radius:50%;
+          font-family:var(--font-mono); color:var(--sage-deep); }
+  .timer b{ font-size:30px; line-height:1; }
+  .timer small{ font-size:11px; letter-spacing:.14em; margin-top:3px; }
+  .q{ display:flex; gap:18px; align-items:baseline; }
+  .q__n{ font-family:var(--font-mono); font-size:var(--fs-lead); font-weight:700; color:var(--sage-deep); }
+  .ans-row{ display:flex; align-items:center; gap:18px; margin-top:18px; }
+</style>
+</head>
+<body>
+<section class="cc-slide cc-slide--exercise cc-reveal-on" data-bg="teaching" data-state="prompt" data-screen-label="In-Class Exercise">
+  <div class="cc-row cc-between" style="align-items:flex-start;">
+    <div>
+      <span class="cc-eyebrow cc-eyebrow--sage">IN-CLASS EXERCISE · 03</span>
+      <h1 class="cc-title" style="margin-top:10px;">Try it on your own</h1>
+      <p class="cc-small cc-dim" style="margin:8px 0 0;">Work alone for 4 minutes, then compare with a neighbour.</p>
+    </div>
+    <div class="timer"><b>04:00</b><small>MINUTES</small></div>
+  </div>
+
+  <div class="cc-exercise-frame" style="margin-top:24px;">
+    <div class="cc-stack cc-stack-8">
+      <div class="q" data-reveal="1">
+        <span class="q__n">Q1</span>
+        <div class="cc-prompt">A bag of flour is labelled 1000 g. The filling machine has μ = 1000 g and σ = 12 g.
+        A bag weighing 976 g is <span class="cc-blank" data-answer>2</span> standard deviations below the mean.</div>
+      </div>
+      <hr class="cc-rule cc-rule--dotted" style="margin:0;">
+      <div class="q" data-reveal="2">
+        <span class="q__n">Q2</span>
+        <div class="cc-prompt">Using the 68–95–99.7 rule, about <span class="cc-blank">&nbsp;</span>% of bags weigh
+        between 988 g and 1012 g.</div>
+      </div>
+    </div>
+    <div class="ans-row" data-reveal="3">
+      <button class="cc-answer-btn" data-reveal-answer aria-pressed="false"><span data-label>Reveal answer</span></button>
+      <span class="cc-small cc-dim" data-answer>Q1: z = (976 − 1000) / 12 = −2. Q2: about 68%.</span>
+    </div>
+  </div>
+
+  <div class="cc-cue" style="margin-top:18px;border-top-color:var(--sage);">
+    <span class="cc-cue__label">Teacher</span>
+    <span>Circulate while they work. Look for students who forget to divide by σ — that's the common slip we'll cover next.</span>
+  </div>
+
+  <div class="cc-footer">
+    <span class="cc-footer__brand"><span class="cc-footer__dot"></span>COURSE CANVAS</span>
+    <span>STAT 1 · LESSON 04 · EXERCISE</span>
+  </div>
+</section>
+<script src="./cc-bg.js"></script>
+</body>
+</html>

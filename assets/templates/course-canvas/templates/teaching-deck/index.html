@@ -1,0 +1,155 @@
+<!-- @template name="Teaching deck" description="A Course Canvas lesson deck: cover, objectives, concept, step-by-step, exercise and recap — warm paper, editorial type, subtle reveal motion." -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Course Canvas — Teaching deck</title>
+<style>
+  html,body{margin:0;background:#211D18;}
+  deck-stage:not(:defined){visibility:hidden;}
+  deck-stage section{background:#211D18;}
+  .cc-slide{box-shadow:none;}
+</style>
+<!-- React UMD before the DS bundle (the bundle calls React.createElement) -->
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="./ds-base.js"></script>
+</head>
+<body>
+<deck-stage width="1280" height="720">
+
+  <!-- 1 · COVER -->
+  <section data-recipe="lesson-cover">
+    <div class="cc-slide" data-bg="cover">
+      <div class="cc-grid">
+        <div class="cc-margin" style="display:flex;flex-direction:column;height:100%;">
+          <span class="cc-tab cc-tab--ox">LESSON&nbsp;01</span>
+          <div class="cc-numtab" style="margin-top:14px;">01<small>of 12 · Unit I</small></div>
+          <span class="cc-clock cc-push">60 MIN · LECTURE</span>
+        </div>
+        <div class="cc-main" style="display:flex;flex-direction:column;height:100%;">
+          <span class="cc-eyebrow" data-reveal="1">COURSE NAME — STRAND</span>
+          <hr class="cc-mark" style="margin-top:20px;" data-reveal="1">
+          <h1 class="cc-title cc-title--display" data-reveal="2">Your lesson<br>title here</h1>
+          <p class="cc-subtitle" data-reveal="3" style="max-width:22ch;">One sentence on why this lesson matters to the learner.</p>
+          <div class="cc-row cc-between cc-push" style="align-items:flex-end;" data-reveal="4">
+            <div class="cc-stack cc-stack-2"><span class="cc-meta">INSTRUCTOR</span><span style="font-family:var(--font-display);font-size:var(--fs-h3);white-space:nowrap;">Your name</span></div>
+            <span class="cc-meta">TERM · WEEK 0</span>
+          </div>
+        </div>
+      </div>
+      <div class="cc-footer"><span class="cc-footer__brand"><span class="cc-footer__dot"></span>COURSE CANVAS</span><span>COURSE · LESSON 01 · COVER</span></div>
+    </div>
+  </section>
+
+  <!-- 2 · OBJECTIVES -->
+  <section data-recipe="objective-list">
+    <div class="cc-slide" data-bg="concept">
+      <div class="cc-grid">
+        <div class="cc-margin" style="display:flex;flex-direction:column;height:100%;">
+          <span class="cc-eyebrow">§ 01.1</span>
+          <div class="cc-numtab" style="margin-top:14px;font-size:96px;">01</div>
+          <span class="cc-clock cc-push">FIRST 6 MIN</span>
+        </div>
+        <div class="cc-main" style="display:flex;flex-direction:column;height:100%;">
+          <span class="cc-eyebrow">LEARNING OBJECTIVES</span>
+          <h1 class="cc-title" style="margin-top:14px;">By the end, you'll be able to&hellip;</h1>
+          <hr class="cc-rule cc-rule--ink" style="max-width:520px;">
+          <ol class="cc-check" style="margin-top:6px;max-width:700px;">
+            <li data-reveal="1"><span class="cc-check__num">01</span><div><span data-underline><b>Describe</b></span> the first key idea.</div></li>
+            <li data-reveal="2"><span class="cc-check__num">02</span><div><span data-underline><b>Apply</b></span> the method to a simple case.</div></li>
+            <li data-reveal="3"><span class="cc-check__num">03</span><div><span data-underline><b>Decide</b></span> when it does and doesn't fit.</div></li>
+          </ol>
+          <div class="cc-cue cc-push" style="max-width:680px;"><span class="cc-cue__label">Teaching cue</span><span>Read each aloud; ask which feels hardest.</span></div>
+        </div>
+      </div>
+      <div class="cc-footer"><span class="cc-footer__brand"><span class="cc-footer__dot"></span>COURSE CANVAS</span><span>COURSE · LESSON 01 · OBJECTIVES</span></div>
+    </div>
+  </section>
+
+  <!-- 3 · CONCEPT DEFINITION -->
+  <section data-recipe="concept-definition">
+    <div class="cc-slide" data-bg="concept">
+      <div class="cc-grid">
+        <div class="cc-margin" style="display:flex;flex-direction:column;height:100%;">
+          <span class="cc-tab cc-tab--ox">DEFINITION</span>
+          <div class="cc-numtab" style="margin-top:14px;">D1</div>
+          <div class="cc-marginnote cc-marginnote--ox" style="margin-top:24px;"><span class="cc-marginnote__label">Aside</span>A short note in the margin — etymology, history, or a caution.</div>
+        </div>
+        <div class="cc-main" style="display:flex;flex-direction:column;height:100%;">
+          <span class="cc-eyebrow">KEY CONCEPT</span>
+          <h1 class="cc-title" style="margin-top:12px;" data-reveal="1">The term being defined</h1>
+          <hr class="cc-mark" style="margin-top:18px;">
+          <div class="cc-def" style="margin-top:8px;max-width:720px;" data-reveal="2">
+            <span class="cc-def__term">DEFINITION · n.</span>
+            <span class="cc-def__body">A clear, one-sentence definition with the <span class="cc-key">key term</span> highlighted so it anchors the slide.</span>
+          </div>
+          <div class="cc-callout cc-callout--sage cc-push" style="max-width:560px;" data-reveal="3"><div class="cc-callout__label">In plain words</div>Say the same idea again, simply.</div>
+        </div>
+      </div>
+      <div class="cc-footer"><span class="cc-footer__brand"><span class="cc-footer__dot"></span>COURSE CANVAS</span><span>COURSE · LESSON 01 · DEFINITION</span></div>
+    </div>
+  </section>
+
+  <!-- 4 · STEP-BY-STEP -->
+  <section data-recipe="step-explanation">
+    <div class="cc-slide" data-bg="teaching">
+      <div class="cc-grid cc-grid--wide">
+        <div class="cc-margin" style="display:flex;flex-direction:column;height:100%;"><span class="cc-tab cc-tab--ox">METHOD</span><div class="cc-numtab" style="margin-top:14px;font-size:84px;">M1</div><span class="cc-clock cc-push">WORK ALONG</span></div>
+        <div class="cc-main" style="display:flex;flex-direction:column;height:100%;">
+          <span class="cc-eyebrow">STEP-BY-STEP</span>
+          <h1 class="cc-title" style="margin-top:10px;">The procedure, one step at a time</h1>
+          <hr class="cc-rule cc-rule--ink">
+          <ol class="cc-steps" style="max-width:680px;">
+            <li data-step data-reveal="1"><div><span class="cc-steps__title">First step</span><span class="cc-steps__body">What to do, in one line.</span></div></li>
+            <li data-step data-reveal="2"><div><span class="cc-steps__title">Second step</span><span class="cc-steps__body">The next move.</span></div></li>
+            <li data-step data-reveal="3"><div><span class="cc-steps__title">Third step</span><span class="cc-steps__body">And the result.</span></div></li>
+          </ol>
+        </div>
+      </div>
+      <div class="cc-footer"><span class="cc-footer__brand"><span class="cc-footer__dot"></span>COURSE CANVAS</span><span>COURSE · LESSON 01 · METHOD</span></div>
+    </div>
+  </section>
+
+  <!-- 5 · IN-CLASS EXERCISE -->
+  <section data-recipe="exercise">
+    <div class="cc-slide cc-slide--exercise" data-bg="teaching" data-state="prompt">
+      <div class="cc-row cc-between" style="align-items:flex-start;">
+        <div><span class="cc-eyebrow cc-eyebrow--sage">IN-CLASS EXERCISE · 01</span><h1 class="cc-title" style="margin-top:10px;">Try it on your own</h1></div>
+        <span class="cc-tab cc-tab--sage">3 MIN</span>
+      </div>
+      <div class="cc-exercise-frame" style="margin-top:22px;">
+        <div class="cc-prompt">Write the question here. Leave a <span class="cc-blank">&nbsp;</span> for the answer the class fills in.</div>
+        <div style="display:flex;align-items:center;gap:18px;margin-top:18px;">
+          <button class="cc-answer-btn" data-reveal-answer aria-pressed="false"><span data-label>Reveal answer</span></button>
+          <span class="cc-small cc-dim" data-answer>The worked answer appears here.</span>
+        </div>
+      </div>
+      <div class="cc-cue" style="margin-top:18px;border-top-color:var(--sage);"><span class="cc-cue__label">Teacher</span><span>Let them attempt before revealing.</span></div>
+      <div class="cc-footer"><span class="cc-footer__brand"><span class="cc-footer__dot"></span>COURSE CANVAS</span><span>COURSE · LESSON 01 · EXERCISE</span></div>
+    </div>
+  </section>
+
+  <!-- 6 · RECAP -->
+  <section data-recipe="recap">
+    <div class="cc-slide" data-bg="recap">
+      <div class="cc-row cc-between" style="align-items:flex-end;">
+        <div><span class="cc-eyebrow cc-eyebrow--sage">RECAP — TODAY IN ONE PAGE</span><h1 class="cc-title" style="margin-top:10px;">What to take away</h1></div>
+        <span class="cc-tab cc-tab--ghost">HANDOUT</span>
+      </div>
+      <hr class="cc-rule cc-rule--ink" style="margin:16px 0 26px;">
+      <div class="cc-stack cc-stack-8" style="max-width:900px;">
+        <div style="font-size:var(--fs-h3);line-height:1.4;" data-reveal="1">Takeaway one, with the <span data-underline><b>key term</b></span> underlined.</div>
+        <div style="font-size:var(--fs-h3);line-height:1.4;" data-reveal="2">Takeaway two — the <span data-underline><b>method</b></span> in a sentence.</div>
+        <div style="font-size:var(--fs-h3);line-height:1.4;" data-reveal="3">Takeaway three — when it <span data-underline><b>applies</b></span>.</div>
+      </div>
+      <div class="cc-footer"><span class="cc-footer__brand"><span class="cc-footer__dot"></span>COURSE CANVAS</span><span>COURSE · LESSON 01 · RECAP</span></div>
+    </div>
+  </section>
+
+</deck-stage>
+
+<script src="../../decks/deck-stage.js"></script>
+</body>
+</html>

@@ -1,0 +1,72 @@
+<!-- @dsCard group="Slides" viewport="1280x720" name="05 · Before / After" subtitle="Left evidence, divider draws, right evidence" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Proof Atlas — Before / After</title>
+<link rel="stylesheet" href="../styles.css">
+<link rel="stylesheet" href="../assets/atlas-anim.css">
+<link rel="stylesheet" href="slide-base.css">
+<script src="../assets/atlas-motion.js"></script>
+</head>
+<body>
+<div class="slide atlas-stage" data-stage data-autoplay data-atlas-bg="quiet">
+  <div class="slide-inner">
+    <div class="slide-head">
+      <div class="brand"><span class="xh"><i></i></span><span class="nm">Proof Atlas</span></div>
+      <div class="head-meta">
+        <span class="tag accent">Comparison</span>
+        <span class="coord">BASELINE → 2026-Q2</span>
+      </div>
+    </div>
+
+    <div class="slide-body">
+      <h1 data-anim="mask" data-seq="0" class="title" style="font-size:36px;margin-bottom:26px;">Before deployment vs. after</h1>
+
+      <div class="cmp">
+        <!-- BEFORE -->
+        <div class="cmp-col">
+          <div data-anim="fade" data-seq="1" class="cmp-label">Before · Baseline period</div>
+          <div data-anim="fade" data-seq="2" class="num-xl" style="font-size:96px;">1.0<small>×</small></div>
+          <div data-anim="fade" data-seq="2" class="metric label" style="margin-top:6px;min-height:46px;">Reference throughput across 12 regions.</div>
+          <div data-anim="fade" data-seq="3" class="cmp-stats">
+            <div><span class="cs-n">62%</span><span class="cs-l">verified outcomes</span></div>
+            <div><span class="cs-n">15.8d</span><span class="cs-l">median resolution</span></div>
+          </div>
+          <span data-anim="source" class="source" style="margin-top:18px;">Source · baseline audit · SRC-1442</span>
+        </div>
+
+        <div data-anim="draw-y" data-seq="4" class="cmp-divider"></div>
+
+        <!-- AFTER -->
+        <div class="cmp-col">
+          <div data-anim="fade" data-seq="5" class="cmp-label accent">After · 2026-Q2</div>
+          <div data-anim="fade" data-seq="6" class="num-xl" style="font-size:96px;color:var(--blue);">2.4<small style="color:var(--blue);opacity:.6;">×</small></div>
+          <div data-anim="fade" data-seq="6" class="metric label" style="margin-top:6px;min-height:46px;">Throughput after full deployment <span class="delta up" style="white-space:nowrap;">▴ +140%</span></div>
+          <div data-anim="fade" data-seq="7" class="cmp-stats">
+            <div><span class="cs-n">84%</span><span class="cs-l">verified outcomes</span></div>
+            <div><span class="cs-n">11.6d</span><span class="cs-l">median resolution</span></div>
+          </div>
+          <span data-anim="source" class="source" style="margin-top:18px;">Source · program telemetry · SRC-2087</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="slide-foot">
+      <span>Field Program Review · 2026</span>
+      <span class="seq">Comparison · 05 / 10</span>
+    </div>
+  </div>
+</div>
+<style>
+  .cmp { display: grid; grid-template-columns: 1fr 1px 1fr; gap: 48px; flex: 1; align-items: start; }
+  .cmp-divider { width: 1px; background: var(--ink); align-self: stretch; transform-origin: top center; }
+  .cmp-col { display: flex; flex-direction: column; }
+  .cmp-label { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--gray-2); margin-bottom: 22px; }
+  .cmp-label.accent { color: var(--blue); }
+  .cmp-stats { display: flex; gap: 40px; margin-top: 28px; padding-top: 18px; border-top: 1px solid var(--rule); }
+  .cmp-stats .cs-n { display: block; font-family: var(--font-display); font-weight: 300; font-size: 30px; color: var(--ink); letter-spacing: -0.01em; }
+  .cmp-stats .cs-l { display: block; font-family: var(--font-mono); font-size: 9.5px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--gray-2); margin-top: 6px; }
+</style>
+</body>
+</html>

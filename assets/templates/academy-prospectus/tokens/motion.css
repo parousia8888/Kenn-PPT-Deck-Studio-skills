@@ -1,0 +1,21 @@
+/* ----------------------------------------------------------------------------
+   Academy Prospectus — Motion tokens
+   Page-like, warm, editorial. Gentle fades and soft reveals — never techy.
+   Durations are deliberately slow; easing settles like a turning page.
+---------------------------------------------------------------------------- */
+
+:root {
+  /* — Durations — */
+  --dur-fast:  360ms;   /* @kind other */
+  --dur-med:   680ms;   /* @kind other */
+  --dur-slow:  1050ms;  /* @kind other */
+  --dur-ink:   1400ms;   /* @kind other */ /* ink-on-paper title reveal */
+
+  /* — Easing — */
+  --ease-page: cubic-bezier(0.22, 0.61, 0.36, 1);  /* @kind other */ /* soft settle, page turn */
+  --ease-ink:  cubic-bezier(0.16, 1, 0.30, 1);     /* @kind other */ /* ink bloom, long tail */
+  --ease-calm: cubic-bezier(0.40, 0.00, 0.20, 1);  /* @kind other */ /* even, unhurried */
+
+  /* — Stagger steps for sequenced reveals (teacher cards, plan columns) — */
+  --stagger:   120ms;   /* @kind other */
+}

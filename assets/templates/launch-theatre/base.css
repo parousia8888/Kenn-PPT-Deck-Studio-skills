@@ -1,0 +1,102 @@
+/* Launch Theatre — base layer
+ * Stage reset + a small set of primitives shared by cards, slides and kits.
+ * Everything references tokens; no hard-coded colors.
+ */
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  background: var(--bg-stage);
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  font-size: var(--text-body);
+  line-height: var(--leading-body);
+  font-weight: var(--w-regular);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+::selection { background: rgba(var(--accent-rgb), 0.30); color: var(--text-peak); }
+
+/* ---------- Type primitives ---------- */
+.lt-display {
+  font-family: var(--font-display);
+  font-weight: var(--w-thin);
+  letter-spacing: var(--track-tight);
+  line-height: var(--leading-none);
+  color: var(--text-primary);
+  text-wrap: balance;
+}
+.lt-title {
+  font-family: var(--font-display);
+  font-weight: var(--w-light);
+  font-size: var(--text-title);
+  letter-spacing: var(--track-display);
+  line-height: var(--leading-tight);
+}
+.lt-lead {
+  font-weight: var(--w-light);
+  font-size: var(--text-lead);
+  line-height: var(--leading-snug);
+  color: var(--text-secondary);
+  max-width: var(--measure-body);
+  text-wrap: pretty;
+}
+.lt-body { max-width: var(--measure-body); color: var(--text-secondary); text-wrap: pretty; }
+
+/* The keynote metadata label — tracked uppercase mono. The brand's signature. */
+.lt-mono {
+  font-family: var(--font-mono);
+  font-size: var(--text-micro);
+  font-weight: var(--w-medium);
+  letter-spacing: var(--track-mono);
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+.lt-mono--accent { color: var(--accent); }
+
+/* The kicker: accent tick + tracked label. Marks the act / slide kind. */
+.lt-kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-3);
+  font-family: var(--font-mono);
+  font-size: var(--text-micro);
+  font-weight: var(--w-medium);
+  letter-spacing: var(--track-mono);
+  text-transform: uppercase;
+  color: var(--text-secondary);
+}
+.lt-kicker::before {
+  content: "";
+  width: 22px;
+  height: 1px;
+  background: var(--accent);
+  box-shadow: var(--glow-spark);
+}
+
+.accent { color: var(--accent); }
+.peak { color: var(--text-peak); }
+
+/* ---------- Stage frame (1920×1080 canonical) ---------- */
+.lt-stage {
+  position: relative;
+  width: var(--stage-w);
+  height: var(--stage-h);
+  background: var(--bg-stage);
+  overflow: hidden;
+  color: var(--text-primary);
+}
+.lt-stage__safe {
+  position: absolute;
+  inset: var(--margin-stage) var(--margin-stage-x);
+  display: flex;
+  flex-direction: column;
+}
+
+/* hairline rule */
+.lt-rule { height: 1px; background: var(--hairline); border: 0; width: 100%; }
+.lt-rule--accent { background: var(--accent); box-shadow: var(--glow-soft); }

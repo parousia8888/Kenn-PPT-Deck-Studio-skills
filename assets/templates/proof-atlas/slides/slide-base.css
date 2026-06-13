@@ -1,0 +1,110 @@
+/* Proof Atlas — Slide chrome shared by all ten layouts.
+   1280×720 reference frame, coordinate gutter, hairline header/footer.
+   Link AFTER styles.css and assets/atlas-anim.css. */
+
+*, *::before, *::after { box-sizing: border-box; }
+html, body { margin: 0; background: #cfccc2; }
+body { display: flex; align-items: center; justify-content: center; min-height: 100vh; }
+
+.slide {
+  position: relative;
+  width: 1280px;
+  height: 720px;
+  background: var(--paper-0);
+  color: var(--ink);
+  overflow: hidden;
+  font-family: var(--font-body);
+}
+
+/* content sits above the canvas field */
+.slide-inner {
+  position: relative;
+  z-index: 1;
+  height: 100%;
+  padding: 38px 56px 30px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ---------- Brand mark ---------- */
+.xh { position: relative; width: 18px; height: 18px; flex: none; }
+.xh::before, .xh::after { content: ""; position: absolute; background: var(--blue); }
+.xh::before { left: 50%; top: 0; width: 1.5px; height: 100%; transform: translateX(-50%); }
+.xh::after { top: 50%; left: 0; height: 1.5px; width: 100%; transform: translateY(-50%); }
+.xh i { position: absolute; left: 50%; top: 50%; width: 7px; height: 7px; border: 1.5px solid var(--blue); border-radius: 50%; transform: translate(-50%,-50%); background: var(--paper-0); }
+
+/* ---------- Header ---------- */
+.slide-head {
+  display: flex; align-items: center; justify-content: space-between;
+  padding-bottom: 12px; border-bottom: 1px solid var(--rule); flex: none;
+}
+.brand { display: flex; align-items: center; gap: 11px; }
+.brand .nm { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.28em; text-transform: uppercase; color: var(--ink); }
+.head-meta { display: flex; align-items: center; gap: 20px; }
+
+.tag {
+  font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.14em;
+  text-transform: uppercase; color: var(--gray-1);
+  border: 1px solid var(--rule); padding: 5px 9px; border-radius: var(--r-1);
+  background: var(--paper-pure); white-space: nowrap;
+}
+.tag.accent { color: var(--blue); border-color: var(--blue); }
+.tag.solid { color: var(--paper-pure); background: var(--ink); border-color: var(--ink); }
+.tag.risk { color: var(--oxide); border-color: var(--oxide); }
+.coord { font-family: var(--font-mono); font-size: 10.5px; letter-spacing: 0.06em; color: var(--blue); white-space: nowrap; }
+
+/* ---------- Body ---------- */
+.slide-body { flex: 1; display: flex; flex-direction: column; min-height: 0; padding-top: 26px; }
+
+.kicker { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--blue); }
+.title { font-family: var(--font-display); font-weight: 300; font-size: 46px; line-height: 1.06; letter-spacing: -0.015em; color: var(--ink); margin: 0; text-wrap: balance; }
+.title b { font-weight: 600; }
+.lead { font-family: var(--font-body); font-size: 18px; line-height: 1.5; color: var(--gray-1); max-width: 60ch; margin: 0; text-wrap: pretty; }
+
+/* ---------- Footer ---------- */
+.slide-foot {
+  display: flex; align-items: center; justify-content: space-between;
+  border-top: 1px solid var(--rule); padding-top: 11px; flex: none;
+  font-family: var(--font-mono); font-size: 9.5px; letter-spacing: 0.1em;
+  text-transform: uppercase; color: var(--gray-3);
+}
+.slide-foot .seq { color: var(--gray-1); }
+
+/* ---------- Common helpers ---------- */
+.rule-v { width: 1px; background: var(--rule); align-self: stretch; }
+.num-xl { font-family: var(--font-display); font-weight: 200; font-size: 112px; line-height: 0.92; letter-spacing: -0.03em; color: var(--ink); font-variant-numeric: tabular-nums; }
+.num-xl small { font-size: 0.32em; font-weight: 300; color: var(--gray-1); }
+.source { display: flex; align-items: center; gap: 7px; font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gray-3); }
+.source::before { content: ""; width: 5px; height: 5px; background: var(--blue); flex: none; }
+
+.cell { background: var(--paper-pure); border: 1px solid var(--rule); display: flex; flex-direction: column; }
+.cell-hd { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 7px 10px; border-bottom: 1px solid var(--rule); font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gray-2); }
+.cell-bd { padding: 12px; flex: 1; }
+
+/* ---------- Image / evidence slot ---------- */
+.img-slot {
+  position: relative; background: var(--paper-2); border: 1px solid var(--rule);
+  overflow: hidden; display: flex; align-items: center; justify-content: center;
+}
+.img-slot .ph { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--gray-3); }
+/* corner crop marks */
+.img-slot::before, .img-slot::after { content: ""; position: absolute; width: 10px; height: 10px; border: 1px solid var(--gray-2); opacity: 0.5; }
+.img-slot::before { top: 6px; left: 6px; border-right: none; border-bottom: none; }
+.img-slot::after { bottom: 6px; right: 6px; border-left: none; border-top: none; }
+
+/* ---------- Checklist row ---------- */
+.checkrow { display: flex; align-items: flex-start; gap: 14px; padding: 14px 0; border-bottom: 1px solid var(--rule-faint); }
+.checkbox { width: 16px; height: 16px; border: 1.5px solid var(--blue); flex: none; margin-top: 2px; position: relative; }
+.checkbox.done::after { content: ""; position: absolute; inset: 3px; background: var(--blue); }
+.checkrow .ix { font-family: var(--font-mono); font-size: 11px; color: var(--gray-3); width: 28px; flex: none; margin-top: 3px; }
+
+/* ---------- Flow arrow ---------- */
+.arrow { position: relative; height: 1.5px; background: var(--ink); align-self: center; }
+.arrow::after { content: ""; position: absolute; right: -1px; top: 50%; width: 7px; height: 7px; border-top: 1.5px solid var(--ink); border-right: 1.5px solid var(--ink); transform: translateY(-50%) rotate(45deg); }
+
+/* ---------- Metric block ---------- */
+.metric { display: flex; flex-direction: column; gap: 8px; }
+.metric .label { font-family: var(--font-body); font-size: 13px; color: var(--gray-1); line-height: 1.4; max-width: 28ch; }
+.delta { font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.04em; }
+.delta.up { color: var(--green); }
+.delta.down { color: var(--oxide); }

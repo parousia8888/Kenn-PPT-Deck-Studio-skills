@@ -1,0 +1,175 @@
+/* ============================================================
+   Course Canvas — component primitives
+   Styling for the reusable React components (Button, Badge, Card,
+   Callout, KeyTerm, NumberTab, MarginNote, StepList, RuleHeading).
+   Prefixed .ccc-* so they never collide with the slide-layout
+   classes in slides/deck.css. Imported by styles.css, so consumers
+   get them with the one stylesheet link. All values come from
+   tokens; hover/press/focus states live here (inline styles can't
+   express them).
+   ============================================================ */
+
+/* ---------------- Button ---------------- */
+.ccc-btn {
+  display: inline-flex; align-items: center; justify-content: center;
+  gap: var(--sp-2);
+  font-family: var(--font-sans);
+  font-weight: var(--fw-semibold);
+  font-size: var(--fs-small);
+  line-height: 1;
+  letter-spacing: var(--ls-tight);
+  border: var(--bw-rule) solid transparent;
+  border-radius: var(--radius-md);
+  padding: 12px 20px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background var(--dur-fast) var(--ease-paper),
+              color var(--dur-fast) var(--ease-paper),
+              border-color var(--dur-fast) var(--ease-paper),
+              transform var(--dur-fast) var(--ease-paper);
+}
+.ccc-btn:active { transform: translateY(1px); }
+.ccc-btn:focus-visible { outline: none; box-shadow: var(--ring); }
+.ccc-btn[disabled], .ccc-btn[aria-disabled="true"] {
+  opacity: 0.45; cursor: not-allowed; pointer-events: none;
+}
+/* sizes */
+.ccc-btn--sm { font-size: var(--fs-meta); padding: 8px 14px; }
+.ccc-btn--lg { font-size: var(--fs-body); padding: 15px 28px; }
+/* variants */
+.ccc-btn--primary { background: var(--oxblood); color: var(--paper-raised); border-color: var(--oxblood); }
+.ccc-btn--primary:hover { background: var(--oxblood-deep); border-color: var(--oxblood-deep); }
+.ccc-btn--secondary { background: transparent; color: var(--ink); border-color: var(--ink); }
+.ccc-btn--secondary:hover { background: var(--ink); color: var(--paper-raised); }
+.ccc-btn--sage { background: var(--sage); color: var(--paper-raised); border-color: var(--sage); }
+.ccc-btn--sage:hover { background: var(--sage-deep); border-color: var(--sage-deep); }
+.ccc-btn--ghost { background: transparent; color: var(--graphite); border-color: transparent; }
+.ccc-btn--ghost:hover { background: var(--paper-sunken); color: var(--ink); }
+
+/* ---------------- Badge / Tag ---------------- */
+.ccc-badge {
+  display: inline-flex; align-items: center; gap: var(--sp-2);
+  font-family: var(--font-mono); font-weight: var(--fw-medium);
+  font-size: var(--fs-micro); letter-spacing: var(--ls-label);
+  text-transform: uppercase;
+  padding: 4px 10px; border-radius: var(--radius-pill);
+  white-space: nowrap;
+}
+.ccc-badge--ink   { background: var(--ink); color: var(--paper-raised); }
+.ccc-badge--ox    { background: var(--oxblood); color: var(--paper-raised); }
+.ccc-badge--sage  { background: var(--sage); color: var(--paper-raised); }
+.ccc-badge--straw { background: var(--straw); color: var(--ink-soft); }
+.ccc-badge--ghost { background: transparent; color: var(--graphite-mute);
+                    border: var(--bw-hair) solid var(--rule-strong); }
+.ccc-badge--ok    { background: var(--sage-tint); color: var(--sage-deep); }
+.ccc-badge--error { background: var(--oxblood-tint); color: var(--oxblood-deep); }
+
+/* difficulty dots (for Tag level) */
+.ccc-dots { display: inline-flex; gap: 3px; }
+.ccc-dots i { width: 6px; height: 6px; border-radius: 50%; background: currentColor; opacity: 0.3; }
+.ccc-dots i.on { opacity: 1; }
+
+/* ---------------- Card (concept card) ---------------- */
+.ccc-card {
+  background: var(--surface-card);
+  border: var(--bw-hair) solid var(--rule);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-card);
+  padding: var(--sp-6);
+}
+.ccc-card--top      { border-top: var(--bw-mark) solid var(--oxblood); }
+.ccc-card--top-sage { border-top: var(--bw-mark) solid var(--sage); }
+.ccc-card__kicker {
+  font-family: var(--font-mono); font-size: var(--fs-micro);
+  letter-spacing: var(--ls-label); text-transform: uppercase;
+  color: var(--graphite-mute); margin-bottom: var(--sp-2);
+}
+.ccc-card__title {
+  font-family: var(--font-display); font-weight: var(--fw-semibold);
+  font-size: var(--fs-h3); line-height: var(--lh-snug);
+  color: var(--ink-soft); margin: 0;
+}
+
+/* ---------------- Callout ---------------- */
+.ccc-callout {
+  padding: var(--sp-4) var(--sp-5);
+  border-left: var(--bw-mark) solid var(--oxblood);
+  background: var(--oxblood-tint);
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+}
+.ccc-callout__label {
+  font-family: var(--font-mono); font-size: var(--fs-micro);
+  letter-spacing: var(--ls-label); text-transform: uppercase;
+  font-weight: var(--fw-medium); color: var(--oxblood); margin-bottom: var(--sp-1);
+}
+.ccc-callout--sage  { border-left-color: var(--sage); background: var(--sage-tint); }
+.ccc-callout--sage  .ccc-callout__label { color: var(--sage-deep); }
+.ccc-callout--note  { border-left-color: var(--ink); background: var(--paper-raised); }
+.ccc-callout--note  .ccc-callout__label { color: var(--graphite-mute); }
+.ccc-callout--straw { border-left-color: var(--straw-deep); background: var(--straw-soft); }
+.ccc-callout--straw .ccc-callout__label { color: var(--straw-deep); }
+
+/* ---------------- KeyTerm ---------------- */
+.ccc-key {
+  background-color: transparent;
+  color: inherit;
+  background-image: linear-gradient(var(--straw), var(--straw));
+  background-repeat: no-repeat; background-position: 0 88%; background-size: 100% 42%;
+  padding: 0 2px; font-weight: var(--fw-medium);
+}
+.ccc-key--underline { background: none; border-bottom: var(--bw-rule) solid var(--straw-deep); padding-bottom: 1px; }
+.ccc-key--ox { background: none; color: var(--oxblood); font-weight: var(--fw-medium); }
+
+/* ---------------- NumberTab ---------------- */
+.ccc-numtab {
+  font-family: var(--font-display); font-weight: var(--fw-semibold);
+  line-height: 0.86; color: var(--oxblood); letter-spacing: var(--ls-display);
+}
+.ccc-numtab--sage { color: var(--sage); }
+.ccc-numtab__label {
+  display: block; font-family: var(--font-mono); font-size: var(--fs-meta);
+  letter-spacing: var(--ls-tab); text-transform: uppercase;
+  font-weight: var(--fw-medium); color: var(--graphite-mute); margin-top: var(--sp-2);
+}
+
+/* ---------------- MarginNote ---------------- */
+.ccc-marginnote {
+  font-size: var(--fs-small); line-height: 1.42; color: var(--graphite);
+  max-width: var(--measure-note); padding-left: var(--sp-4);
+  border-left: var(--bw-rule) solid var(--rule-strong);
+}
+.ccc-marginnote--ox   { border-left-color: var(--oxblood); }
+.ccc-marginnote--sage { border-left-color: var(--sage); }
+.ccc-marginnote__label {
+  display: block; font-family: var(--font-mono); font-size: var(--fs-micro);
+  letter-spacing: var(--ls-label); text-transform: uppercase;
+  color: var(--graphite-mute); margin-bottom: var(--sp-1);
+}
+
+/* ---------------- StepList ---------------- */
+.ccc-steps { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--sp-5); counter-reset: ccstep; }
+.ccc-steps > li { display: grid; grid-template-columns: 44px 1fr; column-gap: var(--sp-4); align-items: start; }
+.ccc-steps > li::before {
+  counter-increment: ccstep; content: counter(ccstep, decimal-leading-zero);
+  font-family: var(--font-mono); font-size: var(--fs-lead); font-weight: var(--fw-bold);
+  color: var(--oxblood); line-height: 1.1;
+  border-top: var(--bw-rule) solid var(--oxblood); padding-top: var(--sp-1);
+}
+.ccc-steps--sage > li::before { color: var(--sage); border-top-color: var(--sage); }
+.ccc-steps__title { font-weight: var(--fw-semibold); color: var(--ink-soft); display: block; margin-bottom: var(--sp-1); }
+.ccc-steps__body  { font-size: var(--fs-small); color: var(--graphite); }
+
+/* ---------------- RuleHeading ---------------- */
+.ccc-rulehead__eyebrow {
+  font-family: var(--font-mono); font-size: var(--fs-meta);
+  letter-spacing: var(--ls-tab); text-transform: uppercase;
+  color: var(--oxblood); display: inline-block;
+}
+.ccc-rulehead__mark { width: 56px; height: var(--bw-mark); background: var(--oxblood); border: 0; margin: var(--sp-4) 0; }
+.ccc-rulehead__title {
+  font-family: var(--font-display); font-weight: var(--fw-semibold);
+  font-size: var(--fs-h2); line-height: var(--lh-snug);
+  letter-spacing: var(--ls-tight); color: var(--ink); margin: 0;
+}
+.ccc-rulehead--sage .ccc-rulehead__eyebrow { color: var(--sage); }
+.ccc-rulehead--sage .ccc-rulehead__mark { background: var(--sage); }

@@ -1,0 +1,15 @@
+<svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Course Canvas mark">
+  
+  <rect x="6" y="8" width="52" height="48" rx="3" fill="#FBF7EE" stroke="#211D18" stroke-width="2.5"></rect>
+  
+  <line x1="6" y1="21" x2="58" y2="21" stroke="#8A2D22" stroke-width="2.5"></line>
+  
+  <rect x="6" y="8" width="15" height="13" rx="0" fill="#8A2D22"></rect>
+  <text x="13.5" y="18.5" font-family="&#39;JetBrains Mono&#39;, monospace" font-size="9" font-weight="700" fill="#FBF7EE" text-anchor="middle">01</text>
+  
+  <text x="32" y="49" font-family="Georgia, &#39;Newsreader&#39;, serif" font-size="30" font-weight="600" fill="#211D18" text-anchor="middle">C</text>
+  
+  <line x1="50" y1="30" x2="54" y2="30" stroke="#5E7257" stroke-width="2"></line>
+  <line x1="50" y1="37" x2="54" y2="37" stroke="#5E7257" stroke-width="2"></line>
+  <line x1="50" y1="44" x2="54" y2="44" stroke="#5E7257" stroke-width="2"></line>
+</svg>

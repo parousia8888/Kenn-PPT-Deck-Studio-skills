@@ -1,0 +1,52 @@
+/* Proof Atlas — Typography
+   Display : Manrope (light weights for large numbers)
+   Body    : Inter
+   Mono    : JetBrains Mono (labels, coordinates, source IDs, table headers)
+   Every stack carries Windows + CJK fallbacks. */
+
+:root {
+  /* ---- Families (full fallback stacks) ---- */
+  --font-display: "Manrope", "Inter", "Segoe UI", "Microsoft YaHei UI", "Microsoft YaHei", "Noto Sans SC", Arial, sans-serif;
+  --font-body:    "Inter", "Segoe UI", "Microsoft YaHei UI", "Microsoft YaHei", "Noto Sans SC", Arial, sans-serif;
+  --font-mono:    "JetBrains Mono", "Cascadia Code", "Consolas", "Courier New", monospace;
+  --font-serif:   "Noto Serif SC", "Source Han Serif SC", "SimSun", "Songti SC", Georgia, serif;
+
+  /* ---- Weights ---- */
+  --w-thin:    200; /* @kind font */  /* huge display numerals */
+  --w-light:   300; /* @kind font */  /* large display */
+  --w-regular: 400; /* @kind font */
+  --w-medium:  500; /* @kind font */
+  --w-semi:    600; /* @kind font */
+  --w-bold:    700; /* @kind font */
+
+  /* ---- Display scale (large, light-weight numbers & titles) ---- */
+  --t-display-xxl: 132px;  /* hero metric / cover numeral */
+  --t-display-xl:  92px;
+  --t-display-l:   64px;
+  --t-display-m:   44px;
+
+  /* ---- Text scale ---- */
+  --t-title:    30px;   /* slide title */
+  --t-subtitle: 22px;
+  --t-lead:     19px;   /* lead paragraph */
+  --t-body:     16px;
+  --t-small:    14px;
+  --t-caption:  12.5px;
+
+  /* ---- Mono / label scale ---- */
+  --t-label:    12px;   /* standard mono label */
+  --t-label-sm: 10.5px; /* coordinate / source ID */
+  --t-label-lg: 14px;
+
+  /* ---- Line heights ---- */
+  --lh-tight:   1.04; /* @kind font */  /* display numerals */
+  --lh-snug:    1.18; /* @kind font */  /* titles */
+  --lh-body:    1.5; /* @kind font */   /* paragraphs */
+  --lh-label:   1.2; /* @kind font */
+
+  /* ---- Tracking ---- */
+  --ls-label:    0.14em; /* @kind font */  /* uppercase mono labels */
+  --ls-label-sm: 0.08em; /* @kind font */
+  --ls-display: -0.02em; /* @kind font */  /* tighten large light numerals */
+  --ls-title:   -0.01em; /* @kind font */
+}

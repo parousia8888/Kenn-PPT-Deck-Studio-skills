@@ -1,0 +1,11 @@
+/* Proof Atlas — Webfonts
+   All families are Google-hosted and CDN-loadable. Every consuming stack
+   below ships explicit Windows + macOS + CJK fallbacks so the system stays
+   readable if the webfont fails to load.
+
+   Display sans : Manrope        (rational geometric sans; light for big numbers)
+   Body sans    : Inter          (compact, high legibility at small sizes)
+   Mono         : JetBrains Mono (data labels, coordinates, source IDs, headers)
+*/
+
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&family=Noto+Serif+SC:wght@300;400;600&display=swap');

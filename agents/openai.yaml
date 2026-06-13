@@ -1,0 +1,7 @@
+interface:
+  display_name: "Kenn PPT Deck Studio"
+  short_description: "High-design HTML/PPT deck workflow"
+  brand_color: "#3BE0E6"
+  default_prompt: "Use $kenn-ppt-deck-studio to guide me from style confirmation to a finished single-file HTML deck."
+policy:
+  allow_implicit_invocation: true

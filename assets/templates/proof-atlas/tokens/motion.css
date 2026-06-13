@@ -1,0 +1,28 @@
+/* Proof Atlas — Motion
+   Information-first motion. Bars grow, timelines draw, evidence cells appear
+   in sequence, source notes fade in last. Easings are controlled and precise —
+   the dossier assembling itself, never bouncy or decorative. */
+
+:root {
+  /* ---- Durations ---- */
+  --d-instant: 120ms; /* @kind other */
+  --d-fast:    220ms; /* @kind other */
+  --d-base:    420ms; /* @kind other */
+  --d-slow:    680ms; /* @kind other */
+  --d-draw:    900ms; /* @kind other */  /* axis / timeline draw */
+  --d-push:    1400ms; /* @kind other */ /* slow image push */
+
+  /* ---- Easings ---- */
+  --e-standard: cubic-bezier(0.22, 0.61, 0.36, 1); /* @kind other */  /* precise settle */
+  --e-out:      cubic-bezier(0.16, 1, 0.3, 1); /* @kind other */       /* decisive ease-out */
+  --e-in:       cubic-bezier(0.55, 0, 1, 0.45); /* @kind other */
+  --e-linear:   linear; /* @kind other */                              /* draws & scans */
+  --e-lock:     cubic-bezier(0.83, 0, 0.17, 1); /* @kind other */      /* title "locks in" */
+
+  /* ---- Sequence rhythm (stagger steps between revealed items) ---- */
+  --stagger:    80ms; /* @kind other */
+  --stagger-lg: 140ms; /* @kind other */
+
+  /* ---- Background scan ---- */
+  --scan-period: 14s; /* @kind other */  /* slow coordinate scan loop */
+}

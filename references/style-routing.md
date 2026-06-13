@@ -1,0 +1,59 @@
+# Style Routing
+
+Use this file after the user has described deck purpose or visual taste.
+
+## Template Matrix
+
+| Template | Use | Visual Signature | Avoid When |
+|---|---|---|---|
+| `course-canvas` | 上课课件、培训、课堂讲解 | warm paper, editorial teaching diagrams, calm motion | product-launch drama or investor sharpness is required |
+| `investor-signal` | pitch deck, demo day, fundraising | sharp investor signal, dark/light business surfaces, decisive KPI moments | educational warmth or brochure storytelling is central |
+| `academy-prospectus` | 教育机构宣传册、招生、课程品牌介绍 | premium prospectus, warm institutional credibility, brochure rhythm | dense proof/data analysis is central |
+| `proof-atlas` | 研究报告、数据证明、案例证据、战略复盘 | intelligence dossier x Swiss atlas, grids, ledgers, sourced metrics | emotional launch or classroom explanation is central |
+| `launch-theatre` | 产品发布会、高级 keynote、舞台发布 | black stage, glacial cyan optical light, cinematic reveal | detailed reporting or many paragraphs are required |
+| `guizang-base` | 杂志感、瑞士风、轻量自定义网页 PPT | electronic magazine / Swiss international style | the five authored templates fit better |
+
+## Contact Sheets
+
+Use these sample sheets for style confirmation:
+
+- `assets/contact-sheets/course-canvas/contact-sheet.png`
+- `assets/contact-sheets/investor-signal/contact-sheet.png`
+- `assets/contact-sheets/academy-prospectus/contact-sheet.png`
+- `assets/contact-sheets/proof-atlas/contact-sheet.png`
+- `assets/contact-sheets/launch-theatre/contact-sheet.png`
+
+Show or reference the sheet before production. If the user rejects the style,
+change style before narrative detailing.
+
+## Style Modification
+
+Allowed after confirmation:
+
+- accent color within the template's token system
+- density and page count
+- motion intensity, while keeping semantic motion and B low-power mode
+- image treatment
+- headline scale
+- custom template derived from one base template
+
+Not allowed by default:
+
+- mixing two templates in one deck without explicit approval
+- removing the template motion system
+- using macOS-only fonts
+- flattening the design into plain cards or text-only slides
+
+## Creating A New Style Template
+
+Supported. Treat it as a new style derivation:
+
+1. Pick the closest base template.
+2. Confirm artistic anchors in concrete terms: stage, typography, color, image
+   treatment, motion grammar, density, and forbidden motifs.
+3. Create a 2-3 slide style sample first.
+4. Ask for approval.
+5. Only then expand into the full deck template.
+
+Keep the new template in a project folder first. Add it back into `assets/templates`
+only after it is verified.

@@ -1,0 +1,441 @@
+/* ============================================================================
+   Academy Prospectus — Slide system
+   A fixed 1280×720 editorial canvas. Ten reusable brochure layouts, a calm
+   paper-light background, and a semantic slide-enter animation system.
+   Requires the design-system tokens (link styles.css before this file).
+   ============================================================================ */
+
+/* ---- Stage & canvas ----------------------------------------------------- */
+.deck-stage,
+.deck-stage *,
+.deck-stage *::before,
+.deck-stage *::after {
+  box-sizing: border-box;
+}
+
+.deck-stage {
+  position: fixed;
+  inset: 0;
+  background: #1c1916;          /* letterbox */
+  overflow: hidden;
+  display: grid;
+  place-items: center;
+}
+
+.slide {
+  position: relative;
+  width: 1280px;
+  height: 720px;
+  flex: none;
+  background: var(--paper);
+  color: var(--text-body);
+  font-family: var(--font-body);
+  overflow: hidden;
+  isolation: isolate;
+}
+
+/* When used as a standalone card / page, centre the single slide */
+body.single-slide {
+  margin: 0;
+  background: #1c1916;
+  display: grid;
+  place-items: center;
+  min-height: 100vh;
+}
+
+/* Paper-light background canvas lives INSIDE the active slide: above the
+   slide's opaque paper fill, below the content. */
+.slide > * { position: relative; z-index: 1; }
+.paper-bg { position: absolute; inset: 0; pointer-events: none; }
+.slide > .paper-bg { z-index: 0; }
+
+/* ---- Shared slide furniture --------------------------------------------- */
+.slide-pad {
+  position: absolute;
+  inset: 64px 96px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Top metadata rail: institution mark · section label · folio */
+.slide-rail {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding-bottom: 18px;
+  border-bottom: var(--hair) solid var(--line);
+}
+.slide-rail .mark {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-family: var(--font-display);
+  font-size: 19px;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+}
+.slide-rail .mark .glyph {
+  width: 26px; height: 26px;
+  display: grid; place-items: center;
+  border: 1.5px solid var(--accent);
+  border-radius: 50%;
+  color: var(--accent);
+  font-family: var(--font-display);
+  font-size: 14px; font-weight: 600;
+  font-style: italic;
+}
+.slide-rail .section {
+  font-family: var(--font-meta);
+  font-size: 12px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+.slide-rail .folio {
+  font-family: var(--font-meta);
+  font-size: 12px;
+  letter-spacing: 0.16em;
+  color: var(--ink-faint);
+}
+
+/* Eyebrow / chapter label */
+.eyebrow {
+  font-family: var(--font-meta);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--accent);
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+}
+.eyebrow::before {
+  content: "";
+  width: 28px; height: 1.5px;
+  background: var(--accent);
+  display: inline-block;
+}
+
+/* Display + body type helpers tuned for the 1280×720 canvas */
+.t-hero    { font-family: var(--font-display); font-weight: 400; font-size: 88px; line-height: 1.02; letter-spacing: -0.02em; color: var(--ink); }
+.t-statement { font-family: var(--font-display); font-weight: 400; font-size: 58px; line-height: 1.12; letter-spacing: -0.015em; color: var(--ink); }
+.t-title   { font-family: var(--font-display); font-weight: 500; font-size: 40px; line-height: 1.1; letter-spacing: -0.01em; color: var(--ink); }
+.t-heading { font-family: var(--font-display); font-weight: 500; font-size: 25px; line-height: 1.18; color: var(--ink); }
+.t-lead    { font-family: var(--font-body); font-weight: 400; font-size: 21px; line-height: 1.6; color: var(--charcoal); }
+.t-body    { font-family: var(--font-body); font-weight: 400; font-size: 17px; line-height: 1.62; color: var(--charcoal); }
+.t-small   { font-family: var(--font-body); font-weight: 400; font-size: 14.5px; line-height: 1.55; color: var(--ink-muted); }
+.t-serif-italic { font-style: italic; font-family: var(--font-display); }
+
+/* Mono metadata chip (course code, age group, duration) */
+.chip {
+  font-family: var(--font-meta);
+  font-size: 11.5px;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent-deep);
+  background: var(--accent-field);
+  border: var(--hair) solid color-mix(in srgb, var(--accent) 22%, transparent);
+  border-radius: var(--r-pill);
+  padding: 6px 13px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  white-space: nowrap;
+}
+.chip--bare {
+  background: transparent;
+  border: none;
+  padding: 0;
+  color: var(--ink-faint);
+}
+
+/* Documentary image frame */
+.img-frame {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--r-image);
+  background: var(--parchment);
+  box-shadow: var(--shadow-image);
+}
+.img-frame img { width: 100%; height: 100%; object-fit: cover; display: block;
+  /* warm documentary grade */ filter: saturate(0.92) contrast(1.02); }
+.img-frame .caption {
+  position: absolute; left: 0; bottom: 0; right: 0;
+  padding: 14px 16px 12px;
+  background: linear-gradient(transparent, rgba(28,22,14,0.62));
+  color: var(--ink-on-dark);
+  font-family: var(--font-meta);
+  font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase;
+}
+
+/* Documentary photo PLACEHOLDER — used until real photography is supplied.
+   Reads as an intentional editorial image frame, not a broken asset. */
+.img-ph {
+  position: relative;
+  width: 100%; height: 100%;
+  background:
+    radial-gradient(120% 90% at 30% 20%, color-mix(in srgb, var(--accent-field) 60%, var(--parchment)), var(--parchment) 70%),
+    var(--parchment);
+  display: grid; place-items: center;
+  overflow: hidden;
+}
+.img-ph::after {
+  content: attr(data-label);
+  position: absolute; left: 14px; bottom: 12px;
+  font-family: var(--font-meta); font-size: 10px; letter-spacing: 0.16em;
+  text-transform: uppercase; color: color-mix(in srgb, var(--ink-faint) 80%, var(--accent));
+}
+.img-ph .lens {
+  width: 38px; height: 38px; border-radius: 50%;
+  border: 1.5px solid color-mix(in srgb, var(--accent) 50%, transparent);
+  position: relative; opacity: 0.7;
+}
+.img-ph .lens::before {
+  content: ""; position: absolute; inset: 8px; border-radius: 50%;
+  border: 1.5px solid color-mix(in srgb, var(--accent) 38%, transparent);
+}
+
+/* ============================================================================
+   LAYOUT 1 — Institution cover
+   ============================================================================ */
+.l-cover { display: grid; grid-template-columns: 1.04fr 0.96fr; height: 100%; }
+.l-cover .cover-text {
+  padding: 64px 56px 56px 96px;
+  display: flex; flex-direction: column; justify-content: space-between;
+}
+.l-cover .cover-img { position: relative; }
+.l-cover .cover-img .img-frame { position: absolute; inset: 0; border-radius: 0; box-shadow: none; }
+.l-cover .cover-img::after {
+  content: ""; position: absolute; inset: 0;
+  box-shadow: inset 0 0 120px rgba(28,22,14,0.18);
+}
+.l-cover .established {
+  font-family: var(--font-meta); font-size: 12px; letter-spacing: 0.24em;
+  text-transform: uppercase; color: var(--ink-faint);
+}
+
+/* ============================================================================
+   LAYOUT 2 — Brand promise  /  LAYOUT 3 — Teaching philosophy
+   ============================================================================ */
+.l-statement { display: flex; flex-direction: column; justify-content: center; height: 100%;
+  padding: 0 var(--margin-slide); max-width: 1040px; }
+.l-statement .lead-follow { margin-top: 30px; max-width: 60ch; }
+
+.l-promise { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; height: 100%;
+  padding: 0 96px; }
+
+/* ============================================================================
+   LAYOUT 4 — Curriculum system  (structured module grid)
+   ============================================================================ */
+.l-curriculum .grid {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px;
+  background: var(--line); border: var(--hair) solid var(--line);
+  margin-top: 30px; flex: 1;
+}
+.module {
+  background: var(--paper);
+  padding: 24px 24px 22px;
+  display: flex; flex-direction: column; gap: 10px;
+}
+.module .code { font-family: var(--font-meta); font-size: 11.5px; letter-spacing: 0.16em;
+  color: var(--accent); text-transform: uppercase; }
+.module h4 { font-family: var(--font-display); font-weight: 500; font-size: 21px; color: var(--ink); margin: 2px 0 0; }
+.module p { font-family: var(--font-body); font-size: 14.5px; line-height: 1.5; color: var(--ink-muted); margin: 0; }
+.module .module-foot { margin-top: auto; padding-top: 12px; display: flex; gap: 8px; flex-wrap: wrap;
+  border-top: var(--hair) solid var(--line-faint); }
+
+/* ============================================================================
+   LAYOUT 5 — Course pathway  (left→right line with stations)
+   ============================================================================ */
+.l-pathway .pathway { position: relative; flex: 1; display: flex; align-items: center; margin-top: 8px; }
+.l-pathway .track {
+  position: absolute; left: 0; right: 0; top: 50%; height: 2px;
+  background: var(--line-strong);
+  transform-origin: left center;
+}
+.l-pathway .stations { position: relative; display: grid; grid-template-columns: repeat(4, 1fr);
+  width: 100%; }
+.station { display: flex; flex-direction: column; align-items: flex-start; gap: 14px; padding-right: 28px; }
+.station .node {
+  width: 16px; height: 16px; border-radius: 50%;
+  background: var(--paper); border: 3px solid var(--accent);
+  box-shadow: 0 0 0 5px var(--paper);
+}
+.station .stage { font-family: var(--font-meta); font-size: 11px; letter-spacing: 0.16em;
+  text-transform: uppercase; color: var(--ink-faint); }
+.station h4 { font-family: var(--font-display); font-weight: 500; font-size: 22px; margin: 0; color: var(--ink); }
+.station p { font-family: var(--font-body); font-size: 14px; line-height: 1.5; color: var(--ink-muted); margin: 0; }
+.station .dur { color: var(--accent-deep); font-family: var(--font-meta); font-size: 11px; letter-spacing: 0.12em; }
+.station.is-up { flex-direction: column-reverse; }
+
+/* ============================================================================
+   LAYOUT 6 — Teacher team  (editorial profile cards, no generic avatars)
+   ============================================================================ */
+.l-teachers .roster { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; margin-top: 24px; flex: 1; }
+.teacher { display: flex; flex-direction: column; }
+.teacher .portrait { aspect-ratio: 4/5; border-radius: var(--r-image); overflow: hidden;
+  background: var(--parchment); box-shadow: var(--shadow-card); }
+.teacher .portrait img { width: 100%; height: 100%; object-fit: cover; filter: saturate(0.9) contrast(1.02); }
+.teacher .name { font-family: var(--font-display); font-weight: 500; font-size: 20px; color: var(--ink); margin: 12px 0 2px; }
+.teacher .disc { font-family: var(--font-meta); font-size: 10.5px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); }
+.teacher .bio { font-family: var(--font-body); font-size: 13px; line-height: 1.42; color: var(--ink-muted); margin: 8px 0 0;
+  padding-top: 8px; border-top: var(--hair) solid var(--line); }
+
+/* ============================================================================
+   LAYOUT 7 — Learning environment  (image gallery, soft crop masks)
+   ============================================================================ */
+.l-environment .gallery { display: grid; grid-template-columns: 1.5fr 1fr 1fr; grid-template-rows: 1fr 1fr;
+  gap: 16px; margin-top: 30px; flex: 1; }
+.l-environment .gallery .img-frame:nth-child(1) { grid-row: span 2; }
+
+/* ============================================================================
+   LAYOUT 8 — Student outcomes  (KPI numbers + captions)
+   ============================================================================ */
+.l-outcomes .kpis { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px;
+  background: var(--line); border-top: var(--hair) solid var(--line); border-bottom: var(--hair) solid var(--line);
+  margin-top: 36px; }
+.kpi { background: var(--paper); padding: 32px 24px 30px; display: flex; flex-direction: column; gap: 8px; }
+.kpi .num { font-family: var(--font-display); font-weight: 400; font-size: 72px; line-height: 1; letter-spacing: -0.02em; color: var(--accent-deep); }
+.kpi .num .unit { font-size: 32px; color: var(--accent); }
+.kpi .cap { font-family: var(--font-body); font-size: 14.5px; line-height: 1.45; color: var(--ink-muted); }
+.kpi .src { font-family: var(--font-meta); font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-faint); margin-top: auto; }
+
+/* ============================================================================
+   LAYOUT 9 — Testimonial / case story
+   ============================================================================ */
+.l-testimonial { display: grid; grid-template-columns: 0.82fr 1.18fr; height: 100%; }
+.l-testimonial .story-img { position: relative; }
+.l-testimonial .story-img .img-frame { position: absolute; inset: 0; border-radius: 0; box-shadow: none; }
+.l-testimonial .quote-side { padding: 72px 96px 64px 72px; display: flex; flex-direction: column; justify-content: center; }
+.l-testimonial .quote {
+  font-family: var(--font-display); font-weight: 400; font-size: 34px; line-height: 1.34;
+  letter-spacing: -0.01em; color: var(--ink);
+}
+.l-testimonial .quote .qline { display: block; }
+.l-testimonial .mark-q { font-family: var(--font-display); font-size: 70px; line-height: 0.4; color: var(--accent);
+  height: 34px; display: block; }
+.l-testimonial .attribution { margin-top: 36px; display: flex; align-items: center; gap: 16px; }
+.l-testimonial .attribution .who { font-family: var(--font-body); font-weight: 600; font-size: 16px; color: var(--ink); }
+.l-testimonial .attribution .role { font-family: var(--font-meta); font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-faint); }
+
+/* ============================================================================
+   LAYOUT 10 — Enrollment / pricing / contact
+   ============================================================================ */
+.l-enroll .plans { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-top: 30px; }
+.plan { border: var(--hair) solid var(--line); border-radius: var(--r-md); padding: 26px 24px 24px;
+  display: flex; flex-direction: column; gap: 12px; background: var(--paper); }
+.plan.is-feature { border-color: var(--accent); box-shadow: var(--shadow-card); background: color-mix(in srgb, var(--accent-field) 55%, var(--paper)); }
+.plan .tier { font-family: var(--font-meta); font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--accent); }
+.plan .price { font-family: var(--font-display); font-weight: 400; font-size: 40px; color: var(--ink); line-height: 1; }
+.plan .price .per { font-family: var(--font-body); font-size: 14px; color: var(--ink-faint); }
+.plan ul { list-style: none; padding: 0; margin: 6px 0 0; display: flex; flex-direction: column; gap: 9px; }
+.plan li { font-family: var(--font-body); font-size: 14px; color: var(--ink-muted); padding-left: 20px; position: relative; line-height: 1.4; }
+.plan li::before { content: ""; position: absolute; left: 0; top: 8px; width: 8px; height: 8px;
+  border-radius: 50%; background: var(--accent); opacity: 0.55; }
+.l-enroll .contact { margin-top: auto; padding-top: 22px; border-top: var(--rule) solid var(--ink);
+  display: flex; align-items: flex-end; justify-content: space-between; gap: 32px; }
+.l-enroll .contact .lines { display: flex; gap: 48px; flex-wrap: wrap; }
+.l-enroll .contact .lines div .k { font-family: var(--font-meta); font-size: 10.5px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink-faint); }
+.l-enroll .contact .lines div .v { font-family: var(--font-body); font-size: 16px; color: var(--ink); margin-top: 4px; }
+
+/* ============================================================================
+   SEMANTIC SLIDE-ENTER ANIMATION SYSTEM
+   Built on CSS @keyframes, not transitions — animations replay cleanly when
+   [data-deck-active] is applied to a now-visible slide (transitions from a
+   display:none slide are unreliable). The RESTING style of every element is
+   the FINAL visible design, so print, no-JS and reduced-motion always show
+   finished content; the animation only plays its hidden→visible arc when the
+   slide is active and motion is allowed.
+
+   Each [data-animate] may set `--step` (0,1,2…) to stagger within a slide.
+   ============================================================================ */
+.qline { display: block; }
+
+@keyframes ap-rise   { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: none; } }
+@keyframes ap-ink    { from { opacity: 0; filter: blur(10px); }          to { opacity: 1; filter: blur(0); } }
+@keyframes ap-push   { from { opacity: 0; clip-path: inset(0 0 0 22%); } to { opacity: 1; clip-path: inset(0 0 0 0); } }
+@keyframes ap-curtain{ from { clip-path: inset(0 0 100% 0); }            to { clip-path: inset(0 0 0 0); } }
+@keyframes ap-draw   { from { transform: scaleX(0); }                     to { transform: scaleX(1); } }
+@keyframes ap-lift   { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: none; } }
+
+@media (prefers-reduced-motion: no-preference) {
+  /* generic recipe — gentle upward fade, staggered by --step */
+  body.motion .slide[data-deck-active] [data-animate] {
+    animation: ap-rise var(--dur-med) var(--ease-page) both;
+    animation-delay: calc(var(--step, 0) * 110ms);
+  }
+
+  /* — prospectus-cover: title blooms like ink; image pushes; mark settles last — */
+  body.motion .slide[data-anim="prospectus-cover"][data-deck-active] [data-part="title"] {
+    animation: ap-ink var(--dur-ink) var(--ease-ink) both;
+  }
+  body.motion .slide[data-anim="prospectus-cover"][data-deck-active] [data-part="image"] {
+    animation: ap-push var(--dur-slow) var(--ease-ink) both; animation-delay: 240ms;
+  }
+  body.motion .slide[data-anim="prospectus-cover"][data-deck-active] [data-part="mark"] {
+    animation: ap-rise var(--dur-med) var(--ease-page) both; animation-delay: 640ms;
+  }
+
+  /* — philosophy: statement first; supporting paragraph soft-up after — */
+  body.motion .slide[data-anim="philosophy"][data-deck-active] [data-part="statement"] {
+    animation: ap-lift var(--dur-slow) var(--ease-ink) both;
+  }
+  body.motion .slide[data-anim="philosophy"][data-deck-active] [data-part="follow"] {
+    animation: ap-rise var(--dur-med) var(--ease-page) both; animation-delay: 480ms;
+  }
+
+  /* — curriculum-pathway: track draws L→R; stations settle along it — */
+  body.motion .slide[data-anim="curriculum-pathway"][data-deck-active] .track {
+    transform-origin: left center;
+    animation: ap-draw var(--dur-slow) var(--ease-calm) both;
+  }
+  body.motion .slide[data-anim="curriculum-pathway"][data-deck-active] .station {
+    animation: ap-rise var(--dur-med) var(--ease-page) both;
+    animation-delay: calc(var(--step, 0) * 150ms + 280ms);
+  }
+
+  /* — environment-gallery: images reveal with a soft top-down crop mask — */
+  body.motion .slide[data-anim="environment-gallery"][data-deck-active] [data-animate] {
+    animation: ap-curtain var(--dur-slow) var(--ease-ink) both;
+    animation-delay: calc(var(--step, 0) * 140ms);
+  }
+
+  /* — outcomes: numbers fade up; captions follow the numbers — */
+  body.motion .slide[data-anim="outcomes"][data-deck-active] [data-part="cap"] {
+    animation-delay: calc(var(--step, 0) * 110ms + 360ms);
+  }
+
+  /* — testimonial: quote line by line; attribution last — */
+  body.motion .slide[data-anim="testimonial"][data-deck-active] [data-part="attr"] {
+    animation: ap-rise var(--dur-med) var(--ease-page) both; animation-delay: 820ms;
+  }
+}
+
+/* ---- Low-power / static mode ------------------------------------------- */
+body.low-power .paper-bg { display: none; }
+.lowpower-hint {
+  position: fixed; left: 18px; bottom: 16px; z-index: 50;
+  font-family: var(--font-meta); font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--ink-faint); background: var(--porcelain);
+  border: var(--hair) solid var(--line); border-radius: var(--r-pill);
+  padding: 7px 14px; display: none; align-items: center; gap: 8px;
+}
+body.low-power .lowpower-hint { display: inline-flex; }
+.lowpower-hint::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--gold); }
+
+/* ---- Deck navigation chrome -------------------------------------------- */
+.deck-nav { position: fixed; bottom: 18px; right: 20px; z-index: 50; display: flex; align-items: center; gap: 12px;
+  font-family: var(--font-meta); font-size: 12px; letter-spacing: 0.14em; color: var(--ink-faint); }
+.deck-nav button {
+  width: 38px; height: 38px; border-radius: 50%;
+  border: var(--hair) solid var(--line-strong); background: var(--paper);
+  color: var(--ink); cursor: pointer; font-size: 15px; display: grid; place-items: center;
+  transition: background var(--dur-fast) var(--ease-page), border-color var(--dur-fast) var(--ease-page);
+}
+.deck-nav button:hover { background: var(--porcelain); border-color: var(--ink-faint); }
+.deck-nav button:active { transform: scale(0.96); }
+.deck-nav .count { min-width: 56px; text-align: center; }

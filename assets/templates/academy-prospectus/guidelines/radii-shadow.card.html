@@ -1,0 +1,15 @@
+<!-- @dsCard group="Spacing" viewport="700x160" name="Radii & Shadows" subtitle="Gentle corners; soft, paper-lifted shadows" -->
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><link rel="stylesheet" href="../styles.css">
+<style>
+ html,body{margin:0;background:var(--porcelain);font-family:var(--font-meta);}
+ .wrap{padding:24px 28px;display:flex;gap:22px;align-items:center;}
+ .box{width:96px;height:80px;background:var(--paper);display:flex;align-items:flex-end;padding:8px;box-sizing:border-box;}
+ .n{font-size:9.5px;color:var(--ink-faint);letter-spacing:0.08em;}
+</style></head>
+<body><div class="wrap">
+ <div class="box" style="border-radius:var(--r-image);box-shadow:var(--shadow-image)"><span class="n">image · 4px</span></div>
+ <div class="box" style="border-radius:var(--r-md);box-shadow:var(--shadow-card)"><span class="n">card · 10px</span></div>
+ <div class="box" style="border-radius:var(--r-lg);box-shadow:var(--shadow-lift)"><span class="n">lift · 16px</span></div>
+ <div class="box" style="border-radius:var(--r-pill);box-shadow:none;border:1px solid var(--line)"><span class="n">pill</span></div>
+</div></body></html>
