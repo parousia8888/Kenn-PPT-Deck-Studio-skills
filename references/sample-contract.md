@@ -112,9 +112,12 @@ Run before showing a sample:
 
 ```bash
 node scripts/validate-style-sample.mjs --file=<sample-index.html> --style=<style-id> --template=<template-id>
+node scripts/visual-qa-sample.mjs --file=<sample-index.html> --out=<sample-dir>/_visual_qa
 ```
 
-Validation failure means the sample is not ready for user approval.
+Validation or visual QA failure means the sample is not ready for user approval.
+Visual QA failure includes document scrollbars, slide scroll overflow, browser
+errors, elements outside the 1280x720 slide, or clipped text blocks.
 
 Run the local regression harness after changing grammar or validator behavior:
 

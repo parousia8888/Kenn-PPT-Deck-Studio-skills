@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <title>Founder Memo Visual Pass Fixture</title>
+  <style>
+    :root {
+      --bg: #fbfaf7;
+      --line: #d8d5ce;
+      --text: #111111;
+      --muted: #6d6a64;
+      --accent: #2563eb;
+      --danger: #dc2626;
+      --font-sans: Aptos, "Segoe UI", "Microsoft YaHei UI", Arial, sans-serif;
+      --font-mono: "Cascadia Mono", Consolas, monospace;
+    }
+    * { box-sizing: border-box; }
+    html, body { width: 1280px; height: 720px; margin: 0; overflow: hidden; background: var(--bg); }
+    body { font-family: var(--font-sans); color: var(--text); }
+    .deck-shell { width: 1280px; height: 720px; overflow: hidden; }
+    .slide {
+      width: 1280px;
+      height: 720px;
+      overflow: hidden;
+      padding: 64px 84px;
+      background: var(--bg);
+      border: 1px solid var(--line);
+      display: grid;
+      grid-template-columns: 1fr 380px;
+      gap: 64px;
+    }
+    .eyebrow {
+      font: 600 18px/1 var(--font-mono);
+      color: var(--accent);
+      letter-spacing: 0.08em;
+      margin-bottom: 46px;
+    }
+    h1, h2 {
+      margin: 0;
+      font-family: var(--font-sans);
+      font-weight: 720;
+      letter-spacing: 0;
+      line-height: 0.98;
+    }
+    h1 { font-size: 74px; max-width: 680px; }
+    h2 { font-size: 56px; max-width: 650px; }
+    p { margin: 24px 0 0; font-size: 25px; line-height: 1.34; color: var(--muted); max-width: 610px; }
+    .decision-table {
+      align-self: center;
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      display: grid;
+      gap: 0;
+    }
+    .decision-row {
+      display: grid;
+      grid-template-columns: 74px 1fr;
+      gap: 22px;
+      padding: 24px 0;
+      border-bottom: 1px solid var(--line);
+    }
+    .decision-row:last-child { border-bottom: 0; }
+    .tag { font: 600 17px/1 var(--font-mono); color: var(--accent); }
+    .row-title { font-size: 30px; font-weight: 720; line-height: 1.06; }
+    .row-copy { margin-top: 10px; font-size: 20px; line-height: 1.32; color: var(--muted); }
+    .metrics {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      margin-top: 54px;
+    }
+    .metric { padding: 24px 28px 22px 0; border-right: 1px solid var(--line); }
+    .metric:last-child { border-right: 0; }
+    .metric strong { display: block; font-size: 50px; line-height: 1; letter-spacing: 0; }
+    .metric span { display: block; margin-top: 14px; color: var(--muted); font-size: 19px; line-height: 1.28; }
+    .rail {
+      align-self: start;
+      justify-self: end;
+      width: 300px;
+      display: grid;
+      gap: 16px;
+      font: 600 17px/1 var(--font-mono);
+      color: var(--muted);
+    }
+    .rail div { display: flex; justify-content: space-between; border-bottom: 1px solid var(--line); padding-bottom: 12px; }
+    .status { color: var(--danger); }
+  </style>
+</head>
+<body>
+  <main
+    class="deck-shell"
+    data-style-id="founder-memo-minimal"
+    data-template-id="investor-signal"
+    data-grammar-profile="founder-memo">
+    <section class="slide" data-slide-role="title" data-layout-id="memo-cover">
+      <div>
+        <div class="eyebrow">FLOWDESK AI / SEED MEMO</div>
+        <h1>客服质检从抽检转向全量评估。</h1>
+        <p>样片只验证 memo 密度、字体层级和证据栏，不固化正式融资论证。</p>
+        <div class="metrics">
+          <div class="metric"><strong>3%</strong><span>人工抽检覆盖率示意</span></div>
+          <div class="metric"><strong>100%</strong><span>AI 目标覆盖面示意</span></div>
+          <div class="metric"><strong>24h</strong><span>复盘周期示意</span></div>
+        </div>
+      </div>
+      <aside class="rail" data-component-role="source-note">
+        <div><span>01</span><span>STYLE SAMPLE</span></div>
+        <div><span>B MODE</span><span>STATIC</span></div>
+      </aside>
+    </section>
+    <section class="slide" data-slide-role="dense" data-layout-id="decision-table">
+      <div>
+        <div class="eyebrow">WEDGE / QUALITY OPS</div>
+        <h2>人工抽检的问题不是慢，而是无法覆盖风险分布。</h2>
+        <p>左侧主张，右侧证据表。所有段落限制在投影可读长度内。</p>
+      </div>
+      <div class="decision-table" data-component-role="evidence-cell">
+        <div class="decision-row"><span class="tag">RISK</span><div><div class="row-title">样本偏差</div><div class="row-copy">少量会话无法代表长尾投诉、合规和升级场景。</div></div></div>
+        <div class="decision-row"><span class="tag">OPS</span><div><div class="row-title">复盘滞后</div><div class="row-copy">问题被发现时，客服动作已经进入下一轮。</div></div></div>
+        <div class="decision-row"><span class="tag">LOOP</span><div><div class="row-title">训练断层</div><div class="row-copy">结果没有自动回流到辅导、知识库和流程修订。</div></div></div>
+      </div>
+    </section>
+    <section class="slide" data-slide-role="diagram" data-layout-id="strategy-map">
+      <div>
+        <div class="eyebrow">SYSTEM / EXPLAINABLE LOOP</div>
+        <h2>解释评分是入口，风险动作才是留存。</h2>
+        <p>流程图使用 memo 行、细线和状态标签，避免装饰性卡片。</p>
+      </div>
+      <div class="decision-table" data-component-role="evidence-cell">
+        <div class="decision-row"><span class="tag">01</span><div><div class="row-title">Ingest</div><div class="row-copy">接入电话转写、在线聊天、工单和 CRM 标签。</div></div></div>
+        <div class="decision-row"><span class="tag">02</span><div><div class="row-title">Score</div><div class="row-copy">按礼貌度、准确性、合规风险和解决率评分。</div></div></div>
+        <div class="decision-row"><span class="tag status">03</span><div><div class="row-title">Route</div><div class="row-copy">高风险进入复核队列，低风险进入趋势分析。</div></div></div>
+      </div>
+    </section>
+  </main>
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <title>Founder Memo Visual Fail Fixture</title>
+  <style>
+    * { box-sizing: border-box; }
+    html, body { width: 1280px; height: 720px; margin: 0; background: #fbfaf7; }
+    body { font-family: Aptos, "Segoe UI", "Microsoft YaHei UI", Arial, sans-serif; }
+    .deck-shell { width: 1280px; }
+    .slide {
+      position: relative;
+      width: 1280px;
+      height: 720px;
+      padding: 64px;
+      background: #fbfaf7;
+      border: 1px solid #2563eb;
+      overflow: visible;
+    }
+    h1 { margin: 0; font-size: 92px; line-height: 1.08; max-width: 760px; }
+    .overset {
+      position: absolute;
+      left: 64px;
+      top: 520px;
+      width: 680px;
+      font-size: 46px;
+      line-height: 1.45;
+      color: #6d6a64;
+    }
+  </style>
+</head>
+<body>
+  <main
+    class="deck-shell"
+    data-style-id="founder-memo-minimal"
+    data-template-id="investor-signal"
+    data-grammar-profile="founder-memo">
+    <section class="slide" data-slide-role="title" data-layout-id="memo-cover">
+      <h1>这页故意制造底部裁切和页面滚动。</h1>
+      <div class="overset">
+        这段文字故意很长很大，模拟 smoke 截图里封面底部正文和第三页说明文字被截断的情况。
+        视觉 QA 必须在样片给用户确认之前失败，而不是只依赖语法校验通过。
+      </div>
+    </section>
+  </main>
+</body>
+</html>

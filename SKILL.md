@@ -78,14 +78,16 @@ After the user picks a style candidate, the next assistant action must be making
 or showing the visual sample, not giving the narrative framework, source list,
 12-page outline, or production plan. Do not produce the full outline or full deck
 until the user explicitly accepts the visual sample. Before asking for sample
-approval, run:
+approval, run both checks:
 
 ```bash
 node scripts/validate-style-sample.mjs --file=<sample-index.html> --style=<style-id> --template=<template-id>
+node scripts/visual-qa-sample.mjs --file=<sample-index.html> --out=<sample-dir>/_visual_qa
 ```
 
-If validation fails, revise the sample first. Do not ask the user to approve a
-sample with known grammar violations.
+If validation or visual QA fails, revise the sample first. Do not ask the user to
+approve a sample with known grammar violations, browser errors, scrollbars,
+clipped text, or elements outside the 1280x720 slide frame.
 
 ## Confirmation Gates
 
@@ -167,6 +169,7 @@ Validate a Gate 1B style sample before showing it:
 
 ```bash
 node scripts/validate-style-sample.mjs --file=/path/to/index.html --style=<style-id> --template=<template-id>
+node scripts/visual-qa-sample.mjs --file=/path/to/index.html --out=/path/to/_visual_qa
 ```
 
 Run style grammar regression checks after changing style rules or validators:

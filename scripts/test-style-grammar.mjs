@@ -8,8 +8,11 @@ const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const catalogPath = path.join(root, "assets", "style-systems", "style-catalog.json");
 const grammarPath = path.join(root, "assets", "style-systems", "execution-grammar.json");
 const validatorPath = path.join(root, "scripts", "validate-style-sample.mjs");
+const visualQaPath = path.join(root, "scripts", "visual-qa-sample.mjs");
 const passFixture = path.join(root, "tests", "fixtures", "braun-industrial-control.pass.html");
 const failFixture = path.join(root, "tests", "fixtures", "braun-industrial-control.fail.html");
+const visualPassFixture = path.join(root, "tests", "fixtures", "founder-memo-visual.pass.html");
+const visualFailFixture = path.join(root, "tests", "fixtures", "founder-memo-visual.fail.html");
 
 function fail(message) {
   console.error(`FAIL: ${message}`);
@@ -77,4 +80,29 @@ if (missed.length) {
   fail(`Negative fixture did not hit expected validator signal(s): ${missed.join(", ")}\n${combined}`);
 }
 
-console.log(`Style grammar tests passed: ${catalog.styles.length} styles, ${Object.keys(grammar.grammarProfiles).length} grammar profiles, positive/negative Braun fixtures verified.`);
+const visualPass = run([
+  visualQaPath,
+  `--file=${visualPassFixture}`,
+  "--out=.tmp/visual-pass",
+]);
+if (visualPass.status !== 0) {
+  fail(`Founder memo visual pass fixture should pass.\nSTDOUT:\n${visualPass.stdout}\nSTDERR:\n${visualPass.stderr}`);
+}
+
+const visualFail = run([
+  visualQaPath,
+  `--file=${visualFailFixture}`,
+  "--out=.tmp/visual-fail",
+]);
+if (visualFail.status === 0) {
+  fail("Founder memo visual fail fixture should fail, but visual QA returned success.");
+}
+
+const visualCombined = `${visualFail.stdout}\n${visualFail.stderr}`;
+const visualSignals = ["scroll-overflow", "element-outside-slide"];
+const missedVisual = visualSignals.filter((signal) => !visualCombined.includes(signal));
+if (missedVisual.length) {
+  fail(`Visual fail fixture did not hit expected signal(s): ${missedVisual.join(", ")}\n${visualCombined}`);
+}
+
+console.log(`Style grammar tests passed: ${catalog.styles.length} styles, ${Object.keys(grammar.grammarProfiles).length} grammar profiles, grammar fixtures and visual QA fixtures verified.`);

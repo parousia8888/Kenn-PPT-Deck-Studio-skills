@@ -82,10 +82,14 @@ Before showing the visual sample:
 
 ```bash
 node scripts/validate-style-sample.mjs --file=<sample-index.html> --style=<style-id> --template=<template-id>
+node scripts/visual-qa-sample.mjs --file=<sample-index.html> --out=<sample-dir>/_visual_qa
 ```
 
-If validation fails, revise the sample. Tell the user only after the sample can
-pass the grammar gate or explicitly state which rule still needs design judgment.
+If either check fails, revise the sample. Do not show screenshots or ask for
+approval while any slide has scrollbars, clipped text, element overflow, missing
+1280x720 framing, or browser errors. Tell the user only after the sample can pass
+both the grammar gate and visual QA, or explicitly state which rule still needs
+design judgment.
 
 After the user chooses one candidate style, the next assistant action must be one
 of:
