@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <title>Quality Type Fail Fixture</title>
+  <style>
+    html, body { width: 1280px; height: 720px; margin: 0; overflow: hidden; background: #fbfaf7; }
+    body { font-family: Aptos, "Segoe UI", "Microsoft YaHei UI", Arial, sans-serif; color: #111; }
+    .deck-shell, .slide { width: 1280px; height: 720px; overflow: hidden; }
+    .slide { padding: 56px; }
+    h1 {
+      margin: 0;
+      width: 360px;
+      font-size: 34px;
+      line-height: 1.08;
+      text-wrap: normal;
+    }
+    p { font-size: 11px; line-height: 1.3; width: 460px; }
+  </style>
+</head>
+<body>
+  <main class="deck-shell" data-style-id="founder-memo-minimal" data-template-id="investor-signal" data-grammar-profile="founder-memo">
+    <section class="slide" data-slide-role="title" data-layout-id="memo-cover">
+      <h1>这个标题故意非常非常非常非常非常非常非常非常非常非常长，导致换行很差。</h1>
+      <p>这段正文故意低于投影可读字号，type QA 应该失败。</p>
+    </section>
+  </main>
+</body>
+</html>

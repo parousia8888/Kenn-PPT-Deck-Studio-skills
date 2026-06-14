@@ -16,8 +16,10 @@ Do not start slide production until these gates are confirmed:
 1. **Style first, with two approvals.** Identify deck type and recommend 1-3
    candidate styles from the locked style catalog. A style must define color
    master, typography temperament, layout density, graphic language, motion
-   grammar, **component grammar, shape grammar, layout whitelist, and grid
-   discipline**. Gate 1 has two separate approvals:
+   grammar, **component grammar, shape grammar, layout whitelist, grid
+   discipline, typography discipline, CJK line-break discipline, data/source
+   discipline, contrast discipline, and motion snapshot discipline**. Gate 1 has
+   two separate approvals:
    - **1A Style ID approval:** user chooses a template/style direction.
    - **1B Visual sample approval:** after 1A, produce a mandatory 2-3 slide
      style sample, validate it with the selected style execution grammar, and ask
@@ -69,6 +71,11 @@ into a named style id plus concrete choices on:
 - shape grammar: radius, shadows, circle/pill/rect rules, chart primitives
 - layout whitelist: named slide families and title/content safe zones
 - grid discipline: 16:9 grid tokens, column/baseline alignment, same-box overlay
+- typography discipline: title line count, readable floors, CJK line breaks,
+  Windows-safe font roles
+- data/source discipline: table density, chart primitive, source-note limits
+- contrast discipline: measured text/background readability
+- motion snapshot discipline: initial, settled, and B-mode states are approvable
 
 Style gate output may only be:
 
@@ -83,14 +90,18 @@ approval, run both checks:
 
 ```bash
 node scripts/validate-style-sample.mjs --file=<sample-index.html> --style=<style-id> --template=<template-id>
+node scripts/type-qa-sample.mjs --file=<sample-index.html> --style=<style-id>
+node scripts/contrast-qa-sample.mjs --file=<sample-index.html> --style=<style-id>
+node scripts/motion-qa-sample.mjs --file=<sample-index.html> --style=<style-id> --out=<sample-dir>/_motion_qa
 node scripts/visual-qa-sample.mjs --file=<sample-index.html> --style=<style-id> --out=<sample-dir>/_visual_qa
 ```
 
 If validation or visual QA fails, revise the sample first. Do not ask the user to
 approve a sample with known grammar violations, browser errors, scrollbars,
 clipped text, elements outside the 1280x720 slide frame, missing grid tokens,
-off-column grid bands, or missing same-box overlay for strict/measured grid
-profiles.
+off-column grid bands, missing same-box overlay for strict/measured grid
+profiles, unreadable type, bad Chinese title breaks, low contrast, over-dense
+tables/source notes, or hidden first-frame motion states.
 
 ## Confirmation Gates
 
@@ -126,6 +137,8 @@ Required user confirmations:
 - For strict/measured grid profiles, expose grid tokens (`data-grid-*` or
   `--grid-*`), mark major regions with `data-grid-band`, and include a same-box
   grid overlay/debug hook before showing the sample.
+- Gate 1B quality is not only "no overflow": run typography, contrast, motion,
+  visual, and grid QA before asking for style approval.
 - Keep Windows-safe font fallbacks. Prefer the `.system-fonts.single.html` build
   for offline/Windows handoff checks.
 - Use product screenshots, diagrams, generated visuals, or data visualization when
@@ -142,6 +155,12 @@ Required user confirmations:
   and examples of grammar-compliant/forbidden sample components.
 - `references/layout-discipline.md` — 16:9 grid tokens, column/baseline discipline,
   same-box overlay rule, and grid QA failure modes.
+- `references/typography-discipline.md` — title wrapping, CJK line breaking,
+  readable type floors, and Windows-safe font stacks.
+- `references/data-viz-discipline.md` — chart choice, table density, source-note,
+  and contrast expectations.
+- `references/style-archetypes.md` — high-granularity art-direction families for
+  deriving new styles without vague mood labels.
 - `assets/style-systems/style-catalog.json` — 50+ locked high-aesthetic style systems.
 - `assets/style-systems/execution-grammar.json` — component grammar, shape grammar,
   layout families, type locks, chart rules, and validation flags for each style.
@@ -177,6 +196,9 @@ Validate a Gate 1B style sample before showing it:
 
 ```bash
 node scripts/validate-style-sample.mjs --file=/path/to/index.html --style=<style-id> --template=<template-id>
+node scripts/type-qa-sample.mjs --file=/path/to/index.html --style=<style-id>
+node scripts/contrast-qa-sample.mjs --file=/path/to/index.html --style=<style-id>
+node scripts/motion-qa-sample.mjs --file=/path/to/index.html --style=<style-id> --out=/path/to/_motion_qa
 node scripts/visual-qa-sample.mjs --file=/path/to/index.html --style=<style-id> --out=/path/to/_visual_qa
 ```
 

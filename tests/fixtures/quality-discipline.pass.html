@@ -1,0 +1,191 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <title>Quality Discipline Pass Fixture</title>
+  <style>
+    :root {
+      --grid-cols: 12;
+      --grid-baseline: 8px;
+      --grid-gutter: 24px;
+      --grid-margin-x: 72px;
+      --grid-margin-y: 56px;
+      --paper: #fbfaf7;
+      --ink: #111111;
+      --muted: #55514a;
+      --line: #d8d5ce;
+      --accent: #2563eb;
+      --font-sans: Aptos, "Segoe UI", "Microsoft YaHei UI", "Microsoft YaHei", Arial, sans-serif;
+      --font-mono: "Cascadia Mono", Consolas, "Courier New", monospace;
+    }
+    * { box-sizing: border-box; }
+    html, body { width: 1280px; height: 720px; margin: 0; overflow: hidden; background: var(--paper); }
+    body { color: var(--ink); font-family: var(--font-sans); }
+    .deck-shell { width: 1280px; height: 720px; overflow: hidden; }
+    .slide {
+      position: relative;
+      width: 1280px;
+      height: 720px;
+      overflow: hidden;
+      padding: var(--grid-margin-y) var(--grid-margin-x);
+      background: var(--paper);
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      column-gap: var(--grid-gutter);
+      row-gap: 24px;
+    }
+    .main { grid-column: 1 / 8; }
+    .memo-table { grid-column: 9 / 13; }
+    .wide { grid-column: 1 / 13; }
+    .two-col {
+      grid-column: 1 / 13;
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      column-gap: var(--grid-gutter);
+      align-self: start;
+    }
+    .eyebrow {
+      font: 650 12px/16px var(--font-mono);
+      letter-spacing: 0;
+      color: var(--accent);
+      margin-bottom: 34px;
+    }
+    h1, h2 {
+      margin: 0;
+      max-width: 690px;
+      font-family: var(--font-sans);
+      font-weight: 720;
+      letter-spacing: 0;
+      text-wrap: balance;
+      line-break: strict;
+    }
+    h1 { font-size: 62px; line-height: 1.05; }
+    h2 { font-size: 42px; line-height: 1.1; }
+    p { margin: 22px 0 0; max-width: 620px; color: var(--muted); font-size: 20px; line-height: 1.45; }
+    .source-note { margin-top: 30px; font: 11px/16px var(--font-mono); color: var(--muted); max-width: 560px; }
+    .memo-table { align-self: center; border-top: 1px solid var(--line); }
+    .memo-row {
+      display: grid;
+      grid-template-columns: 72px 1fr;
+      gap: 18px;
+      min-height: 44px;
+      padding: 14px 0;
+      border-bottom: 1px solid var(--line);
+    }
+    .code { font: 650 12px/16px var(--font-mono); color: var(--accent); }
+    .row-title { font-size: 19px; line-height: 1.32; font-weight: 680; }
+    .row-copy { margin-top: 4px; font-size: 14px; line-height: 1.42; color: var(--muted); }
+    table {
+      grid-column: 1 / 8;
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+      line-height: 1.35;
+    }
+    th, td {
+      min-height: 32px;
+      padding: 10px 12px;
+      border-bottom: 1px solid var(--line);
+      text-align: left;
+    }
+    th {
+      font: 650 12px/16px var(--font-mono);
+      color: var(--accent);
+    }
+    .steps {
+      grid-column: 1 / 13;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      align-self: center;
+    }
+    .step {
+      border-top: 2px solid var(--ink);
+      padding-top: 16px;
+    }
+    .step .code { display: block; margin-bottom: 18px; }
+    .step strong { display: block; font-size: 24px; line-height: 1.2; }
+    .step span:last-child { display: block; margin-top: 10px; font-size: 16px; line-height: 1.42; color: var(--muted); }
+    .grid-overlay {
+      position: absolute;
+      inset: var(--grid-margin-y) var(--grid-margin-x);
+      pointer-events: none;
+      opacity: 0;
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      column-gap: var(--grid-gutter);
+    }
+    .grid-overlay i {
+      display: block;
+      background: rgba(37, 99, 235, 0.04);
+      border-left: 1px solid rgba(37, 99, 235, 0.12);
+    }
+  </style>
+</head>
+<body>
+  <main
+    class="deck-shell"
+    data-style-id="founder-memo-minimal"
+    data-template-id="investor-signal"
+    data-grammar-profile="founder-memo"
+    data-grid-mode="strict"
+    data-grid-cols="12"
+    data-grid-baseline="8"
+    data-grid-gutter="24"
+    data-grid-margin-x="72"
+    data-grid-margin-y="56">
+    <section class="slide" data-slide-role="title" data-layout-id="memo-cover">
+      <div class="main" data-grid-band="headline">
+        <div class="eyebrow">QUALITY QA / PASS</div>
+        <h1>AI 客服质检进入全量评估时代</h1>
+        <p>这页用于验证标题换行、字号、对比度、脚注和 B mode 证据。</p>
+        <div class="source-note" data-component-role="source-note">B MODE STATIC · sample numbers are illustrative.</div>
+      </div>
+      <aside class="memo-table" data-component-role="evidence-cell" data-grid-band="evidence">
+        <div class="memo-row"><span class="code">01</span><div><div class="row-title">覆盖</div><div class="row-copy">从抽检切到全量风险识别。</div></div></div>
+        <div class="memo-row"><span class="code">02</span><div><div class="row-title">解释</div><div class="row-copy">评分必须能回到具体话术。</div></div></div>
+        <div class="memo-row"><span class="code">03</span><div><div class="row-title">动作</div><div class="row-copy">高风险样本进入复核队列。</div></div></div>
+      </aside>
+      <div class="grid-overlay" data-grid-overlay="same-box" aria-hidden="true">
+        <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+      </div>
+    </section>
+    <section class="slide" data-slide-role="dense" data-layout-id="decision-table">
+      <div class="wide" data-grid-band="headline">
+        <div class="eyebrow">QUALITY QA / DENSE · B MODE STATIC</div>
+        <h2>密集页必须同时可读、可查、可解释</h2>
+        <p>这一页用于验证表格字号、行高、脚注长度、对比度和网格带。</p>
+      </div>
+      <table data-grid-band="table" data-component-role="evidence-cell">
+        <thead>
+          <tr><th>ROLE</th><th>RULE</th><th>PASS CONDITION</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Title</td><td>balanced wrap</td><td>2 lines max on dense slides</td></tr>
+          <tr><td>Table</td><td>readable row rhythm</td><td>13px body and 32px row</td></tr>
+          <tr><td>Source</td><td>short attached note</td><td>2 lines max, local to data</td></tr>
+        </tbody>
+      </table>
+      <div class="source-note" data-component-role="source-note" data-grid-band="source" style="grid-column: 9 / 13; align-self: end;">Source discipline fixture · sample values only.</div>
+      <div class="grid-overlay" data-grid-overlay="same-box" aria-hidden="true">
+        <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+      </div>
+    </section>
+    <section class="slide" data-slide-role="diagram" data-layout-id="strategy-map">
+      <div class="wide" data-grid-band="headline">
+        <div class="eyebrow">QUALITY QA / DIAGRAM · B MODE STATIC</div>
+        <h2>样片审批要看到稳定的最终状态</h2>
+        <p>流程页验证 motion snapshot：初始帧、settled 帧和 B mode 都不能空白。</p>
+      </div>
+      <div class="steps" data-grid-band="diagram">
+        <div class="step"><span class="code">01</span><strong>Type</strong><span>标题、正文、表格和脚注都进入可读范围。</span></div>
+        <div class="step"><span class="code">02</span><strong>Contrast</strong><span>文字和背景的对比度达到样式阈值。</span></div>
+        <div class="step"><span class="code">03</span><strong>Motion</strong><span>动画首帧和静态模式都可用于审批。</span></div>
+      </div>
+      <div class="grid-overlay" data-grid-overlay="same-box" aria-hidden="true">
+        <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+      </div>
+    </section>
+  </main>
+</body>
+</html>

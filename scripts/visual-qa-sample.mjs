@@ -22,6 +22,9 @@ const maxIssues = Number(args.get("max-issues") || 80);
 const explicitBrowser = args.get("browser");
 const styleId = args.get("style");
 const skipGridQa = args.get("skip-grid-qa") === "true";
+const skipTypeQa = args.get("skip-type-qa") === "true";
+const skipContrastQa = args.get("skip-contrast-qa") === "true";
+const skipMotionQa = args.get("skip-motion-qa") === "true";
 
 if (!file) {
   console.error("Usage: node scripts/visual-qa-sample.mjs --file=<index.html> [--style=<style-id>] [--out=<dir>] [--width=1280] [--height=720]");
@@ -244,25 +247,42 @@ if (issues.length || browserErrors.length) {
   process.exit(1);
 }
 
-if (styleId && !skipGridQa) {
-  const gridQaPath = path.join(root, "scripts", "grid-qa-sample.mjs");
-  const gridArgs = [
-    gridQaPath,
+function runChildQa(scriptName, extraArgs = []) {
+  const scriptPath = path.join(root, "scripts", scriptName);
+  const childArgs = [
+    scriptPath,
     `--file=${path.resolve(file)}`,
     `--style=${styleId}`,
     `--width=${width}`,
     `--height=${height}`,
     `--tolerance=${tolerance}`,
+    ...extraArgs,
   ];
-  if (explicitBrowser) gridArgs.push(`--browser=${explicitBrowser}`);
-  const grid = spawnSync(process.execPath, gridArgs, {
+  if (explicitBrowser) childArgs.push(`--browser=${explicitBrowser}`);
+  const child = spawnSync(process.execPath, childArgs, {
     cwd: root,
     encoding: "utf8",
     maxBuffer: 1024 * 1024 * 4,
   });
-  if (grid.stdout) process.stdout.write(grid.stdout);
-  if (grid.stderr) process.stderr.write(grid.stderr);
-  if (grid.status !== 0) process.exit(grid.status || 1);
+  if (child.stdout) process.stdout.write(child.stdout);
+  if (child.stderr) process.stderr.write(child.stderr);
+  if (child.status !== 0) process.exit(child.status || 1);
+}
+
+if (styleId && !skipTypeQa) {
+  runChildQa("type-qa-sample.mjs");
+}
+
+if (styleId && !skipContrastQa) {
+  runChildQa("contrast-qa-sample.mjs");
+}
+
+if (styleId && !skipMotionQa) {
+  runChildQa("motion-qa-sample.mjs", [`--out=${path.join(outDir, "_motion")}`]);
+}
+
+if (styleId && !skipGridQa) {
+  runChildQa("grid-qa-sample.mjs");
 }
 
 console.log(`Visual QA passed: ${slideCount} slide(s), ${width}x${height}, screenshots in ${outDir}.`);

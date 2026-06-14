@@ -26,6 +26,12 @@ just a palette or mood label. It must lock these axes:
    max cards/modules, and required layout ids.
 9. **Grid discipline:** 16:9 frame tokens, column/baseline rhythm, major-region
    `data-grid-band` trace, same-box overlay/debug hook, and measurable alignment.
+10. **Typography discipline:** title line count, readable floors, CJK line-start
+    and line-end rules, role-based font stacks, and table/source text limits.
+11. **Contrast discipline:** measured foreground/background contrast for text,
+    chart marks, rules, and essential non-text UI.
+12. **Motion snapshot discipline:** the first frame, settled frame, and B/static
+    mode must all be approvable and nonblank.
 
 Do not use vague instructions like "tech feel", "premium", "simple", "warm", or
 "high-end black" as a final style. Translate them into one catalog style plus
@@ -54,6 +60,7 @@ set for:
   the sample must expose `data-grid-band` plus a same-box overlay/debug hook;
 - type locks: title/body/mono role, Windows stack, forbidden font temperament;
 - chart rules: approved chart primitives and explicitly banned chart types;
+- typography, table/source, contrast, and motion snapshot discipline;
 - validator flags: what `scripts/validate-style-sample.mjs` must reject.
 
 If the chosen template already has a component library, use it as the first
@@ -98,6 +105,12 @@ Reference anchors used to shape these rules:
 - WCAG 2.2 contrast requirements:
   https://www.w3.org/TR/WCAG22/
   https://www.w3.org/WAI/WCAG22/Understanding/non-text-contrast.html
+- W3C Chinese Layout Requirements and modern CSS text wrapping:
+  https://www.w3.org/TR/clreq/
+  https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/text-wrap
+- Fluent 2 typography and Financial Times Visual Vocabulary:
+  https://fluent2.microsoft.design/typography
+  https://github.com/Financial-Times/chart-doctor/blob/main/visual-vocabulary/README.md
 - Current trend signals used only as ingredients, not as templates:
   https://www.adobe.com/express/learn/blog/design-trends-2026
   https://www.canva.com/newsroom/news/design-trends-2026/
@@ -128,6 +141,9 @@ Reference anchors used to shape these rules:
 
 ```bash
 node scripts/validate-style-sample.mjs --file=<sample-index.html> --style=<style-id> --template=<template-id>
+node scripts/type-qa-sample.mjs --file=<sample-index.html> --style=<style-id>
+node scripts/contrast-qa-sample.mjs --file=<sample-index.html> --style=<style-id>
+node scripts/motion-qa-sample.mjs --file=<sample-index.html> --style=<style-id> --out=<sample-dir>/_motion_qa
 node scripts/visual-qa-sample.mjs --file=<sample-index.html> --style=<style-id> --out=<sample-dir>/_visual_qa
 ```
 
@@ -153,6 +169,13 @@ A valid sample must show:
   lengths, visual hierarchy.
 - **Diagram/chart/process slide:** graphic language, accent usage, chart motion,
   data labels.
+- **Title wrapping:** h1/h2 line count, title slot width, CJK punctuation breaks,
+  and tail-line quality pass typography QA.
+- **Data/source readability:** tables, source notes, KPI captions, and chart labels
+  meet style-specific density floors.
+- **Contrast:** text and essential chart labels pass measured contrast checks.
+- **Motion snapshots:** initial, settled, and B/static screenshots show content
+  in an approvable state.
 - **B mode:** mention or include low-power/static behavior.
 - **Windows font fallback:** use the system-font stack unless the user approved
   embedded fonts.
@@ -188,6 +211,11 @@ Reject a sample before showing it when any of these are true:
   display in `braun-graphite-orange`;
 - SVG contains visible text in styles that require HTML labels;
 - title or side panel overlaps in a 1280x720 check;
+- title breaks into too many lines, creates a one/two-character CJK tail, or has
+  forbidden CJK punctuation at line start/end;
+- body/table/source text falls below the style's readability floor;
+- foreground/background contrast fails the style's threshold;
+- animation hides core content during sample approval screenshots;
 - B low-power mode is missing.
 
 ## Quality Rubric

@@ -40,6 +40,9 @@ Run style grammar validation before template-specific rendering checks:
 
 ```bash
 node scripts/validate-style-sample.mjs --file=<html-file> --style=<style-id> --template=<template-id>
+node scripts/type-qa-sample.mjs --file=<html-file> --style=<style-id>
+node scripts/contrast-qa-sample.mjs --file=<html-file> --style=<style-id>
+node scripts/motion-qa-sample.mjs --file=<html-file> --style=<style-id> --out=<verify-dir>/_motion_qa
 node scripts/visual-qa-sample.mjs --file=<html-file> --style=<style-id> --out=<verify-dir>
 node scripts/grid-qa-sample.mjs --file=<html-file> --style=<style-id>
 ```
@@ -86,6 +89,10 @@ Check:
   placement
 - grid overlay/debug hook uses `data-grid-overlay="same-box"` when required
 - no forbidden component/shape/chart/type violations for the selected style
+- type QA passes: heading line count, readable floors, CJK line breaks, table and
+  source density
+- contrast QA passes for visible text and essential labels
+- motion QA passes for initial, settled, and B/static snapshots
 
 ## Export
 

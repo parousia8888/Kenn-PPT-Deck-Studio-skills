@@ -27,7 +27,8 @@
     "shapeSource": "Shapes are style-specific. Number badges, dots, pills, cards, tabs, panels, gauges, and diagrams must match the profile shape grammar.",
     "typeSource": "Use the profile title/body/mono roles and Windows-safe fallbacks. Do not switch serif/sans temperament because a title 'looks premium'.",
     "motionSource": "Motion recipes must describe the slide's semantic reveal. Keep B low-power/static mode.",
-    "failFast": "If the sample violates a forbidden shape, forbidden chart type, font role, or component role, fix it before showing it."
+    "failFast": "If the sample violates a forbidden shape, forbidden chart type, font role, or component role, fix it before showing it.",
+    "qualitySource": "Gate 1B samples must pass validate, type, contrast, motion, visual, and grid QA. Passing structural QA is not enough for approval."
   },
   "templateComponentContracts": {
     "course-canvas": {
@@ -182,6 +183,97 @@
         "forbidGradientOrbs": true,
         "forbidSvgText": true,
         "requireLayoutIds": true
+      },
+      "typographyDiscipline": {
+        "headingSelectors": [
+          "h1",
+          "h2",
+          ".title",
+          ".cover-title",
+          "[data-type-role=\"title\"]"
+        ],
+        "bodySelectors": [
+          "p",
+          "li",
+          ".lead",
+          ".body",
+          ".copy",
+          ".module-copy",
+          ".row-copy"
+        ],
+        "metaSelectors": [
+          ".eyebrow",
+          ".kicker",
+          ".caption",
+          ".folio",
+          ".source-note",
+          "[data-component-role=\"source-note\"]"
+        ],
+        "tableSelectors": [
+          "table",
+          "[data-component-role=\"terminal-pane\"]",
+          "[data-component-role=\"evidence-cell\"]"
+        ],
+        "minFontPx": {
+          "coverTitle": 48,
+          "title": 30,
+          "body": 16,
+          "denseBody": 14,
+          "tableBody": 12,
+          "source": 9.5,
+          "monoLabel": 10
+        },
+        "maxFontPx": {
+          "coverTitle": 96,
+          "title": 68,
+          "body": 30,
+          "tableBody": 19
+        },
+        "maxLines": {
+          "coverTitle": 3,
+          "title": 3,
+          "denseTitle": 2,
+          "body": 5,
+          "source": 2,
+          "tableCell": 3
+        },
+        "minTailChars": {
+          "cjk": 4,
+          "latin": 8
+        },
+        "requireConstrainedTitleWidth": true,
+        "requireBalancedTitleWrap": true,
+        "cjkLineBreak": "strict",
+        "forbidMacOnlyFontDependency": true
+      },
+      "tableDiscipline": {
+        "maxRows": 7,
+        "maxColumns": 6,
+        "minRowHeight": 28,
+        "minCellPaddingX": 8,
+        "maxCellLines": 3,
+        "requireTabularNumsForNumeric": true
+      },
+      "sourceDiscipline": {
+        "maxLines": 2,
+        "minFontPx": 9.5,
+        "maxChars": 150,
+        "requireAttachedSourceForNumbers": false
+      },
+      "contrastDiscipline": {
+        "normalText": 4.5,
+        "largeText": 3,
+        "nonText": 3,
+        "ignoreOpacityBelow": 0.08
+      },
+      "motionSnapshotDiscipline": {
+        "enabled": true,
+        "initialDelayMs": 120,
+        "settledDelayMs": 900,
+        "requireBMode": true,
+        "minVisibleTextNodes": 3,
+        "minVisibleTextOpacity": 0.35,
+        "blankPixelVarianceMin": 8
       }
     },
     "cinematic-keynote": {
@@ -264,6 +356,97 @@
         "forbidSvgText": true,
         "maxCardsPerSlide": 3,
         "requireLayoutIds": true
+      },
+      "typographyDiscipline": {
+        "headingSelectors": [
+          "h1",
+          "h2",
+          ".title",
+          ".cover-title",
+          "[data-type-role=\"title\"]"
+        ],
+        "bodySelectors": [
+          "p",
+          "li",
+          ".lead",
+          ".body",
+          ".copy",
+          ".module-copy",
+          ".row-copy"
+        ],
+        "metaSelectors": [
+          ".eyebrow",
+          ".kicker",
+          ".caption",
+          ".folio",
+          ".source-note",
+          "[data-component-role=\"source-note\"]"
+        ],
+        "tableSelectors": [
+          "table",
+          "[data-component-role=\"terminal-pane\"]",
+          "[data-component-role=\"evidence-cell\"]"
+        ],
+        "minFontPx": {
+          "coverTitle": 56,
+          "title": 40,
+          "body": 20,
+          "denseBody": 18,
+          "tableBody": 14,
+          "source": 10,
+          "monoLabel": 10
+        },
+        "maxFontPx": {
+          "coverTitle": 96,
+          "title": 68,
+          "body": 30,
+          "tableBody": 19
+        },
+        "maxLines": {
+          "coverTitle": 2,
+          "title": 2,
+          "denseTitle": 2,
+          "body": 3,
+          "source": 2,
+          "tableCell": 2
+        },
+        "minTailChars": {
+          "cjk": 4,
+          "latin": 8
+        },
+        "requireConstrainedTitleWidth": true,
+        "requireBalancedTitleWrap": true,
+        "cjkLineBreak": "strict",
+        "forbidMacOnlyFontDependency": true
+      },
+      "tableDiscipline": {
+        "maxRows": 4,
+        "maxColumns": 4,
+        "minRowHeight": 40,
+        "minCellPaddingX": 8,
+        "maxCellLines": 3,
+        "requireTabularNumsForNumeric": true
+      },
+      "sourceDiscipline": {
+        "maxLines": 2,
+        "minFontPx": 9.5,
+        "maxChars": 150,
+        "requireAttachedSourceForNumbers": false
+      },
+      "contrastDiscipline": {
+        "normalText": 4.5,
+        "largeText": 3,
+        "nonText": 3,
+        "ignoreOpacityBelow": 0.08
+      },
+      "motionSnapshotDiscipline": {
+        "enabled": true,
+        "initialDelayMs": 120,
+        "settledDelayMs": 1200,
+        "requireBMode": true,
+        "minVisibleTextNodes": 2,
+        "minVisibleTextOpacity": 0.35,
+        "blankPixelVarianceMin": 8
       }
     },
     "swiss-grid-signal": {
@@ -360,6 +543,97 @@
         "forbidBorderRadius": true,
         "forbidSvgText": true,
         "requireLayoutIds": true
+      },
+      "typographyDiscipline": {
+        "headingSelectors": [
+          "h1",
+          "h2",
+          ".title",
+          ".cover-title",
+          "[data-type-role=\"title\"]"
+        ],
+        "bodySelectors": [
+          "p",
+          "li",
+          ".lead",
+          ".body",
+          ".copy",
+          ".module-copy",
+          ".row-copy"
+        ],
+        "metaSelectors": [
+          ".eyebrow",
+          ".kicker",
+          ".caption",
+          ".folio",
+          ".source-note",
+          "[data-component-role=\"source-note\"]"
+        ],
+        "tableSelectors": [
+          "table",
+          "[data-component-role=\"terminal-pane\"]",
+          "[data-component-role=\"evidence-cell\"]"
+        ],
+        "minFontPx": {
+          "coverTitle": 52,
+          "title": 34,
+          "body": 18,
+          "denseBody": 15,
+          "tableBody": 12,
+          "source": 10,
+          "monoLabel": 10
+        },
+        "maxFontPx": {
+          "coverTitle": 96,
+          "title": 68,
+          "body": 30,
+          "tableBody": 19
+        },
+        "maxLines": {
+          "coverTitle": 3,
+          "title": 2,
+          "denseTitle": 2,
+          "body": 4,
+          "source": 2,
+          "tableCell": 2
+        },
+        "minTailChars": {
+          "cjk": 4,
+          "latin": 8
+        },
+        "requireConstrainedTitleWidth": true,
+        "requireBalancedTitleWrap": true,
+        "cjkLineBreak": "strict",
+        "forbidMacOnlyFontDependency": true
+      },
+      "tableDiscipline": {
+        "maxRows": 8,
+        "maxColumns": 6,
+        "minRowHeight": 30,
+        "minCellPaddingX": 8,
+        "maxCellLines": 3,
+        "requireTabularNumsForNumeric": true
+      },
+      "sourceDiscipline": {
+        "maxLines": 2,
+        "minFontPx": 9.5,
+        "maxChars": 150,
+        "requireAttachedSourceForNumbers": false
+      },
+      "contrastDiscipline": {
+        "normalText": 4.5,
+        "largeText": 3,
+        "nonText": 3,
+        "ignoreOpacityBelow": 0.08
+      },
+      "motionSnapshotDiscipline": {
+        "enabled": true,
+        "initialDelayMs": 120,
+        "settledDelayMs": 900,
+        "requireBMode": true,
+        "minVisibleTextNodes": 3,
+        "minVisibleTextOpacity": 0.35,
+        "blankPixelVarianceMin": 8
       }
     },
     "editorial-paper": {
@@ -446,6 +720,97 @@
         "forbidRandomDarkPanel": true,
         "forbidSvgText": false,
         "requireLayoutIds": true
+      },
+      "typographyDiscipline": {
+        "headingSelectors": [
+          "h1",
+          "h2",
+          ".title",
+          ".cover-title",
+          "[data-type-role=\"title\"]"
+        ],
+        "bodySelectors": [
+          "p",
+          "li",
+          ".lead",
+          ".body",
+          ".copy",
+          ".module-copy",
+          ".row-copy"
+        ],
+        "metaSelectors": [
+          ".eyebrow",
+          ".kicker",
+          ".caption",
+          ".folio",
+          ".source-note",
+          "[data-component-role=\"source-note\"]"
+        ],
+        "tableSelectors": [
+          "table",
+          "[data-component-role=\"terminal-pane\"]",
+          "[data-component-role=\"evidence-cell\"]"
+        ],
+        "minFontPx": {
+          "coverTitle": 50,
+          "title": 34,
+          "body": 17,
+          "denseBody": 15,
+          "tableBody": 12,
+          "source": 10,
+          "monoLabel": 10
+        },
+        "maxFontPx": {
+          "coverTitle": 96,
+          "title": 68,
+          "body": 30,
+          "tableBody": 19
+        },
+        "maxLines": {
+          "coverTitle": 4,
+          "title": 3,
+          "denseTitle": 2,
+          "body": 5,
+          "source": 2,
+          "tableCell": 3
+        },
+        "minTailChars": {
+          "cjk": 4,
+          "latin": 8
+        },
+        "requireConstrainedTitleWidth": true,
+        "requireBalancedTitleWrap": true,
+        "cjkLineBreak": "strict",
+        "forbidMacOnlyFontDependency": true
+      },
+      "tableDiscipline": {
+        "maxRows": 7,
+        "maxColumns": 5,
+        "minRowHeight": 30,
+        "minCellPaddingX": 8,
+        "maxCellLines": 3,
+        "requireTabularNumsForNumeric": true
+      },
+      "sourceDiscipline": {
+        "maxLines": 2,
+        "minFontPx": 9.5,
+        "maxChars": 150,
+        "requireAttachedSourceForNumbers": false
+      },
+      "contrastDiscipline": {
+        "normalText": 4.5,
+        "largeText": 3,
+        "nonText": 3,
+        "ignoreOpacityBelow": 0.08
+      },
+      "motionSnapshotDiscipline": {
+        "enabled": true,
+        "initialDelayMs": 120,
+        "settledDelayMs": 900,
+        "requireBMode": true,
+        "minVisibleTextNodes": 3,
+        "minVisibleTextOpacity": 0.35,
+        "blankPixelVarianceMin": 8
       }
     },
     "industrial-control": {
@@ -549,6 +914,97 @@
         "maxDarkSurfaceRules": 1,
         "titleWeightMax": 760,
         "requireLayoutIds": true
+      },
+      "typographyDiscipline": {
+        "headingSelectors": [
+          "h1",
+          "h2",
+          ".title",
+          ".cover-title",
+          "[data-type-role=\"title\"]"
+        ],
+        "bodySelectors": [
+          "p",
+          "li",
+          ".lead",
+          ".body",
+          ".copy",
+          ".module-copy",
+          ".row-copy"
+        ],
+        "metaSelectors": [
+          ".eyebrow",
+          ".kicker",
+          ".caption",
+          ".folio",
+          ".source-note",
+          "[data-component-role=\"source-note\"]"
+        ],
+        "tableSelectors": [
+          "table",
+          "[data-component-role=\"terminal-pane\"]",
+          "[data-component-role=\"evidence-cell\"]"
+        ],
+        "minFontPx": {
+          "coverTitle": 50,
+          "title": 34,
+          "body": 18,
+          "denseBody": 15,
+          "tableBody": 12,
+          "source": 10,
+          "monoLabel": 11
+        },
+        "maxFontPx": {
+          "coverTitle": 96,
+          "title": 68,
+          "body": 30,
+          "tableBody": 19
+        },
+        "maxLines": {
+          "coverTitle": 3,
+          "title": 2,
+          "denseTitle": 2,
+          "body": 4,
+          "source": 2,
+          "tableCell": 2
+        },
+        "minTailChars": {
+          "cjk": 4,
+          "latin": 8
+        },
+        "requireConstrainedTitleWidth": true,
+        "requireBalancedTitleWrap": true,
+        "cjkLineBreak": "strict",
+        "forbidMacOnlyFontDependency": true
+      },
+      "tableDiscipline": {
+        "maxRows": 6,
+        "maxColumns": 5,
+        "minRowHeight": 32,
+        "minCellPaddingX": 8,
+        "maxCellLines": 3,
+        "requireTabularNumsForNumeric": true
+      },
+      "sourceDiscipline": {
+        "maxLines": 2,
+        "minFontPx": 9.5,
+        "maxChars": 150,
+        "requireAttachedSourceForNumbers": false
+      },
+      "contrastDiscipline": {
+        "normalText": 4.5,
+        "largeText": 3,
+        "nonText": 3,
+        "ignoreOpacityBelow": 0.08
+      },
+      "motionSnapshotDiscipline": {
+        "enabled": true,
+        "initialDelayMs": 120,
+        "settledDelayMs": 900,
+        "requireBMode": true,
+        "minVisibleTextNodes": 3,
+        "minVisibleTextOpacity": 0.35,
+        "blankPixelVarianceMin": 8
       }
     },
     "data-terminal": {
@@ -636,6 +1092,97 @@
         "forbidCircleBadges": true,
         "forbidGradientOrbs": true,
         "requireLayoutIds": true
+      },
+      "typographyDiscipline": {
+        "headingSelectors": [
+          "h1",
+          "h2",
+          ".title",
+          ".cover-title",
+          "[data-type-role=\"title\"]"
+        ],
+        "bodySelectors": [
+          "p",
+          "li",
+          ".lead",
+          ".body",
+          ".copy",
+          ".module-copy",
+          ".row-copy"
+        ],
+        "metaSelectors": [
+          ".eyebrow",
+          ".kicker",
+          ".caption",
+          ".folio",
+          ".source-note",
+          "[data-component-role=\"source-note\"]"
+        ],
+        "tableSelectors": [
+          "table",
+          "[data-component-role=\"terminal-pane\"]",
+          "[data-component-role=\"evidence-cell\"]"
+        ],
+        "minFontPx": {
+          "coverTitle": 44,
+          "title": 30,
+          "body": 15,
+          "denseBody": 13,
+          "tableBody": 12,
+          "source": 9.5,
+          "monoLabel": 10
+        },
+        "maxFontPx": {
+          "coverTitle": 96,
+          "title": 68,
+          "body": 30,
+          "tableBody": 19
+        },
+        "maxLines": {
+          "coverTitle": 3,
+          "title": 2,
+          "denseTitle": 2,
+          "body": 4,
+          "source": 2,
+          "tableCell": 3
+        },
+        "minTailChars": {
+          "cjk": 4,
+          "latin": 8
+        },
+        "requireConstrainedTitleWidth": true,
+        "requireBalancedTitleWrap": true,
+        "cjkLineBreak": "strict",
+        "forbidMacOnlyFontDependency": true
+      },
+      "tableDiscipline": {
+        "maxRows": 9,
+        "maxColumns": 7,
+        "minRowHeight": 27,
+        "minCellPaddingX": 8,
+        "maxCellLines": 3,
+        "requireTabularNumsForNumeric": true
+      },
+      "sourceDiscipline": {
+        "maxLines": 2,
+        "minFontPx": 9.5,
+        "maxChars": 150,
+        "requireAttachedSourceForNumbers": false
+      },
+      "contrastDiscipline": {
+        "normalText": 4.5,
+        "largeText": 3,
+        "nonText": 3,
+        "ignoreOpacityBelow": 0.08
+      },
+      "motionSnapshotDiscipline": {
+        "enabled": true,
+        "initialDelayMs": 120,
+        "settledDelayMs": 900,
+        "requireBMode": true,
+        "minVisibleTextNodes": 3,
+        "minVisibleTextOpacity": 0.35,
+        "blankPixelVarianceMin": 8
       }
     },
     "education-institutional": {
@@ -722,6 +1269,97 @@
       "validator": {
         "forbidRandomDarkPanel": true,
         "requireLayoutIds": true
+      },
+      "typographyDiscipline": {
+        "headingSelectors": [
+          "h1",
+          "h2",
+          ".title",
+          ".cover-title",
+          "[data-type-role=\"title\"]"
+        ],
+        "bodySelectors": [
+          "p",
+          "li",
+          ".lead",
+          ".body",
+          ".copy",
+          ".module-copy",
+          ".row-copy"
+        ],
+        "metaSelectors": [
+          ".eyebrow",
+          ".kicker",
+          ".caption",
+          ".folio",
+          ".source-note",
+          "[data-component-role=\"source-note\"]"
+        ],
+        "tableSelectors": [
+          "table",
+          "[data-component-role=\"terminal-pane\"]",
+          "[data-component-role=\"evidence-cell\"]"
+        ],
+        "minFontPx": {
+          "coverTitle": 48,
+          "title": 32,
+          "body": 18,
+          "denseBody": 15,
+          "tableBody": 13,
+          "source": 10,
+          "monoLabel": 10
+        },
+        "maxFontPx": {
+          "coverTitle": 96,
+          "title": 68,
+          "body": 30,
+          "tableBody": 19
+        },
+        "maxLines": {
+          "coverTitle": 3,
+          "title": 2,
+          "denseTitle": 2,
+          "body": 4,
+          "source": 2,
+          "tableCell": 3
+        },
+        "minTailChars": {
+          "cjk": 4,
+          "latin": 8
+        },
+        "requireConstrainedTitleWidth": true,
+        "requireBalancedTitleWrap": true,
+        "cjkLineBreak": "strict",
+        "forbidMacOnlyFontDependency": true
+      },
+      "tableDiscipline": {
+        "maxRows": 6,
+        "maxColumns": 5,
+        "minRowHeight": 34,
+        "minCellPaddingX": 8,
+        "maxCellLines": 3,
+        "requireTabularNumsForNumeric": true
+      },
+      "sourceDiscipline": {
+        "maxLines": 2,
+        "minFontPx": 9.5,
+        "maxChars": 150,
+        "requireAttachedSourceForNumbers": false
+      },
+      "contrastDiscipline": {
+        "normalText": 4.5,
+        "largeText": 3,
+        "nonText": 3,
+        "ignoreOpacityBelow": 0.08
+      },
+      "motionSnapshotDiscipline": {
+        "enabled": true,
+        "initialDelayMs": 120,
+        "settledDelayMs": 900,
+        "requireBMode": true,
+        "minVisibleTextNodes": 3,
+        "minVisibleTextOpacity": 0.35,
+        "blankPixelVarianceMin": 8
       }
     },
     "academic-institutional": {
@@ -810,6 +1448,97 @@
       "validator": {
         "forbidRandomDarkPanel": true,
         "requireLayoutIds": true
+      },
+      "typographyDiscipline": {
+        "headingSelectors": [
+          "h1",
+          "h2",
+          ".title",
+          ".cover-title",
+          "[data-type-role=\"title\"]"
+        ],
+        "bodySelectors": [
+          "p",
+          "li",
+          ".lead",
+          ".body",
+          ".copy",
+          ".module-copy",
+          ".row-copy"
+        ],
+        "metaSelectors": [
+          ".eyebrow",
+          ".kicker",
+          ".caption",
+          ".folio",
+          ".source-note",
+          "[data-component-role=\"source-note\"]"
+        ],
+        "tableSelectors": [
+          "table",
+          "[data-component-role=\"terminal-pane\"]",
+          "[data-component-role=\"evidence-cell\"]"
+        ],
+        "minFontPx": {
+          "coverTitle": 48,
+          "title": 32,
+          "body": 17,
+          "denseBody": 15,
+          "tableBody": 12,
+          "source": 10,
+          "monoLabel": 10
+        },
+        "maxFontPx": {
+          "coverTitle": 96,
+          "title": 68,
+          "body": 30,
+          "tableBody": 19
+        },
+        "maxLines": {
+          "coverTitle": 3,
+          "title": 2,
+          "denseTitle": 2,
+          "body": 4,
+          "source": 2,
+          "tableCell": 3
+        },
+        "minTailChars": {
+          "cjk": 4,
+          "latin": 8
+        },
+        "requireConstrainedTitleWidth": true,
+        "requireBalancedTitleWrap": true,
+        "cjkLineBreak": "strict",
+        "forbidMacOnlyFontDependency": true
+      },
+      "tableDiscipline": {
+        "maxRows": 7,
+        "maxColumns": 6,
+        "minRowHeight": 32,
+        "minCellPaddingX": 8,
+        "maxCellLines": 3,
+        "requireTabularNumsForNumeric": true
+      },
+      "sourceDiscipline": {
+        "maxLines": 2,
+        "minFontPx": 9.5,
+        "maxChars": 150,
+        "requireAttachedSourceForNumbers": false
+      },
+      "contrastDiscipline": {
+        "normalText": 4.5,
+        "largeText": 3,
+        "nonText": 3,
+        "ignoreOpacityBelow": 0.08
+      },
+      "motionSnapshotDiscipline": {
+        "enabled": true,
+        "initialDelayMs": 120,
+        "settledDelayMs": 900,
+        "requireBMode": true,
+        "minVisibleTextNodes": 3,
+        "minVisibleTextOpacity": 0.35,
+        "blankPixelVarianceMin": 8
       }
     },
     "clean-room-ai": {
@@ -895,6 +1624,97 @@
       "validator": {
         "forbidGradientOrbs": true,
         "requireLayoutIds": true
+      },
+      "typographyDiscipline": {
+        "headingSelectors": [
+          "h1",
+          "h2",
+          ".title",
+          ".cover-title",
+          "[data-type-role=\"title\"]"
+        ],
+        "bodySelectors": [
+          "p",
+          "li",
+          ".lead",
+          ".body",
+          ".copy",
+          ".module-copy",
+          ".row-copy"
+        ],
+        "metaSelectors": [
+          ".eyebrow",
+          ".kicker",
+          ".caption",
+          ".folio",
+          ".source-note",
+          "[data-component-role=\"source-note\"]"
+        ],
+        "tableSelectors": [
+          "table",
+          "[data-component-role=\"terminal-pane\"]",
+          "[data-component-role=\"evidence-cell\"]"
+        ],
+        "minFontPx": {
+          "coverTitle": 48,
+          "title": 32,
+          "body": 17,
+          "denseBody": 14,
+          "tableBody": 12,
+          "source": 9.5,
+          "monoLabel": 10
+        },
+        "maxFontPx": {
+          "coverTitle": 96,
+          "title": 68,
+          "body": 30,
+          "tableBody": 19
+        },
+        "maxLines": {
+          "coverTitle": 3,
+          "title": 2,
+          "denseTitle": 2,
+          "body": 4,
+          "source": 2,
+          "tableCell": 3
+        },
+        "minTailChars": {
+          "cjk": 4,
+          "latin": 8
+        },
+        "requireConstrainedTitleWidth": true,
+        "requireBalancedTitleWrap": true,
+        "cjkLineBreak": "strict",
+        "forbidMacOnlyFontDependency": true
+      },
+      "tableDiscipline": {
+        "maxRows": 8,
+        "maxColumns": 6,
+        "minRowHeight": 29,
+        "minCellPaddingX": 8,
+        "maxCellLines": 3,
+        "requireTabularNumsForNumeric": true
+      },
+      "sourceDiscipline": {
+        "maxLines": 2,
+        "minFontPx": 9.5,
+        "maxChars": 150,
+        "requireAttachedSourceForNumbers": false
+      },
+      "contrastDiscipline": {
+        "normalText": 4.5,
+        "largeText": 3,
+        "nonText": 3,
+        "ignoreOpacityBelow": 0.08
+      },
+      "motionSnapshotDiscipline": {
+        "enabled": true,
+        "initialDelayMs": 120,
+        "settledDelayMs": 900,
+        "requireBMode": true,
+        "minVisibleTextNodes": 3,
+        "minVisibleTextOpacity": 0.35,
+        "blankPixelVarianceMin": 8
       }
     },
     "proof-dossier": {
@@ -988,6 +1808,97 @@
         "forbidCircleBadges": true,
         "forbidSvgText": true,
         "requireLayoutIds": true
+      },
+      "typographyDiscipline": {
+        "headingSelectors": [
+          "h1",
+          "h2",
+          ".title",
+          ".cover-title",
+          "[data-type-role=\"title\"]"
+        ],
+        "bodySelectors": [
+          "p",
+          "li",
+          ".lead",
+          ".body",
+          ".copy",
+          ".module-copy",
+          ".row-copy"
+        ],
+        "metaSelectors": [
+          ".eyebrow",
+          ".kicker",
+          ".caption",
+          ".folio",
+          ".source-note",
+          "[data-component-role=\"source-note\"]"
+        ],
+        "tableSelectors": [
+          "table",
+          "[data-component-role=\"terminal-pane\"]",
+          "[data-component-role=\"evidence-cell\"]"
+        ],
+        "minFontPx": {
+          "coverTitle": 46,
+          "title": 30,
+          "body": 16,
+          "denseBody": 14,
+          "tableBody": 12,
+          "source": 9.5,
+          "monoLabel": 10
+        },
+        "maxFontPx": {
+          "coverTitle": 96,
+          "title": 68,
+          "body": 30,
+          "tableBody": 19
+        },
+        "maxLines": {
+          "coverTitle": 3,
+          "title": 2,
+          "denseTitle": 2,
+          "body": 4,
+          "source": 2,
+          "tableCell": 3
+        },
+        "minTailChars": {
+          "cjk": 4,
+          "latin": 8
+        },
+        "requireConstrainedTitleWidth": true,
+        "requireBalancedTitleWrap": true,
+        "cjkLineBreak": "strict",
+        "forbidMacOnlyFontDependency": true
+      },
+      "tableDiscipline": {
+        "maxRows": 8,
+        "maxColumns": 6,
+        "minRowHeight": 28,
+        "minCellPaddingX": 8,
+        "maxCellLines": 3,
+        "requireTabularNumsForNumeric": true
+      },
+      "sourceDiscipline": {
+        "maxLines": 2,
+        "minFontPx": 9.5,
+        "maxChars": 150,
+        "requireAttachedSourceForNumbers": false
+      },
+      "contrastDiscipline": {
+        "normalText": 4.5,
+        "largeText": 3,
+        "nonText": 3,
+        "ignoreOpacityBelow": 0.08
+      },
+      "motionSnapshotDiscipline": {
+        "enabled": true,
+        "initialDelayMs": 120,
+        "settledDelayMs": 900,
+        "requireBMode": true,
+        "minVisibleTextNodes": 3,
+        "minVisibleTextOpacity": 0.35,
+        "blankPixelVarianceMin": 8
       }
     },
     "hardware-blueprint": {
@@ -1070,6 +1981,97 @@
       "validator": {
         "forbidCircleBadges": true,
         "requireLayoutIds": true
+      },
+      "typographyDiscipline": {
+        "headingSelectors": [
+          "h1",
+          "h2",
+          ".title",
+          ".cover-title",
+          "[data-type-role=\"title\"]"
+        ],
+        "bodySelectors": [
+          "p",
+          "li",
+          ".lead",
+          ".body",
+          ".copy",
+          ".module-copy",
+          ".row-copy"
+        ],
+        "metaSelectors": [
+          ".eyebrow",
+          ".kicker",
+          ".caption",
+          ".folio",
+          ".source-note",
+          "[data-component-role=\"source-note\"]"
+        ],
+        "tableSelectors": [
+          "table",
+          "[data-component-role=\"terminal-pane\"]",
+          "[data-component-role=\"evidence-cell\"]"
+        ],
+        "minFontPx": {
+          "coverTitle": 46,
+          "title": 30,
+          "body": 16,
+          "denseBody": 14,
+          "tableBody": 12,
+          "source": 9.5,
+          "monoLabel": 10
+        },
+        "maxFontPx": {
+          "coverTitle": 96,
+          "title": 68,
+          "body": 30,
+          "tableBody": 19
+        },
+        "maxLines": {
+          "coverTitle": 3,
+          "title": 2,
+          "denseTitle": 2,
+          "body": 4,
+          "source": 2,
+          "tableCell": 3
+        },
+        "minTailChars": {
+          "cjk": 4,
+          "latin": 8
+        },
+        "requireConstrainedTitleWidth": true,
+        "requireBalancedTitleWrap": true,
+        "cjkLineBreak": "strict",
+        "forbidMacOnlyFontDependency": true
+      },
+      "tableDiscipline": {
+        "maxRows": 8,
+        "maxColumns": 6,
+        "minRowHeight": 28,
+        "minCellPaddingX": 8,
+        "maxCellLines": 3,
+        "requireTabularNumsForNumeric": true
+      },
+      "sourceDiscipline": {
+        "maxLines": 2,
+        "minFontPx": 9.5,
+        "maxChars": 150,
+        "requireAttachedSourceForNumbers": false
+      },
+      "contrastDiscipline": {
+        "normalText": 4.5,
+        "largeText": 3,
+        "nonText": 3,
+        "ignoreOpacityBelow": 0.08
+      },
+      "motionSnapshotDiscipline": {
+        "enabled": true,
+        "initialDelayMs": 120,
+        "settledDelayMs": 900,
+        "requireBMode": true,
+        "minVisibleTextNodes": 3,
+        "minVisibleTextOpacity": 0.35,
+        "blankPixelVarianceMin": 8
       }
     },
     "automotive-telemetry": {
@@ -1157,6 +2159,97 @@
         "requireDarkSurfaceRole": true,
         "darkSurfaceRole": "telemetry-panel",
         "requireLayoutIds": true
+      },
+      "typographyDiscipline": {
+        "headingSelectors": [
+          "h1",
+          "h2",
+          ".title",
+          ".cover-title",
+          "[data-type-role=\"title\"]"
+        ],
+        "bodySelectors": [
+          "p",
+          "li",
+          ".lead",
+          ".body",
+          ".copy",
+          ".module-copy",
+          ".row-copy"
+        ],
+        "metaSelectors": [
+          ".eyebrow",
+          ".kicker",
+          ".caption",
+          ".folio",
+          ".source-note",
+          "[data-component-role=\"source-note\"]"
+        ],
+        "tableSelectors": [
+          "table",
+          "[data-component-role=\"terminal-pane\"]",
+          "[data-component-role=\"evidence-cell\"]"
+        ],
+        "minFontPx": {
+          "coverTitle": 50,
+          "title": 34,
+          "body": 17,
+          "denseBody": 14,
+          "tableBody": 12,
+          "source": 9.5,
+          "monoLabel": 10
+        },
+        "maxFontPx": {
+          "coverTitle": 96,
+          "title": 68,
+          "body": 30,
+          "tableBody": 19
+        },
+        "maxLines": {
+          "coverTitle": 3,
+          "title": 2,
+          "denseTitle": 2,
+          "body": 4,
+          "source": 2,
+          "tableCell": 2
+        },
+        "minTailChars": {
+          "cjk": 4,
+          "latin": 8
+        },
+        "requireConstrainedTitleWidth": true,
+        "requireBalancedTitleWrap": true,
+        "cjkLineBreak": "strict",
+        "forbidMacOnlyFontDependency": true
+      },
+      "tableDiscipline": {
+        "maxRows": 7,
+        "maxColumns": 6,
+        "minRowHeight": 30,
+        "minCellPaddingX": 8,
+        "maxCellLines": 3,
+        "requireTabularNumsForNumeric": true
+      },
+      "sourceDiscipline": {
+        "maxLines": 2,
+        "minFontPx": 9.5,
+        "maxChars": 150,
+        "requireAttachedSourceForNumbers": false
+      },
+      "contrastDiscipline": {
+        "normalText": 4.5,
+        "largeText": 3,
+        "nonText": 3,
+        "ignoreOpacityBelow": 0.08
+      },
+      "motionSnapshotDiscipline": {
+        "enabled": true,
+        "initialDelayMs": 120,
+        "settledDelayMs": 900,
+        "requireBMode": true,
+        "minVisibleTextNodes": 3,
+        "minVisibleTextOpacity": 0.35,
+        "blankPixelVarianceMin": 8
       }
     },
     "gallery-print": {
@@ -1241,6 +2334,97 @@
         "forbidRandomDarkPanel": true,
         "maxCardsPerSlide": 4,
         "requireLayoutIds": true
+      },
+      "typographyDiscipline": {
+        "headingSelectors": [
+          "h1",
+          "h2",
+          ".title",
+          ".cover-title",
+          "[data-type-role=\"title\"]"
+        ],
+        "bodySelectors": [
+          "p",
+          "li",
+          ".lead",
+          ".body",
+          ".copy",
+          ".module-copy",
+          ".row-copy"
+        ],
+        "metaSelectors": [
+          ".eyebrow",
+          ".kicker",
+          ".caption",
+          ".folio",
+          ".source-note",
+          "[data-component-role=\"source-note\"]"
+        ],
+        "tableSelectors": [
+          "table",
+          "[data-component-role=\"terminal-pane\"]",
+          "[data-component-role=\"evidence-cell\"]"
+        ],
+        "minFontPx": {
+          "coverTitle": 52,
+          "title": 36,
+          "body": 18,
+          "denseBody": 16,
+          "tableBody": 13,
+          "source": 10,
+          "monoLabel": 10
+        },
+        "maxFontPx": {
+          "coverTitle": 96,
+          "title": 68,
+          "body": 30,
+          "tableBody": 19
+        },
+        "maxLines": {
+          "coverTitle": 3,
+          "title": 2,
+          "denseTitle": 2,
+          "body": 4,
+          "source": 2,
+          "tableCell": 2
+        },
+        "minTailChars": {
+          "cjk": 4,
+          "latin": 8
+        },
+        "requireConstrainedTitleWidth": true,
+        "requireBalancedTitleWrap": true,
+        "cjkLineBreak": "strict",
+        "forbidMacOnlyFontDependency": true
+      },
+      "tableDiscipline": {
+        "maxRows": 5,
+        "maxColumns": 4,
+        "minRowHeight": 36,
+        "minCellPaddingX": 8,
+        "maxCellLines": 3,
+        "requireTabularNumsForNumeric": true
+      },
+      "sourceDiscipline": {
+        "maxLines": 2,
+        "minFontPx": 9.5,
+        "maxChars": 150,
+        "requireAttachedSourceForNumbers": false
+      },
+      "contrastDiscipline": {
+        "normalText": 4.5,
+        "largeText": 3,
+        "nonText": 3,
+        "ignoreOpacityBelow": 0.08
+      },
+      "motionSnapshotDiscipline": {
+        "enabled": true,
+        "initialDelayMs": 120,
+        "settledDelayMs": 900,
+        "requireBMode": true,
+        "minVisibleTextNodes": 3,
+        "minVisibleTextOpacity": 0.35,
+        "blankPixelVarianceMin": 8
       }
     },
     "brutalist-poster": {
@@ -1315,6 +2499,97 @@
       "motionGrammar": "Quick block reveal or registration drift; low amplitude.",
       "validator": {
         "requireLayoutIds": true
+      },
+      "typographyDiscipline": {
+        "headingSelectors": [
+          "h1",
+          "h2",
+          ".title",
+          ".cover-title",
+          "[data-type-role=\"title\"]"
+        ],
+        "bodySelectors": [
+          "p",
+          "li",
+          ".lead",
+          ".body",
+          ".copy",
+          ".module-copy",
+          ".row-copy"
+        ],
+        "metaSelectors": [
+          ".eyebrow",
+          ".kicker",
+          ".caption",
+          ".folio",
+          ".source-note",
+          "[data-component-role=\"source-note\"]"
+        ],
+        "tableSelectors": [
+          "table",
+          "[data-component-role=\"terminal-pane\"]",
+          "[data-component-role=\"evidence-cell\"]"
+        ],
+        "minFontPx": {
+          "coverTitle": 54,
+          "title": 38,
+          "body": 18,
+          "denseBody": 16,
+          "tableBody": 13,
+          "source": 10,
+          "monoLabel": 10
+        },
+        "maxFontPx": {
+          "coverTitle": 96,
+          "title": 68,
+          "body": 30,
+          "tableBody": 19
+        },
+        "maxLines": {
+          "coverTitle": 3,
+          "title": 2,
+          "denseTitle": 2,
+          "body": 3,
+          "source": 2,
+          "tableCell": 2
+        },
+        "minTailChars": {
+          "cjk": 4,
+          "latin": 8
+        },
+        "requireConstrainedTitleWidth": true,
+        "requireBalancedTitleWrap": true,
+        "cjkLineBreak": "strict",
+        "forbidMacOnlyFontDependency": true
+      },
+      "tableDiscipline": {
+        "maxRows": 5,
+        "maxColumns": 4,
+        "minRowHeight": 36,
+        "minCellPaddingX": 8,
+        "maxCellLines": 3,
+        "requireTabularNumsForNumeric": true
+      },
+      "sourceDiscipline": {
+        "maxLines": 2,
+        "minFontPx": 9.5,
+        "maxChars": 150,
+        "requireAttachedSourceForNumbers": false
+      },
+      "contrastDiscipline": {
+        "normalText": 4.5,
+        "largeText": 3,
+        "nonText": 3,
+        "ignoreOpacityBelow": 0.08
+      },
+      "motionSnapshotDiscipline": {
+        "enabled": true,
+        "initialDelayMs": 120,
+        "settledDelayMs": 900,
+        "requireBMode": true,
+        "minVisibleTextNodes": 3,
+        "minVisibleTextOpacity": 0.35,
+        "blankPixelVarianceMin": 8
       }
     },
     "minimal-research": {
@@ -1401,6 +2676,97 @@
         "forbidGradientOrbs": true,
         "forbidRandomDarkPanel": true,
         "requireLayoutIds": true
+      },
+      "typographyDiscipline": {
+        "headingSelectors": [
+          "h1",
+          "h2",
+          ".title",
+          ".cover-title",
+          "[data-type-role=\"title\"]"
+        ],
+        "bodySelectors": [
+          "p",
+          "li",
+          ".lead",
+          ".body",
+          ".copy",
+          ".module-copy",
+          ".row-copy"
+        ],
+        "metaSelectors": [
+          ".eyebrow",
+          ".kicker",
+          ".caption",
+          ".folio",
+          ".source-note",
+          "[data-component-role=\"source-note\"]"
+        ],
+        "tableSelectors": [
+          "table",
+          "[data-component-role=\"terminal-pane\"]",
+          "[data-component-role=\"evidence-cell\"]"
+        ],
+        "minFontPx": {
+          "coverTitle": 46,
+          "title": 30,
+          "body": 17,
+          "denseBody": 15,
+          "tableBody": 12,
+          "source": 10,
+          "monoLabel": 10
+        },
+        "maxFontPx": {
+          "coverTitle": 96,
+          "title": 68,
+          "body": 30,
+          "tableBody": 19
+        },
+        "maxLines": {
+          "coverTitle": 3,
+          "title": 2,
+          "denseTitle": 2,
+          "body": 5,
+          "source": 2,
+          "tableCell": 3
+        },
+        "minTailChars": {
+          "cjk": 4,
+          "latin": 8
+        },
+        "requireConstrainedTitleWidth": true,
+        "requireBalancedTitleWrap": true,
+        "cjkLineBreak": "strict",
+        "forbidMacOnlyFontDependency": true
+      },
+      "tableDiscipline": {
+        "maxRows": 7,
+        "maxColumns": 6,
+        "minRowHeight": 31,
+        "minCellPaddingX": 8,
+        "maxCellLines": 3,
+        "requireTabularNumsForNumeric": true
+      },
+      "sourceDiscipline": {
+        "maxLines": 2,
+        "minFontPx": 9.5,
+        "maxChars": 150,
+        "requireAttachedSourceForNumbers": false
+      },
+      "contrastDiscipline": {
+        "normalText": 4.5,
+        "largeText": 3,
+        "nonText": 3,
+        "ignoreOpacityBelow": 0.08
+      },
+      "motionSnapshotDiscipline": {
+        "enabled": true,
+        "initialDelayMs": 120,
+        "settledDelayMs": 900,
+        "requireBMode": true,
+        "minVisibleTextNodes": 3,
+        "minVisibleTextOpacity": 0.35,
+        "blankPixelVarianceMin": 8
       }
     },
     "colorfield-architectural": {
@@ -1479,6 +2845,97 @@
       "validator": {
         "forbidGradientOrbs": true,
         "requireLayoutIds": true
+      },
+      "typographyDiscipline": {
+        "headingSelectors": [
+          "h1",
+          "h2",
+          ".title",
+          ".cover-title",
+          "[data-type-role=\"title\"]"
+        ],
+        "bodySelectors": [
+          "p",
+          "li",
+          ".lead",
+          ".body",
+          ".copy",
+          ".module-copy",
+          ".row-copy"
+        ],
+        "metaSelectors": [
+          ".eyebrow",
+          ".kicker",
+          ".caption",
+          ".folio",
+          ".source-note",
+          "[data-component-role=\"source-note\"]"
+        ],
+        "tableSelectors": [
+          "table",
+          "[data-component-role=\"terminal-pane\"]",
+          "[data-component-role=\"evidence-cell\"]"
+        ],
+        "minFontPx": {
+          "coverTitle": 52,
+          "title": 36,
+          "body": 18,
+          "denseBody": 15,
+          "tableBody": 12,
+          "source": 10,
+          "monoLabel": 10
+        },
+        "maxFontPx": {
+          "coverTitle": 96,
+          "title": 68,
+          "body": 30,
+          "tableBody": 19
+        },
+        "maxLines": {
+          "coverTitle": 2,
+          "title": 2,
+          "denseTitle": 2,
+          "body": 4,
+          "source": 2,
+          "tableCell": 2
+        },
+        "minTailChars": {
+          "cjk": 4,
+          "latin": 8
+        },
+        "requireConstrainedTitleWidth": true,
+        "requireBalancedTitleWrap": true,
+        "cjkLineBreak": "strict",
+        "forbidMacOnlyFontDependency": true
+      },
+      "tableDiscipline": {
+        "maxRows": 5,
+        "maxColumns": 5,
+        "minRowHeight": 34,
+        "minCellPaddingX": 8,
+        "maxCellLines": 3,
+        "requireTabularNumsForNumeric": true
+      },
+      "sourceDiscipline": {
+        "maxLines": 2,
+        "minFontPx": 9.5,
+        "maxChars": 150,
+        "requireAttachedSourceForNumbers": false
+      },
+      "contrastDiscipline": {
+        "normalText": 4.5,
+        "largeText": 3,
+        "nonText": 3,
+        "ignoreOpacityBelow": 0.08
+      },
+      "motionSnapshotDiscipline": {
+        "enabled": true,
+        "initialDelayMs": 120,
+        "settledDelayMs": 900,
+        "requireBMode": true,
+        "minVisibleTextNodes": 3,
+        "minVisibleTextOpacity": 0.35,
+        "blankPixelVarianceMin": 8
       }
     },
     "riso-poster": {
@@ -1555,6 +3012,97 @@
       "motionGrammar": "Slight registration drift, then static.",
       "validator": {
         "requireLayoutIds": true
+      },
+      "typographyDiscipline": {
+        "headingSelectors": [
+          "h1",
+          "h2",
+          ".title",
+          ".cover-title",
+          "[data-type-role=\"title\"]"
+        ],
+        "bodySelectors": [
+          "p",
+          "li",
+          ".lead",
+          ".body",
+          ".copy",
+          ".module-copy",
+          ".row-copy"
+        ],
+        "metaSelectors": [
+          ".eyebrow",
+          ".kicker",
+          ".caption",
+          ".folio",
+          ".source-note",
+          "[data-component-role=\"source-note\"]"
+        ],
+        "tableSelectors": [
+          "table",
+          "[data-component-role=\"terminal-pane\"]",
+          "[data-component-role=\"evidence-cell\"]"
+        ],
+        "minFontPx": {
+          "coverTitle": 52,
+          "title": 36,
+          "body": 18,
+          "denseBody": 15,
+          "tableBody": 13,
+          "source": 10,
+          "monoLabel": 10
+        },
+        "maxFontPx": {
+          "coverTitle": 96,
+          "title": 68,
+          "body": 30,
+          "tableBody": 19
+        },
+        "maxLines": {
+          "coverTitle": 3,
+          "title": 2,
+          "denseTitle": 2,
+          "body": 4,
+          "source": 2,
+          "tableCell": 2
+        },
+        "minTailChars": {
+          "cjk": 4,
+          "latin": 8
+        },
+        "requireConstrainedTitleWidth": true,
+        "requireBalancedTitleWrap": true,
+        "cjkLineBreak": "strict",
+        "forbidMacOnlyFontDependency": true
+      },
+      "tableDiscipline": {
+        "maxRows": 5,
+        "maxColumns": 4,
+        "minRowHeight": 36,
+        "minCellPaddingX": 8,
+        "maxCellLines": 3,
+        "requireTabularNumsForNumeric": true
+      },
+      "sourceDiscipline": {
+        "maxLines": 2,
+        "minFontPx": 9.5,
+        "maxChars": 150,
+        "requireAttachedSourceForNumbers": false
+      },
+      "contrastDiscipline": {
+        "normalText": 4.5,
+        "largeText": 3,
+        "nonText": 3,
+        "ignoreOpacityBelow": 0.08
+      },
+      "motionSnapshotDiscipline": {
+        "enabled": true,
+        "initialDelayMs": 120,
+        "settledDelayMs": 900,
+        "requireBMode": true,
+        "minVisibleTextNodes": 3,
+        "minVisibleTextOpacity": 0.35,
+        "blankPixelVarianceMin": 8
       }
     },
     "tactile-studio": {
@@ -1631,6 +3179,97 @@
       "validator": {
         "forbidRandomDarkPanel": true,
         "requireLayoutIds": true
+      },
+      "typographyDiscipline": {
+        "headingSelectors": [
+          "h1",
+          "h2",
+          ".title",
+          ".cover-title",
+          "[data-type-role=\"title\"]"
+        ],
+        "bodySelectors": [
+          "p",
+          "li",
+          ".lead",
+          ".body",
+          ".copy",
+          ".module-copy",
+          ".row-copy"
+        ],
+        "metaSelectors": [
+          ".eyebrow",
+          ".kicker",
+          ".caption",
+          ".folio",
+          ".source-note",
+          "[data-component-role=\"source-note\"]"
+        ],
+        "tableSelectors": [
+          "table",
+          "[data-component-role=\"terminal-pane\"]",
+          "[data-component-role=\"evidence-cell\"]"
+        ],
+        "minFontPx": {
+          "coverTitle": 50,
+          "title": 34,
+          "body": 18,
+          "denseBody": 15,
+          "tableBody": 13,
+          "source": 10,
+          "monoLabel": 10
+        },
+        "maxFontPx": {
+          "coverTitle": 96,
+          "title": 68,
+          "body": 30,
+          "tableBody": 19
+        },
+        "maxLines": {
+          "coverTitle": 3,
+          "title": 2,
+          "denseTitle": 2,
+          "body": 4,
+          "source": 2,
+          "tableCell": 3
+        },
+        "minTailChars": {
+          "cjk": 4,
+          "latin": 8
+        },
+        "requireConstrainedTitleWidth": true,
+        "requireBalancedTitleWrap": true,
+        "cjkLineBreak": "strict",
+        "forbidMacOnlyFontDependency": true
+      },
+      "tableDiscipline": {
+        "maxRows": 6,
+        "maxColumns": 5,
+        "minRowHeight": 34,
+        "minCellPaddingX": 8,
+        "maxCellLines": 3,
+        "requireTabularNumsForNumeric": true
+      },
+      "sourceDiscipline": {
+        "maxLines": 2,
+        "minFontPx": 9.5,
+        "maxChars": 150,
+        "requireAttachedSourceForNumbers": false
+      },
+      "contrastDiscipline": {
+        "normalText": 4.5,
+        "largeText": 3,
+        "nonText": 3,
+        "ignoreOpacityBelow": 0.08
+      },
+      "motionSnapshotDiscipline": {
+        "enabled": true,
+        "initialDelayMs": 120,
+        "settledDelayMs": 900,
+        "requireBMode": true,
+        "minVisibleTextNodes": 3,
+        "minVisibleTextOpacity": 0.35,
+        "blankPixelVarianceMin": 8
       }
     },
     "security-grid": {
@@ -1712,6 +3351,97 @@
       "validator": {
         "forbidCircleBadges": true,
         "requireLayoutIds": true
+      },
+      "typographyDiscipline": {
+        "headingSelectors": [
+          "h1",
+          "h2",
+          ".title",
+          ".cover-title",
+          "[data-type-role=\"title\"]"
+        ],
+        "bodySelectors": [
+          "p",
+          "li",
+          ".lead",
+          ".body",
+          ".copy",
+          ".module-copy",
+          ".row-copy"
+        ],
+        "metaSelectors": [
+          ".eyebrow",
+          ".kicker",
+          ".caption",
+          ".folio",
+          ".source-note",
+          "[data-component-role=\"source-note\"]"
+        ],
+        "tableSelectors": [
+          "table",
+          "[data-component-role=\"terminal-pane\"]",
+          "[data-component-role=\"evidence-cell\"]"
+        ],
+        "minFontPx": {
+          "coverTitle": 46,
+          "title": 32,
+          "body": 16,
+          "denseBody": 14,
+          "tableBody": 12,
+          "source": 9.5,
+          "monoLabel": 10
+        },
+        "maxFontPx": {
+          "coverTitle": 96,
+          "title": 68,
+          "body": 30,
+          "tableBody": 19
+        },
+        "maxLines": {
+          "coverTitle": 3,
+          "title": 2,
+          "denseTitle": 2,
+          "body": 4,
+          "source": 2,
+          "tableCell": 3
+        },
+        "minTailChars": {
+          "cjk": 4,
+          "latin": 8
+        },
+        "requireConstrainedTitleWidth": true,
+        "requireBalancedTitleWrap": true,
+        "cjkLineBreak": "strict",
+        "forbidMacOnlyFontDependency": true
+      },
+      "tableDiscipline": {
+        "maxRows": 8,
+        "maxColumns": 7,
+        "minRowHeight": 28,
+        "minCellPaddingX": 8,
+        "maxCellLines": 3,
+        "requireTabularNumsForNumeric": true
+      },
+      "sourceDiscipline": {
+        "maxLines": 2,
+        "minFontPx": 9.5,
+        "maxChars": 150,
+        "requireAttachedSourceForNumbers": false
+      },
+      "contrastDiscipline": {
+        "normalText": 4.5,
+        "largeText": 3,
+        "nonText": 3,
+        "ignoreOpacityBelow": 0.08
+      },
+      "motionSnapshotDiscipline": {
+        "enabled": true,
+        "initialDelayMs": 120,
+        "settledDelayMs": 900,
+        "requireBMode": true,
+        "minVisibleTextNodes": 3,
+        "minVisibleTextOpacity": 0.35,
+        "blankPixelVarianceMin": 8
       }
     },
     "legal-brief": {
@@ -1796,6 +3526,97 @@
       "validator": {
         "forbidRandomDarkPanel": true,
         "requireLayoutIds": true
+      },
+      "typographyDiscipline": {
+        "headingSelectors": [
+          "h1",
+          "h2",
+          ".title",
+          ".cover-title",
+          "[data-type-role=\"title\"]"
+        ],
+        "bodySelectors": [
+          "p",
+          "li",
+          ".lead",
+          ".body",
+          ".copy",
+          ".module-copy",
+          ".row-copy"
+        ],
+        "metaSelectors": [
+          ".eyebrow",
+          ".kicker",
+          ".caption",
+          ".folio",
+          ".source-note",
+          "[data-component-role=\"source-note\"]"
+        ],
+        "tableSelectors": [
+          "table",
+          "[data-component-role=\"terminal-pane\"]",
+          "[data-component-role=\"evidence-cell\"]"
+        ],
+        "minFontPx": {
+          "coverTitle": 46,
+          "title": 30,
+          "body": 16,
+          "denseBody": 14,
+          "tableBody": 12,
+          "source": 10,
+          "monoLabel": 10
+        },
+        "maxFontPx": {
+          "coverTitle": 96,
+          "title": 68,
+          "body": 30,
+          "tableBody": 19
+        },
+        "maxLines": {
+          "coverTitle": 3,
+          "title": 2,
+          "denseTitle": 2,
+          "body": 5,
+          "source": 2,
+          "tableCell": 3
+        },
+        "minTailChars": {
+          "cjk": 4,
+          "latin": 8
+        },
+        "requireConstrainedTitleWidth": true,
+        "requireBalancedTitleWrap": true,
+        "cjkLineBreak": "strict",
+        "forbidMacOnlyFontDependency": true
+      },
+      "tableDiscipline": {
+        "maxRows": 8,
+        "maxColumns": 6,
+        "minRowHeight": 30,
+        "minCellPaddingX": 8,
+        "maxCellLines": 3,
+        "requireTabularNumsForNumeric": true
+      },
+      "sourceDiscipline": {
+        "maxLines": 2,
+        "minFontPx": 9.5,
+        "maxChars": 150,
+        "requireAttachedSourceForNumbers": false
+      },
+      "contrastDiscipline": {
+        "normalText": 4.5,
+        "largeText": 3,
+        "nonText": 3,
+        "ignoreOpacityBelow": 0.08
+      },
+      "motionSnapshotDiscipline": {
+        "enabled": true,
+        "initialDelayMs": 120,
+        "settledDelayMs": 900,
+        "requireBMode": true,
+        "minVisibleTextNodes": 3,
+        "minVisibleTextOpacity": 0.35,
+        "blankPixelVarianceMin": 8
       }
     },
     "developer-docs": {
@@ -1877,6 +3698,97 @@
       "validator": {
         "forbidCircleBadges": true,
         "requireLayoutIds": true
+      },
+      "typographyDiscipline": {
+        "headingSelectors": [
+          "h1",
+          "h2",
+          ".title",
+          ".cover-title",
+          "[data-type-role=\"title\"]"
+        ],
+        "bodySelectors": [
+          "p",
+          "li",
+          ".lead",
+          ".body",
+          ".copy",
+          ".module-copy",
+          ".row-copy"
+        ],
+        "metaSelectors": [
+          ".eyebrow",
+          ".kicker",
+          ".caption",
+          ".folio",
+          ".source-note",
+          "[data-component-role=\"source-note\"]"
+        ],
+        "tableSelectors": [
+          "table",
+          "[data-component-role=\"terminal-pane\"]",
+          "[data-component-role=\"evidence-cell\"]"
+        ],
+        "minFontPx": {
+          "coverTitle": 46,
+          "title": 30,
+          "body": 16,
+          "denseBody": 14,
+          "tableBody": 12,
+          "source": 9.5,
+          "monoLabel": 10
+        },
+        "maxFontPx": {
+          "coverTitle": 96,
+          "title": 68,
+          "body": 30,
+          "tableBody": 19
+        },
+        "maxLines": {
+          "coverTitle": 3,
+          "title": 2,
+          "denseTitle": 2,
+          "body": 5,
+          "source": 2,
+          "tableCell": 4
+        },
+        "minTailChars": {
+          "cjk": 4,
+          "latin": 8
+        },
+        "requireConstrainedTitleWidth": true,
+        "requireBalancedTitleWrap": true,
+        "cjkLineBreak": "strict",
+        "forbidMacOnlyFontDependency": true
+      },
+      "tableDiscipline": {
+        "maxRows": 9,
+        "maxColumns": 6,
+        "minRowHeight": 28,
+        "minCellPaddingX": 8,
+        "maxCellLines": 3,
+        "requireTabularNumsForNumeric": true
+      },
+      "sourceDiscipline": {
+        "maxLines": 2,
+        "minFontPx": 9.5,
+        "maxChars": 150,
+        "requireAttachedSourceForNumbers": false
+      },
+      "contrastDiscipline": {
+        "normalText": 4.5,
+        "largeText": 3,
+        "nonText": 3,
+        "ignoreOpacityBelow": 0.08
+      },
+      "motionSnapshotDiscipline": {
+        "enabled": true,
+        "initialDelayMs": 120,
+        "settledDelayMs": 900,
+        "requireBMode": true,
+        "minVisibleTextNodes": 3,
+        "minVisibleTextOpacity": 0.35,
+        "blankPixelVarianceMin": 8
       }
     },
     "founder-memo": {
@@ -1960,6 +3872,97 @@
       "validator": {
         "forbidRandomDarkPanel": true,
         "requireLayoutIds": true
+      },
+      "typographyDiscipline": {
+        "headingSelectors": [
+          "h1",
+          "h2",
+          ".title",
+          ".cover-title",
+          "[data-type-role=\"title\"]"
+        ],
+        "bodySelectors": [
+          "p",
+          "li",
+          ".lead",
+          ".body",
+          ".copy",
+          ".module-copy",
+          ".row-copy"
+        ],
+        "metaSelectors": [
+          ".eyebrow",
+          ".kicker",
+          ".caption",
+          ".folio",
+          ".source-note",
+          "[data-component-role=\"source-note\"]"
+        ],
+        "tableSelectors": [
+          "table",
+          "[data-component-role=\"terminal-pane\"]",
+          "[data-component-role=\"evidence-cell\"]"
+        ],
+        "minFontPx": {
+          "coverTitle": 48,
+          "title": 32,
+          "body": 17,
+          "denseBody": 14,
+          "tableBody": 12,
+          "source": 10,
+          "monoLabel": 10
+        },
+        "maxFontPx": {
+          "coverTitle": 96,
+          "title": 68,
+          "body": 30,
+          "tableBody": 19
+        },
+        "maxLines": {
+          "coverTitle": 3,
+          "title": 2,
+          "denseTitle": 2,
+          "body": 4,
+          "source": 2,
+          "tableCell": 3
+        },
+        "minTailChars": {
+          "cjk": 4,
+          "latin": 8
+        },
+        "requireConstrainedTitleWidth": true,
+        "requireBalancedTitleWrap": true,
+        "cjkLineBreak": "strict",
+        "forbidMacOnlyFontDependency": true
+      },
+      "tableDiscipline": {
+        "maxRows": 7,
+        "maxColumns": 5,
+        "minRowHeight": 32,
+        "minCellPaddingX": 8,
+        "maxCellLines": 3,
+        "requireTabularNumsForNumeric": true
+      },
+      "sourceDiscipline": {
+        "maxLines": 2,
+        "minFontPx": 9.5,
+        "maxChars": 150,
+        "requireAttachedSourceForNumbers": false
+      },
+      "contrastDiscipline": {
+        "normalText": 4.5,
+        "largeText": 3,
+        "nonText": 3,
+        "ignoreOpacityBelow": 0.08
+      },
+      "motionSnapshotDiscipline": {
+        "enabled": true,
+        "initialDelayMs": 120,
+        "settledDelayMs": 900,
+        "requireBMode": true,
+        "minVisibleTextNodes": 3,
+        "minVisibleTextOpacity": 0.35,
+        "blankPixelVarianceMin": 8
       }
     }
   },
@@ -2017,5 +4020,98 @@
     "founder-memo-minimal": "founder-memo",
     "ai-lab-whiteboard-dark": "clean-room-ai",
     "future-school-pop": "education-institutional"
+  },
+  "globalDisciplineDefaults": {
+    "typographyDiscipline": {
+      "headingSelectors": [
+        "h1",
+        "h2",
+        ".title",
+        ".cover-title",
+        "[data-type-role=\"title\"]"
+      ],
+      "bodySelectors": [
+        "p",
+        "li",
+        ".lead",
+        ".body",
+        ".copy",
+        ".module-copy",
+        ".row-copy"
+      ],
+      "metaSelectors": [
+        ".eyebrow",
+        ".kicker",
+        ".caption",
+        ".folio",
+        ".source-note",
+        "[data-component-role=\"source-note\"]"
+      ],
+      "tableSelectors": [
+        "table",
+        "[data-component-role=\"terminal-pane\"]",
+        "[data-component-role=\"evidence-cell\"]"
+      ],
+      "minFontPx": {
+        "coverTitle": 48,
+        "title": 30,
+        "body": 16,
+        "denseBody": 14,
+        "tableBody": 12,
+        "source": 9.5,
+        "monoLabel": 10
+      },
+      "maxFontPx": {
+        "coverTitle": 96,
+        "title": 68,
+        "body": 30,
+        "tableBody": 19
+      },
+      "maxLines": {
+        "coverTitle": 3,
+        "title": 3,
+        "denseTitle": 2,
+        "body": 5,
+        "source": 2,
+        "tableCell": 3
+      },
+      "minTailChars": {
+        "cjk": 4,
+        "latin": 8
+      },
+      "requireConstrainedTitleWidth": true,
+      "requireBalancedTitleWrap": true,
+      "cjkLineBreak": "strict",
+      "forbidMacOnlyFontDependency": true
+    },
+    "tableDiscipline": {
+      "maxRows": 7,
+      "maxColumns": 6,
+      "minRowHeight": 28,
+      "minCellPaddingX": 8,
+      "maxCellLines": 3,
+      "requireTabularNumsForNumeric": true
+    },
+    "sourceDiscipline": {
+      "maxLines": 2,
+      "minFontPx": 9.5,
+      "maxChars": 150,
+      "requireAttachedSourceForNumbers": false
+    },
+    "contrastDiscipline": {
+      "normalText": 4.5,
+      "largeText": 3,
+      "nonText": 3,
+      "ignoreOpacityBelow": 0.08
+    },
+    "motionSnapshotDiscipline": {
+      "enabled": true,
+      "initialDelayMs": 120,
+      "settledDelayMs": 900,
+      "requireBMode": true,
+      "minVisibleTextNodes": 3,
+      "minVisibleTextOpacity": 0.35,
+      "blankPixelVarianceMin": 8
+    }
   }
 }

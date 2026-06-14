@@ -86,6 +86,24 @@ if (jsonOnly) {
   for (const [key, value] of Object.entries(profile.typeLock)) {
     console.log(`  ${key}: ${Array.isArray(value) ? value.join("; ") : value}`);
   }
+  if (profile.typographyDiscipline) {
+    console.log("\nTypography discipline:");
+    console.log(`  min font px: ${JSON.stringify(profile.typographyDiscipline.minFontPx)}`);
+    console.log(`  max lines: ${JSON.stringify(profile.typographyDiscipline.maxLines)}`);
+    console.log(`  CJK line break: ${profile.typographyDiscipline.cjkLineBreak}; balanced title wrap: ${profile.typographyDiscipline.requireBalancedTitleWrap}`);
+  }
+  if (profile.tableDiscipline) {
+    console.log("\nTable/source discipline:");
+    console.log(`  table: max ${profile.tableDiscipline.maxRows} rows x ${profile.tableDiscipline.maxColumns} columns; min row ${profile.tableDiscipline.minRowHeight}px`);
+    console.log(`  source: max ${profile.sourceDiscipline?.maxLines} lines; min ${profile.sourceDiscipline?.minFontPx}px; max ${profile.sourceDiscipline?.maxChars} chars`);
+  }
+  if (profile.contrastDiscipline) {
+    console.log("\nContrast discipline:");
+    console.log(`  normal text ${profile.contrastDiscipline.normalText}:1; large text ${profile.contrastDiscipline.largeText}:1; non-text ${profile.contrastDiscipline.nonText}:1`);
+  }
   console.log("\nMotion:");
   console.log(`  ${profile.motionGrammar}`);
+  if (profile.motionSnapshotDiscipline) {
+    console.log(`  snapshots: initial ${profile.motionSnapshotDiscipline.initialDelayMs}ms; settled ${profile.motionSnapshotDiscipline.settledDelayMs}ms; B mode ${profile.motionSnapshotDiscipline.requireBMode ? "required" : "optional"}`);
+  }
 }

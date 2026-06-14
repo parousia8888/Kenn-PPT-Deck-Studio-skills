@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <title>Quality Contrast Fail Fixture</title>
+  <style>
+    html, body { width: 1280px; height: 720px; margin: 0; overflow: hidden; background: #fbfaf7; }
+    body { font-family: Aptos, "Segoe UI", "Microsoft YaHei UI", Arial, sans-serif; color: #d7d1c8; }
+    .deck-shell, .slide { width: 1280px; height: 720px; overflow: hidden; }
+    .slide { padding: 72px; background: #fbfaf7; }
+    h1 { margin: 0; max-width: 720px; font-size: 60px; line-height: 1.05; text-wrap: balance; }
+    p { max-width: 620px; font-size: 22px; line-height: 1.4; }
+  </style>
+</head>
+<body>
+  <main class="deck-shell" data-style-id="founder-memo-minimal" data-template-id="investor-signal" data-grammar-profile="founder-memo">
+    <section class="slide" data-slide-role="title" data-layout-id="memo-cover">
+      <h1>低对比文字必须被拦住</h1>
+      <p>这页文字看起来像浅米色纸上的浅灰字，contrast QA 应该失败。</p>
+    </section>
+  </main>
+</body>
+</html>

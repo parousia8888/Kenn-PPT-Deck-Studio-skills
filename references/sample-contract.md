@@ -147,6 +147,9 @@ Run before showing a sample:
 
 ```bash
 node scripts/validate-style-sample.mjs --file=<sample-index.html> --style=<style-id> --template=<template-id>
+node scripts/type-qa-sample.mjs --file=<sample-index.html> --style=<style-id>
+node scripts/contrast-qa-sample.mjs --file=<sample-index.html> --style=<style-id>
+node scripts/motion-qa-sample.mjs --file=<sample-index.html> --style=<style-id> --out=<sample-dir>/_motion_qa
 node scripts/visual-qa-sample.mjs --file=<sample-index.html> --style=<style-id> --out=<sample-dir>/_visual_qa
 node scripts/grid-qa-sample.mjs --file=<sample-index.html> --style=<style-id>
 ```
@@ -156,6 +159,11 @@ Visual QA failure includes document scrollbars, slide scroll overflow, browser
 errors, elements outside the 1280x720 slide, or clipped text blocks.
 Grid QA failure includes missing grid tokens, missing `data-grid-band`,
 off-column bands, missing same-box overlay, or baseline drift.
+Type QA failure includes unreadable font floors, poor h1/h2 line breaks, bad CJK
+line-start/line-end punctuation, overlong source notes, and table text that is too
+dense for projection. Contrast QA failure includes text/background pairs below
+the profile threshold. Motion QA failure includes hidden initial content, blank
+settled screenshots, or missing B/static mode.
 
 Run the local regression harness after changing grammar or validator behavior:
 
