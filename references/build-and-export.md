@@ -40,7 +40,8 @@ Run style grammar validation before template-specific rendering checks:
 
 ```bash
 node scripts/validate-style-sample.mjs --file=<html-file> --style=<style-id> --template=<template-id>
-node scripts/visual-qa-sample.mjs --file=<html-file> --out=<verify-dir>
+node scripts/visual-qa-sample.mjs --file=<html-file> --style=<style-id> --out=<verify-dir>
+node scripts/grid-qa-sample.mjs --file=<html-file> --style=<style-id>
 ```
 
 After editing the shared style catalog, execution grammar, or validator, run:
@@ -53,9 +54,11 @@ This checks style/profile coverage and verifies that a compliant Braun sample
 passes while a known bad Braun sample fails for circular badges, radar/SVG text,
 wrong layout id, unroled dark surfaces, and forbidden title typography.
 
-For Gate 1B samples, grammar validation and visual QA must both pass before
-asking for approval. For full decks, both checks should still pass unless a user
-explicitly approved a grammar or layout exception.
+For Gate 1B samples, grammar validation, visual QA, and grid discipline QA must
+all pass before asking for approval. `visual-qa-sample.mjs --style=<style-id>`
+already runs grid QA; the standalone grid command is for debugging or explicit
+reporting. For full decks, these checks should still pass unless a user explicitly
+approved a grammar or layout exception.
 
 Use template-specific verifier when present:
 
@@ -78,6 +81,10 @@ Check:
 - contact sheet
 - `data-style-id`, `data-template-id`, `data-grammar-profile` on the deck root
 - `data-slide-role` and `data-layout-id` on every slide
+- strict/measured grid profiles expose `data-grid-*` or `--grid-*` tokens
+- major regions declare `data-grid-band` or use a grammar-defined template grid
+  placement
+- grid overlay/debug hook uses `data-grid-overlay="same-box"` when required
 - no forbidden component/shape/chart/type violations for the selected style
 
 ## Export

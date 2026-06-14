@@ -9,10 +9,13 @@ const catalogPath = path.join(root, "assets", "style-systems", "style-catalog.js
 const grammarPath = path.join(root, "assets", "style-systems", "execution-grammar.json");
 const validatorPath = path.join(root, "scripts", "validate-style-sample.mjs");
 const visualQaPath = path.join(root, "scripts", "visual-qa-sample.mjs");
+const gridQaPath = path.join(root, "scripts", "grid-qa-sample.mjs");
 const passFixture = path.join(root, "tests", "fixtures", "braun-industrial-control.pass.html");
 const failFixture = path.join(root, "tests", "fixtures", "braun-industrial-control.fail.html");
 const visualPassFixture = path.join(root, "tests", "fixtures", "founder-memo-visual.pass.html");
 const visualFailFixture = path.join(root, "tests", "fixtures", "founder-memo-visual.fail.html");
+const gridPassFixture = path.join(root, "tests", "fixtures", "swiss-grid-discipline.pass.html");
+const gridFailFixture = path.join(root, "tests", "fixtures", "swiss-grid-discipline.fail.html");
 
 function fail(message) {
   console.error(`FAIL: ${message}`);
@@ -84,6 +87,7 @@ const visualPass = run([
   visualQaPath,
   `--file=${visualPassFixture}`,
   "--out=.tmp/visual-pass",
+  "--skip-grid-qa=true",
 ]);
 if (visualPass.status !== 0) {
   fail(`Founder memo visual pass fixture should pass.\nSTDOUT:\n${visualPass.stdout}\nSTDERR:\n${visualPass.stderr}`);
@@ -93,6 +97,7 @@ const visualFail = run([
   visualQaPath,
   `--file=${visualFailFixture}`,
   "--out=.tmp/visual-fail",
+  "--skip-grid-qa=true",
 ]);
 if (visualFail.status === 0) {
   fail("Founder memo visual fail fixture should fail, but visual QA returned success.");
@@ -105,4 +110,29 @@ if (missedVisual.length) {
   fail(`Visual fail fixture did not hit expected signal(s): ${missedVisual.join(", ")}\n${visualCombined}`);
 }
 
-console.log(`Style grammar tests passed: ${catalog.styles.length} styles, ${Object.keys(grammar.grammarProfiles).length} grammar profiles, grammar fixtures and visual QA fixtures verified.`);
+const gridPass = run([
+  gridQaPath,
+  `--file=${gridPassFixture}`,
+  "--style=swiss-signal-cobalt",
+]);
+if (gridPass.status !== 0) {
+  fail(`Swiss grid discipline pass fixture should pass.\nSTDOUT:\n${gridPass.stdout}\nSTDERR:\n${gridPass.stderr}`);
+}
+
+const gridFail = run([
+  gridQaPath,
+  `--file=${gridFailFixture}`,
+  "--style=swiss-signal-cobalt",
+]);
+if (gridFail.status === 0) {
+  fail("Swiss grid discipline fail fixture should fail, but grid QA returned success.");
+}
+
+const gridCombined = `${gridFail.stdout}\n${gridFail.stderr}`;
+const gridSignals = ["missing-grid-band", "missing-grid-overlay"];
+const missedGrid = gridSignals.filter((signal) => !gridCombined.includes(signal));
+if (missedGrid.length) {
+  fail(`Grid fail fixture did not hit expected signal(s): ${missedGrid.join(", ")}\n${gridCombined}`);
+}
+
+console.log(`Style grammar tests passed: ${catalog.styles.length} styles, ${Object.keys(grammar.grammarProfiles).length} grammar profiles, grammar fixtures, visual QA fixtures, and grid discipline QA fixtures verified.`);

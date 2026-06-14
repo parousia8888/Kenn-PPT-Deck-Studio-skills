@@ -47,12 +47,15 @@ for the selected template and describe each style candidate by the execution axe
 - component grammar and forbidden UI components
 - shape grammar and forbidden primitives
 - layout whitelist / safe-zone implications
+- grid discipline: strict/measured/optional mode, column count, baseline,
+  auditable `data-grid-band` regions, and same-box overlay requirement
 
 If the user does not like it, either choose another template/style id or propose
 concrete changes on the full execution axes: color, type, density, graphics,
-motion, components, shapes, and layout whitelist. Do not solve style feedback
-with random colors. Do not use "科技感", "高级", "简洁", "温和" as final
-instructions; lock a named style id or a derived style with explicit tokens.
+motion, components, shapes, layout whitelist, and grid discipline. Do not solve
+style feedback with random colors. Do not use "科技感", "高级", "简洁", "温和" as
+final instructions; lock a named style id or a derived style with explicit
+tokens.
 
 Do not proceed until both the style id and the visual sample are accepted.
 
@@ -77,19 +80,25 @@ node scripts/list-style-grammar.mjs --style=<style-id>
    telemetry panels, source ledgers, and callouts must use `data-component-role`.
 5. Use the template component library first. Do not write an anonymous mini design
    system for the sample.
+6. If the grammar profile is strict/measured for grid discipline, set grid tokens
+   on the deck root or each slide, place major regions with `data-grid-band`, and
+   keep the grid overlay in the same content box as the slide content.
 
 Before showing the visual sample:
 
 ```bash
 node scripts/validate-style-sample.mjs --file=<sample-index.html> --style=<style-id> --template=<template-id>
-node scripts/visual-qa-sample.mjs --file=<sample-index.html> --out=<sample-dir>/_visual_qa
+node scripts/visual-qa-sample.mjs --file=<sample-index.html> --style=<style-id> --out=<sample-dir>/_visual_qa
 ```
 
-If either check fails, revise the sample. Do not show screenshots or ask for
-approval while any slide has scrollbars, clipped text, element overflow, missing
-1280x720 framing, or browser errors. Tell the user only after the sample can pass
-both the grammar gate and visual QA, or explicitly state which rule still needs
-design judgment.
+`visual-qa-sample.mjs` calls `grid-qa-sample.mjs` automatically when `--style` is
+provided. If either check fails, revise the sample. Do not show screenshots or ask
+for approval while any slide has scrollbars, clipped text, element overflow,
+missing 1280x720 framing, browser errors, missing grid tokens, off-column grid
+bands, missing `data-grid-band`, or missing same-box overlay for strict/measured
+profiles. Tell the user only after the sample can pass the grammar, visual, and
+grid-discipline gates, or explicitly state which rule still needs design
+judgment.
 
 After the user chooses one candidate style, the next assistant action must be one
 of:

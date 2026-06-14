@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <title>Swiss Grid Discipline Fail Fixture</title>
+  <style>
+    * { box-sizing: border-box; }
+    html, body { width: 1280px; height: 720px; margin: 0; overflow: hidden; background: #f7f7f2; }
+    body { font-family: Arial, "Segoe UI", "Microsoft YaHei UI", sans-serif; }
+    .deck-shell { width: 1280px; height: 720px; }
+    .slide { width: 1280px; height: 720px; padding: 56px 72px; overflow: hidden; }
+    h1 { margin: 0; font-size: 76px; line-height: 84px; width: 720px; transform: translateX(13px); }
+    p { margin-top: 37px; font-size: 25px; line-height: 31px; width: 420px; }
+  </style>
+</head>
+<body>
+  <main
+    class="deck-shell"
+    data-style-id="swiss-signal-cobalt"
+    data-template-id="guizang-base"
+    data-grammar-profile="swiss-grid-signal"
+    data-grid-mode="strict"
+    data-grid-cols="12"
+    data-grid-baseline="8"
+    data-grid-gutter="24"
+    data-grid-margin-x="72"
+    data-grid-margin-y="56">
+    <section class="slide" data-slide-role="title" data-layout-id="split-statement">
+      <h1>这页没有 grid band 和 overlay。</h1>
+      <p>它看起来可能像瑞士风，但没有可审计的列线、基线和同源 overlay。</p>
+    </section>
+  </main>
+</body>
+</html>

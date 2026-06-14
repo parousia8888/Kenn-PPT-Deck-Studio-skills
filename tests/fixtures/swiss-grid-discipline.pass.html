@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <title>Swiss Grid Discipline Pass Fixture</title>
+  <style>
+    :root {
+      --grid-cols: 12;
+      --grid-baseline: 8px;
+      --grid-gutter: 24px;
+      --grid-margin-x: 72px;
+      --grid-margin-y: 56px;
+      --paper: #f7f7f2;
+      --ink: #111111;
+      --accent: #0047ff;
+      --line: rgba(17, 17, 17, 0.18);
+      --font-sans: Arial, "Segoe UI", "Microsoft YaHei UI", sans-serif;
+      --font-mono: Consolas, "Cascadia Mono", monospace;
+    }
+    * { box-sizing: border-box; }
+    html, body { width: 1280px; height: 720px; margin: 0; overflow: hidden; background: var(--paper); }
+    body { color: var(--ink); font-family: var(--font-sans); }
+    .deck-shell { width: 1280px; height: 720px; overflow: hidden; }
+    .slide {
+      position: relative;
+      width: 1280px;
+      height: 720px;
+      overflow: hidden;
+      padding: var(--grid-margin-y) var(--grid-margin-x);
+      background: var(--paper);
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      column-gap: var(--grid-gutter);
+      row-gap: 24px;
+    }
+    .grid-band { min-width: 0; }
+    .eyebrow {
+      grid-column: 1 / 13;
+      font: 700 16px/24px var(--font-mono);
+      letter-spacing: 0;
+      color: var(--accent);
+    }
+    h1 {
+      margin: 0;
+      font: 700 72px/80px var(--font-sans);
+      letter-spacing: 0;
+    }
+    p {
+      margin: 0;
+      font: 400 24px/32px var(--font-sans);
+      color: #555;
+    }
+    .rule { height: 2px; background: var(--ink); }
+    .cell {
+      border-top: 2px solid var(--ink);
+      padding-top: 16px;
+      font: 600 22px/32px var(--font-sans);
+    }
+    .grid-overlay {
+      position: absolute;
+      inset: var(--grid-margin-y) var(--grid-margin-x);
+      pointer-events: none;
+      opacity: 0;
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      column-gap: var(--grid-gutter);
+    }
+    .grid-overlay i {
+      display: block;
+      background: rgba(0, 71, 255, 0.06);
+      border-left: 1px solid rgba(0, 71, 255, 0.22);
+      border-right: 1px solid rgba(0, 71, 255, 0.22);
+    }
+  </style>
+</head>
+<body>
+  <main
+    class="deck-shell"
+    data-style-id="swiss-signal-cobalt"
+    data-template-id="guizang-base"
+    data-grammar-profile="swiss-grid-signal"
+    data-grid-mode="strict"
+    data-grid-cols="12"
+    data-grid-baseline="8"
+    data-grid-gutter="24"
+    data-grid-margin-x="72"
+    data-grid-margin-y="56">
+    <section class="slide" data-slide-role="title" data-layout-id="split-statement">
+      <div class="grid">
+        <div class="eyebrow grid-band" data-grid-band="kicker" style="grid-column: 1 / 13">GRID SAMPLE / 01</div>
+        <h1 class="grid-band" data-grid-band="headline" style="grid-column: 1 / 8">网格不是背景，是结构。</h1>
+        <p class="grid-band" data-grid-band="copy" style="grid-column: 8 / 13">标题、正文、证据格和调试 overlay 全部读取同一组 16:9 网格 token。</p>
+        <div class="rule grid-band" data-grid-band="rule" style="grid-column: 1 / 13"></div>
+        <div class="cell grid-band" data-grid-band="cell-a" style="grid-column: 1 / 5">12 columns</div>
+        <div class="cell grid-band" data-grid-band="cell-b" style="grid-column: 5 / 9">8px baseline</div>
+        <div class="cell grid-band" data-grid-band="cell-c" style="grid-column: 9 / 13">same-box overlay</div>
+      </div>
+      <div class="grid-overlay" data-grid-overlay="same-box" aria-hidden="true">
+        <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+      </div>
+    </section>
+  </main>
+</body>
+</html>

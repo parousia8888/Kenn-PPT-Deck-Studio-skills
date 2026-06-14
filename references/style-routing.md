@@ -61,9 +61,11 @@ Supported. Treat it as a new style derivation:
 2. Pick the closest style id from `assets/style-systems/style-catalog.json`.
 3. Confirm artistic anchors in concrete terms: color master, typography
    temperament, layout density, graphic language, motion grammar, component
-   grammar, shape grammar, layout whitelist, and forbidden motifs.
+   grammar, shape grammar, layout whitelist, grid discipline, and forbidden
+   motifs.
 4. Create a 2-3 slide style sample first.
-5. Validate the sample with `scripts/validate-style-sample.mjs`.
+5. Validate the sample with `scripts/validate-style-sample.mjs --file=<sample-index.html>`
+   and `scripts/visual-qa-sample.mjs --file=<sample-index.html> --style=<style-id>`.
 6. Ask for approval.
 7. Only then expand into the full deck template.
 

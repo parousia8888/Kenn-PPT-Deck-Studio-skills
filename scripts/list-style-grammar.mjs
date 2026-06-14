@@ -71,6 +71,14 @@ if (jsonOnly) {
   console.log(`  shadow: ${profile.shapeGrammar.shadow}`);
   console.log("\nLayout families:");
   console.log(`  ${profile.layoutGrammar.allowedFamilies.join(", ")}`);
+  if (profile.gridDiscipline) {
+    console.log("\nGrid discipline:");
+    console.log(`  mode: ${profile.gridDiscipline.mode}; frame: ${profile.gridDiscipline.frame}`);
+    console.log(`  columns: ${profile.gridDiscipline.columns}; baseline: ${profile.gridDiscipline.baseline}px; gutter: ${profile.gridDiscipline.gutter}px`);
+    console.log(`  margins: x ${profile.gridDiscipline.marginX}px, y ${profile.gridDiscipline.marginY}px`);
+    console.log(`  trace: ${profile.gridDiscipline.requiredTrace.join(", ")}`);
+    console.log(`  overlay: ${profile.gridDiscipline.overlay}`);
+  }
   console.log("\nChart rules:");
   console.log(`  allowed: ${profile.graphicGrammar.chartsAllowed.join(", ")}`);
   console.log(`  forbidden: ${profile.graphicGrammar.chartsForbidden.join(", ")}`);

@@ -16,8 +16,8 @@ Do not start slide production until these gates are confirmed:
 1. **Style first, with two approvals.** Identify deck type and recommend 1-3
    candidate styles from the locked style catalog. A style must define color
    master, typography temperament, layout density, graphic language, motion
-   grammar, **component grammar, shape grammar, and layout whitelist**. Gate 1
-   has two separate approvals:
+   grammar, **component grammar, shape grammar, layout whitelist, and grid
+   discipline**. Gate 1 has two separate approvals:
    - **1A Style ID approval:** user chooses a template/style direction.
    - **1B Visual sample approval:** after 1A, produce a mandatory 2-3 slide
      style sample, validate it with the selected style execution grammar, and ask
@@ -68,6 +68,7 @@ into a named style id plus concrete choices on:
 - component grammar: allowed/forbidden panels, cards, badges, callouts, icons
 - shape grammar: radius, shadows, circle/pill/rect rules, chart primitives
 - layout whitelist: named slide families and title/content safe zones
+- grid discipline: 16:9 grid tokens, column/baseline alignment, same-box overlay
 
 Style gate output may only be:
 
@@ -82,12 +83,14 @@ approval, run both checks:
 
 ```bash
 node scripts/validate-style-sample.mjs --file=<sample-index.html> --style=<style-id> --template=<template-id>
-node scripts/visual-qa-sample.mjs --file=<sample-index.html> --out=<sample-dir>/_visual_qa
+node scripts/visual-qa-sample.mjs --file=<sample-index.html> --style=<style-id> --out=<sample-dir>/_visual_qa
 ```
 
 If validation or visual QA fails, revise the sample first. Do not ask the user to
 approve a sample with known grammar violations, browser errors, scrollbars,
-clipped text, or elements outside the 1280x720 slide frame.
+clipped text, elements outside the 1280x720 slide frame, missing grid tokens,
+off-column grid bands, or missing same-box overlay for strict/measured grid
+profiles.
 
 ## Confirmation Gates
 
@@ -120,6 +123,9 @@ Required user confirmations:
 - Every sample/production deck root should declare `data-style-id`,
   `data-template-id`, and `data-grammar-profile`; every slide should declare
   `data-slide-role` and `data-layout-id`.
+- For strict/measured grid profiles, expose grid tokens (`data-grid-*` or
+  `--grid-*`), mark major regions with `data-grid-band`, and include a same-box
+  grid overlay/debug hook before showing the sample.
 - Keep Windows-safe font fallbacks. Prefer the `.system-fonts.single.html` build
   for offline/Windows handoff checks.
 - Use product screenshots, diagrams, generated visuals, or data visualization when
@@ -131,9 +137,11 @@ Required user confirmations:
 
 - `references/workflow.md` — full guided process and confirmation scripts.
 - `references/style-routing.md` — template decision matrix and sample-preview rule.
-- `references/style-system.md` — style gate rules, eight-axis execution lock, and quality rubric.
+- `references/style-system.md` — style gate rules, nine-axis execution lock, and quality rubric.
 - `references/sample-contract.md` — required Gate 1B markup, role tags, layout ids,
   and examples of grammar-compliant/forbidden sample components.
+- `references/layout-discipline.md` — 16:9 grid tokens, column/baseline discipline,
+  same-box overlay rule, and grid QA failure modes.
 - `assets/style-systems/style-catalog.json` — 50+ locked high-aesthetic style systems.
 - `assets/style-systems/execution-grammar.json` — component grammar, shape grammar,
   layout families, type locks, chart rules, and validation flags for each style.
@@ -169,7 +177,13 @@ Validate a Gate 1B style sample before showing it:
 
 ```bash
 node scripts/validate-style-sample.mjs --file=/path/to/index.html --style=<style-id> --template=<template-id>
-node scripts/visual-qa-sample.mjs --file=/path/to/index.html --out=/path/to/_visual_qa
+node scripts/visual-qa-sample.mjs --file=/path/to/index.html --style=<style-id> --out=/path/to/_visual_qa
+```
+
+Debug grid discipline failures directly:
+
+```bash
+node scripts/grid-qa-sample.mjs --file=/path/to/index.html --style=<style-id>
 ```
 
 Run style grammar regression checks after changing style rules or validators:

@@ -3,6 +3,7 @@ import fs from "node:fs";
 import path from "node:path";
 import { createRequire } from "node:module";
 import { pathToFileURL, fileURLToPath } from "node:url";
+import { spawnSync } from "node:child_process";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 
@@ -19,9 +20,11 @@ const height = Number(args.get("height") || 720);
 const tolerance = Number(args.get("tolerance") || 2);
 const maxIssues = Number(args.get("max-issues") || 80);
 const explicitBrowser = args.get("browser");
+const styleId = args.get("style");
+const skipGridQa = args.get("skip-grid-qa") === "true";
 
 if (!file) {
-  console.error("Usage: node scripts/visual-qa-sample.mjs --file=<index.html> [--out=<dir>] [--width=1280] [--height=720]");
+  console.error("Usage: node scripts/visual-qa-sample.mjs --file=<index.html> [--style=<style-id>] [--out=<dir>] [--width=1280] [--height=720]");
   process.exit(2);
 }
 
@@ -239,6 +242,27 @@ if (issues.length || browserErrors.length) {
   for (const error of browserErrors) console.error(`- ${error}`);
   console.error(`Report: ${path.join(outDir, "visual-qa-report.json")}`);
   process.exit(1);
+}
+
+if (styleId && !skipGridQa) {
+  const gridQaPath = path.join(root, "scripts", "grid-qa-sample.mjs");
+  const gridArgs = [
+    gridQaPath,
+    `--file=${path.resolve(file)}`,
+    `--style=${styleId}`,
+    `--width=${width}`,
+    `--height=${height}`,
+    `--tolerance=${tolerance}`,
+  ];
+  if (explicitBrowser) gridArgs.push(`--browser=${explicitBrowser}`);
+  const grid = spawnSync(process.execPath, gridArgs, {
+    cwd: root,
+    encoding: "utf8",
+    maxBuffer: 1024 * 1024 * 4,
+  });
+  if (grid.stdout) process.stdout.write(grid.stdout);
+  if (grid.stderr) process.stderr.write(grid.stderr);
+  if (grid.status !== 0) process.exit(grid.status || 1);
 }
 
 console.log(`Visual QA passed: ${slideCount} slide(s), ${width}x${height}, screenshots in ${outDir}.`);

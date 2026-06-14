@@ -24,6 +24,19 @@ Every slide must declare:
   data-layout-id="cover-rail">
 ```
 
+For strict or measured grid profiles, the deck root or each slide must also
+declare the 16:9 grid source of truth:
+
+```html
+<main
+  data-grid-mode="strict"
+  data-grid-cols="12"
+  data-grid-baseline="8"
+  data-grid-gutter="24"
+  data-grid-margin-x="72"
+  data-grid-margin-y="56">
+```
+
 Gate 1B samples should include these roles:
 
 - `title`: title typography, color dominance, background/motion mood.
@@ -71,6 +84,28 @@ The validator treats the whitelist as binding. A slide that declares
 `data-layout-id="custom-layout"` under `industrial-control` must fail even if the
 page looks visually acceptable.
 
+## Grid Discipline Trace
+
+For strict/measured profiles, major regions must leave a measurable trace:
+
+```html
+<div class="grid-band" data-grid-band="headline" style="grid-column: 1 / 8">
+  ...
+</div>
+<div class="grid-overlay" data-grid-overlay="same-box" aria-hidden="true"></div>
+```
+
+Rules:
+
+- `data-grid-band` marks title, dense content, chart/process, evidence rails, or
+  other major regions.
+- band edges should align to the computed column starts/ends from the grid
+  tokens, not merely look aligned by eye.
+- overlay/debug guides must live inside the same slide/content box and read the
+  same grid tokens as the content.
+- optional grid profiles may use looser composition, but must still keep
+  `data-layout-id` and safe zones auditable.
+
 ## Template Component Trace
 
 Samples should leave an auditable trace back to the chosen template:
@@ -112,12 +147,15 @@ Run before showing a sample:
 
 ```bash
 node scripts/validate-style-sample.mjs --file=<sample-index.html> --style=<style-id> --template=<template-id>
-node scripts/visual-qa-sample.mjs --file=<sample-index.html> --out=<sample-dir>/_visual_qa
+node scripts/visual-qa-sample.mjs --file=<sample-index.html> --style=<style-id> --out=<sample-dir>/_visual_qa
+node scripts/grid-qa-sample.mjs --file=<sample-index.html> --style=<style-id>
 ```
 
 Validation or visual QA failure means the sample is not ready for user approval.
 Visual QA failure includes document scrollbars, slide scroll overflow, browser
 errors, elements outside the 1280x720 slide, or clipped text blocks.
+Grid QA failure includes missing grid tokens, missing `data-grid-band`,
+off-column bands, missing same-box overlay, or baseline drift.
 
 Run the local regression harness after changing grammar or validator behavior:
 

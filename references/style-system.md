@@ -24,6 +24,8 @@ just a palette or mood label. It must lock these axes:
    shadow/elevation, circle/pill/rect rules, and chart node geometry.
 8. **Layout whitelist:** named slide families, safe zones, title/content slots,
    max cards/modules, and required layout ids.
+9. **Grid discipline:** 16:9 frame tokens, column/baseline rhythm, major-region
+   `data-grid-band` trace, same-box overlay/debug hook, and measurable alignment.
 
 Do not use vague instructions like "tech feel", "premium", "simple", "warm", or
 "high-end black" as a final style. Translate them into one catalog style plus
@@ -47,6 +49,9 @@ set for:
   charts, SVG text, or shadows are allowed;
 - layout families: which slide structures can be used and which title/content
   safe zones must be preserved;
+- grid discipline: whether the style is strict, measured, or optional; what
+  columns, gutters, margins, and baseline apply to a 1280x720 deck; and whether
+  the sample must expose `data-grid-band` plus a same-box overlay/debug hook;
 - type locks: title/body/mono role, Windows stack, forbidden font temperament;
 - chart rules: approved chart primitives and explicitly banned chart types;
 - validator flags: what `scripts/validate-style-sample.mjs` must reject.
@@ -110,6 +115,7 @@ Reference anchors used to shape these rules:
    - graphic language
    - motion grammar
    - component/shape restrictions that matter for this deck
+   - grid discipline and overlay/debug expectations
    - what it must avoid
 3. Ask the user to confirm one style or request changes.
 4. If the user asks for a new style, derive it from the closest catalog entry and
@@ -122,9 +128,11 @@ Reference anchors used to shape these rules:
 
 ```bash
 node scripts/validate-style-sample.mjs --file=<sample-index.html> --style=<style-id> --template=<template-id>
+node scripts/visual-qa-sample.mjs --file=<sample-index.html> --style=<style-id> --out=<sample-dir>/_visual_qa
 ```
 
-If it fails, revise the sample. Do not ask the user to approve known violations.
+`visual-qa-sample.mjs` runs grid QA when `--style` is passed. If either check
+fails, revise the sample. Do not ask the user to approve known violations.
 
 Important distinction:
 
@@ -154,6 +162,9 @@ A valid sample must show:
   or explicitly role-tagged derived components.
 - **Shape proof:** the diagram/process page must demonstrate the style's allowed
   primitives and avoid its forbidden primitives.
+- **Grid proof:** strict/measured profiles must expose `data-grid-*` or
+  `--grid-*` tokens, align major `data-grid-band` regions to computed columns,
+  and include a same-box overlay/debug hook.
 
 If the user asks for PPTX/PDF, the visual sample may still be HTML first. Export
 comes later after narrative and detailed sections are approved.
@@ -166,6 +177,8 @@ Reject a sample before showing it when any of these are true:
 - sample uses anonymous cards/panels that are not in the template or grammar;
 - root lacks `data-style-id` / `data-template-id` / `data-grammar-profile`;
 - slides lack `data-layout-id`, so the layout cannot be audited;
+- strict/measured grid profile lacks grid tokens, lacks `data-grid-band`, places
+  bands off computed column lines, or lacks a same-box grid overlay/debug hook;
 - style says no circular badges but CSS uses `border-radius:50%`, SVG `<circle>`,
   or circular process numbers;
 - style says no radar/spider chart but the diagram uses radar geometry;
@@ -191,9 +204,10 @@ Score each sample from 0-3 before showing it:
 | Components | anonymous ad hoc UI | mostly coherent | template-based | role-locked, reusable, validator-checkable |
 | Shapes | mixed primitives | mostly matching | profile compliant | distinctive, style-specific grammar |
 | Layout | improvised pages | usable grid | named layouts | registered family + safe-zone checked |
+| Grid | decorative or absent | plausible by eye | tokenized with bands | measured columns/baseline + same-box overlay verified |
 
 Do not ask the user to approve a sample with any axis below 2. For Kenn's decks,
-aim for at least 21/24 total.
+aim for at least 24/27 total.
 
 ## Red Flags
 
